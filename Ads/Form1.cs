@@ -204,6 +204,7 @@ namespace Ads
             list.Add("نرم افزار حسابداری نوین پرداز...... تلفن جهت هماهنگی و مشاوره 05137597590");
             var divar = await DivarAdv.GetInstance();
             await divar.SendChat(list, 5, "تهران", null, null,null);
+
         }
     }
 }
