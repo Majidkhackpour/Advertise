@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ads", "Ads\Ads.csproj", "{B900701C-8CF4-4E34-9B7F-D69C3B46DC25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLayer", "BussinesLayer\BussinesLayer.csproj", "{528D1B27-3154-48F6-A333-08DD5FF6E82D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B900701C-8CF4-4E34-9B7F-D69C3B46DC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B900701C-8CF4-4E34-9B7F-D69C3B46DC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B900701C-8CF4-4E34-9B7F-D69C3B46DC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B900701C-8CF4-4E34-9B7F-D69C3B46DC25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528D1B27-3154-48F6-A333-08DD5FF6E82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528D1B27-3154-48F6-A333-08DD5FF6E82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528D1B27-3154-48F6-A333-08DD5FF6E82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528D1B27-3154-48F6-A333-08DD5FF6E82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DE4587C-415E-495B-AEDD-7FCF2790AD44}
+	EndGlobalSection
+EndGlobal
