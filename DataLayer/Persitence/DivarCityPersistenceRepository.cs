@@ -32,5 +32,21 @@ namespace DataLayer.Persitence
                 return null;
             }
         }
+
+        public bool Check_Name(string name)
+        {
+            try
+            {
+                using (var contex = new dbContext())
+                {
+                    var acc = contex.DivarCity.AsNoTracking().Where(q => q.Name == name).ToList();
+                    return acc.Count == 0;
+                }
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+        }
    }
 }

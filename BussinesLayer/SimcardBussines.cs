@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Enums;
 using DataLayer.Interface.Entities;
@@ -20,6 +21,7 @@ namespace BussinesLayer
         public string Operator { get; set; }
         public string UserName { get; set; }
         public string OwnerName { get; set; }
+
         public static SimcardBussines GetAsync(AdvertiseType type)
         {
             using (var _context = new UnitOfWorkLid())
@@ -35,7 +37,14 @@ namespace BussinesLayer
                 return null;
             }
         }
-
+        public static SimcardBussines GetAsync(Guid guid)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.Simcard.Get(guid);
+                return Mappings.Default.Map<SimcardBussines>(a);
+            }
+        }
         public async static Task<SimcardBussines> GetAsync(long number)
         {
             using (var _context = new UnitOfWorkLid())
@@ -76,6 +85,32 @@ namespace BussinesLayer
             {
                 var a = _context.Simcard.GetAll();
                 return Mappings.Default.Map<List<SimcardBussines>>(a);
+            }
+        }
+        public static async Task<List<SimcardBussines>> GetAllAsync(string search)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = await GetAllAsync();
+                if (search == null) return a;
+                var res = a.Where(q =>
+                        q.OwnerName.Contains(search) || q.Number.ToString().Contains(search) ||
+                        q.Operator.Contains(search))
+                    .ToList();
+                return res;
+            }
+        }
+        public static bool Check_Number(long number, Guid guid)
+        {
+            using (var _context = new UnitOfWorkLid())
+                return _context.Simcard.Check_Number(number, guid);
+        }
+        public static SimcardBussines Change_Status(Guid accGuid, bool status)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.Simcard.Change_Status(accGuid, status);
+                return Mappings.Default.Map<SimcardBussines>(a);
             }
         }
     }

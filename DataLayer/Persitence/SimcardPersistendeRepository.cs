@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,41 @@ namespace DataLayer.Persitence
             catch (Exception exception)
             {
                 return 0;
+            }
+        }
+
+        public bool Check_Number(long number, Guid guid)
+        {
+            try
+            {
+                using (var contex = new dbContext())
+                {
+                    var acc = contex.Simcard.AsNoTracking().Where(q => q.Number == number && q.Guid != guid).ToList();
+                    return acc.Count == 0;
+                }
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+        }
+
+        public Simcard Change_Status(Guid accGuid, bool status)
+        {
+            try
+            {
+                using (var context = new dbContext())
+                {
+                    var acc = context.Simcard.AsNoTracking().FirstOrDefault(q => q.Guid == accGuid);
+                    acc.Status = status;
+                    context.Simcard.AddOrUpdate(acc);
+                    context.SaveChanges();
+                    return acc;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

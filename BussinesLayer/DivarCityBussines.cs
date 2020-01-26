@@ -39,14 +39,48 @@ namespace BussinesLayer
                 return Mappings.Default.Map<DivarCityBussines>(a);
             }
         }
-        public async Task SaveAsync()
+
+        public static bool RemoveAll(List<DivarCityBussines> list)
         {
             try
             {
                 using (var _context = new UnitOfWorkLid())
                 {
-                    var a = Mappings.Default.Map<DivarCity>(this);
-                    var res = _context.City.Save(a);
+                    var tt= Mappings.Default.Map<List<DivarCity>>(list);
+                    var a = _context.City.RemoveAll(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static bool Check_Name(string name)
+        {
+            using (var _context = new UnitOfWorkLid())
+                return _context.City.Check_Name(name);
+        }
+        public static async Task SaveAsync(List<DivarCityBussines>lst)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var all = await GetAllAsync();
+                    if (all.Count > 0)
+                    {
+                        if (!RemoveAll(all)) return;
+                    }
+
+                    foreach (var item in lst)
+                    {
+                        if (!Check_Name(item.Name)) return;
+                        var a = Mappings.Default.Map<DivarCity>(item);
+                        var res = _context.City.Save(a);
+                    }
+                   
                     _context.Set_Save();
                     _context.Dispose();
 

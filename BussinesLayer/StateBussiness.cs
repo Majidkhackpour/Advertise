@@ -9,7 +9,7 @@ using DataLayer.Persitence;
 
 namespace BussinesLayer
 {
-  public  class StateBussiness:IState
+    public class StateBussiness : IState
     {
         public Guid Guid { get; set; }
         public string DateSabt { get; set; }
@@ -30,6 +30,31 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+            }
+        }
+        public static bool RemoveAll(List<StateBussiness> list)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var tt = Mappings.Default.Map<List<States>>(list);
+                    var a = _context.State.RemoveAll(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static async Task<List<StateBussiness>> GetAllAsync()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.State.GetAll();
+                return Mappings.Default.Map<List<StateBussiness>>(a);
             }
         }
     }

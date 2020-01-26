@@ -62,11 +62,29 @@ namespace DataLayer.Persitence
             }
         }
 
-        public bool Remove(T item, string transActionName = null)
+        public bool Remove(T item)
         {
-            using (DbContextTransaction transaction = _dbContext.Database.BeginTransaction())
+            try
             {
-                try
+                if (_dbContext.Entry(item).State == EntityState.Detached)
+                {
+                    _dbSet.Attach(item);
+                }
+
+                _dbSet.Remove(item);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveAll(List<T> list)
+        {
+            try
+            {
+                foreach (var item in list)
                 {
                     if (_dbContext.Entry(item).State == EntityState.Detached)
                     {
@@ -74,14 +92,13 @@ namespace DataLayer.Persitence
                     }
 
                     _dbSet.Remove(item);
-                    return true;
-                    transaction.Commit();
                 }
-                catch (Exception e)
-                {
-                    return false;
-                    transaction.Rollback();
-                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 

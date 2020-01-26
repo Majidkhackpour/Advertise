@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
-using AdvertiseApp.Classes;
 using BussinesLayer;
 using DataLayer;
 
@@ -45,7 +39,7 @@ namespace Ads
             var list = divar.GetAllCityFromDivar();
             foreach (var item in list)
             {
-                await item.SaveAsync();
+                //await item.SaveAsync();
             }
         }
 
@@ -139,14 +133,14 @@ namespace Ads
         {
             for (int i = 0; i < dgSimcardAds.RowCount; i++)
             {
-                if ((bool) dgSimcardAds[dg_isChecked.Index, i].Value)
+                if ((bool)dgSimcardAds[dg_isChecked.Index, i].Value)
                 {
                     var a = new SimcardAdsBussines()
                     {
                         Guid = Guid.NewGuid(),
                         DateSabt = DateConvertor.M2SH(DateTime.Now),
                         Status = true,
-                        SimcardGuid = (Guid) cmbSimcard.SelectedValue,
+                        SimcardGuid = (Guid)cmbSimcard.SelectedValue,
                         AdsName = dgSimcardAds[dg_AdvName.Index, i].Value.ToString()
                     };
                     await a.SaveAsync();
@@ -188,7 +182,7 @@ namespace Ads
             var regList = await divar.GetAllRegionFromDivar(lst);
             foreach (var item in regList)
             {
-                await item.SaveAsync();
+                //await item.SaveAsync();
             }
         }
 
@@ -200,11 +194,10 @@ namespace Ads
 
         private async void btnSendDivarChat_Click(object sender, EventArgs e)
         {
-            var list=new List<string>();
+            var list = new List<string>();
             list.Add("نرم افزار حسابداری نوین پرداز...... تلفن جهت هماهنگی و مشاوره 05137597590");
             var divar = await DivarAdv.GetInstance();
-            await divar.SendChat(list, 5, "تهران", null, null,null);
-
+            await divar.SendChat(list, 5, "تهران", null, null, null);
         }
     }
 }

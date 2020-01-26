@@ -26,23 +26,57 @@ namespace BussinesLayer
                 return Mappings.Default.Map<List<RegionBussiness>>(a);
             }
         }
-        public async Task SaveAsync()
+        public static async Task<List<RegionBussiness>> GetAllAsync()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.Region.GetAll();
+                return Mappings.Default.Map<List<RegionBussiness>>(a);
+            }
+        }
+        public static async Task SaveAsync(AdvertiseType type,List<RegionBussiness>lst)
         {
             try
             {
                 using (var _context = new UnitOfWorkLid())
                 {
+                    var all = await GetAllAsync();
+                    all = all.Where(q => q.Type == type).ToList();
+                    if (all.Count > 0)
+                    {
+                        if (!RemoveAll(all)) return;
+                    }
 
-                    var a = Mappings.Default.Map<Region>(this);
-                    var res = _context.Region.Save(a);
+                    foreach (var item in all)
+                    {
+                        var a = Mappings.Default.Map<Region>(item);
+                        var res = _context.Region.Save(a);
+                    }
+                 
                     _context.Set_Save();
-
                     _context.Dispose();
 
                 }
             }
             catch (Exception exception)
             {
+            }
+        }
+        public static bool RemoveAll(List<RegionBussiness> list)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var tt = Mappings.Default.Map<List<Region>>(list);
+                    var a = _context.Region.RemoveAll(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

@@ -7,7 +7,6 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
@@ -15,7 +14,7 @@ using OpenQA.Selenium;
 using Cookie = OpenQA.Selenium.Cookie;
 
 
-namespace AdvertiseApp.Classes
+namespace Ads.Classes
 {
     public class DivarAdv
     {
@@ -769,7 +768,7 @@ namespace AdvertiseApp.Classes
                 {
                     _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input"))
                         .SendKeys(item + "\n");
-                    await Utility.Wait();
+                    await Utility.Wait(2);
                     var el = _driver.FindElement(By.ClassName("location-selector__district"))
                         .FindElement(By.TagName("i"));
                     await Utility.Wait();
@@ -1304,10 +1303,10 @@ namespace AdvertiseApp.Classes
                             var tt = await LoginChat(sim);
                             if (!tt) continue;
                         }
-
+                        await Utility.Wait(2);
                         var rnd = new Random().Next(0, msg.Count);
                         _driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg[rnd] + '\n');
-                        await Utility.Wait();
+                        await Utility.Wait(1);
                         j++;
                         _driver.Close();
                         _driver.SwitchTo().Window(_driver.WindowHandles[0]);
