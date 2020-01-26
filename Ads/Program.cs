@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Migrations.Model;
 using System.Windows.Forms;
 using Ads.Forms.Mains;
 using AutoMapper;
 using BussinesLayer;
+using DataLayer;
 
 namespace Ads
 {
@@ -23,8 +23,21 @@ namespace Ads
             var config = new MapperConfiguration(c => { c.AddProfile(new SqlProfile()); });
             Mappings.Default = new Mapper(config);
 
-
+            UpdateMigration();
             Application.Run(new frmMain());
+        }
+
+        private static void UpdateMigration()
+        {
+            try
+            {
+                var migratorConfig = new DataLayer.Migrations.Configuration();
+                var dbMigrator = new DbMigrator(migratorConfig);
+                dbMigrator.Update();
+            }
+            catch 
+            {
+            }
         }
     }
 }

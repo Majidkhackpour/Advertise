@@ -26,5 +26,6 @@ namespace DataLayer.Interface.Entities
         int SheypoorDayCountForUpdateState { get; set; }
         int DivarMaxImgCount { get; set; }
         int SheypoorMaxImgCount { get; set; }
+        string AdsAddress { get; set; }
     }
 }

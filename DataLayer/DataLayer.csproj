@@ -102,6 +102,10 @@
     <Compile Include="Migration\202001221441479_5.designer.cs">
       <DependentUpon>202001221441479_5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migration\202001261518230_6.cs" />
+    <Compile Include="Migration\202001261518230_6.designer.cs">
+      <DependentUpon>202001261518230_6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdvertiseLog.cs" />
     <Compile Include="Models\AdvTokens.cs" />
     <Compile Include="Models\DivarCity.cs" />
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202001221441479_5.resx">
       <DependentUpon>202001221441479_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202001261518230_6.resx">
+      <DependentUpon>202001261518230_6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

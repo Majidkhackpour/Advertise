@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
@@ -23,6 +18,32 @@ namespace Ads.Forms.Simcard
             cls = new SimcardBussines();
         }
 
+        private async Task FillAds()
+        {
+            try
+            {
+                var a = await SettingBussines.GetAllAsync();
+                var address = string.IsNullOrEmpty(a[0].AdsAddress) ? Application.StartupPath : a[0].AdsAddress;
+                var list2 = await Advertise.GetAllAsync(address);
+                adsBindingSource.DataSource = list2;
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
+        private async Task FillCity()
+        {
+            try
+            {
+                var list3 = await DivarCityBussines.GetAllAsync();
+                cityBindingSource.DataSource = list3.ToList();
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
         public frmSimcard_Main(Guid guid)
         {
             InitializeComponent();
@@ -166,7 +187,7 @@ namespace Ads.Forms.Simcard
         private async void frmSimcard_Main_Load(object sender, EventArgs e)
         {
             await FillComboBox();
-            Set_Data();
+            await Set_Data();
             var sim = await SimcardBussines.GetAllAsync();
             var _source = new AutoCompleteStringCollection();
 
@@ -179,10 +200,12 @@ namespace Ads.Forms.Simcard
             txtOwner.AutoCompleteSource = AutoCompleteSource.CustomSource;
             txtOwner.AutoCompleteCustomSource = _source;
         }
-        private void Set_Data()
+        private async Task Set_Data()
         {
             try
             {
+                await FillAds();
+                await FillCity();
                 txtNumber.Text = cls.Number.ToString();
                 txtOwner.Text = cls.OwnerName;
                 cmbOperator.Text = cls.Operator;
