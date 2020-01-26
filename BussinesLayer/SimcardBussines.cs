@@ -53,12 +53,54 @@ namespace BussinesLayer
                 return Mappings.Default.Map<SimcardBussines>(a);
             }
         }
+
         public async Task SaveAsync()
         {
             try
             {
                 using (var _context = new UnitOfWorkLid())
                 {
+                    var a = Mappings.Default.Map<Simcard>(this);
+                    var res = _context.Simcard.Save(a);
+                    _context.Set_Save();
+                    _context.Dispose();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        public async Task SaveAsync(List<DivarSimCityBussines>lstCity,List<SimcardAdsBussines>lstAds)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var allCity = await DivarSimCityBussines.GetAllAsync(Guid);
+                    if (!DivarSimCityBussines.RemoveAll(allCity)) return;
+                    var allAds = await SimcardAdsBussines.GetAllAsync(Guid);
+                    if (!SimcardAdsBussines.RemoveAll(allAds)) return;
+
+                    if (lstCity.Count > 0)
+                    {
+                        var a1 = Mappings.Default.Map<List<DivarSimCity>>(lstCity);
+                        foreach (var item in a1)
+                        {
+                            var res1 = _context.DivarSimCity.Save(item);
+                            _context.Set_Save();
+                        }
+                    }
+
+                    if (lstAds.Count > 0)
+                    {
+                        var a1 = Mappings.Default.Map<List<SimcardAds>>(lstAds);
+                        foreach (var item in a1)
+                        {
+                            var res1 = _context.SimcardAds.Save(item);
+                            _context.Set_Save();
+                        }
+                    }
+
                     var a = Mappings.Default.Map<Simcard>(this);
                     var res = _context.Simcard.Save(a);
                     _context.Set_Save();

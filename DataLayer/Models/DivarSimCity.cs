@@ -17,5 +17,6 @@ namespace DataLayer.Models
         public bool Status { get; set; }
         public Guid SimcardGuid { get; set; }
         public Guid CityGuid { get; set; }
+       
     }
 }

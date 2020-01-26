@@ -43,6 +43,23 @@ namespace BussinesLayer
                 return Mappings.Default.Map<List<SimcardAdsBussines>>(a);
             }
         }
+        public static bool RemoveAll(List<SimcardAdsBussines> list)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var tt = Mappings.Default.Map<List<SimcardAds>>(list);
+                    var a = _context.SimcardAds.RemoveAll(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
     }
 }

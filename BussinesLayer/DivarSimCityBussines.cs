@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
@@ -43,6 +41,23 @@ namespace BussinesLayer
                 return Mappings.Default.Map<List<DivarSimCityBussines>>(a);
             }
         }
-       
+        public static bool RemoveAll(List<DivarSimCityBussines> list)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var tt = Mappings.Default.Map<List<DivarSimCity>>(list);
+                    var a = _context.DivarSimCity.RemoveAll(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }

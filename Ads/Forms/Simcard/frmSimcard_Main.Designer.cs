@@ -57,16 +57,19 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgCity = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dgAds = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dg_CityChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg_CityGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cmCity = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuCitySelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgAds = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.cmAds = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdsSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_AdvChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dg_AdvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rootPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,14 +77,17 @@
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grpAccount.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAds)).BeginInit();
+            this.cmCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cityBindingSource)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAds)).BeginInit();
+            this.cmAds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,7 +159,7 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(7, 198);
+            this.txtUserName.Location = new System.Drawing.Point(1, 198);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(344, 27);
@@ -167,7 +173,7 @@
             this.txtOwner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.ForeColor = System.Drawing.Color.Silver;
-            this.txtOwner.Location = new System.Drawing.Point(7, 88);
+            this.txtOwner.Location = new System.Drawing.Point(1, 88);
             this.txtOwner.MaxLength = 3000;
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.Size = new System.Drawing.Size(344, 27);
@@ -181,7 +187,7 @@
             this.txtNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.ForeColor = System.Drawing.Color.Silver;
-            this.txtNumber.Location = new System.Drawing.Point(7, 33);
+            this.txtNumber.Location = new System.Drawing.Point(1, 33);
             this.txtNumber.MaxLength = 11;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(344, 27);
@@ -196,7 +202,7 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(280, 173);
+            this.label9.Location = new System.Drawing.Point(274, 173);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
@@ -209,7 +215,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(280, 63);
+            this.label7.Location = new System.Drawing.Point(274, 63);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 30;
@@ -222,7 +228,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(280, 118);
+            this.label8.Location = new System.Drawing.Point(274, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -235,7 +241,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(280, 8);
+            this.label2.Location = new System.Drawing.Point(274, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 30;
@@ -344,17 +350,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "شهرها";
             // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.tabPage3.Controls.Add(this.dgAds);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(374, 256);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "آگهی ها";
-            // 
             // dgCity
             // 
             this.dgCity.AllowUserToAddRows = false;
@@ -384,6 +379,7 @@
             this.dg_CityGuid,
             this.dateSabtDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn});
+            this.dgCity.ContextMenuStrip = this.cmCity;
             this.dgCity.DataSource = this.cityBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
@@ -420,82 +416,7 @@
             this.dgCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCity.Size = new System.Drawing.Size(368, 250);
             this.dgCity.TabIndex = 55690;
-            // 
-            // dgAds
-            // 
-            this.dgAds.AllowUserToAddRows = false;
-            this.dgAds.AllowUserToDeleteRows = false;
-            this.dgAds.AllowUserToResizeColumns = false;
-            this.dgAds.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgAds.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgAds.AutoGenerateColumns = false;
-            this.dgAds.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgAds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgAds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dg_AdvChecked,
-            this.dg_AdvName,
-            this.rootPathDataGridViewTextBoxColumn,
-            this.oldAdvNameDataGridViewTextBoxColumn,
-            this.contentDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.titleStringDataGridViewTextBoxColumn});
-            this.dgAds.DataSource = this.adsBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgAds.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgAds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAds.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgAds.Location = new System.Drawing.Point(3, 3);
-            this.dgAds.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgAds.Name = "dgAds";
-            this.dgAds.ReadOnly = true;
-            this.dgAds.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dgAds.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgAds.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgAds.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.dgAds.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dgAds.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dgAds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgAds.Size = new System.Drawing.Size(368, 250);
-            this.dgAds.TabIndex = 55691;
-            // 
-            // cityBindingSource
-            // 
-            this.cityBindingSource.DataSource = typeof(BussinesLayer.DivarCityBussines);
-            // 
-            // adsBindingSource
-            // 
-            this.adsBindingSource.DataSource = typeof(Ads.Classes.Advertise);
+            this.dgCity.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCity_CellClick);
             // 
             // dg_CityChecked
             // 
@@ -536,6 +457,129 @@
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
             this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // cmCity
+            // 
+            this.cmCity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.cmCity.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.cmCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCitySelectAll});
+            this.cmCity.Name = "contextMenuStrip1";
+            this.cmCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cmCity.Size = new System.Drawing.Size(135, 28);
+            // 
+            // mnuCitySelectAll
+            // 
+            this.mnuCitySelectAll.CheckOnClick = true;
+            this.mnuCitySelectAll.ForeColor = System.Drawing.Color.Silver;
+            this.mnuCitySelectAll.Name = "mnuCitySelectAll";
+            this.mnuCitySelectAll.Size = new System.Drawing.Size(134, 24);
+            this.mnuCitySelectAll.Text = "انتخاب همه";
+            this.mnuCitySelectAll.Click += new System.EventHandler(this.mnuCitySelectAll_Click);
+            // 
+            // cityBindingSource
+            // 
+            this.cityBindingSource.DataSource = typeof(BussinesLayer.DivarCityBussines);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.tabPage3.Controls.Add(this.dgAds);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(374, 256);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "آگهی ها";
+            // 
+            // dgAds
+            // 
+            this.dgAds.AllowUserToAddRows = false;
+            this.dgAds.AllowUserToDeleteRows = false;
+            this.dgAds.AllowUserToResizeColumns = false;
+            this.dgAds.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgAds.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgAds.AutoGenerateColumns = false;
+            this.dgAds.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgAds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgAds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dg_AdvChecked,
+            this.dg_AdvName,
+            this.rootPathDataGridViewTextBoxColumn,
+            this.oldAdvNameDataGridViewTextBoxColumn,
+            this.contentDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.titleStringDataGridViewTextBoxColumn});
+            this.dgAds.ContextMenuStrip = this.cmAds;
+            this.dgAds.DataSource = this.adsBindingSource;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgAds.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgAds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAds.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgAds.Location = new System.Drawing.Point(3, 3);
+            this.dgAds.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgAds.Name = "dgAds";
+            this.dgAds.ReadOnly = true;
+            this.dgAds.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dgAds.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgAds.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgAds.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.dgAds.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgAds.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgAds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgAds.Size = new System.Drawing.Size(368, 250);
+            this.dgAds.TabIndex = 55691;
+            this.dgAds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgAds_CellClick);
+            // 
+            // cmAds
+            // 
+            this.cmAds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.cmAds.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.cmAds.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdsSelectAll});
+            this.cmAds.Name = "contextMenuStrip1";
+            this.cmAds.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cmAds.Size = new System.Drawing.Size(181, 50);
+            // 
+            // mnuAdsSelectAll
+            // 
+            this.mnuAdsSelectAll.CheckOnClick = true;
+            this.mnuAdsSelectAll.ForeColor = System.Drawing.Color.Silver;
+            this.mnuAdsSelectAll.Name = "mnuAdsSelectAll";
+            this.mnuAdsSelectAll.Size = new System.Drawing.Size(180, 24);
+            this.mnuAdsSelectAll.Text = "انتخاب همه";
+            this.mnuAdsSelectAll.Click += new System.EventHandler(this.mnuAdsSelectAll_Click);
             // 
             // dg_AdvChecked
             // 
@@ -593,6 +637,10 @@
             this.titleStringDataGridViewTextBoxColumn.ReadOnly = true;
             this.titleStringDataGridViewTextBoxColumn.Visible = false;
             // 
+            // adsBindingSource
+            // 
+            this.adsBindingSource.DataSource = typeof(Ads.Classes.Advertise);
+            // 
             // frmSimcard_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -623,10 +671,12 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAds)).EndInit();
+            this.cmCity.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cityBindingSource)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAds)).EndInit();
+            this.cmAds.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -668,5 +718,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleStringDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip cmCity;
+        private System.Windows.Forms.ToolStripMenuItem mnuCitySelectAll;
+        private System.Windows.Forms.ContextMenuStrip cmAds;
+        private System.Windows.Forms.ToolStripMenuItem mnuAdsSelectAll;
     }
 }
