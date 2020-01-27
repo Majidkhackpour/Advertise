@@ -20,12 +20,11 @@ namespace DataLayer.Interface.Entities
         string SheypoorCat1 { get; set; }
         string SheypoorCat2 { get; set; }
         string SheypoorCat3 { get; set; }
-        string DivarPicPath { get; set; }
-        string SheypoorPicPath { get; set; }
         int DivarDayCountForUpdateState { get; set; }
         int SheypoorDayCountForUpdateState { get; set; }
         int DivarMaxImgCount { get; set; }
         int SheypoorMaxImgCount { get; set; }
         string AdsAddress { get; set; }
+        int DivarDayCountForDelete { get; set; }
     }
 }

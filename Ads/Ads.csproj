@@ -141,6 +141,12 @@
     <Compile Include="Forms\Mains\frmManagerMain.Designer.cs">
       <DependentUpon>frmManagerMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\frmAdsSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\frmAdsSettings.Designer.cs">
+      <DependentUpon>frmAdsSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simcard\frmShow_Simcard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mains\frmManagerMain.resx">
       <DependentUpon>frmManagerMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\frmAdsSettings.resx">
+      <DependentUpon>frmAdsSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmShow_Simcard.resx">
       <DependentUpon>frmShow_Simcard.cs</DependentUpon>

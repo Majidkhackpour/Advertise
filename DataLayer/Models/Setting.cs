@@ -29,12 +29,11 @@ namespace DataLayer.Models
         public string SheypoorCat2 { get; set; }
         [MaxLength(100)]
         public string SheypoorCat3 { get; set; }
-        public string DivarPicPath { get; set; }
-        public string SheypoorPicPath { get; set; }
         public int DivarDayCountForUpdateState { get; set; }
         public int SheypoorDayCountForUpdateState { get; set; }
         public int DivarMaxImgCount { get; set; }
         public int SheypoorMaxImgCount { get; set; }
         public string AdsAddress { get; set; }
+        public int DivarDayCountForDelete { get; set; }
     }
 }

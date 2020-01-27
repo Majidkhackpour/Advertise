@@ -68,8 +68,6 @@
             this.cityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgAds = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.cmAds = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuAdsSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_AdvChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dg_AdvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rootPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +75,8 @@
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmAds = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuAdsSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grpAccount.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -146,9 +146,9 @@
             this.cmbOperator.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbOperator.ForeColor = System.Drawing.Color.Black;
             this.cmbOperator.ItemHeight = 20;
-            this.cmbOperator.Location = new System.Drawing.Point(3, 141);
+            this.cmbOperator.Location = new System.Drawing.Point(13, 141);
             this.cmbOperator.Name = "cmbOperator";
-            this.cmbOperator.Size = new System.Drawing.Size(344, 28);
+            this.cmbOperator.Size = new System.Drawing.Size(326, 28);
             this.cmbOperator.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cmbOperator.TabIndex = 2;
             this.cmbOperator.ValueMember = "Guid";
@@ -159,10 +159,10 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(1, 198);
+            this.txtUserName.Location = new System.Drawing.Point(13, 198);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(344, 27);
+            this.txtUserName.Size = new System.Drawing.Size(326, 27);
             this.txtUserName.TabIndex = 3;
             this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
@@ -173,10 +173,10 @@
             this.txtOwner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.ForeColor = System.Drawing.Color.Silver;
-            this.txtOwner.Location = new System.Drawing.Point(1, 88);
+            this.txtOwner.Location = new System.Drawing.Point(13, 88);
             this.txtOwner.MaxLength = 3000;
             this.txtOwner.Name = "txtOwner";
-            this.txtOwner.Size = new System.Drawing.Size(344, 27);
+            this.txtOwner.Size = new System.Drawing.Size(326, 27);
             this.txtOwner.TabIndex = 1;
             this.txtOwner.Enter += new System.EventHandler(this.txtOwner_Enter);
             this.txtOwner.Leave += new System.EventHandler(this.txtOwner_Leave);
@@ -187,10 +187,10 @@
             this.txtNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.ForeColor = System.Drawing.Color.Silver;
-            this.txtNumber.Location = new System.Drawing.Point(1, 33);
+            this.txtNumber.Location = new System.Drawing.Point(13, 33);
             this.txtNumber.MaxLength = 11;
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(344, 27);
+            this.txtNumber.Size = new System.Drawing.Size(326, 27);
             this.txtNumber.TabIndex = 0;
             this.txtNumber.Enter += new System.EventHandler(this.txtNumber_Enter);
             this.txtNumber.Leave += new System.EventHandler(this.txtNumber_Leave);
@@ -202,7 +202,7 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(274, 173);
+            this.label9.Location = new System.Drawing.Point(268, 173);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
@@ -215,7 +215,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(274, 63);
+            this.label7.Location = new System.Drawing.Point(268, 63);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 30;
@@ -228,7 +228,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(274, 118);
+            this.label8.Location = new System.Drawing.Point(268, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -241,7 +241,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(274, 8);
+            this.label2.Location = new System.Drawing.Point(268, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 30;
@@ -562,25 +562,6 @@
             this.dgAds.TabIndex = 55691;
             this.dgAds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgAds_CellClick);
             // 
-            // cmAds
-            // 
-            this.cmAds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.cmAds.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.cmAds.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuAdsSelectAll});
-            this.cmAds.Name = "contextMenuStrip1";
-            this.cmAds.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmAds.Size = new System.Drawing.Size(181, 50);
-            // 
-            // mnuAdsSelectAll
-            // 
-            this.mnuAdsSelectAll.CheckOnClick = true;
-            this.mnuAdsSelectAll.ForeColor = System.Drawing.Color.Silver;
-            this.mnuAdsSelectAll.Name = "mnuAdsSelectAll";
-            this.mnuAdsSelectAll.Size = new System.Drawing.Size(180, 24);
-            this.mnuAdsSelectAll.Text = "انتخاب همه";
-            this.mnuAdsSelectAll.Click += new System.EventHandler(this.mnuAdsSelectAll_Click);
-            // 
             // dg_AdvChecked
             // 
             this.dg_AdvChecked.DataPropertyName = "Is_Checked";
@@ -636,6 +617,25 @@
             this.titleStringDataGridViewTextBoxColumn.Name = "titleStringDataGridViewTextBoxColumn";
             this.titleStringDataGridViewTextBoxColumn.ReadOnly = true;
             this.titleStringDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cmAds
+            // 
+            this.cmAds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.cmAds.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.cmAds.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAdsSelectAll});
+            this.cmAds.Name = "contextMenuStrip1";
+            this.cmAds.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cmAds.Size = new System.Drawing.Size(135, 28);
+            // 
+            // mnuAdsSelectAll
+            // 
+            this.mnuAdsSelectAll.CheckOnClick = true;
+            this.mnuAdsSelectAll.ForeColor = System.Drawing.Color.Silver;
+            this.mnuAdsSelectAll.Name = "mnuAdsSelectAll";
+            this.mnuAdsSelectAll.Size = new System.Drawing.Size(134, 24);
+            this.mnuAdsSelectAll.Text = "انتخاب همه";
+            this.mnuAdsSelectAll.Click += new System.EventHandler(this.mnuAdsSelectAll_Click);
             // 
             // adsBindingSource
             // 

@@ -106,6 +106,14 @@
     <Compile Include="Migration\202001261518230_6.designer.cs">
       <DependentUpon>202001261518230_6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migration\202001271450348_7.cs" />
+    <Compile Include="Migration\202001271450348_7.designer.cs">
+      <DependentUpon>202001271450348_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migration\202001271454115_8.cs" />
+    <Compile Include="Migration\202001271454115_8.designer.cs">
+      <DependentUpon>202001271454115_8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdvertiseLog.cs" />
     <Compile Include="Models\AdvTokens.cs" />
     <Compile Include="Models\DivarCity.cs" />
@@ -154,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202001261518230_6.resx">
       <DependentUpon>202001261518230_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202001271450348_7.resx">
+      <DependentUpon>202001271450348_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202001271454115_8.resx">
+      <DependentUpon>202001271454115_8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

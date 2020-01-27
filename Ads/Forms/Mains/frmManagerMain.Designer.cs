@@ -34,8 +34,8 @@
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lblState = new System.Windows.Forms.Label();
             this.lblDivarCity = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.picSetting = new System.Windows.Forms.PictureBox();
+            this.lblSetting = new System.Windows.Forms.Label();
             this.picSimcard = new System.Windows.Forms.PictureBox();
             this.lblSimcard = new System.Windows.Forms.Label();
             this.picDivarCity = new System.Windows.Forms.PictureBox();
@@ -43,7 +43,7 @@
             this.lblRegion = new System.Windows.Forms.Label();
             this.picRegion = new System.Windows.Forms.PictureBox();
             this.grpAccount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivarCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picState)).BeginInit();
@@ -80,8 +80,8 @@
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpAccount.Controls.Add(this.lblState);
             this.grpAccount.Controls.Add(this.lblDivarCity);
-            this.grpAccount.Controls.Add(this.pictureBox5);
-            this.grpAccount.Controls.Add(this.label6);
+            this.grpAccount.Controls.Add(this.picSetting);
+            this.grpAccount.Controls.Add(this.lblSetting);
             this.grpAccount.Controls.Add(this.picSimcard);
             this.grpAccount.Controls.Add(this.lblSimcard);
             this.grpAccount.Controls.Add(this.picDivarCity);
@@ -155,30 +155,34 @@
             this.lblDivarCity.MouseEnter += new System.EventHandler(this.lblDivarCity_MouseEnter);
             this.lblDivarCity.MouseLeave += new System.EventHandler(this.lblDivarCity_MouseLeave);
             // 
-            // pictureBox5
+            // picSetting
             // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Location = new System.Drawing.Point(29, 412);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(75, 63);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 2;
-            this.pictureBox5.TabStop = false;
+            this.picSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSetting.BackColor = System.Drawing.Color.Transparent;
+            this.picSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSetting.Location = new System.Drawing.Point(29, 412);
+            this.picSetting.Name = "picSetting";
+            this.picSetting.Size = new System.Drawing.Size(75, 63);
+            this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSetting.TabIndex = 2;
+            this.picSetting.TabStop = false;
+            this.picSetting.Click += new System.EventHandler(this.picSetting_Click);
             // 
-            // label6
+            // lblSetting
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label6.ForeColor = System.Drawing.Color.Silver;
-            this.label6.Location = new System.Drawing.Point(35, 478);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 20);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "تنظیمات";
+            this.lblSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSetting.BackColor = System.Drawing.Color.Transparent;
+            this.lblSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSetting.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblSetting.ForeColor = System.Drawing.Color.Silver;
+            this.lblSetting.Location = new System.Drawing.Point(35, 478);
+            this.lblSetting.Name = "lblSetting";
+            this.lblSetting.Size = new System.Drawing.Size(58, 20);
+            this.lblSetting.TabIndex = 30;
+            this.lblSetting.Text = "تنظیمات";
+            this.lblSetting.Click += new System.EventHandler(this.lblSetting_Click);
+            this.lblSetting.MouseEnter += new System.EventHandler(this.lblSetting_MouseEnter);
+            this.lblSetting.MouseLeave += new System.EventHandler(this.lblSetting_MouseLeave);
             // 
             // picSimcard
             // 
@@ -284,7 +288,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmManagerMain_Load);
             this.grpAccount.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivarCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picState)).EndInit();
@@ -300,8 +304,8 @@
         public DevComponents.DotNetBar.Controls.GroupPanel grpAccount;
         public System.Windows.Forms.Label lblState;
         public System.Windows.Forms.Label lblDivarCity;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        public System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox picSetting;
+        public System.Windows.Forms.Label lblSetting;
         private System.Windows.Forms.PictureBox picSimcard;
         public System.Windows.Forms.Label lblSimcard;
         private System.Windows.Forms.PictureBox picDivarCity;

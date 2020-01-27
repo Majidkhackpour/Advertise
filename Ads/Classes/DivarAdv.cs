@@ -47,7 +47,7 @@ namespace Ads.Classes
         {
             try
             {
-                var res = await SettingBussines.GetAllAsync();
+                var res =  SettingBussines.GetAll();
                 clsSetting = res.Count == 0 ? new SettingBussines() : res[0];
                 return clsSetting;
             }
@@ -610,8 +610,8 @@ namespace Ads.Classes
                 AdvertiseList = new List<Advertise>();
                 foreach (var item in advList)
                 {
-                    var adv = await Advertise.GetAsync(Path.Combine(clsSetting?.DivarPicPath, item.AdsName),
-                        clsSetting?.DivarPicPath);
+                    var adv = await Advertise.GetAsync(Path.Combine(clsSetting?.AdsAddress??"", item.AdsName),
+                        clsSetting?.AdsAddress);
                     AdvertiseList.Add(adv);
                 }
 
@@ -619,12 +619,12 @@ namespace Ads.Classes
                 #endregion
 
                 string path = null;
-                if (Path.Combine(clsSetting?.DivarPicPath, AdvertiseList[nextAdvIndex].AdvName) ==
+                if (Path.Combine(clsSetting?.AdsAddress??"", AdvertiseList[nextAdvIndex].AdvName) ==
                     AdvertiseList[nextAdvIndex].AdvName)
                     path = Path.Combine(AdvertiseList[nextAdvIndex].RootPath,
                         AdvertiseList[nextAdvIndex].AdvName);
                 else
-                    path = Path.Combine(clsSetting?.DivarPicPath, AdvertiseList[nextAdvIndex].AdvName);
+                    path = Path.Combine(clsSetting?.AdsAddress, AdvertiseList[nextAdvIndex].AdvName);
                 newAdvertiseLogBusiness.Adv = path;
                 #region FindNextTitle
 

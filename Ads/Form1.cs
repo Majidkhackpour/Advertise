@@ -76,7 +76,7 @@ namespace Ads
                 Status = true,
                 DivarCat3 = txtD_Cat3.Text,
                 DivarCat1 = txtD_Cat1.Text,
-                DivarPicPath = txtD_Address.Text,
+                //DivarPicPath = txtD_Address.Text,
                 CountAdvInDayDivar = int.Parse(txtD_CountInDay.Text),
                 CountAdvInDaySheypoor = int.Parse(txtSh_CountInDay.Text),
                 CountAdvInIPDivar = int.Parse(txtD_CountInIP.Text),
@@ -89,7 +89,7 @@ namespace Ads
                 SheypoorCat2 = txtSh_Cat2.Text,
                 SheypoorCat3 = txtSh_Cat3.Text,
                 SheypoorDayCountForUpdateState = 10,
-                SheypoorPicPath = txtSh_Address.Text,
+               // SheypoorPicPath = txtSh_Address.Text,
                 DivarMaxImgCount = int.Parse(txtDivarMaxImg.Text),
                 SheypoorMaxImgCount = int.Parse(txtSheypoorMaxImg.Text)
             };

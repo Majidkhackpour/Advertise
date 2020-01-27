@@ -24,15 +24,14 @@ namespace BussinesLayer
         public string SheypoorCat1 { get; set; }
         public string SheypoorCat2 { get; set; }
         public string SheypoorCat3 { get; set; }
-        public string DivarPicPath { get; set; }
-        public string SheypoorPicPath { get; set; }
         public int DivarDayCountForUpdateState { get; set; }
         public int SheypoorDayCountForUpdateState { get; set; }
         public int DivarMaxImgCount { get; set; }
         public int SheypoorMaxImgCount { get; set; }
         public string AdsAddress { get; set; }
+        public int DivarDayCountForDelete { get; set; }
 
-        public static async Task<List<SettingBussines>> GetAllAsync()
+        public static  List<SettingBussines> GetAll()
         {
             using (var _context = new UnitOfWorkLid())
             {

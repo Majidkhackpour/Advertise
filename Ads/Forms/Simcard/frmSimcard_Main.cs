@@ -25,7 +25,7 @@ namespace Ads.Forms.Simcard
         {
             try
             {
-                var a = await SettingBussines.GetAllAsync();
+                var a = SettingBussines.GetAll();
                 var address = string.IsNullOrEmpty(a[0].AdsAddress) ? Application.StartupPath : a[0].AdsAddress;
                 var list2 = await Advertise.GetAllAsync(address);
                 adsBindingSource.DataSource = list2;

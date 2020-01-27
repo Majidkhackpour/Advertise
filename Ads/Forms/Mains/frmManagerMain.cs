@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
+using Ads.Forms.Settings;
 using Ads.Forms.Simcard;
 using BussinesLayer;
 using DataLayer;
@@ -30,8 +31,10 @@ namespace Ads.Forms.Mains
             picDivarCity.Image = Properties.Resources.government;
             picState.Image = Properties.Resources.urban;
             picRegion.Image = Properties.Resources.region;
+            picSetting.Image = Properties.Resources.tv;
             var tt = new ToolTip();
             tt.SetToolTip(picSimcard, "مدیریت سیمکارت ها");
+            tt.SetToolTip(picSetting, "تنظیمات");
             tt.SetToolTip(picDivarCity, "دریافت شهرها از سایت دیوار");
             tt.SetToolTip(picState, "بروزرسانی لیست استان های کشور");
             tt.SetToolTip(picRegion, "دریافت مناطق از سایت دیوار");
@@ -257,6 +260,40 @@ namespace Ads.Forms.Mains
         private void lblRegion_MouseLeave(object sender, EventArgs e)
         {
             lblSetter.LostFocose(lblRegion);
+        }
+
+        private void picSetting_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmAdsSettings().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void lblSetting_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmAdsSettings().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void lblSetting_MouseEnter(object sender, EventArgs e)
+        {
+            lblSetter.GotFocose(lblSetting);
+        }
+
+        private void lblSetting_MouseLeave(object sender, EventArgs e)
+        {
+            lblSetter.LostFocose(lblSetting);
         }
     }
 }
