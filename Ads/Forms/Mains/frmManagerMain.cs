@@ -31,7 +31,7 @@ namespace Ads.Forms.Mains
             picDivarCity.Image = Properties.Resources.government;
             picState.Image = Properties.Resources.urban;
             picRegion.Image = Properties.Resources.region;
-            picSetting.Image = Properties.Resources.tv;
+            picSetting.Image = Properties.Resources.support;
             var tt = new ToolTip();
             tt.SetToolTip(picSimcard, "مدیریت سیمکارت ها");
             tt.SetToolTip(picSetting, "تنظیمات");
@@ -294,6 +294,56 @@ namespace Ads.Forms.Mains
         private void lblSetting_MouseLeave(object sender, EventArgs e)
         {
             lblSetter.LostFocose(lblSetting);
+        }
+
+        private void picSimcard_MouseEnter(object sender, EventArgs e)
+        {
+            picSimcard.Image = Properties.Resources.simcardRed;
+        }
+
+        private void picSimcard_MouseLeave(object sender, EventArgs e)
+        {
+            picSimcard.Image = Properties.Resources.simcard;
+        }
+
+        private void picDivarCity_MouseEnter(object sender, EventArgs e)
+        {
+            picDivarCity.Image = Properties.Resources.governmentRed;
+        }
+
+        private void picDivarCity_MouseLeave(object sender, EventArgs e)
+        {
+            picDivarCity.Image = Properties.Resources.government;
+        }
+
+        private void picRegion_MouseEnter(object sender, EventArgs e)
+        {
+            picRegion.Image = Properties.Resources.regionRed;
+        }
+
+        private void picRegion_MouseLeave(object sender, EventArgs e)
+        {
+            picRegion.Image = Properties.Resources.region;
+        }
+
+        private void picState_MouseEnter(object sender, EventArgs e)
+        {
+            picState.Image = Properties.Resources.urbanRed;
+        }
+
+        private void picState_MouseLeave(object sender, EventArgs e)
+        {
+            picState.Image = Properties.Resources.urban;
+        }
+
+        private void picSetting_MouseEnter(object sender, EventArgs e)
+        {
+            picSetting.Image = Properties.Resources.supportRed;
+        }
+
+        private void picSetting_MouseLeave(object sender, EventArgs e)
+        {
+            picSetting.Image = Properties.Resources.support;
         }
     }
 }

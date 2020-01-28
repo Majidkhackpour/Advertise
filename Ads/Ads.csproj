@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Arad_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
@@ -147,6 +150,12 @@
     <Compile Include="Forms\Settings\frmAdsSettings.Designer.cs">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\frmSendChat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\frmSendChat.Designer.cs">
+      <DependentUpon>frmSendChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simcard\frmShow_Simcard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\frmAdsSettings.resx">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\frmSendChat.resx">
+      <DependentUpon>frmSendChat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmShow_Simcard.resx">
       <DependentUpon>frmShow_Simcard.cs</DependentUpon>
@@ -283,7 +295,51 @@
   <ItemGroup>
     <None Include="Resources\05.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ARad.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\regionRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passwordRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graphRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\governmentRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flagRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connectorRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\urbanRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simcardRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AradPngpng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chatRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supportRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Arad_Icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

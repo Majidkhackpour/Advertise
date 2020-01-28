@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.picDivarChat = new System.Windows.Forms.PictureBox();
+            this.lblDivarChat = new System.Windows.Forms.Label();
             this.lblLogIn = new System.Windows.Forms.Label();
             this.lblSheypoor = new System.Windows.Forms.Label();
             this.lblDivar = new System.Windows.Forms.Label();
@@ -38,14 +40,14 @@
             this.picSheypoor = new System.Windows.Forms.PictureBox();
             this.picDivar = new System.Windows.Forms.PictureBox();
             this.picManager = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.grpAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDivarChat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSheypoor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAccount
@@ -53,8 +55,8 @@
             this.grpAccount.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grpAccount.Controls.Add(this.pictureBox3);
-            this.grpAccount.Controls.Add(this.label4);
+            this.grpAccount.Controls.Add(this.picDivarChat);
+            this.grpAccount.Controls.Add(this.lblDivarChat);
             this.grpAccount.Controls.Add(this.lblLogIn);
             this.grpAccount.Controls.Add(this.lblSheypoor);
             this.grpAccount.Controls.Add(this.lblDivar);
@@ -98,6 +100,37 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 1;
             // 
+            // picDivarChat
+            // 
+            this.picDivarChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDivarChat.BackColor = System.Drawing.Color.Transparent;
+            this.picDivarChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDivarChat.Location = new System.Drawing.Point(135, 8);
+            this.picDivarChat.Name = "picDivarChat";
+            this.picDivarChat.Size = new System.Drawing.Size(75, 63);
+            this.picDivarChat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDivarChat.TabIndex = 31;
+            this.picDivarChat.TabStop = false;
+            this.picDivarChat.Click += new System.EventHandler(this.picDivarChat_Click);
+            this.picDivarChat.MouseEnter += new System.EventHandler(this.picDivarChat_MouseEnter);
+            this.picDivarChat.MouseLeave += new System.EventHandler(this.picDivarChat_MouseLeave);
+            // 
+            // lblDivarChat
+            // 
+            this.lblDivarChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDivarChat.BackColor = System.Drawing.Color.Transparent;
+            this.lblDivarChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblDivarChat.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblDivarChat.ForeColor = System.Drawing.Color.Silver;
+            this.lblDivarChat.Location = new System.Drawing.Point(141, 74);
+            this.lblDivarChat.Name = "lblDivarChat";
+            this.lblDivarChat.Size = new System.Drawing.Size(58, 20);
+            this.lblDivarChat.TabIndex = 32;
+            this.lblDivarChat.Text = "چت دیوار";
+            this.lblDivarChat.Click += new System.EventHandler(this.lblDivarChat_Click);
+            this.lblDivarChat.MouseEnter += new System.EventHandler(this.lblDivarChat_MouseEnter);
+            this.lblDivarChat.MouseLeave += new System.EventHandler(this.lblDivarChat_MouseLeave);
+            // 
             // lblLogIn
             // 
             this.lblLogIn.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -126,6 +159,7 @@
             this.lblSheypoor.Size = new System.Drawing.Size(45, 20);
             this.lblSheypoor.TabIndex = 30;
             this.lblSheypoor.Text = "شیپور";
+            this.lblSheypoor.Click += new System.EventHandler(this.lblSheypoor_Click);
             this.lblSheypoor.MouseEnter += new System.EventHandler(this.lblSheypoor_MouseEnter);
             this.lblSheypoor.MouseLeave += new System.EventHandler(this.lblSheypoor_MouseLeave);
             // 
@@ -184,6 +218,7 @@
             this.picSheypoor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picSheypoor.TabIndex = 2;
             this.picSheypoor.TabStop = false;
+            this.picSheypoor.Click += new System.EventHandler(this.picSheypoor_Click);
             // 
             // picDivar
             // 
@@ -211,30 +246,18 @@
             this.picManager.TabStop = false;
             this.picManager.Click += new System.EventHandler(this.picManager_Click);
             // 
-            // pictureBox3
+            // picLogo
             // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Location = new System.Drawing.Point(135, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(75, 63);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 31;
-            this.pictureBox3.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(141, 74);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 20);
-            this.label4.TabIndex = 32;
-            this.label4.Text = "چت دیوار";
+            this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picLogo.BackColor = System.Drawing.Color.Transparent;
+            this.picLogo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.picLogo.Location = new System.Drawing.Point(12, 436);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(85, 113);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 2;
+            this.picLogo.TabStop = false;
+            this.picLogo.Click += new System.EventHandler(this.picManager_Click);
             // 
             // frmMain
             // 
@@ -243,6 +266,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.grpAccount);
+            this.Controls.Add(this.picLogo);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ForeColor = System.Drawing.Color.Silver;
@@ -253,13 +277,15 @@
             this.Name = "frmMain";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.grpAccount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picDivarChat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSheypoor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -275,7 +301,8 @@
         public System.Windows.Forms.Label lblSheypoor;
         public System.Windows.Forms.Label lblDivar;
         public System.Windows.Forms.Label lblManager;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        public System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox picDivarChat;
+        public System.Windows.Forms.Label lblDivarChat;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

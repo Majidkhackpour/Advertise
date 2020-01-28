@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Ads.Classes;
+using Ads.Forms.Settings;
 using Ads.Forms.Simcard;
 using FMessegeBox;
 
@@ -21,11 +22,14 @@ namespace Ads.Forms.Mains
                 picSheypoor.Image = Properties.Resources.Sheypoor_portrate;
                 picManager.Image = Properties.Resources._03;
                 picLogIn.Image = Properties.Resources._19;
+                picLogo.Image = Properties.Resources.AradPngpng;
+                picDivarChat.Image = Properties.Resources.chat;
                 ToolTip tt = new ToolTip();
                 tt.SetToolTip(picManager,"پنل مدیریت");
                 tt.SetToolTip(picDivar, "ارسال آگهی به دیوار");
                 tt.SetToolTip(picSheypoor, "ارسال آگهی به شیپور");
                 tt.SetToolTip(picLogIn, "لاگین");
+                tt.SetToolTip(picDivarChat, "چت دیوار");
             }
             catch (Exception exception)
             {
@@ -129,6 +133,60 @@ namespace Ads.Forms.Mains
             try
             {
                 new frmManagerMain().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void picSheypoor_Click(object sender, EventArgs e)
+        {
+            FarsiMessegeBox.Show("ارسال آگهی شیپور در ورژن بعد قابل دسترسی خواهد بود");
+        }
+
+        private void lblSheypoor_Click(object sender, EventArgs e)
+        {
+            FarsiMessegeBox.Show("ارسال آگهی شیپور در ورژن بعد قابل دسترسی خواهد بود");
+        }
+
+        private void picDivarChat_MouseEnter(object sender, EventArgs e)
+        {
+            picDivarChat.Image = Properties.Resources.chatRed;
+        }
+
+        private void picDivarChat_MouseLeave(object sender, EventArgs e)
+        {
+            picDivarChat.Image = Properties.Resources.chat;
+        }
+
+        private void lblDivarChat_MouseEnter(object sender, EventArgs e)
+        {
+            lblSetter.GotFocose(lblDivarChat);
+        }
+
+        private void lblDivarChat_MouseLeave(object sender, EventArgs e)
+        {
+            lblSetter.LostFocose(lblDivarChat);
+        }
+
+        private void picDivarChat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmSendChat().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void lblDivarChat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmSendChat().ShowDialog();
             }
             catch (Exception exception)
             {

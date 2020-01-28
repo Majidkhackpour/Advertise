@@ -167,6 +167,8 @@
             this.picSetting.TabIndex = 2;
             this.picSetting.TabStop = false;
             this.picSetting.Click += new System.EventHandler(this.picSetting_Click);
+            this.picSetting.MouseEnter += new System.EventHandler(this.picSetting_MouseEnter);
+            this.picSetting.MouseLeave += new System.EventHandler(this.picSetting_MouseLeave);
             // 
             // lblSetting
             // 
@@ -196,6 +198,8 @@
             this.picSimcard.TabIndex = 2;
             this.picSimcard.TabStop = false;
             this.picSimcard.Click += new System.EventHandler(this.picSimcard_Click);
+            this.picSimcard.MouseEnter += new System.EventHandler(this.picSimcard_MouseEnter);
+            this.picSimcard.MouseLeave += new System.EventHandler(this.picSimcard_MouseLeave);
             // 
             // lblSimcard
             // 
@@ -225,6 +229,8 @@
             this.picDivarCity.TabIndex = 2;
             this.picDivarCity.TabStop = false;
             this.picDivarCity.Click += new System.EventHandler(this.picDivarCity_Click);
+            this.picDivarCity.MouseEnter += new System.EventHandler(this.picDivarCity_MouseEnter);
+            this.picDivarCity.MouseLeave += new System.EventHandler(this.picDivarCity_MouseLeave);
             // 
             // picState
             // 
@@ -238,6 +244,8 @@
             this.picState.TabIndex = 2;
             this.picState.TabStop = false;
             this.picState.Click += new System.EventHandler(this.picState_Click);
+            this.picState.MouseEnter += new System.EventHandler(this.picState_MouseEnter);
+            this.picState.MouseLeave += new System.EventHandler(this.picState_MouseLeave);
             // 
             // lblRegion
             // 
@@ -267,6 +275,8 @@
             this.picRegion.TabIndex = 2;
             this.picRegion.TabStop = false;
             this.picRegion.Click += new System.EventHandler(this.picRegion_Click);
+            this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
+            this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
             // 
             // frmManagerMain
             // 

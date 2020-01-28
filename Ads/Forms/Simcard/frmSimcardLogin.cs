@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
@@ -14,7 +15,7 @@ namespace Ads.Forms.Simcard
             try
             {
                 var list = await SimcardBussines.GetAllAsync(search);
-                LogInBindingSource.DataSource = list;
+                LogInBindingSource.DataSource = list.Where(q => q.Status).ToList();
                 lblCounter.Text = LogInBindingSource.Count.ToString();
             }
             catch (Exception e)

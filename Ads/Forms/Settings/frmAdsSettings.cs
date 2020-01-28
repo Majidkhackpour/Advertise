@@ -176,6 +176,33 @@ namespace Ads.Forms.Settings
             try
             {
                 btnFinish.Enabled = false;
+                if (int.Parse(txtAdvInDay.Text) > 10)
+                {
+                    FarsiMessegeBox.Show("تعداد آگهی ارسالی به ازای هر سیمکارت در روز نمی تواند بیشتر از 10 آگهی باشد");
+                    txtAdvInDay.Focus();
+                    return;
+                }
+
+                if (int.Parse(txtAdvInMounth.Text) > 30)
+                {
+                    FarsiMessegeBox.Show("تعداد آگهی ارسالی به ازای هر سیمکارت در ماه نمی تواند بیشتر از 30 آگهی باشد");
+                    txtAdvInMounth.Focus();
+                    return;
+                }
+
+                if (int.Parse(txtCountPic.Text) > 10)
+                {
+                    FarsiMessegeBox.Show("تعداد تصاویر آگهی ارسالی نمی تواند بیشتر از 10 تصویر باشد");
+                    txtCountPic.Focus();
+                    return;
+                }
+                if (int.Parse(txtUpdateDayCount.Text) > 30)
+                {
+                    FarsiMessegeBox.Show("روزهای بروزرسانی آگهی نمی تواند بیشتر از 30 روز باشد");
+                    txtUpdateDayCount.Focus();
+                    return;
+                }
+
                 cls.CountAdvInDayDivar = int.Parse(txtAdvInDay.Text);
                 cls.CountAdvInMounthDivar = int.Parse(txtAdvInMounth.Text);
                 cls.CountAdvInIPDivar = int.Parse(txtAdvInIP.Text);
@@ -214,6 +241,31 @@ namespace Ads.Forms.Settings
             {
                 btnFinish.Enabled = true;
             }
+        }
+
+        private void txtAdvInDay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtAdvInDay, e);
+        }
+
+        private void txtAdvInMounth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtAdvInMounth, e);
+        }
+
+        private void txtAdvInIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtAdvInIP, e);
+        }
+
+        private void txtCountPic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtCountPic, e);
+        }
+
+        private void txtUpdateDayCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtUpdateDayCount, e);
         }
     }
 }

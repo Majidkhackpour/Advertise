@@ -210,6 +210,7 @@
             this.txtAdvAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAdvAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtAdvAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAdvAddress.Enabled = false;
             this.txtAdvAddress.ForeColor = System.Drawing.Color.Silver;
             this.txtAdvAddress.Location = new System.Drawing.Point(194, 260);
             this.txtAdvAddress.MaxLength = 3000;
@@ -231,6 +232,7 @@
             this.txtUpdateDayCount.Size = new System.Drawing.Size(139, 27);
             this.txtUpdateDayCount.TabIndex = 10;
             this.txtUpdateDayCount.Enter += new System.EventHandler(this.txtUpdateDayCount_Enter);
+            this.txtUpdateDayCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUpdateDayCount_KeyPress);
             this.txtUpdateDayCount.Leave += new System.EventHandler(this.txtUpdateDayCount_Leave);
             // 
             // txtCountPic
@@ -245,6 +247,7 @@
             this.txtCountPic.Size = new System.Drawing.Size(139, 27);
             this.txtCountPic.TabIndex = 6;
             this.txtCountPic.Enter += new System.EventHandler(this.txtCountPic_Enter);
+            this.txtCountPic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCountPic_KeyPress);
             this.txtCountPic.Leave += new System.EventHandler(this.txtCountPic_Leave);
             // 
             // txtAdvInIP
@@ -259,6 +262,7 @@
             this.txtAdvInIP.Size = new System.Drawing.Size(139, 27);
             this.txtAdvInIP.TabIndex = 4;
             this.txtAdvInIP.Enter += new System.EventHandler(this.txtAdvInIP_Enter);
+            this.txtAdvInIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInIP_KeyPress);
             this.txtAdvInIP.Leave += new System.EventHandler(this.txtAdvInIP_Leave);
             // 
             // txtCat2
@@ -287,6 +291,7 @@
             this.txtAdvInMounth.Size = new System.Drawing.Size(139, 27);
             this.txtAdvInMounth.TabIndex = 2;
             this.txtAdvInMounth.Enter += new System.EventHandler(this.txtAdvInMounth_Enter);
+            this.txtAdvInMounth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInMounth_KeyPress);
             this.txtAdvInMounth.Leave += new System.EventHandler(this.txtAdvInMounth_Leave);
             // 
             // txtCat1
@@ -315,6 +320,7 @@
             this.txtAdvInDay.Size = new System.Drawing.Size(139, 27);
             this.txtAdvInDay.TabIndex = 0;
             this.txtAdvInDay.Enter += new System.EventHandler(this.txtAdvInDay_Enter);
+            this.txtAdvInDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInDay_KeyPress);
             this.txtAdvInDay.Leave += new System.EventHandler(this.txtAdvInDay_Leave);
             // 
             // label10
