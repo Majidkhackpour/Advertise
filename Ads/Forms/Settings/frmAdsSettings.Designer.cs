@@ -180,7 +180,7 @@
             this.txtCat3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCat3.ForeColor = System.Drawing.Color.Silver;
             this.txtCat3.Location = new System.Drawing.Point(17, 143);
-            this.txtCat3.MaxLength = 3000;
+            this.txtCat3.MaxLength = 300;
             this.txtCat3.Name = "txtCat3";
             this.txtCat3.Size = new System.Drawing.Size(139, 27);
             this.txtCat3.TabIndex = 5;
@@ -272,7 +272,7 @@
             this.txtCat2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCat2.ForeColor = System.Drawing.Color.Silver;
             this.txtCat2.Location = new System.Drawing.Point(17, 88);
-            this.txtCat2.MaxLength = 3000;
+            this.txtCat2.MaxLength = 300;
             this.txtCat2.Name = "txtCat2";
             this.txtCat2.Size = new System.Drawing.Size(139, 27);
             this.txtCat2.TabIndex = 3;
@@ -301,7 +301,7 @@
             this.txtCat1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCat1.ForeColor = System.Drawing.Color.Silver;
             this.txtCat1.Location = new System.Drawing.Point(17, 33);
-            this.txtCat1.MaxLength = 11;
+            this.txtCat1.MaxLength = 300;
             this.txtCat1.Name = "txtCat1";
             this.txtCat1.Size = new System.Drawing.Size(139, 27);
             this.txtCat1.TabIndex = 1;

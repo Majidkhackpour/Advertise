@@ -175,6 +175,7 @@
             this.lblDivar.Size = new System.Drawing.Size(45, 20);
             this.lblDivar.TabIndex = 30;
             this.lblDivar.Text = "دیوار";
+            this.lblDivar.Click += new System.EventHandler(this.lblDivar_Click);
             this.lblDivar.MouseEnter += new System.EventHandler(this.lblDivar_MouseEnter);
             this.lblDivar.MouseLeave += new System.EventHandler(this.lblDivar_MouseLeave);
             // 

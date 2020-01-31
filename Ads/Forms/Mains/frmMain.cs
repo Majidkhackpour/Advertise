@@ -193,5 +193,18 @@ namespace Ads.Forms.Mains
                 FarsiMessegeBox.Show(exception.Message);
             }
         }
+
+        private async void lblDivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var divar = await DivarAdv.GetInstance();
+                await divar.StartRegisterAdv();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }
