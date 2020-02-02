@@ -3,9 +3,7 @@ using DataLayer.Models;
 
 namespace DataLayer.Context
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
 
     public class dbContext : DbContext
     {
@@ -26,6 +24,7 @@ namespace DataLayer.Context
         public virtual DbSet<SheypoorCity> SheypoorCity { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<DivarSimCity> DivarSimCity { get; set; }
+        public virtual DbSet<AdvCategory> AdvCategory { get; set; }
     }
 
 }

@@ -13,14 +13,19 @@ namespace BussinesLayer
     {
         public Guid Guid { get; set; }
         public string DateSabt { get; set; }
-        public DateTime NextUseDivar { get; set; }
-        public DateTime NextUseSheypoor { get; set; }
-        public DateTime NextUseDivarChat { get; set; }
+        public DateTime NextUse { get; set; }
         public long Number { get; set; }
         public bool Status { get; set; }
         public string Operator { get; set; }
         public string UserName { get; set; }
         public string OwnerName { get; set; }
+        public bool IsSendAdv { get; set; }
+        public bool IsSendChat { get; set; }
+        public Guid? DivarCatGuid1 { get; set; }
+        public Guid? DivarCatGuid2 { get; set; }
+        public Guid? DivarCatGuid3 { get; set; }
+        public Guid? SheypoorCatGuid1 { get; set; }
+        public Guid? SheypoorCatGuid2 { get; set; }
 
         public static SimcardBussines GetAsync(AdvertiseType type)
         {
@@ -113,11 +118,11 @@ namespace BussinesLayer
             }
         }
 
-        public async static Task<long> GetNextSimCardNumberAsync(AdvertiseType type)
+        public async static Task<long> GetNextSimCardNumberAsync()
         {
             using (var _context = new UnitOfWorkLid())
             {
-                return await _context.Simcard.GetNextSimCardNumberAsync(type);
+                return await _context.Simcard.GetNextSimCardNumberAsync();
             }
         }
 

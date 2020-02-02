@@ -22,6 +22,7 @@ namespace DataLayer.Persitence
         private ISheypoorCityRepository _sheypoorCityRepository;
         private ISettingRepository _settingRepository;
         private IDivarSimCityRepository _divarSimCityRepository;
+        private IAdvCategoryRepository _advCategoryRepository;
 
         public void Dispose()
         {
@@ -47,5 +48,7 @@ namespace DataLayer.Persitence
             _settingRepository ?? (_settingRepository = new SettingPersistenceRepository(db));
         public IDivarSimCityRepository DivarSimCity =>
             _divarSimCityRepository ?? (_divarSimCityRepository = new DivarSimCityPersistenceRepository(db));
+        public IAdvCategoryRepository AdvCategory =>
+            _advCategoryRepository ?? (_advCategoryRepository = new AdvCategoryPersistenceRepository(db));
     }
 }

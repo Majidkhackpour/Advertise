@@ -186,9 +186,9 @@ namespace Ads.Forms.Simcard
                 cls.OwnerName = txtOwner.Text;
                 cls.Status = true;
                 cls.Number = long.Parse(txtNumber.Text);
-                cls.NextUseDivar = DateTime.Now;
-                cls.NextUseSheypoor = DateTime.Now;
-                cls.NextUseDivarChat = DateTime.Now;
+                cls.NextUse = DateTime.Now;
+                //cls.NextUseSheypoor = DateTime.Now;
+                //cls.NextUseDivarChat = DateTime.Now;
                 cls.Operator = cmbOperator.Text;
                 cls.UserName = txtUserName.Text;
                 await cls.SaveAsync(listCity, listAds);

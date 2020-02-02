@@ -57,5 +57,13 @@ namespace BussinesLayer
                 return Mappings.Default.Map<List<StateBussiness>>(a);
             }
         }
+        public static StateBussiness Get(Guid guid)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.State.Get(guid);
+                return Mappings.Default.Map<StateBussiness>(a);
+            }
+        }
     }
 }

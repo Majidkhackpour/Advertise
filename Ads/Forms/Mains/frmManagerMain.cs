@@ -345,5 +345,21 @@ namespace Ads.Forms.Mains
         {
             picSetting.Image = Properties.Resources.support;
         }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sh = await SheypoorAdv.GetInstance();
+                await sh.GetCategory();
+
+                var d = await DivarAdv.GetInstance();
+                await d.GetCategory();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }

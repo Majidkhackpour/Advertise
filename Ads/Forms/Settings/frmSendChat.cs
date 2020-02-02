@@ -109,11 +109,9 @@ namespace Ads.Forms.Settings
         {
             try
             {
-                var ofd = new OpenFileDialog();
-                ofd.Filter = @"txt |*.txt";
-                ofd.Title = "لطفا فایل متن چت را انتخاب نمایید";
-                if (ofd.ShowDialog() == DialogResult.OK)
-                    txtAddress.Text = ofd.FileName;
+                var folderBrowserDialog1 = new FolderBrowserDialog();
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                    txtAddress.Text = folderBrowserDialog1.SelectedPath;
             }
             catch (Exception exception)
             {
@@ -144,9 +142,16 @@ namespace Ads.Forms.Settings
                     return;
                 }
 
-                var list = File.ReadAllLines(txtAddress.Text).ToList();
+                var lst = Directory.GetFiles(txtAddress.Text).ToList();
+                var list2 = new List<string>();
+                foreach (var item in lst)
+                {
+                    var a = File.ReadAllText(item).Replace("\r\n", " ");
+                    list2.Add(a);
+                }
+               
                 var divar = await DivarAdv.GetInstance();
-                await divar.SendChat(list, int.Parse(txtChatCount.Text), txtCity.Text, txtCat1.Text, txtCat2.Text,
+                await divar.SendChat(list2, int.Parse(txtChatCount.Text), txtCity.Text, txtCat1.Text, txtCat2.Text,
                     txtCat3.Text);
             }
             catch (Exception exception)

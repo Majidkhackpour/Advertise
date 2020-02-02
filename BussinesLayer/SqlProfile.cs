@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DataLayer.Models;
 
 namespace BussinesLayer
@@ -44,6 +39,9 @@ namespace BussinesLayer
 
             CreateMap<DivarSimCityBussines, DivarSimCity>();
             CreateMap<DivarSimCity, DivarSimCityBussines>();
+
+            CreateMap<AdvCategory, AdvCategoryBussines>();
+            CreateMap<AdvCategoryBussines, AdvCategory>();
         }
     }
 }

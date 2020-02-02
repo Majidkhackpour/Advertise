@@ -28,7 +28,7 @@ namespace DataLayer.Persitence
                 {
                     if (type == AdvertiseType.Divar)
                     {
-                        var acc = contex.Simcard.AsNoTracking().OrderBy(q => q.NextUseDivar).FirstOrDefault();
+                        var acc = contex.Simcard.AsNoTracking().OrderBy(q => q.NextUse).FirstOrDefault();
                         return acc;
                     }
 
@@ -57,29 +57,17 @@ namespace DataLayer.Persitence
             }
         }
 
-        public async Task<long> GetNextSimCardNumberAsync(AdvertiseType type)
+        public async Task<long> GetNextSimCardNumberAsync()
         {
             try
             {
                 using (var contex = new dbContext())
                 {
                     long num = 0;
-                    if (type == AdvertiseType.Divar)
-                    {
-                        var acc = contex.Simcard.AsNoTracking().Where(q => q.NextUseDivar <= DateTime.Now)
-                            .OrderBy(q => q.NextUseDivar).ToList();
-                        return acc.First().Number;
-                    }
-                    else if (type == AdvertiseType.DivarChat)
-                    {
-                        var acc = contex.Simcard.AsNoTracking().Where(q => q.NextUseDivarChat <= DateTime.Now)
-                            .OrderBy(q => q.NextUseDivarChat).ToList();
-                        return acc.First().Number;
-                    }
 
-                    return 0;
-
-
+                    var acc = contex.Simcard.AsNoTracking().Where(q => q.NextUse <= DateTime.Now)
+                        .OrderBy(q => q.NextUse).ToList();
+                    return acc.First().Number;
                 }
             }
             catch (Exception exception)

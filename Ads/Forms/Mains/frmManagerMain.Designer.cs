@@ -42,6 +42,7 @@
             this.picState = new System.Windows.Forms.PictureBox();
             this.lblRegion = new System.Windows.Forms.Label();
             this.picRegion = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
@@ -278,12 +279,23 @@
             this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
             this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(449, 110);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 61);
+            this.button1.TabIndex = 55684;
+            this.button1.Text = "دسته بندی ها";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmManagerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(784, 612);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.grpAccount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.uC_Date1);
@@ -322,5 +334,6 @@
         private System.Windows.Forms.PictureBox picState;
         public System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.PictureBox picRegion;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -7,7 +7,7 @@ using DataLayer.Persitence;
 
 namespace BussinesLayer
 {
-   public class SettingBussines:ISetting
+    public class SettingBussines : ISetting
     {
         public Guid Guid { get; set; }
         public string DateSabt { get; set; }
@@ -18,20 +18,14 @@ namespace BussinesLayer
         public int CountAdvInMounthSheypoor { get; set; }
         public int CountAdvInIPDivar { get; set; }
         public int CountAdvInIPSheypoor { get; set; }
-        public string DivarCat1 { get; set; }
-        public string DivarCat2 { get; set; }
-        public string DivarCat3 { get; set; }
-        public string SheypoorCat1 { get; set; }
-        public string SheypoorCat2 { get; set; }
-        public string SheypoorCat3 { get; set; }
         public int DivarDayCountForUpdateState { get; set; }
         public int SheypoorDayCountForUpdateState { get; set; }
         public int DivarMaxImgCount { get; set; }
         public int SheypoorMaxImgCount { get; set; }
         public string AdsAddress { get; set; }
-        public int DivarDayCountForDelete { get; set; }
+        public int DayCountForDelete { get; set; }
 
-        public static  List<SettingBussines> GetAll()
+        public static List<SettingBussines> GetAll()
         {
             using (var _context = new UnitOfWorkLid())
             {

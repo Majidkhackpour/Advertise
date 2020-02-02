@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IAdvCategoryRepository.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
     <Compile Include="Core\IAdvTokensRepository.cs" />
     <Compile Include="Core\IDivarCityRepository.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
+    <Compile Include="Interface\Entities\IAdvCategory.cs" />
     <Compile Include="Interface\Entities\IAdvertiseLog.cs" />
     <Compile Include="Interface\Entities\IAdvTokens.cs" />
     <Compile Include="Interface\Entities\IDivarCity.cs" />
@@ -115,6 +117,15 @@
     <Compile Include="Migration\202001271454115_8.designer.cs">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migration\202002021529075_9.cs" />
+    <Compile Include="Migration\202002021529075_9.designer.cs">
+      <DependentUpon>202002021529075_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migration\202002021532014_10.cs" />
+    <Compile Include="Migration\202002021532014_10.designer.cs">
+      <DependentUpon>202002021532014_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvCategory.cs" />
     <Compile Include="Models\AdvertiseLog.cs" />
     <Compile Include="Models\AdvTokens.cs" />
     <Compile Include="Models\DivarCity.cs" />
@@ -126,6 +137,7 @@
     <Compile Include="Models\SimcardAds.cs" />
     <Compile Include="Models\SheypoorSimCity.cs" />
     <Compile Include="Models\States.cs" />
+    <Compile Include="Persitence\AdvCategoryPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvTokensPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarCityPersistenceRepository.cs" />
@@ -169,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202001271454115_8.resx">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002021529075_9.resx">
+      <DependentUpon>202002021529075_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002021532014_10.resx">
+      <DependentUpon>202002021532014_10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

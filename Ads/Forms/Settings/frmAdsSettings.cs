@@ -30,13 +30,13 @@ namespace Ads.Forms.Settings
                 txtAdvInDay.Text = cls.CountAdvInDayDivar.ToString();
                 txtAdvInMounth.Text = cls.CountAdvInMounthDivar.ToString();
                 txtAdvInIP.Text = cls.CountAdvInIPDivar.ToString();
-                txtCat1.Text = cls.DivarCat1;
-                txtCat2.Text = cls.DivarCat2;
-                txtCat3.Text = cls.DivarCat3;
+                //txtCat1.Text = cls.DivarCat1;
+                //txtCat2.Text = cls.DivarCat2;
+                //txtCat3.Text = cls.DivarCat3;
                 txtCountPic.Text = cls.DivarMaxImgCount.ToString();
                 txtAdvAddress.Text = cls.AdsAddress;
                 txtUpdateDayCount.Text = cls.DivarDayCountForUpdateState.ToString();
-                cmbDeleteDay.Text = cls.DivarDayCountForDelete.ToString();
+                cmbDeleteDay.Text = cls.DayCountForDelete.ToString();
             }
             catch (Exception e)
             {
@@ -206,9 +206,9 @@ namespace Ads.Forms.Settings
                 cls.CountAdvInDayDivar = int.Parse(txtAdvInDay.Text);
                 cls.CountAdvInMounthDivar = int.Parse(txtAdvInMounth.Text);
                 cls.CountAdvInIPDivar = int.Parse(txtAdvInIP.Text);
-                cls.DivarCat1 = txtCat1.Text;
-                cls.DivarCat2 = txtCat2.Text;
-                cls.DivarCat3 = txtCat3.Text;
+                //cls.DivarCat1 = txtCat1.Text;
+                //cls.DivarCat2 = txtCat2.Text;
+                //cls.DivarCat3 = txtCat3.Text;
                 cls.DivarMaxImgCount = int.Parse(txtCountPic.Text);
                 cls.AdsAddress = txtAdvAddress.Text;
                 cls.DivarDayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);
@@ -217,15 +217,15 @@ namespace Ads.Forms.Settings
                 else if (cmbDeleteDay.SelectedIndex == 1) counter = 7;
                 else if (cmbDeleteDay.SelectedIndex == 2) counter = 15;
                 else if (cmbDeleteDay.SelectedIndex == 3) counter = 30;
-                cls.DivarDayCountForDelete = counter;
+                cls.DayCountForDelete = counter;
 
 
                 cls.CountAdvInDaySheypoor = int.Parse(txtAdvInDay.Text);
                 cls.CountAdvInMounthSheypoor = int.Parse(txtAdvInMounth.Text);
                 cls.CountAdvInIPSheypoor = int.Parse(txtAdvInIP.Text);
-                cls.SheypoorCat1 = txtCat1.Text;
-                cls.SheypoorCat2 = txtCat2.Text;
-                cls.SheypoorCat3 = txtCat3.Text;
+                //cls.SheypoorCat1 = txtCat1.Text;
+                //cls.SheypoorCat2 = txtCat2.Text;
+                //cls.SheypoorCat3 = txtCat3.Text;
                 cls.SheypoorMaxImgCount = int.Parse(txtCountPic.Text);
                 cls.AdsAddress = txtAdvAddress.Text;
                 cls.SheypoorDayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);

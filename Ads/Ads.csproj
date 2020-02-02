@@ -125,6 +125,7 @@
     <Compile Include="Classes\DivarAdv.cs" />
     <Compile Include="Classes\ImageManager.cs" />
     <Compile Include="Classes\lblSetter.cs" />
+    <Compile Include="Classes\SheypoorAdv.cs" />
     <Compile Include="Classes\txtSetter.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Form1.cs">

@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Core;
+using DataLayer.Enums;
 using DataLayer.Models;
 
 namespace DataLayer.Persitence
 {
-    public class SheypoorSimCityPersistenceRepository : GenericRepository<SheypoorSimCity>, ISheypoorSimCityRepository
+    public class AdvCategoryPersistenceRepository : GenericRepository<AdvCategory>, IAdvCategoryRepository
     {
         private dbContext db;
 
-        public SheypoorSimCityPersistenceRepository(dbContext _db) : base(_db)
+        public AdvCategoryPersistenceRepository(dbContext _db) : base(_db)
         {
             _db = db;
         }
 
-        public List<SheypoorSimCity> GetAllAsync(Guid simGuid)
+        public List<AdvCategory> GetAllAsync(Guid guid,AdvertiseType type)
         {
             try
             {
                 using (var context = new dbContext())
                 {
-                    var list = context.SheypoorSimCity.AsNoTracking()
-                        .Where(q => q.SimcardGuid == simGuid)
+                    var list = context.AdvCategory.AsNoTracking()
+                        .Where(q => q.Guid == guid && q.Type == type)
                         .ToList();
                     return list;
                 }

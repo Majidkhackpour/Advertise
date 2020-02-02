@@ -91,7 +91,7 @@ namespace Ads.Classes
                 while (true)
                 {
                     var list = await SimcardBussines.GetAllAsync();
-                    list = list.OrderBy(q => q.NextUseDivar).Where(q => q.Status).ToList();
+                    list = list.OrderBy(q => q.NextUse).Where(q => q.Status).ToList();
                     foreach (var simCard in list)
                     {
                         while (!await Utility.PingHost("www.google.com"))
@@ -123,13 +123,13 @@ namespace Ads.Classes
                         firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
                         if (firstSimCardBusiness is null) continue;
 
-                        var lastUseDivar = firstSimCardBusiness.NextUseDivar;
+                        var lastUseDivar = firstSimCardBusiness.NextUse;
 
                         var tt = AdvTokensBussines.GetToken(simCard.Number, AdvertiseType.Divar);
                         var hasToken = tt?.Token ?? null;
                         if (string.IsNullOrEmpty(hasToken))
                         {
-                            firstSimCardBusiness.NextUseDivar = DateTime.Now.AddMinutes(120);
+                            firstSimCardBusiness.NextUse = DateTime.Now.AddMinutes(120);
                             await firstSimCardBusiness.SaveAsync();
                             lstMessage.Clear();
                             lstMessage.Add($"سیمکارت {simCard.Number} به دلیل لاگین نبودن موفق به ارسال آگهی نشد");
@@ -160,7 +160,7 @@ namespace Ads.Classes
                         if (registeredAdvCount >= clsSetting?.CountAdvInMounthDivar)
                         {
                             //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
-                            firstSimCardBusiness.NextUseDivar = startDayOfNextMonthOfDateShToMiladi;
+                            firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
                             await firstSimCardBusiness.SaveAsync();
                             lstMessage.Clear();
                             lstMessage.Add($"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
@@ -181,7 +181,7 @@ namespace Ads.Classes
                         if (registeredAdvCount >= clsSetting?.CountAdvInDayDivar)
                         {
                             //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
-                            firstSimCardBusiness.NextUseDivar = DateTime.Today.AddDays(1);
+                            firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
                             await firstSimCardBusiness.SaveAsync();
                             lstMessage.Clear();
                             lstMessage.Add($"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
@@ -190,7 +190,7 @@ namespace Ads.Classes
                         }
                         if (await Login(simCard.Number) == false)
                         {
-                            firstSimCardBusiness.NextUseDivar = lastUseDivar;
+                            firstSimCardBusiness.NextUse = lastUseDivar;
                             await firstSimCardBusiness.SaveAsync();
                             lstMessage.Clear();
                             lstMessage.Add($"سیمکارت {simCard.Number} به دلیل لاگین نبودن موفق به ارسال آگهی نشد");
@@ -219,7 +219,7 @@ namespace Ads.Classes
                         lstMessage.Clear();
                         lstMessage.Add(body.ToString());
                         Utility.ShowBalloon(title, lstMessage);
-                        simCard.NextUseDivar = DateTime.Now.AddMinutes(30);
+                        simCard.NextUse = DateTime.Now.AddMinutes(30);
                         await simCard.SaveAsync();
                     }
                     await Utility.Wait(10);
@@ -483,136 +483,136 @@ namespace Ads.Classes
         }
         private async Task RegisterAdv(AdvertiseLogBussines adv)
         {
-            try
-            {
-                adv.AdvType = AdvertiseType.Divar;
-                _driver = Utility.RefreshDriver(_driver);
-                _driver.Navigate().GoToUrl("https://divar.ir/new");
-                await Utility.Wait(1);
-                //کلیک کردن روی کتگوری اصلی
-                var a1 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat1);
-                adv.Category = a1?.Text;
-                a1?.Click();
+            //try
+            //{
+            //    adv.AdvType = AdvertiseType.Divar;
+            //    _driver = Utility.RefreshDriver(_driver);
+            //    _driver.Navigate().GoToUrl("https://divar.ir/new");
+            //    await Utility.Wait(1);
+            //    //کلیک کردن روی کتگوری اصلی
+            //    var a1 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat1);
+            //    adv.Category = a1?.Text;
+            //    a1?.Click();
 
-                await Utility.Wait(2);
-                //کلیک روی ساب کتگوری 1
-                var a2 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat2);
-                adv.SubCategory1 = a2?.Text;
-                a2?.Click();
-                await Utility.Wait();
-                //کلیک روی ساب کتگوری2
-                var a3 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat3);
-                adv.SubCategory2 = a3?.Text;
-                a3?.Click();
+            //    await Utility.Wait(2);
+            //    //کلیک روی ساب کتگوری 1
+            //    var a2 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat2);
+            //    adv.SubCategory1 = a2?.Text;
+            //    a2?.Click();
+            //    await Utility.Wait();
+            //    //کلیک روی ساب کتگوری2
+            //    var a3 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat3);
+            //    adv.SubCategory2 = a3?.Text;
+            //    a3?.Click();
 
-                while (_driver.FindElements(By.ClassName("location-selector__city")).Count <= 0)
-                {
-                    await Utility.Wait(1);
-                }
+            //    while (_driver.FindElements(By.ClassName("location-selector__city")).Count <= 0)
+            //    {
+            //        await Utility.Wait(1);
+            //    }
 
-                await Utility.Wait(2);
-                if (adv.ImagesPathList.Count == 0)
-                {
-                    ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('ربات موفق به دریافت تصاویر آگهی نشد');");
-                    return;
-                }
-                foreach (var item in adv.ImagesPathList)
-                {
-                    try
-                    {
-                        //درج عکسها
-                        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input")).SendKeys(item);
-                        await Utility.Wait();
-                        // break;
-                    }
-                    catch (Exception e)
-                    {
-                    }
-                }
-
-
-
-                await Utility.Wait(2);
-                _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input")).SendKeys(adv.City + "\n");
-
-                await Utility.Wait(2);
-                var el = _driver.FindElements(By.ClassName("location-selector__district")).Any();
-                await Utility.Wait(1);
-                if (el)
-                {
-                    var cty = DivarCityBussines.GetAsync(adv?.City);
-                    await Utility.Wait(1);
-                    var cityGuid = cty.Guid;
-                    var lst = await RegionBussiness.GetAllAsync(cityGuid, AdvertiseType.Divar);
-                    var regionList = lst?.ToList() ?? new List<RegionBussiness>();
-                    if (regionList.Count > 0)
-                    {
-                        var rnd = new Random().Next(0, regionList.Count);
-                        var regName = regionList[rnd].Name;
-                        await Utility.Wait(2);
+            //    await Utility.Wait(2);
+            //    if (adv.ImagesPathList.Count == 0)
+            //    {
+            //        ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('ربات موفق به دریافت تصاویر آگهی نشد');");
+            //        return;
+            //    }
+            //    foreach (var item in adv.ImagesPathList)
+            //    {
+            //        try
+            //        {
+            //            //درج عکسها
+            //            _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input")).SendKeys(item);
+            //            await Utility.Wait();
+            //            // break;
+            //        }
+            //        catch (Exception e)
+            //        {
+            //        }
+            //    }
 
 
-                        _driver.FindElement(By.ClassName("location-selector__district")).FindElement(By.TagName("input")).SendKeys(regName + "\n");
-                        adv.Region = regName;
-                    }
-                }
 
-                await Utility.Wait(1);
-                //درج قیمت
-                if (adv.Price > 0) _driver.FindElement(By.CssSelector("input[type=tel]")).SendKeys(adv.Price.ToString());
-                await Utility.Wait(1);
-                //درج عنوان آگهی
-                _driver.FindElements(By.CssSelector("input[type=text]")).Last().SendKeys(adv.Title);
-                await Utility.Wait(1);
-                //درج محتوای آگهی
-                var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
+            //    await Utility.Wait(2);
+            //    _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input")).SendKeys(adv.City + "\n");
 
-                var t = _driver.FindElement(By.TagName("textarea"));
-                t.Click();
-                await Utility.Wait(1);
-                t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-                var thread1 = new Thread(Clipboard.Clear);
-                thread1.SetApartmentState(ApartmentState.STA);
-                thread1.Start();
-                //_driver.FindElement(By.TagName("textarea")).SendKeys(adv.Content.Replace('(', '<').Replace(')', '>'));
-                await Utility.Wait();
+            //    await Utility.Wait(2);
+            //    var el = _driver.FindElements(By.ClassName("location-selector__district")).Any();
+            //    await Utility.Wait(1);
+            //    if (el)
+            //    {
+            //        var cty = DivarCityBussines.GetAsync(adv?.City);
+            //        await Utility.Wait(1);
+            //        var cityGuid = cty.Guid;
+            //        var lst = await RegionBussiness.GetAllAsync(cityGuid, AdvertiseType.Divar);
+            //        var regionList = lst?.ToList() ?? new List<RegionBussiness>();
+            //        if (regionList.Count > 0)
+            //        {
+            //            var rnd = new Random().Next(0, regionList.Count);
+            //            var regName = regionList[rnd].Name;
+            //            await Utility.Wait(2);
 
-                await Utility.Wait();
 
-                var loadImg = _driver.FindElements(By.ClassName("image-item__progress")).ToList();
-                while (loadImg.Count > 0)
-                {
-                    await Utility.Wait(2);
-                    loadImg = _driver.FindElements(By.ClassName("image-item__progress")).ToList();
-                }
+            //            _driver.FindElement(By.ClassName("location-selector__district")).FindElement(By.TagName("input")).SendKeys(regName + "\n");
+            //            adv.Region = regName;
+            //        }
+            //    }
 
-                if (_driver.FindElements(By.ClassName("location-selector__district")).Count > 0 &&
-                    (string.IsNullOrEmpty(adv.Region) || adv.Region == "-"))
-                    _driver.FindElement(By.ClassName("location-selector__district")).FindElement(By.TagName("input"))
-                        .SendKeys("\n");
-                await Utility.Wait(1);
-                var but = _driver.FindElements(By.ClassName("submit-post__form__buttons__submit")).Any();
-                if (but)
-                    //کلیک روی دکمه ثبت آگهی
-                    _driver.FindElement(By.ClassName("submit-post__form__buttons__submit")).Click();
+            //    await Utility.Wait(1);
+            //    //درج قیمت
+            //    if (adv.Price > 0) _driver.FindElement(By.TagName("input")).SendKeys(adv.Price.ToString());
+            //    await Utility.Wait(1);
+            //    //درج عنوان آگهی
+            //    _driver.FindElements(By.TagName("input")).Last().SendKeys(adv.Title);
+            //    await Utility.Wait(1);
+            //    //درج محتوای آگهی
+            //    var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
+            //    thread.SetApartmentState(ApartmentState.STA);
+            //    thread.Start();
 
-                //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
-                await Utility.Wait(1);
-                //if (_driver.Url.Contains("manage"))
-                //{
-                adv.URL = _driver.Url;
-                adv.StatusCode = StatusCode.InPublishQueue;
-                adv.IP = await Utility.GetLocalIpAddress();
-                adv.AdvStatus = "در صف انتشار";
-                await adv.SaveAsync();
+            //    var t = _driver.FindElement(By.TagName("textarea"));
+            //    t.Click();
+            //    await Utility.Wait(1);
+            //    t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
+            //    var thread1 = new Thread(Clipboard.Clear);
+            //    thread1.SetApartmentState(ApartmentState.STA);
+            //    thread1.Start();
+            //    //_driver.FindElement(By.TagName("textarea")).SendKeys(adv.Content.Replace('(', '<').Replace(')', '>'));
+            //    await Utility.Wait();
 
-            }
-            catch (Exception ex)
-            {
-                FarsiMessegeBox.Show(ex.Message);
-            }
+            //    await Utility.Wait();
+
+            //    var loadImg = _driver.FindElements(By.ClassName("image-item__progress")).ToList();
+            //    while (loadImg.Count > 0)
+            //    {
+            //        await Utility.Wait(2);
+            //        loadImg = _driver.FindElements(By.ClassName("image-item__progress")).ToList();
+            //    }
+
+            //    if (_driver.FindElements(By.ClassName("location-selector__district")).Count > 0 &&
+            //        (string.IsNullOrEmpty(adv.Region) || adv.Region == "-"))
+            //        _driver.FindElement(By.ClassName("location-selector__district")).FindElement(By.TagName("input"))
+            //            .SendKeys("\n");
+            //    await Utility.Wait(1);
+            //    var but = _driver.FindElements(By.ClassName("submit-post__form__buttons__submit")).Any();
+            //    if (but)
+            //        //کلیک روی دکمه ثبت آگهی
+            //        _driver.FindElement(By.ClassName("submit-post__form__buttons__submit")).Click();
+
+            //    //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
+            //    await Utility.Wait(1);
+            //    //if (_driver.Url.Contains("manage"))
+            //    //{
+            //    adv.URL = _driver.Url;
+            //    adv.StatusCode = StatusCode.InPublishQueue;
+            //    adv.IP = await Utility.GetLocalIpAddress();
+            //    adv.AdvStatus = "در صف انتشار";
+            //    await adv.SaveAsync();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    FarsiMessegeBox.Show(ex.Message);
+            //}
         }
         private async Task<AdvertiseLogBussines> GetNextAdv(long simCardNumber)
         {
@@ -711,11 +711,8 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-
                 return null;
             }
-
-
         }
         private List<string> GetNextImages(string advFullPath, int imgCount = 3)
         {
@@ -784,53 +781,53 @@ namespace Ads.Classes
         public async Task<List<RegionBussiness>> GetAllRegionFromDivar(List<string> City)
         {
             var region = new List<RegionBussiness>();
-            _driver = Utility.RefreshDriver(_driver);
-            _driver.Navigate().GoToUrl("https://divar.ir/new");
-            //کلیک کردن روی کتگوری اصلی
-            _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat1)?.Click();
-            await Utility.Wait(2);
-            //کلیک روی ساب کتگوری 1
-            _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat2)?.Click();
-            await Utility.Wait(2);
-            //کلیک روی ساب کتگوری2
-            _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat3)?.Click();
+            //_driver = Utility.RefreshDriver(_driver);
+            //_driver.Navigate().GoToUrl("https://divar.ir/new");
+            ////کلیک کردن روی کتگوری اصلی
+            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat1)?.Click();
+            //await Utility.Wait(2);
+            ////کلیک روی ساب کتگوری 1
+            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat2)?.Click();
+            //await Utility.Wait(2);
+            ////کلیک روی ساب کتگوری2
+            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat3)?.Click();
 
-            await Utility.Wait(2);
-            try
-            {
-                foreach (var item in City)
-                {
-                    _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input"))
-                        .SendKeys(item + "\n");
-                    await Utility.Wait(2);
-                    var el = _driver.FindElement(By.ClassName("location-selector__district"))
-                        .FindElement(By.TagName("i"));
-                    await Utility.Wait();
-                    el?.Click();
-                    var allEl = _driver.FindElement(By.ClassName("location-selector__district"))
-                        .FindElements(By.ClassName("item")).Where(q => q.Text != "").ToList();
-                    if (allEl.Count <= 0) continue;
-                    foreach (var temp in allEl)
-                    {
-                        var a = DivarCityBussines.GetAsync(item);
-                        var clsRegionBusiness = new RegionBussiness()
-                        {
-                            Guid = Guid.NewGuid(),
-                            CityGuid = a.Guid,
-                            DateSabt = DateConvertor.M2SH(DateTime.Now),
-                            Type = AdvertiseType.Divar,
-                            Name = temp.Text,
-                            Status = true
-                        };
-                        region.Add(clsRegionBusiness);
-                    }
+            //await Utility.Wait(2);
+            //try
+            //{
+            //    foreach (var item in City)
+            //    {
+            //        _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input"))
+            //            .SendKeys(item + "\n");
+            //        await Utility.Wait(2);
+            //        var el = _driver.FindElement(By.ClassName("location-selector__district"))
+            //            .FindElement(By.TagName("i"));
+            //        await Utility.Wait();
+            //        el?.Click();
+            //        var allEl = _driver.FindElement(By.ClassName("location-selector__district"))
+            //            .FindElements(By.ClassName("item")).Where(q => q.Text != "").ToList();
+            //        if (allEl.Count <= 0) continue;
+            //        foreach (var temp in allEl)
+            //        {
+            //            var a = DivarCityBussines.GetAsync(item);
+            //            var clsRegionBusiness = new RegionBussiness()
+            //            {
+            //                Guid = Guid.NewGuid(),
+            //                CityGuid = a.Guid,
+            //                DateSabt = DateConvertor.M2SH(DateTime.Now),
+            //                Type = AdvertiseType.Divar,
+            //                Name = temp.Text,
+            //                Status = true
+            //            };
+            //            region.Add(clsRegionBusiness);
+            //        }
 
-                }
-            }
-            catch (Exception e)
-            {
-                region = null;
-            }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    region = null;
+            //}
 
             return region;
         }
@@ -1264,12 +1261,10 @@ namespace Ads.Classes
                 all = all.Where(q => q.Status).ToList();
                 foreach (var sim in all)
                 {
-                    //var sim = await SimcardBussines.GetNextSimCardNumberAsync(AdvertiseType.Divar);
-                    //if (sim == 0) return;
                     var log2 = AdvTokensBussines.GetToken(sim.Number, AdvertiseType.DivarChat);
                     if (log2 != null && string.IsNullOrEmpty(log2.Token)) continue;
                     var simbus = await SimcardBussines.GetAsync(sim.Number);
-                    simbus.NextUseDivarChat = DateTime.Now.AddDays(30);
+                    simbus.NextUse = DateTime.Now.AddDays(30);
                     await simbus.SaveAsync();
                     var log = await Login(sim.Number);
                     if (!log) continue;
@@ -1359,6 +1354,103 @@ namespace Ads.Classes
                 lstMessage.Clear();
                 lstMessage.Add("لیست کاملا پیمایش شد");
                 Utility.ShowBalloon("اتمام یک دور کامل از پیمایش سیمکارت ها", lstMessage);
+            }
+            catch (Exception ex)
+            {
+                FarsiMessegeBox.Show(ex.Message);
+            }
+        }
+
+        public async Task GetCategory()
+        {
+            try
+            {
+                _driver = Utility.RefreshDriver(_driver);
+                _driver.Navigate().GoToUrl("https://divar.ir/new");
+                await Utility.Wait();
+                var listCat = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item"))
+                    .ToList();
+                var listAll = await AdvCategoryBussines.GetAllAsync();
+                listAll = listAll.Where(q => q.Type == AdvertiseType.Divar).ToList();
+                if (listAll.Count > 0)
+                    AdvCategoryBussines.RemoveAllAsync(listAll);
+                foreach (var item in listCat)
+                {
+                    var a = new AdvCategoryBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Type = AdvertiseType.Divar,
+                        Name = item.Text.Trim(),
+                        DateSabt = DateConvertor.M2SH(DateTime.Now),
+                        ParentGuid = Guid.Empty,
+                        Status = true
+                    };
+                    await a.SaveAsync();
+                }
+                listAll = await AdvCategoryBussines.GetAllAsync();
+                listAll = listAll.Where(q => q.Type == AdvertiseType.Divar).ToList();
+                if (listAll.Count <= 0) return;
+                foreach (var element in listAll)
+                {
+                    _driver.FindElements(By.ClassName("submit-post__category-selector--open__item"))
+                        .FirstOrDefault(q => q.Text == element.Name)?.Click();
+                    await Utility.Wait();
+                    var listCat2 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item"))
+                        .ToList();
+                    foreach (var item in listCat2)
+                    {
+                        var a = new AdvCategoryBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Type = AdvertiseType.Divar,
+                            Name = item.Text.Trim(),
+                            DateSabt = DateConvertor.M2SH(DateTime.Now),
+                            ParentGuid = element.Guid,
+                            Status = true
+                        };
+                        await a.SaveAsync();
+                    }
+
+
+                    var newList = await AdvCategoryBussines.GetAllAsync(element.Guid, AdvertiseType.Divar);
+                    if (newList.Count <= 0) continue;
+                    foreach (var item in newList)
+                    {
+                        _driver.FindElements(By.ClassName("submit-post__category-selector--open__item"))
+                            .FirstOrDefault(q => q.Text == item.Name)?.Click();
+                        await Utility.Wait();
+                        var listCat3 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item"))
+                            .ToList();
+                        if (listCat3.Count <= 0)
+                        {
+                            await Utility.Wait(2);
+                            _driver.FindElement(By.ClassName("submit-post__category-selector--close__button")).Click();
+                            await Utility.Wait();
+                            continue;
+                        }
+                        foreach (var ne in listCat3)
+                        {
+                            var a = new AdvCategoryBussines()
+                            {
+                                Guid = Guid.NewGuid(),
+                                Type = AdvertiseType.Divar,
+                                Name = ne.Text.Trim(),
+                                DateSabt = DateConvertor.M2SH(DateTime.Now),
+                                ParentGuid = item.Guid,
+                                Status = true
+                            };
+                            await a.SaveAsync();
+                        }
+                        _driver.FindElement(By.ClassName("submit-post__category-selector--open__back__icon")).Click();
+                        await Utility.Wait();
+                    }
+
+                    var a10 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__back__icon"))
+                        .Any();
+                    if (a10)
+                        _driver.FindElement(By.ClassName("submit-post__category-selector--open__back__icon")).Click();
+                    await Utility.Wait();
+                }
             }
             catch (Exception ex)
             {

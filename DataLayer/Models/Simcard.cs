@@ -10,9 +10,7 @@ namespace DataLayer.Models
         public Guid Guid { get; set; }
         [MaxLength(15)]
         public string DateSabt { get; set; }
-        public DateTime NextUseDivar { get; set; }
-        public DateTime NextUseSheypoor { get; set; }
-        public DateTime NextUseDivarChat { get; set; }
+        public DateTime NextUse { get; set; }
         public long Number { get; set; }
         public bool Status { get; set; }
         [MaxLength(150)]
@@ -21,5 +19,12 @@ namespace DataLayer.Models
         public string UserName { get; set; }
         [MaxLength(100)]
         public string OwnerName { get; set; }
+        public bool IsSendAdv { get; set; }
+        public bool IsSendChat { get; set; }
+        public Guid? DivarCatGuid1 { get; set; }
+        public Guid? DivarCatGuid2 { get; set; }
+        public Guid? DivarCatGuid3 { get; set; }
+        public Guid? SheypoorCatGuid1 { get; set; }
+        public Guid? SheypoorCatGuid2 { get; set; }
     }
 }

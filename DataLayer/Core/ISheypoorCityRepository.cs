@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataLayer.Models;
+﻿using DataLayer.Models;
 
 namespace DataLayer.Core
 {
     public interface ISheypoorCityRepository : IRepository<SheypoorCity>
     {
+        SheypoorCity GetAsync(string city);
+        bool Check_Name(string name);
     }
 }

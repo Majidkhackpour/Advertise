@@ -17,23 +17,11 @@ namespace DataLayer.Models
         public int CountAdvInMounthSheypoor { get; set; }
         public int CountAdvInIPDivar { get; set; }
         public int CountAdvInIPSheypoor { get; set; }
-        [MaxLength(100)]
-        public string DivarCat1 { get; set; }
-        [MaxLength(100)]
-        public string DivarCat2 { get; set; }
-        [MaxLength(100)]
-        public string DivarCat3 { get; set; }
-        [MaxLength(100)]
-        public string SheypoorCat1 { get; set; }
-        [MaxLength(100)]
-        public string SheypoorCat2 { get; set; }
-        [MaxLength(100)]
-        public string SheypoorCat3 { get; set; }
         public int DivarDayCountForUpdateState { get; set; }
         public int SheypoorDayCountForUpdateState { get; set; }
         public int DivarMaxImgCount { get; set; }
         public int SheypoorMaxImgCount { get; set; }
         public string AdsAddress { get; set; }
-        public int DivarDayCountForDelete { get; set; }
+        public int DayCountForDelete { get; set; }
     }
 }

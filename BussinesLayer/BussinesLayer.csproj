@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvCategoryBussines.cs" />
     <Compile Include="AdvertiseLogBussines.cs" />
     <Compile Include="AdvTokensBussines.cs" />
     <Compile Include="DivarCityBussines.cs" />
