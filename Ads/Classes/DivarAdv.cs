@@ -828,8 +828,8 @@ namespace Ads.Classes
             //{
             //    region = null;
             //}
-
             return region;
+
         }
 
 
@@ -1441,6 +1441,8 @@ namespace Ads.Classes
                             };
                             await a.SaveAsync();
                         }
+
+                        await Utility.Wait(2);
                         _driver.FindElement(By.ClassName("submit-post__category-selector--open__back__icon")).Click();
                         await Utility.Wait();
                     }

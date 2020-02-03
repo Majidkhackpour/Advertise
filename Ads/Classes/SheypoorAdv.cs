@@ -1114,7 +1114,8 @@ namespace Ads.Classes
                             Guid = Guid.NewGuid(),
                             Name = item.Text,
                             DateSabt = DateConvertor.M2SH(DateTime.Now),
-                            Status = true
+                            Status = true,
+                            StateGuid = stateItem.Guid
                         };
                         cities.Add(a);
                     }

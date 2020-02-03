@@ -117,14 +117,6 @@
     <Compile Include="Migration\202001271454115_8.designer.cs">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migration\202002021529075_9.cs" />
-    <Compile Include="Migration\202002021529075_9.designer.cs">
-      <DependentUpon>202002021529075_9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migration\202002021532014_10.cs" />
-    <Compile Include="Migration\202002021532014_10.designer.cs">
-      <DependentUpon>202002021532014_10.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\AdvCategory.cs" />
     <Compile Include="Models\AdvertiseLog.cs" />
     <Compile Include="Models\AdvTokens.cs" />
@@ -181,12 +173,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202001271454115_8.resx">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migration\202002021529075_9.resx">
-      <DependentUpon>202002021529075_9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migration\202002021532014_10.resx">
-      <DependentUpon>202002021532014_10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

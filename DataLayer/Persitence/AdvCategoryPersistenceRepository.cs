@@ -24,7 +24,7 @@ namespace DataLayer.Persitence
                 using (var context = new dbContext())
                 {
                     var list = context.AdvCategory.AsNoTracking()
-                        .Where(q => q.Guid == guid && q.Type == type)
+                        .Where(q => q.ParentGuid == guid && q.Type == type)
                         .ToList();
                     return list;
                 }

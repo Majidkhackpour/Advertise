@@ -361,5 +361,22 @@ namespace Ads.Forms.Mains
                 FarsiMessegeBox.Show(exception.Message);
             }
         }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var sh = await SheypoorAdv.GetInstance();
+                var list=await sh.GetAllCityFromSheypoor();
+                foreach (var item in list)
+                {
+                    await item.SaveAsync();
+                }
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }

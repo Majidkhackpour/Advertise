@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
+using DataLayer.Models;
 using DataLayer.Persitence;
 
 namespace BussinesLayer
@@ -30,6 +31,23 @@ namespace BussinesLayer
             {
                 var a = _context.SheypoorCity.Get(cityGuid);
                 return Mappings.Default.Map<SheypoorCityBussines>(a);
+            }
+        }
+        public async Task SaveAsync()
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var a = Mappings.Default.Map<SheypoorCity>(this);
+                    var res = _context.SheypoorCity.Save(a);
+                    _context.Set_Save();
+                    _context.Dispose();
+
+                }
+            }
+            catch (Exception exception)
+            {
             }
         }
     }

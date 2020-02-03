@@ -43,6 +43,7 @@
             this.lblRegion = new System.Windows.Forms.Label();
             this.picRegion = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
@@ -289,12 +290,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(449, 193);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 61);
+            this.button2.TabIndex = 55684;
+            this.button2.Text = "شهرهای شیپور";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frmManagerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(784, 612);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.grpAccount);
             this.Controls.Add(this.label1);
@@ -335,5 +347,6 @@
         public System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.PictureBox picRegion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
