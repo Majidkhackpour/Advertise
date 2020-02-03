@@ -1,3 +1,4 @@
+using DataLayer.Interface.Entities;
 using DataLayer.Migrations;
 using DataLayer.Models;
 
@@ -25,6 +26,10 @@ namespace DataLayer.Context
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<DivarSimCity> DivarSimCity { get; set; }
         public virtual DbSet<AdvCategory> AdvCategory { get; set; }
+        public virtual DbSet<AdvGroup> AdvGroups { get; set; }
+        public virtual DbSet<Advertise> Advertise { get; set; }
+        public virtual DbSet<AdvPictures> AdvPictures { get; set; }
+        public virtual DbSet<AdvTitles> AdvTitles { get; set; }
     }
 
 }

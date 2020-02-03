@@ -13,6 +13,9 @@ namespace DataLayer.Models
         public DateTime NextUse { get; set; }
         public long Number { get; set; }
         public bool Status { get; set; }
+        public bool IsEnableChat { get; set; }
+        public bool IsEnableNumber { get; set; }
+
         [MaxLength(150)]
         public string Operator { get; set; }
         [MaxLength(100)]

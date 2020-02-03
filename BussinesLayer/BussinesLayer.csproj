@@ -46,7 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvCategoryBussines.cs" />
+    <Compile Include="AdvertiseBussines.cs" />
     <Compile Include="AdvertiseLogBussines.cs" />
+    <Compile Include="AdvGroupBussines.cs" />
+    <Compile Include="AdvPicturesBussines.cs" />
+    <Compile Include="AdvTitlesBussines.cs" />
     <Compile Include="AdvTokensBussines.cs" />
     <Compile Include="DivarCityBussines.cs" />
     <Compile Include="DivarSimCityBussines.cs" />

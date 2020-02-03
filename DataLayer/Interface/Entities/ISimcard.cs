@@ -7,6 +7,8 @@ namespace DataLayer.Interface.Entities
         DateTime NextUse { get; set; }
         long Number { get; set; }
         bool Status { get; set; }
+        bool IsEnableChat { get; set; }
+        bool IsEnableNumber { get; set; }
         string Operator { get; set; }
         string UserName { get; set; }
         string OwnerName { get; set; }

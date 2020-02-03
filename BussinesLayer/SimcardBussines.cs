@@ -16,6 +16,8 @@ namespace BussinesLayer
         public DateTime NextUse { get; set; }
         public long Number { get; set; }
         public bool Status { get; set; }
+        public bool IsEnableChat { get; set; }
+        public bool IsEnableNumber { get; set; }
         public string Operator { get; set; }
         public string UserName { get; set; }
         public string OwnerName { get; set; }

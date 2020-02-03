@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Core;
 
@@ -23,6 +19,10 @@ namespace DataLayer.Persitence
         private ISettingRepository _settingRepository;
         private IDivarSimCityRepository _divarSimCityRepository;
         private IAdvCategoryRepository _advCategoryRepository;
+        private IAdvGroupRepositpry _advGroupRepository;
+        private IAdvertiseRepository _advertiseRepository;
+        private IAdvPicturesRepository _advPicturesRepository;
+        private IAdvTitlesRepository _advTitlesRepository;
 
         public void Dispose()
         {
@@ -50,5 +50,9 @@ namespace DataLayer.Persitence
             _divarSimCityRepository ?? (_divarSimCityRepository = new DivarSimCityPersistenceRepository(db));
         public IAdvCategoryRepository AdvCategory =>
             _advCategoryRepository ?? (_advCategoryRepository = new AdvCategoryPersistenceRepository(db));
+        public IAdvGroupRepositpry AdvGroup => _advGroupRepository ?? (_advGroupRepository = new AdvGroupPersistenceRepository(db));
+        public IAdvertiseRepository Advertise => _advertiseRepository ?? (_advertiseRepository = new AdvertisePersistenceRepository(db));
+        public IAdvPicturesRepository AdvPictures => _advPicturesRepository ?? (_advPicturesRepository = new AdvPicturesPersistenceRepository(db));
+        public IAdvTitlesRepository AdvTitles => _advTitlesRepository ?? (_advTitlesRepository = new AdvTitlesPersistenceRepository(db));
     }
 }

@@ -54,8 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IAdvertiseRepository.cs" />
+    <Compile Include="Core\IAdvGroupRepositpry.cs" />
     <Compile Include="Core\IAdvCategoryRepository.cs" />
     <Compile Include="Core\IAdvertiseLogRepository.cs" />
+    <Compile Include="Core\IAdvPicturesRepository.cs" />
+    <Compile Include="Core\IAdvTitlesRepository.cs" />
     <Compile Include="Core\IAdvTokensRepository.cs" />
     <Compile Include="Core\IDivarCityRepository.cs" />
     <Compile Include="Core\IDivarSimCityRepository.cs" />
@@ -70,8 +74,14 @@
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
+    <Compile Include="Interface\Entities\AdvPictures.cs" />
+    <Compile Include="Interface\Entities\AdvTitles.cs" />
+    <Compile Include="Interface\Entities\IAdvertise.cs" />
     <Compile Include="Interface\Entities\IAdvCategory.cs" />
     <Compile Include="Interface\Entities\IAdvertiseLog.cs" />
+    <Compile Include="Interface\Entities\IAdvGroup.cs" />
+    <Compile Include="Interface\Entities\IAdvPictures.cs" />
+    <Compile Include="Interface\Entities\IAdvTitles.cs" />
     <Compile Include="Interface\Entities\IAdvTokens.cs" />
     <Compile Include="Interface\Entities\IDivarCity.cs" />
     <Compile Include="Interface\Entities\IDivarSimCity.cs" />
@@ -117,8 +127,18 @@
     <Compile Include="Migration\202001271454115_8.designer.cs">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migration\202002031610241_9.cs" />
+    <Compile Include="Migration\202002031610241_9.designer.cs">
+      <DependentUpon>202002031610241_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migration\202002031620118_10.cs" />
+    <Compile Include="Migration\202002031620118_10.designer.cs">
+      <DependentUpon>202002031620118_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdvCategory.cs" />
+    <Compile Include="Models\Advertise.cs" />
     <Compile Include="Models\AdvertiseLog.cs" />
+    <Compile Include="Models\AdvGroup.cs" />
     <Compile Include="Models\AdvTokens.cs" />
     <Compile Include="Models\DivarCity.cs" />
     <Compile Include="Models\DivarSimCity.cs" />
@@ -131,6 +151,10 @@
     <Compile Include="Models\States.cs" />
     <Compile Include="Persitence\AdvCategoryPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvertiseLogPersistenceRepository.cs" />
+    <Compile Include="Persitence\AdvertisePersistenceRepository.cs" />
+    <Compile Include="Persitence\AdvGroupPersistenceRepository.cs" />
+    <Compile Include="Persitence\AdvPicturesPersistenceRepository.cs" />
+    <Compile Include="Persitence\AdvTitlesPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvTokensPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarCityPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarSimCityPersistenceRepository.cs" />
@@ -173,6 +197,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202001271454115_8.resx">
       <DependentUpon>202001271454115_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002031610241_9.resx">
+      <DependentUpon>202002031610241_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002031620118_10.resx">
+      <DependentUpon>202002031620118_10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

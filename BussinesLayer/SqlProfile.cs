@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataLayer.Interface.Entities;
 using DataLayer.Models;
 
 namespace BussinesLayer
@@ -42,6 +43,18 @@ namespace BussinesLayer
 
             CreateMap<AdvCategory, AdvCategoryBussines>();
             CreateMap<AdvCategoryBussines, AdvCategory>();
+
+            CreateMap<AdvGroup, AdvGroupBussines>();
+            CreateMap<AdvGroupBussines, AdvGroup>();
+
+            CreateMap<Advertise, AdvertiseBussines>();
+            CreateMap<AdvertiseBussines, Advertise>();
+
+            CreateMap<AdvPictures, AdvPicturesBussines>();
+            CreateMap<AdvPicturesBussines, AdvPictures>();
+
+            CreateMap<AdvTitles, AdvTitlesBussines>();
+            CreateMap<AdvTitlesBussines, AdvTitles>();
         }
     }
 }
