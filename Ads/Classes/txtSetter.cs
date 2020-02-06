@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using FMessegeBox;
 
 namespace Ads.Classes
 {
@@ -57,13 +58,21 @@ namespace Ads.Classes
                 btn.PerformClick();
         }
 
-        //public static void Three_Ziro(TextBox txt)
-        //{
-        //    txt.Text = txt.Text.Replace(".", "000");
-        //    txt.Text = txt.Text.Replace("+", "00");
-        //    txt.Text = txt.Text.ParseToDecimal().ThreeSeparator();
-        //    txt.SelectionStart = txt.Text.Length;
-        //}
+        public static void Three_Ziro(TextBox txt)
+        {
+            try
+            {
+                txt.Text = txt.Text.Replace(".", "000");
+                txt.Text = txt.Text.Replace("+", "00");
+                if (!string.IsNullOrEmpty(txt.Text))
+                    txt.Text = decimal.Parse(txt.Text).ToString("#,0");
+                txt.SelectionStart = txt.Text.Length;
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
         public static void Switch_Language_To_English()
         {
             CultureInfo LAN = new CultureInfo("en-us");

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataLayer</RootNamespace>
     <AssemblyName>DataLayer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -74,8 +74,8 @@
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
-    <Compile Include="Interface\Entities\AdvPictures.cs" />
-    <Compile Include="Interface\Entities\AdvTitles.cs" />
+    <Compile Include="Models\AdvPictures.cs" />
+    <Compile Include="Models\AdvTitles.cs" />
     <Compile Include="Interface\Entities\IAdvertise.cs" />
     <Compile Include="Interface\Entities\IAdvCategory.cs" />
     <Compile Include="Interface\Entities\IAdvertiseLog.cs" />

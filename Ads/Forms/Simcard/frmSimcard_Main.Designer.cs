@@ -639,7 +639,7 @@
             // 
             // adsBindingSource
             // 
-            this.adsBindingSource.DataSource = typeof(Ads.Classes.Advertise);
+            //this.adsBindingSource.DataSource = typeof(Ads.Classes.Advertise);
             // 
             // frmSimcard_Main
             // 

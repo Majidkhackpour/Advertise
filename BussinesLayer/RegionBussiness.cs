@@ -47,7 +47,7 @@ namespace BussinesLayer
                         if (!RemoveAll(all)) return;
                     }
 
-                    foreach (var item in all)
+                    foreach (var item in lst)
                     {
                         var a = Mappings.Default.Map<Region>(item);
                         var res = _context.Region.Save(a);

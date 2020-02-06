@@ -82,7 +82,8 @@ namespace DataLayer.Persitence
             {
                 using (var contex = new dbContext())
                 {
-                    var acc = contex.Simcard.AsNoTracking().Where(q => q.Number == number && q.Guid != guid).ToList();
+                    var acc = contex.Simcard.AsNoTracking().Where(q => q.Number == number && q.Guid != guid && q.Status)
+                        .ToList();
                     return acc.Count == 0;
                 }
             }

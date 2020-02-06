@@ -56,12 +56,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.uC_Date1 = new UC_Date.UC_Date();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnFinish = new DevComponents.DotNetBar.ButtonX();
+            this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -453,43 +453,6 @@
             this.label2.TabIndex = 30;
             this.label2.Text = "تعداد آگهی ارسالی در روز";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 393);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnCancel.Size = new System.Drawing.Size(125, 25);
-            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "انصراف (ESC)";
-            this.btnCancel.TextColor = System.Drawing.Color.Silver;
-            this.btnCancel.ThemeAware = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnFinish
-            // 
-            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(228, 393);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnFinish.Size = new System.Drawing.Size(145, 25);
-            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnFinish.TabIndex = 1;
-            this.btnFinish.Text = "تایید (F5)";
-            this.btnFinish.TextColor = System.Drawing.Color.Silver;
-            this.btnFinish.ThemeAware = true;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
@@ -510,6 +473,43 @@
             this.uC_Date1.Name = "uC_Date1";
             this.uC_Date1.Size = new System.Drawing.Size(383, 47);
             this.uC_Date1.TabIndex = 55696;
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnFinish.Location = new System.Drawing.Point(228, 393);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnFinish.Size = new System.Drawing.Size(145, 25);
+            this.btnFinish.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnFinish.TabIndex = 1;
+            this.btnFinish.Text = "تایید (F5)";
+            this.btnFinish.TextColor = System.Drawing.Color.Silver;
+            this.btnFinish.ThemeAware = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnCancel.Location = new System.Drawing.Point(12, 393);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnCancel.Size = new System.Drawing.Size(125, 25);
+            this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "انصراف (ESC)";
+            this.btnCancel.TextColor = System.Drawing.Color.Silver;
+            this.btnCancel.ThemeAware = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmAdsSettings
             // 
@@ -553,8 +553,6 @@
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label2;
         public DevComponents.DotNetBar.Controls.ComboBoxEx cmbDeleteDay;
-        public DevComponents.DotNetBar.ButtonX btnCancel;
-        public DevComponents.DotNetBar.ButtonX btnFinish;
         private DevComponents.DotNetBar.Controls.Line line1;
         public System.Windows.Forms.TextBox txtCat3;
         public System.Windows.Forms.TextBox txtAdvAddress;
@@ -577,5 +575,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
         public System.Windows.Forms.TextBox txtUpdateDayCount;
         public System.Windows.Forms.Label label1;
+        public DevComponents.DotNetBar.ButtonX btnFinish;
+        public DevComponents.DotNetBar.ButtonX btnCancel;
     }
 }

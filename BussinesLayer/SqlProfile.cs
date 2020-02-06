@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DataLayer.Interface.Entities;
 using DataLayer.Models;
 
 namespace BussinesLayer

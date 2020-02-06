@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Ads</RootNamespace>
     <AssemblyName>Ads</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -100,6 +100,9 @@
     <Reference Include="FMessegeBox">
       <HintPath>..\..\..\..\Mahla\H_R_ Management\H_R_ Management\bin\Debug\FMessegeBox.dll</HintPath>
     </Reference>
+    <Reference Include="LineNumbersControlForRichTextBox">
+      <HintPath>..\..\..\..\..\New folder\Compressed\Dlls\LineNumbersControlForRichTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -133,6 +136,18 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mains\frmAds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mains\frmAds.Designer.cs">
+      <DependentUpon>frmAds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mains\frmAdsGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mains\frmAdsGroup.Designer.cs">
+      <DependentUpon>frmAdsGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mains\frmMain.cs">
       <SubType>Form</SubType>
@@ -181,6 +196,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mains\frmAds.resx">
+      <DependentUpon>frmAds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mains\frmAdsGroup.resx">
+      <DependentUpon>frmAdsGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mains\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +235,8 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Ads.Classes.Advertise.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.AdvCategoryBussines.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.AdvGroupBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarSimCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.SimcardBussines.datasource" />

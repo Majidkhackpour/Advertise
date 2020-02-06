@@ -723,7 +723,7 @@ namespace Ads.Classes
             }
         }
 
-        private List<Advertise> AdvertiseList { get; set; }
+        private List<AdvertiseBussines> AdvertiseList { get; set; }
         private async Task<AdvertiseLogBussines> GetNextAdv(long simCardNumber)
         {
             var newAdvertiseLogBusiness = new AdvertiseLogBussines();
@@ -737,11 +737,10 @@ namespace Ads.Classes
                 advList = advList.ToList();
 
                 #region findNextAdvIndex
-                AdvertiseList = new List<Advertise>();
+                AdvertiseList = new List<AdvertiseBussines>();
                 foreach (var item in advList)
                 {
-                    var adv = await Advertise.GetAsync(Path.Combine(cls?.AdsAddress ?? "", item.AdsName),
-                        cls?.AdsAddress);
+                    var adv = await AdvertiseBussines.GetAsync(item.AdsName);
                     AdvertiseList.Add(adv);
                 }
 
@@ -751,20 +750,19 @@ namespace Ads.Classes
                 string path = null;
                 if (Path.Combine(cls?.AdsAddress ?? "", AdvertiseList[nextAdvIndex].AdvName) ==
                     AdvertiseList[nextAdvIndex].AdvName)
-                    path = Path.Combine(AdvertiseList[nextAdvIndex].RootPath,
-                        AdvertiseList[nextAdvIndex].AdvName);
+                    path = AdvertiseList[nextAdvIndex].AdvName;
                 else
                     path = Path.Combine(cls?.AdsAddress, AdvertiseList[nextAdvIndex].AdvName);
                 newAdvertiseLogBusiness.Adv = path;
 
                 #region FindNextTitle
-
+                var AllTitles = await AdvTitlesBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
                 //تایتل آگهی دریافت می شود
                 // if (!(AdvertiseList[nextAdvIndex].Titles?.Count > 0)) return null;
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title) || newAdvertiseLogBusiness.Title == "---")
                 {
-                    var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AdvertiseList[nextAdvIndex].Titles.Count);
-                    newAdvertiseLogBusiness.Title = AdvertiseList[nextAdvIndex].Titles[nextTitleIndex];
+                    var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AllTitles.Count);
+                    newAdvertiseLogBusiness.Title = AllTitles[nextTitleIndex].Title;
                 }
                 //if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title)) return null;
                 #endregion
@@ -802,7 +800,7 @@ namespace Ads.Classes
                 #endregion
 
                 //قیمت آگهی دریافت می شود
-                newAdvertiseLogBusiness.Price = AdvertiseList[nextAdvIndex].Price;
+                newAdvertiseLogBusiness.Price = decimal.Parse(AdvertiseList[nextAdvIndex].Price);
 
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.City) || newAdvertiseLogBusiness.City == "---")
                 {

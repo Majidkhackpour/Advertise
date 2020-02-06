@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DataLayer.Interface.Entities;
 
-namespace DataLayer.Interface.Entities
+namespace DataLayer.Models
 {
    public class AdvPictures:IAdvPictures
     {

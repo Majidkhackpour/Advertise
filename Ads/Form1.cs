@@ -115,8 +115,8 @@ namespace Ads
             SimcardBindingSource.DataSource = list1;
 
             //Fill Ads To Grid
-            var list2 = await Advertise.GetAllAsync("D:\\DivarTest");
-            SimcardAdvBindingSource.DataSource = list2;
+            //var list2 = await Advertise.GetAllAsync("D:\\DivarTest");
+            //SimcardAdvBindingSource.DataSource = list2;
 
             //Fill Divar City To Grid
             var list3 = await DivarCityBussines.GetAllAsync();

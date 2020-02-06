@@ -721,7 +721,7 @@
             // 
             // SimcardAdvBindingSource
             // 
-            this.SimcardAdvBindingSource.DataSource = typeof(Ads.Classes.Advertise);
+            //this.SimcardAdvBindingSource.DataSource = typeof(Ads.Classes.Advertise);
             // 
             // btnInsSimcardAds
             // 

@@ -367,7 +367,7 @@ namespace Ads.Forms.Mains
             try
             {
                 var sh = await SheypoorAdv.GetInstance();
-                var list=await sh.GetAllCityFromSheypoor();
+                var list = await sh.GetAllCityFromSheypoor();
                 foreach (var item in list)
                 {
                     await item.SaveAsync();
@@ -377,6 +377,54 @@ namespace Ads.Forms.Mains
             {
                 FarsiMessegeBox.Show(exception.Message);
             }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var lstTupple = new List<Tuple<string, string>>();
+                var finalList = new List<RegionBussiness>();
+                lstTupple.Add(new Tuple<string, string>("آذربایجان شرقی", "تبریز"));
+                lstTupple.Add(new Tuple<string, string>("اصفهان", "اصفهان"));
+                lstTupple.Add(new Tuple<string, string>("البرز", "کرج"));
+                lstTupple.Add(new Tuple<string, string>("تهران", "تهران"));
+                lstTupple.Add(new Tuple<string, string>("خراسان رضوی", "مشهد"));
+                lstTupple.Add(new Tuple<string, string>("خوزستان", "اهواز"));
+                lstTupple.Add(new Tuple<string, string>("فارس", "شیراز"));
+                lstTupple.Add(new Tuple<string, string>("قم", "قم"));
+                lstTupple.Add(new Tuple<string, string>("گیلان", "رشت"));
+                lstTupple.Add(new Tuple<string, string>("مازندران", "ساری"));
+                foreach (var (item1, item2) in lstTupple)
+                {
+                    var sheypoor = await SheypoorAdv.GetInstance();
+                    var regions = await sheypoor.GetAllRegionFromSheypoor(item1, item2);
+                    var a = SheypoorCityBussines.GetAsync(item2);
+                    foreach (var aRegion in regions)
+                    {
+                        var clsRegionBusiness = new RegionBussiness()
+                        {
+                            Guid = Guid.NewGuid(),
+                            CityGuid = a.Guid,
+                            DateSabt = DateConvertor.M2SH(DateTime.Now),
+                            Type = AdvertiseType.Sheypoor,
+                            Name = aRegion
+                        };
+                        finalList.Add(clsRegionBusiness);
+                    }
+                }
+                await RegionBussiness.SaveAsync(AdvertiseType.Sheypoor, finalList);
+                FarsiMessegeBox.Show($"{finalList.Count} محله بروزرسانی شد");
+            }
+            catch (Exception ex)
+            {
+                FarsiMessegeBox.Show(ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new frmAds().ShowDialog();
         }
     }
 }

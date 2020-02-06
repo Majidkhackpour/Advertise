@@ -25,7 +25,7 @@ namespace Ads.Classes
         private static SettingBussines clsSetting;
         public string AdvRootPath => Path.Combine(Application.StartupPath, "Advertise");
 
-        public List<Advertise> AdvertiseList;
+        public List<AdvertiseBussines> AdvertiseList;
         #endregion
 
         private static DivarAdv _me;
@@ -628,11 +628,10 @@ namespace Ads.Classes
 
                 #region findNextAdvIndex
 
-                AdvertiseList = new List<Advertise>();
+                AdvertiseList = new List<AdvertiseBussines>();
                 foreach (var item in advList)
                 {
-                    var adv = await Advertise.GetAsync(Path.Combine(clsSetting?.AdsAddress ?? "", item.AdsName),
-                        clsSetting?.AdsAddress);
+                    var adv = await AdvertiseBussines.GetAsync(item.AdsName);
                     AdvertiseList.Add(adv);
                 }
 
@@ -642,20 +641,20 @@ namespace Ads.Classes
                 string path = null;
                 if (Path.Combine(clsSetting?.AdsAddress ?? "", AdvertiseList[nextAdvIndex].AdvName) ==
                     AdvertiseList[nextAdvIndex].AdvName)
-                    path = Path.Combine(AdvertiseList[nextAdvIndex].RootPath,
-                        AdvertiseList[nextAdvIndex].AdvName);
+                    path = AdvertiseList[nextAdvIndex].AdvName;
                 else
-                    path = Path.Combine(clsSetting?.AdsAddress, AdvertiseList[nextAdvIndex].AdvName);
+                    path = AdvertiseList[nextAdvIndex].AdvName;
                 newAdvertiseLogBusiness.Adv = path;
                 #region FindNextTitle
 
+                var AllTitles = await AdvTitlesBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
 
                 //تایتل آگهی دریافت می شود
                 // if (!(AdvertiseList[nextAdvIndex].Titles?.Count > 0)) return null;
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title) || newAdvertiseLogBusiness.Title == "---")
                 {
-                    var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AdvertiseList[nextAdvIndex].Titles.Count);
-                    newAdvertiseLogBusiness.Title = AdvertiseList[nextAdvIndex].Titles[nextTitleIndex];
+                    var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AllTitles.Count);
+                    newAdvertiseLogBusiness.Title = AllTitles[nextTitleIndex].Title;
                 }
 
 
@@ -682,7 +681,7 @@ namespace Ads.Classes
                 {
                     //عکسهای آگهی دریافت می شود
                     newAdvertiseLogBusiness.ImagesPathList =
-                        GetNextImages(newAdvertiseLogBusiness.Adv, clsSetting?.DivarMaxImgCount ?? 3);
+                        await GetNextImages(AdvertiseList[nextAdvIndex].Guid, clsSetting?.DivarMaxImgCount ?? 3);
                     if (newAdvertiseLogBusiness.ImagesPathList.Count > 0)
                     {
                         newAdvertiseLogBusiness.ImagePath = "";
@@ -697,7 +696,7 @@ namespace Ads.Classes
                 #endregion
 
                 //قیمت آگهی دریافت می شود
-                newAdvertiseLogBusiness.Price = AdvertiseList[nextAdvIndex].Price;
+                newAdvertiseLogBusiness.Price = decimal.Parse(AdvertiseList[nextAdvIndex].Price);
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.City) || newAdvertiseLogBusiness.City == "---")
                 {
                     var Allcity = await DivarSimCityBussines.GetAllAsync(simGuid.Guid);
@@ -714,26 +713,24 @@ namespace Ads.Classes
                 return null;
             }
         }
-        private List<string> GetNextImages(string advFullPath, int imgCount = 3)
+        private async Task<List<string>> GetNextImages(Guid advGuid, int imgCount = 3)
         {
             var resultImages = new List<string>();
 
             try
             {
-                if (string.IsNullOrEmpty(advFullPath)) return resultImages;
                 //گرفتن تمام عکسهای پوشه و فیلتر کردن عکسهای درست
-                var picturesPath = Path.Combine(advFullPath, "Pictures");
-                var allImages = Utility.GetFiles(picturesPath, "*.jpg");
+                var allImages = await AdvPicturesBussines.GetAllAsync(advGuid);
                 var selectedImages = new List<string>();
                 //حذف عکسهای زیر پیکسل 600*600
                 foreach (var imgItem in allImages)
                 {
-                    var img = Image.FromFile(imgItem);
+                    var img = Image.FromFile(imgItem.PathGuid);
                     if (img.Width < 600 || img.Height < 600)
                         try
                         {
                             img.Dispose();
-                            File.Delete(imgItem);
+                            File.Delete(imgItem.PathGuid);
                         }
                         catch
                         {
@@ -741,9 +738,14 @@ namespace Ads.Classes
                         }
                     img.Dispose();
                 }
-                allImages = Utility.GetFiles(picturesPath, "*.jpg");
 
-                if (allImages.Count <= imgCount) selectedImages = allImages;
+                if (allImages.Count <= imgCount)
+                {
+                    foreach (var item in allImages)
+                    {
+                        selectedImages.Add(item.PathGuid + "\r\n");
+                    }
+                }
                 else
                 {
                     var indexes = new List<int>();
@@ -755,7 +757,7 @@ namespace Ads.Classes
                             indexes.Add(index);
                     }
 
-                    selectedImages.AddRange(indexes.Select(index => allImages[index]));
+                    selectedImages.AddRange(indexes.Select(index => allImages[index].PathGuid));
                 }
 
 
@@ -781,53 +783,69 @@ namespace Ads.Classes
         public async Task<List<RegionBussiness>> GetAllRegionFromDivar(List<string> City)
         {
             var region = new List<RegionBussiness>();
-            //_driver = Utility.RefreshDriver(_driver);
-            //_driver.Navigate().GoToUrl("https://divar.ir/new");
-            ////کلیک کردن روی کتگوری اصلی
-            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat1)?.Click();
-            //await Utility.Wait(2);
-            ////کلیک روی ساب کتگوری 1
-            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat2)?.Click();
-            //await Utility.Wait(2);
-            ////کلیک روی ساب کتگوری2
-            //_driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == clsSetting?.DivarCat3)?.Click();
+            var b1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+            var Allcat1 = b1.ToList();
+            var rand = new Random().Next(0, Allcat1.Count);
+            var cat1 = Allcat1[rand];
 
-            //await Utility.Wait(2);
-            //try
-            //{
-            //    foreach (var item in City)
-            //    {
-            //        _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input"))
-            //            .SendKeys(item + "\n");
-            //        await Utility.Wait(2);
-            //        var el = _driver.FindElement(By.ClassName("location-selector__district"))
-            //            .FindElement(By.TagName("i"));
-            //        await Utility.Wait();
-            //        el?.Click();
-            //        var allEl = _driver.FindElement(By.ClassName("location-selector__district"))
-            //            .FindElements(By.ClassName("item")).Where(q => q.Text != "").ToList();
-            //        if (allEl.Count <= 0) continue;
-            //        foreach (var temp in allEl)
-            //        {
-            //            var a = DivarCityBussines.GetAsync(item);
-            //            var clsRegionBusiness = new RegionBussiness()
-            //            {
-            //                Guid = Guid.NewGuid(),
-            //                CityGuid = a.Guid,
-            //                DateSabt = DateConvertor.M2SH(DateTime.Now),
-            //                Type = AdvertiseType.Divar,
-            //                Name = temp.Text,
-            //                Status = true
-            //            };
-            //            region.Add(clsRegionBusiness);
-            //        }
+            b1 = await AdvCategoryBussines.GetAllAsync(cat1.Guid, AdvertiseType.Divar);
+            Allcat1 = b1.ToList();
+            rand = new Random().Next(0, Allcat1.Count);
+            var cat2 = Allcat1[rand];
 
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    region = null;
-            //}
+            b1 = await AdvCategoryBussines.GetAllAsync(cat2.Guid, AdvertiseType.Divar);
+            Allcat1 = b1.ToList();
+            rand = new Random().Next(0, Allcat1.Count);
+            var cat3 = Allcat1[rand];
+            _driver = Utility.RefreshDriver(_driver);
+            _driver.Navigate().GoToUrl("https://divar.ir/new");
+            //کلیک کردن روی کتگوری اصلی
+            _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == cat1.Name)?.Click();
+            await Utility.Wait(2);
+            //کلیک روی ساب کتگوری 1
+            _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == cat2.Name)?.Click();
+            await Utility.Wait(2);
+            //کلیک روی ساب کتگوری2
+            var catrand = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).Any();
+            if (catrand)
+                _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == cat3.Name)?.Click();
+
+            await Utility.Wait(2);
+            try
+            {
+                foreach (var item in City)
+                {
+                    _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input"))
+                        .SendKeys(item + "\n");
+                    await Utility.Wait(2);
+                    var el = _driver.FindElement(By.ClassName("location-selector__district"))
+                        .FindElement(By.TagName("i"));
+                    await Utility.Wait();
+                    el?.Click();
+                    var allEl = _driver.FindElement(By.ClassName("location-selector__district"))
+                        .FindElements(By.ClassName("item")).Where(q => q.Text != "").ToList();
+                    if (allEl.Count <= 0) continue;
+                    foreach (var temp in allEl)
+                    {
+                        var a = DivarCityBussines.GetAsync(item);
+                        var clsRegionBusiness = new RegionBussiness()
+                        {
+                            Guid = Guid.NewGuid(),
+                            CityGuid = a.Guid,
+                            DateSabt = DateConvertor.M2SH(DateTime.Now),
+                            Type = AdvertiseType.Divar,
+                            Name = temp.Text,
+                            Status = true
+                        };
+                        region.Add(clsRegionBusiness);
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                region = null;
+            }
             return region;
 
         }
