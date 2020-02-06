@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
@@ -15,7 +13,8 @@ namespace BussinesLayer
         public string DateSabt { get; set; }
         public bool Status { get; set; }
         public Guid SimcardGuid { get; set; }
-        public string AdsName { get; set; }
+        public Guid Advertise { get; set; }
+
         public async Task SaveAsync()
         {
             try

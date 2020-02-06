@@ -22,6 +22,7 @@ namespace BussinesLayer
         public Guid SheypoorCatGuid1 { get; set; }
         public Guid SheypoorCatGuid2 { get; set; }
         public Guid GroupGuid { get; set; }
+        public bool Is_Checked { get; set; }
         public List<AdvTitlesBussines> Titles => AsyncContext.Run(() => AdvTitlesBussines.GetAllAsync(Guid));
         public List<AdvPicturesBussines> Images => AsyncContext.Run(() => AdvPicturesBussines.GetAllAsync(Guid));
         public static async Task<AdvertiseBussines> GetAsync(string city)

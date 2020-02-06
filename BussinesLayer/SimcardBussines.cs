@@ -28,6 +28,24 @@ namespace BussinesLayer
         public Guid? DivarCatGuid3 { get; set; }
         public Guid? SheypoorCatGuid1 { get; set; }
         public Guid? SheypoorCatGuid2 { get; set; }
+        public int ChatCount { get; set; }
+
+        public bool DivarToken
+        {
+            get
+            {
+                var tok = AdvTokensBussines.GetToken(Number, AdvertiseType.Divar)?.Token;
+                return !string.IsNullOrEmpty(tok);
+            }
+        }
+        public bool SheypoorToken
+        {
+            get
+            {
+                var tok = AdvTokensBussines.GetToken(Number, AdvertiseType.Sheypoor)?.Token;
+                return !string.IsNullOrEmpty(tok);
+            }
+        }
 
         public static SimcardBussines GetAsync(AdvertiseType type)
         {
@@ -77,7 +95,7 @@ namespace BussinesLayer
             {
             }
         }
-        public async Task SaveAsync(List<DivarSimCityBussines>lstCity,List<SimcardAdsBussines>lstAds)
+        public async Task SaveAsync(List<DivarSimCityBussines>lstCity,List<SimcardAdsBussines>lstAds, List<SheypoorSimCityBussines> lstCitysh)
         {
             try
             {
@@ -85,6 +103,8 @@ namespace BussinesLayer
                 {
                     var allCity = await DivarSimCityBussines.GetAllAsync(Guid);
                     if (!DivarSimCityBussines.RemoveAll(allCity)) return;
+                    var allCitysh = await SheypoorSimCityBussines.GetAllAsync(Guid);
+                    if (!SheypoorSimCityBussines.RemoveAll(allCitysh)) return;
                     var allAds = await SimcardAdsBussines.GetAllAsync(Guid);
                     if (!SimcardAdsBussines.RemoveAll(allAds)) return;
 
@@ -94,6 +114,16 @@ namespace BussinesLayer
                         foreach (var item in a1)
                         {
                             var res1 = _context.DivarSimCity.Save(item);
+                            _context.Set_Save();
+                        }
+                    }
+
+                    if (lstCitysh.Count > 0)
+                    {
+                        var a1 = Mappings.Default.Map<List<SheypoorSimCity>>(lstCitysh);
+                        foreach (var item in a1)
+                        {
+                            var res1 = _context.SheypoorSimCity.Save(item);
                             _context.Set_Save();
                         }
                     }

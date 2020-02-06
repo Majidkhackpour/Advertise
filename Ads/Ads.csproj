@@ -236,9 +236,11 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Ads.Classes.Advertise.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvCategoryBussines.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.AdvertiseBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvGroupBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarSimCityBussines.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.SheypoorCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.SimcardBussines.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

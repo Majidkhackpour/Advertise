@@ -141,7 +141,7 @@ namespace Ads
                         DateSabt = DateConvertor.M2SH(DateTime.Now),
                         Status = true,
                         SimcardGuid = (Guid)cmbSimcard.SelectedValue,
-                        AdsName = dgSimcardAds[dg_AdvName.Index, i].Value.ToString()
+                       // Advertise = dgSimcardAds[dg_AdvName.Index, i].Value.ToString()
                     };
                     await a.SaveAsync();
                 }

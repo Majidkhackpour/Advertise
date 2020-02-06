@@ -16,7 +16,6 @@ namespace DataLayer.Models
         public string DateSabt { get; set; }
         public bool Status { get; set; }
         public Guid SimcardGuid { get; set; }
-        [MaxLength(150)]
-        public string AdsName { get; set; }
+        public Guid Advertise { get; set; }
     }
 }

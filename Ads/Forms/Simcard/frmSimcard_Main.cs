@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
+using DataLayer.Enums;
 using FMessegeBox;
 
 namespace Ads.Forms.Simcard
@@ -18,7 +19,9 @@ namespace Ads.Forms.Simcard
             InitializeComponent();
             cmAds.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
             cmCity.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
+            cmSheypoor.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
             cls = new SimcardBussines();
+            lblHeader.Text = "افزودن سیمکارت جدید";
         }
 
         private async Task FillAds()
@@ -26,9 +29,8 @@ namespace Ads.Forms.Simcard
             try
             {
                 var a = SettingBussines.GetAll();
-                var address = string.IsNullOrEmpty(a[0].AdsAddress) ? Application.StartupPath : a[0].AdsAddress;
-                //var list2 = await Advertise.GetAllAsync(address);
-                //adsBindingSource.DataSource = list2;
+                var list2 = await AdvertiseBussines.GetAllAsync();
+                adsBindingSource.DataSource = list2;
             }
             catch (Exception e)
             {
@@ -41,6 +43,9 @@ namespace Ads.Forms.Simcard
             {
                 var list3 = await DivarCityBussines.GetAllAsync();
                 cityBindingSource.DataSource = list3.ToList();
+
+                var list4 = await SheypoorCityBussines.GetAllAsync();
+                SheypoorCityBindingSource.DataSource = list4;
             }
             catch (Exception e)
             {
@@ -59,6 +64,16 @@ namespace Ads.Forms.Simcard
                     for (var i = 0; i < dgCity.RowCount; i++)
                         if (item.CityGuid == ((Guid?)dgCity[dg_CityGuid.Index, i].Value ?? Guid.Empty))
                             dgCity[dg_CityChecked.Index, i].Value = true;
+
+
+
+                var list1 = await SheypoorSimCityBussines.GetAllAsync(simGuid);
+                if (list1.Count <= 0) return;
+                foreach (var item in list1)
+                    for (var i = 0; i < dgSheypoorCity.RowCount; i++)
+                        if (item.CityGuid == ((Guid?)dgSheypoorCity[dg_SheypoorCityGuid.Index, i].Value ?? Guid.Empty))
+                            dgSheypoorCity[dg_SheypoorCityChecked.Index, i].Value = true;
+
             }
             catch (Exception e)
             {
@@ -74,7 +89,7 @@ namespace Ads.Forms.Simcard
                 if (list.Count <= 0) return;
                 foreach (var item in list)
                     for (var i = 0; i < dgAds.RowCount; i++)
-                        if (item.AdsName == (dgAds[dg_AdvName.Index, i].Value.ToString() ?? ""))
+                        if (item.Advertise == ((Guid?)dgAds[dg_AdvGuid.Index, i].Value ?? Guid.Empty))
                             dgAds[dg_AdvChecked.Index, i].Value = true;
             }
             catch (Exception e)
@@ -87,7 +102,9 @@ namespace Ads.Forms.Simcard
             InitializeComponent();
             cmAds.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
             cmCity.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
+            cmSheypoor.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
             cls = SimcardBussines.GetAsync(guid);
+            lblHeader.Text = "ویرایش سیمکارت";
         }
 
         private async Task FillComboBox()
@@ -97,6 +114,13 @@ namespace Ads.Forms.Simcard
                 var list = await SimcardBussines.GetAllAsync();
                 var a = list.Select(q => q.Operator).Distinct().ToList();
                 cmbOperator.DataSource = a;
+
+                var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+                DivarCat1BingingSource.DataSource = divarCat1;
+
+
+                var SheypoorCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
+                SheypoorCat1BingingSource.DataSource = SheypoorCat1;
             }
             catch (Exception e)
             {
@@ -164,6 +188,24 @@ namespace Ads.Forms.Simcard
                 }
 
 
+                var listCitySh = new List<SheypoorSimCityBussines>();
+                for (int i = 0; i < dgSheypoorCity.RowCount; i++)
+                {
+                    if ((bool)dgSheypoorCity[dg_SheypoorCityChecked.Index, i].Value)
+                    {
+                        var a = new SheypoorSimCityBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            DateSabt = DateConvertor.M2SH(DateTime.Now),
+                            Status = true,
+                            SimcardGuid = cls.Guid,
+                            CityGuid = (Guid)dgSheypoorCity[dg_SheypoorCityGuid.Index, i].Value,
+                            StateGuid = (Guid)dgSheypoorCity[dg_StateGuid.Index, i].Value
+                        };
+                        listCitySh.Add(a);
+                    }
+                }
+
                 var listAds = new List<SimcardAdsBussines>();
                 for (int i = 0; i < dgAds.RowCount; i++)
                 {
@@ -175,9 +217,9 @@ namespace Ads.Forms.Simcard
                             DateSabt = DateConvertor.M2SH(DateTime.Now),
                             Status = true,
                             SimcardGuid = cls.Guid,
-                            AdsName = dgAds[dg_AdvName.Index, i].Value.ToString()
+                            Advertise = (Guid)dgAds[dg_AdvGuid.Index, i].Value
                         };
-                       listAds.Add(a);
+                        listAds.Add(a);
                     }
                 }
 
@@ -187,11 +229,19 @@ namespace Ads.Forms.Simcard
                 cls.Status = true;
                 cls.Number = long.Parse(txtNumber.Text);
                 cls.NextUse = DateTime.Now;
-                //cls.NextUseSheypoor = DateTime.Now;
-                //cls.NextUseDivarChat = DateTime.Now;
                 cls.Operator = cmbOperator.Text;
                 cls.UserName = txtUserName.Text;
-                await cls.SaveAsync(listCity, listAds);
+                cls.DivarCatGuid1 = (Guid?)cmbDivarCat1.SelectedValue ?? null;
+                cls.DivarCatGuid2 = (Guid?)cmbDivarCat2.SelectedValue ?? null;
+                cls.DivarCatGuid3 = (Guid?)cmbDivarCat3.SelectedValue ?? null;
+                cls.SheypoorCatGuid1 = (Guid?)cmbSheypoorCat1.SelectedValue ?? null;
+                cls.SheypoorCatGuid2 = (Guid?)cmbSheypoorCat2.SelectedValue ?? null;
+                cls.IsEnableChat = chbIsEnableChat.Checked;
+                cls.IsEnableNumber = chbIsEnableNumber.Checked;
+                cls.IsSendAdv = chbIsSendAdv.Checked;
+                cls.IsSendChat = chbIsSendChat.Checked;
+                cls.ChatCount = int.Parse(txtChatCount.Text);
+                await cls.SaveAsync(listCity, listAds, listCitySh);
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -287,6 +337,19 @@ namespace Ads.Forms.Simcard
                 txtOwner.Text = cls.OwnerName;
                 cmbOperator.Text = cls.Operator;
                 txtUserName.Text = cls.UserName;
+                txtChatCount.Text = cls.ChatCount.ToString();
+                chbIsEnableNumber.Checked = cls.IsEnableNumber;
+                chbIsEnableChat.Checked = cls.IsEnableChat;
+                chbIsSendChat.Checked = cls.IsSendChat;
+                chbIsSendAdv.Checked = cls.IsSendAdv;
+                if (cls.Guid != Guid.Empty)
+                {
+                    cmbDivarCat1.SelectedValue = cls?.DivarCatGuid1 ?? null;
+                    cmbDivarCat2.SelectedValue = cls?.DivarCatGuid2 ?? null;
+                    cmbDivarCat3.SelectedValue = cls?.DivarCatGuid3 ?? Guid.Empty;
+                    cmbSheypoorCat1.SelectedValue = cls?.SheypoorCatGuid1 ?? null;
+                    cmbSheypoorCat2.SelectedValue = cls?.SheypoorCatGuid2 ;
+                }
                 await SetCity(cls.Guid);
                 await SetAds(cls.Guid);
             }
@@ -390,6 +453,103 @@ namespace Ads.Forms.Simcard
             {
                 FarsiMessegeBox.Show(exception.Message);
             }
+        }
+
+        private void dgSheypoorCity_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgSheypoorCity.RowCount <= 0) return;
+                if (e.ColumnIndex == dg_SheypoorCityChecked.Index)
+                {
+                    if (dgSheypoorCity.CurrentRow != null)
+                    {
+                        dgSheypoorCity[dg_SheypoorCityChecked.Index, dgSheypoorCity.CurrentRow.Index].Value =
+                            !(bool)dgSheypoorCity[dg_SheypoorCityChecked.Index, dgSheypoorCity.CurrentRow.Index].Value;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void mnuSheypoorSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgSheypoorCity.RowCount <= 0) return;
+                if (mnuSheypoorSelectAll.Checked)
+                {
+                    foreach (DataGridViewRow row in dgSheypoorCity.Rows)
+                    {
+                        if (row.Cells["dg_SheypoorCityChecked"] is DataGridViewCheckBoxCell checkBox)
+                            checkBox.Value = true;
+                    }
+
+                    return;
+                }
+                //UnCkeched
+                foreach (DataGridViewRow row in dgSheypoorCity.Rows)
+                {
+                    if (row.Cells["dg_SheypoorCityChecked"] is DataGridViewCheckBoxCell checkBox)
+                        checkBox.Value = false;
+                }
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private async void cmbDivarCat2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat2.SelectedValue, AdvertiseType.Divar);
+                DivarCat3BingingSource.DataSource = divarCat3;
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private async void cmbDivarCat1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat1.SelectedValue, AdvertiseType.Divar);
+                DivarCat2BingingSource.DataSource = divarCat2;
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private async void cmbSheypoorCat1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var sheypoorCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbSheypoorCat1.SelectedValue, AdvertiseType.Sheypoor);
+                SheypoorCat2BingingSource.DataSource = sheypoorCat2;
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void txtChatCount_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtChatCount);
+        }
+
+        private void txtChatCount_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtChatCount);
         }
     }
 }

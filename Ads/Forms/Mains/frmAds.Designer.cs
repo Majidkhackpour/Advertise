@@ -108,13 +108,13 @@
             this.mnuDelete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 122);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 100);
             // 
             // mnuInsGroup
             // 
             this.mnuInsGroup.ForeColor = System.Drawing.Color.DarkGray;
             this.mnuInsGroup.Name = "mnuInsGroup";
-            this.mnuInsGroup.Size = new System.Drawing.Size(180, 24);
+            this.mnuInsGroup.Size = new System.Drawing.Size(150, 24);
             this.mnuInsGroup.Text = "درج گروه جدید";
             this.mnuInsGroup.Click += new System.EventHandler(this.mnuInsGroup_Click);
             // 
@@ -122,7 +122,7 @@
             // 
             this.mnuInsAdv.ForeColor = System.Drawing.Color.Silver;
             this.mnuInsAdv.Name = "mnuInsAdv";
-            this.mnuInsAdv.Size = new System.Drawing.Size(180, 24);
+            this.mnuInsAdv.Size = new System.Drawing.Size(150, 24);
             this.mnuInsAdv.Text = "درج آگهی جدید";
             this.mnuInsAdv.Click += new System.EventHandler(this.mnuInsAdv_Click);
             // 
@@ -130,7 +130,7 @@
             // 
             this.mnuEdit.ForeColor = System.Drawing.Color.Silver;
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(180, 24);
+            this.mnuEdit.Size = new System.Drawing.Size(150, 24);
             this.mnuEdit.Text = "ویرایش";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
@@ -138,7 +138,7 @@
             // 
             this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(180, 24);
+            this.mnuDelete.Size = new System.Drawing.Size(150, 24);
             this.mnuDelete.Text = "حذف";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 

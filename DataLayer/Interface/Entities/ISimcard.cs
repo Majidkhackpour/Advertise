@@ -19,5 +19,6 @@ namespace DataLayer.Interface.Entities
         Guid? DivarCatGuid3 { get; set; }
         Guid? SheypoorCatGuid1 { get; set; }
         Guid? SheypoorCatGuid2 { get; set; }
+        int ChatCount { get; set; }
     }
 }

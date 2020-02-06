@@ -16,6 +16,7 @@ namespace BussinesLayer
         public bool Status { get; set; }
         public string Name { get; set; }
         public Guid StateGuid { get; set; }
+        public bool Is_Checked { get; set; }
         public string StateName => StateBussiness.Get(StateGuid).Name;
         public static SheypoorCityBussines GetAsync(string city)
         {
@@ -48,6 +49,14 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+            }
+        }
+        public static async Task<List<SheypoorCityBussines>> GetAllAsync()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.SheypoorCity.GetAll();
+                return Mappings.Default.Map<List<SheypoorCityBussines>>(a);
             }
         }
     }

@@ -39,25 +39,24 @@
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIns = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label1 = new System.Windows.Forms.Label();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.lblCounter = new System.Windows.Forms.Label();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.LogInBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.uC_Date1 = new UC_Date.UC_Date();
-            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextUseDivarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextUseSheypoorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextUseDivarChatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dg_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DivarToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SheypoorToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.operatorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogInBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogInBindingSource)).BeginInit();
@@ -103,6 +102,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.contextMenuStrip1.Size = new System.Drawing.Size(193, 76);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(192, 24);
+            this.mnuDelete.Text = "حذف سیمکارت جاری";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // txtSearch
             // 
@@ -191,11 +198,10 @@
             this.dgGuid,
             this.Radif,
             this.ownerNameDataGridViewTextBoxColumn,
-            this.dateSabtDataGridViewTextBoxColumn,
-            this.nextUseDivarDataGridViewTextBoxColumn,
-            this.nextUseSheypoorDataGridViewTextBoxColumn,
-            this.nextUseDivarChatDataGridViewTextBoxColumn,
             this.dg_Number,
+            this.DivarToken,
+            this.SheypoorToken,
+            this.dateSabtDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.operatorDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn});
@@ -238,6 +244,10 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
+            // LogInBindingSource
+            // 
+            this.LogInBindingSource.DataSource = typeof(BussinesLayer.SimcardBussines);
+            // 
             // uC_Date1
             // 
             this.uC_Date1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
@@ -249,21 +259,6 @@
             this.uC_Date1.Size = new System.Drawing.Size(784, 47);
             this.uC_Date1.TabIndex = 55686;
             // 
-            // mnuDelete
-            // 
-            this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(192, 24);
-            this.mnuDelete.Text = "حذف سیمکارت جاری";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // Radif
-            // 
-            this.Radif.HeaderText = "ردیف";
-            this.Radif.Name = "Radif";
-            this.Radif.ReadOnly = true;
-            this.Radif.Width = 50;
-            // 
             // dgGuid
             // 
             this.dgGuid.DataPropertyName = "Guid";
@@ -271,6 +266,13 @@
             this.dgGuid.Name = "dgGuid";
             this.dgGuid.ReadOnly = true;
             this.dgGuid.Visible = false;
+            // 
+            // Radif
+            // 
+            this.Radif.HeaderText = "ردیف";
+            this.Radif.Name = "Radif";
+            this.Radif.ReadOnly = true;
+            this.Radif.Width = 50;
             // 
             // ownerNameDataGridViewTextBoxColumn
             // 
@@ -280,38 +282,6 @@
             this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
             this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // dateSabtDataGridViewTextBoxColumn
-            // 
-            this.dateSabtDataGridViewTextBoxColumn.DataPropertyName = "DateSabt";
-            this.dateSabtDataGridViewTextBoxColumn.HeaderText = "DateSabt";
-            this.dateSabtDataGridViewTextBoxColumn.Name = "dateSabtDataGridViewTextBoxColumn";
-            this.dateSabtDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateSabtDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nextUseDivarDataGridViewTextBoxColumn
-            // 
-            this.nextUseDivarDataGridViewTextBoxColumn.DataPropertyName = "NextUseDivar";
-            this.nextUseDivarDataGridViewTextBoxColumn.HeaderText = "NextUseDivar";
-            this.nextUseDivarDataGridViewTextBoxColumn.Name = "nextUseDivarDataGridViewTextBoxColumn";
-            this.nextUseDivarDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nextUseDivarDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nextUseSheypoorDataGridViewTextBoxColumn
-            // 
-            this.nextUseSheypoorDataGridViewTextBoxColumn.DataPropertyName = "NextUseSheypoor";
-            this.nextUseSheypoorDataGridViewTextBoxColumn.HeaderText = "NextUseSheypoor";
-            this.nextUseSheypoorDataGridViewTextBoxColumn.Name = "nextUseSheypoorDataGridViewTextBoxColumn";
-            this.nextUseSheypoorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nextUseSheypoorDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nextUseDivarChatDataGridViewTextBoxColumn
-            // 
-            this.nextUseDivarChatDataGridViewTextBoxColumn.DataPropertyName = "NextUseDivarChat";
-            this.nextUseDivarChatDataGridViewTextBoxColumn.HeaderText = "NextUseDivarChat";
-            this.nextUseDivarChatDataGridViewTextBoxColumn.Name = "nextUseDivarChatDataGridViewTextBoxColumn";
-            this.nextUseDivarChatDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nextUseDivarChatDataGridViewTextBoxColumn.Visible = false;
-            // 
             // dg_Number
             // 
             this.dg_Number.DataPropertyName = "Number";
@@ -319,6 +289,30 @@
             this.dg_Number.Name = "dg_Number";
             this.dg_Number.ReadOnly = true;
             this.dg_Number.Width = 150;
+            // 
+            // DivarToken
+            // 
+            this.DivarToken.DataPropertyName = "DivarToken";
+            this.DivarToken.HeaderText = "توکن دیوار";
+            this.DivarToken.Name = "DivarToken";
+            this.DivarToken.ReadOnly = true;
+            this.DivarToken.Width = 70;
+            // 
+            // SheypoorToken
+            // 
+            this.SheypoorToken.DataPropertyName = "SheypoorToken";
+            this.SheypoorToken.HeaderText = "توکن شیپور";
+            this.SheypoorToken.Name = "SheypoorToken";
+            this.SheypoorToken.ReadOnly = true;
+            this.SheypoorToken.Width = 75;
+            // 
+            // dateSabtDataGridViewTextBoxColumn
+            // 
+            this.dateSabtDataGridViewTextBoxColumn.DataPropertyName = "DateSabt";
+            this.dateSabtDataGridViewTextBoxColumn.HeaderText = "DateSabt";
+            this.dateSabtDataGridViewTextBoxColumn.Name = "dateSabtDataGridViewTextBoxColumn";
+            this.dateSabtDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateSabtDataGridViewTextBoxColumn.Visible = false;
             // 
             // statusDataGridViewCheckBoxColumn
             // 
@@ -343,10 +337,6 @@
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
             this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.userNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // LogInBindingSource
-            // 
-            this.LogInBindingSource.DataSource = typeof(BussinesLayer.SimcardBussines);
             // 
             // frmShow_Simcard
             // 
@@ -393,14 +383,16 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
         private System.Windows.Forms.BindingSource LogInBindingSource;
         private UC_Date.UC_Date uC_Date1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateSabtDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nextUseDivarDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nextUseSheypoorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nextUseDivarChatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgGuid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dg_Number;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DivarToken;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SheypoorToken;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateSabtDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn operatorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;

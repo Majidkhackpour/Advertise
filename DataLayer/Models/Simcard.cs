@@ -29,5 +29,6 @@ namespace DataLayer.Models
         public Guid? DivarCatGuid3 { get; set; }
         public Guid? SheypoorCatGuid1 { get; set; }
         public Guid? SheypoorCatGuid2 { get; set; }
+        public int ChatCount { get; set; }
     }
 }

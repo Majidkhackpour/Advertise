@@ -740,20 +740,14 @@ namespace Ads.Classes
                 AdvertiseList = new List<AdvertiseBussines>();
                 foreach (var item in advList)
                 {
-                    var adv = await AdvertiseBussines.GetAsync(item.AdsName);
+                    var adv = await AdvertiseBussines.GetAsync(item.Advertise);
                     AdvertiseList.Add(adv);
                 }
 
                 var nextAdvIndex = new Random().Next(AdvertiseList.Count);
                 #endregion
 
-                string path = null;
-                if (Path.Combine(cls?.AdsAddress ?? "", AdvertiseList[nextAdvIndex].AdvName) ==
-                    AdvertiseList[nextAdvIndex].AdvName)
-                    path = AdvertiseList[nextAdvIndex].AdvName;
-                else
-                    path = Path.Combine(cls?.AdsAddress, AdvertiseList[nextAdvIndex].AdvName);
-                newAdvertiseLogBusiness.Adv = path;
+                newAdvertiseLogBusiness.Adv = AdvertiseList[nextAdvIndex].AdvName;
 
                 #region FindNextTitle
                 var AllTitles = await AdvTitlesBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);

@@ -21,7 +21,6 @@ namespace DataLayer.Models
         public int SheypoorDayCountForUpdateState { get; set; }
         public int DivarMaxImgCount { get; set; }
         public int SheypoorMaxImgCount { get; set; }
-        public string AdsAddress { get; set; }
         public int DayCountForDelete { get; set; }
     }
 }

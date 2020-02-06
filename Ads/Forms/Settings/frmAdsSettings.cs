@@ -34,7 +34,7 @@ namespace Ads.Forms.Settings
                 //txtCat2.Text = cls.DivarCat2;
                 //txtCat3.Text = cls.DivarCat3;
                 txtCountPic.Text = cls.DivarMaxImgCount.ToString();
-                txtAdvAddress.Text = cls.AdsAddress;
+                //txtAdvAddress.Text = cls.AdsAddress;
                 txtUpdateDayCount.Text = cls.DivarDayCountForUpdateState.ToString();
                 cmbDeleteDay.Text = cls.DayCountForDelete.ToString();
             }
@@ -210,7 +210,7 @@ namespace Ads.Forms.Settings
                 //cls.DivarCat2 = txtCat2.Text;
                 //cls.DivarCat3 = txtCat3.Text;
                 cls.DivarMaxImgCount = int.Parse(txtCountPic.Text);
-                cls.AdsAddress = txtAdvAddress.Text;
+                //cls.AdsAddress = txtAdvAddress.Text;
                 cls.DivarDayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);
                 int counter = 0;
                 if (cmbDeleteDay.SelectedIndex == 0) counter = 1;
@@ -227,7 +227,7 @@ namespace Ads.Forms.Settings
                 //cls.SheypoorCat2 = txtCat2.Text;
                 //cls.SheypoorCat3 = txtCat3.Text;
                 cls.SheypoorMaxImgCount = int.Parse(txtCountPic.Text);
-                cls.AdsAddress = txtAdvAddress.Text;
+                //cls.AdsAddress = txtAdvAddress.Text;
                 cls.SheypoorDayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);
                 await cls.SaveAsync();
                 FarsiMessegeBox.Show("اطلاعات ذخیره شد");

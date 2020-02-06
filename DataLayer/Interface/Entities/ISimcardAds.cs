@@ -9,6 +9,6 @@ namespace DataLayer.Interface.Entities
    public interface ISimcardAds:IHasGuid
     {
         Guid SimcardGuid { get; set; }
-        string AdsName { get; set; }
+        Guid Advertise { get; set; }
     }
 }
