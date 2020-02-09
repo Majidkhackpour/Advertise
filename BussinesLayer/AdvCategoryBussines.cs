@@ -66,5 +66,14 @@ namespace BussinesLayer
                 return false;
             }
         }
+        public static AdvCategoryBussines Get(Guid guid)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                if (guid == System.Guid.Empty) return null;
+                var a = _context.AdvCategory.Get(guid);
+                return Mappings.Default.Map<AdvCategoryBussines>(a);
+            }
+        }
     }
 }

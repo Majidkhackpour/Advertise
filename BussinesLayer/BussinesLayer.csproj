@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvCategoryBussines.cs" />
+    <Compile Include="AdvContentBussines.cs" />
     <Compile Include="AdvertiseBussines.cs" />
     <Compile Include="AdvertiseLogBussines.cs" />
     <Compile Include="AdvGroupBussines.cs" />

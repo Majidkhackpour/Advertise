@@ -12,17 +12,14 @@ namespace BussinesLayer
         public Guid Guid { get; set; }
         public string DateSabt { get; set; }
         public bool Status { get; set; }
-        public int CountAdvInDayDivar { get; set; }
-        public int CountAdvInDaySheypoor { get; set; }
-        public int CountAdvInMounthDivar { get; set; }
-        public int CountAdvInMounthSheypoor { get; set; }
-        public int CountAdvInIPDivar { get; set; }
-        public int CountAdvInIPSheypoor { get; set; }
-        public int DivarDayCountForUpdateState { get; set; }
-        public int SheypoorDayCountForUpdateState { get; set; }
-        public int DivarMaxImgCount { get; set; }
-        public int SheypoorMaxImgCount { get; set; }
-        public int DayCountForDelete { get; set; }
+        public int CountAdvInDay { get; set; }
+        public int CountAdvInMounth { get; set; }
+        public int CountAdvInIP { get; set; }
+        public int DayCountForUpdateState { get; set; }
+        public int MaxImgCount { get; set; }
+        public string Address { get; set; }
+        public string FierstLevelChatAddress { get; set; }
+        public string SecondLevelChatAddress { get; set; }
 
         public static List<SettingBussines> GetAll()
         {

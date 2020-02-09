@@ -50,282 +50,53 @@ namespace Ads.Classes
         public SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1);
         // private static string AdvRootPath => ConfigurationManager.AppSettings.Get("RootPath");
         private CancellationTokenSource _tokenSource;
-        public async Task StartRegisterAdv(List<long> numbers = null, int count = 0)
+        public async Task StartRegisterAdv(SimcardBussines sim)
         {
-            //if (SemaphoreSlim.CurrentCount == 0)
-            //{
-            //    DialogResult result;
-            //    result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-            //        MessageBoxIcon.Question);
-            //    if (result == DialogResult.Yes)
-            //        _tokenSource?.Cancel();
-            //    else return;
-            //}
-            _tokenSource?.Cancel();
-            //await SemaphoreSlim.WaitAsync();
-            _tokenSource = new CancellationTokenSource();
-            var counter = 0;
-            var isLogin = false;
-
             try
             {
-                while (await Utility.PingHost("185.105.239.1") == false)
+                _driver = Utility.RefreshDriver(_driver);
+                var tt = AdvTokensBussines.GetToken(sim.Number, AdvertiseType.Sheypoor).Token;
+                if (string.IsNullOrEmpty(tt))
                 {
-                    if (counter >= 30)
-                        await Utility.SetGateway(await Utility.GetRandomGeteWay());
-                    await Utility.Wait(10);
+                    sim.NextUse = DateTime.Now.AddMinutes(120);
+                    await sim.SaveAsync();
                     lstMessage.Clear();
-                    lstMessage.Add("خطای اتصال به شبکه");
-                    Utility.ShowBalloon("لطفا اتصال به شبکه را چک نمایید", lstMessage);
-                    counter++;
+                    lstMessage.Add($"سیمکارت {sim.Number} به دلیل لاگین نبودن موفق به ارسال آگهی نشد");
+                    Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                    return;
                 }
-
-                //while (!_tokenSource.IsCancellationRequested)
-                //{
-                //    counter = 0;
-                //    SimCardBusiness firstSimCardBusiness = null;
-                //اگر نامبر صفر نباشد یعنی کاربر خواسته روی شماره ای خاص آگهی بزند
-                //اگر صفر باشد روی تمام سیم کارتها داخل حلقه وایل، آگهی ثبت می شود
-                //if (numbers == null || numbers.Count == 0)
-                //{
-                //    if (!(cls?.SheypoorSetting?.AdvCountInDay > 0)) return;
-
-                //    _driver = RefreshDriver(_driver);
-                //    //     MessageBox.Show(_driver.WindowHandles.Count.ToString());
-                //    while (await PingHost("185.105.239.1"))
-                //    {
-                //        var simCard = await SimCardBusiness.GetNextSimCardNumberAsync(
-                //            (short)AdvertiseType.Sheypoor, (short)cls.SheypoorSetting.AdvCountInDay,
-                //            await GetLocalIpAddress());
-                //        if (simCard == 0)
-                //        {
-                //            ShowBalloon("پر شدن تعداد آگهی در " + await FindGateWay(),
-                //                "سیستم در حال تعویض IP یا سایت می باشد");
-                //            var gateway = await GetRandomGeteWay();
-                //            if (!string.IsNullOrEmpty(gateway))
-                //                await SetGateway(gateway);
-                //            else
-                //                await SetGateway(IP_Store.IP_Mokhaberat.Value);
-                //            var currentIp = await GetLocalIpAddress();
-
-                //            if (await FindGateWay() != IP_Store.IP_Mokhaberat.Value) continue;
-                //            if (await GoToNextSite(AdvertiseType.Sheypoor, 0)) continue;
-                //            await ChangeIp();
-                //            while (await GetLocalIpAddress() == null)
-                //            {
-                //                if (counter == 30)
-                //                    await SetGateway(await GetRandomGeteWay());
-                //                await Wait(10);
-                //                ShowBalloon("درحال اتصال...", "مودم مخابرات ریست شد. لطفا منتظر بمانید");
-                //                counter++;
-                //            }
-
-                //            if (await GoToNextSite(AdvertiseType.Sheypoor, 1)) continue;
-                //        }
-
-
-                //        if (cls?.SheypoorSetting.CountAdvInIp <= await
-                //                   AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(),
-                //                       AdvertiseType.Sheypoor))
-                //        {
-                //            ShowBalloon("پر شدن تعداد آگهی در " + await FindGateWay(),
-                //                "سیستم در حال تعویض IP یا سایت می باشد");
-                //            var gateway = await GetRandomGeteWay();
-                //            if (!string.IsNullOrEmpty(gateway))
-                //                await SetGateway(gateway);
-                //            else
-                //                await SetGateway(IP_Store.IP_Mokhaberat.Value);
-                //            var currentIp = await GetLocalIpAddress();
-
-                //            if (await FindGateWay() != IP_Store.IP_Mokhaberat.Value ||
-                //                !(cls?.SheypoorSetting.CountAdvInIp <= await
-                //                      AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(),
-                //                          AdvertiseType.Sheypoor))) continue;
-                //            if (await GoToNextSite(AdvertiseType.Sheypoor, 0)) continue;
-                //            await ChangeIp();
-                //            while (await GetLocalIpAddress() == null)
-                //            {
-                //                if (counter == 30)
-                //                    await SetGateway(await GetRandomGeteWay());
-                //                await Wait(10);
-                //                ShowBalloon("درحال اتصال...", "مودم مخابرات ریست شد. لطفا منتظر بمانید");
-                //                counter++;
-                //            }
-
-                //            if (await GoToNextSite(AdvertiseType.Sheypoor, 1)) continue;
-                //        }
-
-
-
-                //        firstSimCardBusiness = await SimCardBusiness.GetAsync(simCard);
-                //        if (firstSimCardBusiness is null) break;
-                //        var lastUseSheypoor = firstSimCardBusiness.NextUseSheypoor;
-
-                //        //اگر توکن شیپور نداشت سیمکارت عوض بشه
-
-                //        var tt = await AdvTokensBusiness.GetToken(simCard, AdvertiseType.Sheypoor);
-                //        var hasToken = tt?.Token ?? null;
-                //        if (string.IsNullOrEmpty(hasToken)) continue;
-
-
-                //        var startDayOfCurrentMonthOfDateShToMiladi = Calendar.StartDayOfPersianMonth();
-                //        var startDayOfNextMonthOfDateShToMiladi = Calendar.EndDayOfPersianMonth().AddDays(1);
-                //        //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
-                //        var a1 = await AdvertiseLogBusiness.GetAllSpecialAsync(p =>
-                //            p.SimCardNumber == simCard && p.AdvType == AdvertiseType.Sheypoor
-                //                                     && (p.StatusCode == (short)StatusCode.Published
-                //                                         || p.StatusCode == (short)StatusCode.InPublishQueue)
-                //                                     && p.DateM >= startDayOfCurrentMonthOfDateShToMiladi);
-                //        var registeredAdvCountInMonth = a1.Count;
-                //        if (registeredAdvCountInMonth >= cls?.SheypoorSetting?.AdvCountInMonth)
-                //        {
-                //            //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
-                //            firstSimCardBusiness.NextUseSheypoor = startDayOfNextMonthOfDateShToMiladi;
-                //            await firstSimCardBusiness.SaveAsync();
-                //            continue;
-                //        }
-
-
-                //        //آمار آگهی های ثبت شده امروز
-                //        var currentDate = DateTime.Now.Date;
-                //        var a2 = await AdvertiseLogBusiness.GetAllSpecialAsync(p =>
-                //            p.SimCardNumber == simCard && p.AdvType == AdvertiseType.Sheypoor
-                //            && (p.StatusCode == (short)StatusCode.Published
-                //                || p.StatusCode == (short)StatusCode.InPublishQueue
-                //                || p.StatusCode == (short)StatusCode.WaitForPayment)
-                //            && p.DateM >= currentDate);
-                //        var registeredAdvCountInDay = a2.Count;
-                //        if (registeredAdvCountInDay >= cls?.SheypoorSetting?.AdvCountInDay)
-                //        {
-                //            //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
-                //            firstSimCardBusiness.NextUseSheypoor = DateTime.Today.AddDays(1);
-                //            await firstSimCardBusiness.SaveAsync();
-                //            continue;
-                //        }
-
-                //        if (cls?.SheypoorSetting?.AdvCountInDay >= (cls?.SheypoorSetting?.AdvCountInMonth - registeredAdvCountInDay)) continue;
-
-                //        if (await Login(simCard) == false)
-                //        {
-                //            firstSimCardBusiness.NextUseSheypoor = lastUseSheypoor;
-                //            await firstSimCardBusiness.SaveAsync();
-                //            continue;
-                //        }
-
-
-
-                //        //اینجا به تعداد تنظیم شده در تنظیمات دیوار منهای تعداد ثبت شده قبلی، آگهی درج می کند
-                //        for (var i = 0; i < cls?.SheypoorSetting?.AdvCountInDay - registeredAdvCountInDay; i++)
-                //        {
-                //            if (cls?.SheypoorSetting?.AdvCountInMonth <= registeredAdvCountInMonth) break;
-                //            while (cls?.SheypoorSetting.CountAdvInIp <= await
-                //                       AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(),
-                //                           AdvertiseType.Sheypoor))
-                //            {
-                //                ShowBalloon("پر شدن تعداد آگهی در " + await FindGateWay(),
-                //                    "سیستم در حال تعویض IP یا سایت می باشد");
-                //                await SetGateway(await GetRandomGeteWay());
-                //                var currentIp1 = await GetLocalIpAddress();
-                //                if (await FindGateWay() != IP_Store.IP_Mokhaberat.Value ||
-                //                    !(cls?.SheypoorSetting.CountAdvInIp <= await
-                //                          AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(),
-                //                              AdvertiseType.Sheypoor))) continue;
-                //                var countAdvInIp1 = await
-                //                    AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(), AdvertiseType.Sheypoor);
-                //                if (!(cls?.SheypoorSetting.CountAdvInIp <= countAdvInIp1)) continue;
-                //                if (await GoToNextSite(AdvertiseType.Sheypoor, 0)) continue;
-                //                await ChangeIp();
-
-                //                while (await GetLocalIpAddress() == null)
-                //                {
-                //                    if (counter == 30)
-                //                        await SetGateway(await GetRandomGeteWay());
-                //                    await Wait(10);
-                //                    ShowBalloon("درحال اتصال...", "مودم مخابرات ریست شد. لطفا منتظر بمانید");
-                //                    counter++;
-                //                }
-
-                //                if (await GoToNextSite(AdvertiseType.Sheypoor, 1)) continue;
-                //            }
-                //            var adv = await GetNextAdv(simCard);
-                //            if (adv == null) continue;
-                //            await RegisterAdv(adv);
-                //            var title = "تعداد آگهی های ارسال شده با " + await FindGateWay();
-                //            var body = await
-                //                AdvertiseLogBusiness.GetAllAdvInDayFromIP(await GetLocalIpAddress(),
-                //                    AdvertiseType.Sheypoor);
-                //            ShowBalloon(title, body.ToString());
-                //            registeredAdvCountInMonth++;
-
-                //        }
-                //    }
-
-                //    await Wait(10);
-                //    ShowBalloon("لطفا اتصال به شبکه را چک نمایید", "خطای اتصال به شبکه");
-                //    continue;
-
-                //}
-                //اگر کاربر روی یک سیم کارت خاص می خواهد تعدادی آگهی درج کند
-                //else
-                //{
-                foreach (var t in numbers)
+                if (await Login(sim.Number) == false)
                 {
-                    var tt = AdvTokensBussines.GetToken(t, AdvertiseType.Sheypoor);
-                    var hasToken = tt?.Token ?? null;
-                    if (string.IsNullOrEmpty(hasToken)) return;
-                    if (!await Login(t)) continue;
-
-                    for (var i = 0; i < count; i++)
-                    {
-                        //while (cls?.SheypoorSetting.CountAdvInIp <= await
-                        //           AdvertiseLogBusiness.GetAllAdvInDayFromIP(
-                        //               await GetLocalIpAddress(),
-                        //               AdvertiseType.Sheypoor))
-                        //{
-                        //    ShowBalloon("پر شدن تعداد آگهی در " + await FindGateWay(),
-                        //        "سیستم در حال تعویض IP یا سایت می باشد");
-                        //    await SetGateway(await GetRandomGeteWay());
-                        //    var currentIp1 = await GetLocalIpAddress();
-                        //    if (await FindGateWay() != IP_Store.IP_Mokhaberat.Value ||
-                        //        !(cls?.SheypoorSetting.CountAdvInIp <= await
-                        //              AdvertiseLogBusiness.GetAllAdvInDayFromIP(
-                        //                  await GetLocalIpAddress(),
-                        //                  AdvertiseType.Sheypoor))) continue;
-                        //    await ChangeIp();
-
-                        //    while (await GetLocalIpAddress() == null)
-                        //    {
-                        //        if (counter == 30)
-                        //            await SetGateway(await GetRandomGeteWay());
-                        //        await Wait(10);
-                        //        ShowBalloon("درحال اتصال...", "مودم مخابرات ریست شد. لطفا منتظر بمانید");
-                        //        counter++;
-                        //    }
-                        //}
-                        var adv = await GetNextAdv(t);
-                        if (adv == null) continue;
-                        await RegisterAdv(adv);
-                        var title = await Utility.FindGateWay();
-                        var co = AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress(),
-                            AdvertiseType.Sheypoor);
-                        lstMessage.Clear();
-                        lstMessage.Add($"نوع آگهی: شیپور");
-                        lstMessage.Add($"IP اینترنتی: {await Utility.GetLocalIpAddress()}");
-                        lstMessage.Add($"GateWay: {await Utility.FindGateWay()}");
-                        lstMessage.Add($"تعداد آگهی ارسال شده: {co}");
-
-                        Utility.ShowBalloon(title, lstMessage);
-                    }
+                    sim.NextUse = DateTime.Now.AddMinutes(120);
+                    await sim.SaveAsync();
+                    lstMessage.Clear();
+                    lstMessage.Add($"سیمکارت {sim.Number} به دلیل لاگین نبودن موفق به ارسال آگهی نشد");
+                    Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                    return;
                 }
-                //}
-                //}
+                var adv = await GetNextAdv(sim);
+                while (adv == null)
+                {
+                    adv = await GetNextAdv(sim);
+                }
 
+                lstMessage.Clear();
+                lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count + 1} تصویر دریافت شد");
+                Utility.ShowBalloon("دریافت آگهی",
+                    lstMessage);
+
+
+
+                await RegisterAdv(adv);
+                await Utility.Wait(1);
+                var title = "تعداد آگهی های ارسال شده با " + await Utility.FindGateWay();
+                var body =
+                    AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress());
+                lstMessage.Clear();
+                lstMessage.Add(body.ToString());
+                Utility.ShowBalloon(title, lstMessage);
             }
             catch (Exception ex)
-            {
-
-            }
-            finally
             {
 
             }
@@ -336,164 +107,160 @@ namespace Ads.Classes
 
         public async Task RegisterAdv(AdvertiseLogBussines adv)
         {
-            //try
-            //{
-            //    var counter = 0;
-            //    adv.AdvType = AdvertiseType.Sheypoor;
-            //    _driver = Utility.RefreshDriver(_driver);
-            //    _driver.Navigate().GoToUrl("https://www.sheypoor.com/listing/new");
-            //    await Utility.Wait();
+            try
+            {
+                var counter = 0;
+                adv.AdvType = AdvertiseType.Sheypoor;
+                _driver = Utility.RefreshDriver(_driver);
+                _driver.Navigate().GoToUrl("https://www.sheypoor.com/listing/new");
+                await Utility.Wait();
 
-            //    //کلیک کردن روی کتگوری اصلی
-            //    _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
-            //    await Utility.Wait();
+                //کلیک کردن روی کتگوری اصلی
+                _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
+                await Utility.Wait();
 
-            //    //کلیک روی ساب کتگوری 1
-            //    if (string.IsNullOrEmpty(adv.SubCategory1))
-            //        adv.SubCategory1 = cls?.SheypoorCat1;
-            //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory1)?.Click();
+                //کلیک روی ساب کتگوری 1
+                _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.Category)?.Click();
 
-            //    await Utility.Wait();
+                await Utility.Wait();
 
-            //    //کلیک روی ساب کتگوری2
-            //    if (string.IsNullOrEmpty(adv.SubCategory2))
-            //        adv.SubCategory2 = cls?.SheypoorCat2;
-            //    _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory2)?.Click();
+                //کلیک روی ساب کتگوری2
+                _driver.FindElements(By.ClassName("link")).FirstOrDefault(q => q.Text == adv.SubCategory1)?.Click();
 
 
-            //    //درج عکسها
-            //    foreach (var item in adv.ImagesPathList)
-            //    {
-            //        try
-            //        {
-            //            //درج عکسها
-            //            _driver.FindElement(By.ClassName("qq-upload-button-selector")).FindElement(By.TagName("input"))
-            //                .SendKeys(item);
-            //            await Utility.Wait();
-            //            // break;
-            //        }
-            //        catch (Exception e)
-            //        {
-            //        }
-            //    }
+                //درج عکسها
+                foreach (var item in adv.ImagesPathList)
+                {
+                    try
+                    {
+                        //درج عکسها
+                        _driver.FindElement(By.ClassName("qq-upload-button-selector")).FindElement(By.TagName("input"))
+                            .SendKeys(item);
+                        await Utility.Wait();
+                        // break;
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
 
 
 
-            //    //درج عنوان آگهی
-            //    _driver.FindElement(By.Name("name")).SendKeys("");
-            //    _driver.FindElement(By.Name("name")).SendKeys(adv.Title);
-            //    //await Wait();
-            //    //درج محتوای آگهی
+                //درج عنوان آگهی
+                _driver.FindElement(By.Name("name")).SendKeys("");
+                _driver.FindElement(By.Name("name")).SendKeys(adv.Title);
+                //await Wait();
+                //درج محتوای آگهی
 
-            //    var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
-            //    thread.SetApartmentState(ApartmentState.STA);
-            //    thread.Start();
+                var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
 
-            //    var t = _driver.FindElement(By.Id("item-form-description"));
-            //    t.Click();
-            //    await Utility.Wait();
-            //    t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-            //    var thread1 = new Thread(Clipboard.Clear);
-            //    thread1.SetApartmentState(ApartmentState.STA);
-            //    thread1.Start();
-
-
-            //    //درج قیمت
-            //    var txtPrice = _driver.FindElements(By.Id("item-form-price")).Count;
-            //    if (adv?.Price > 0 && txtPrice != 0)
-            //    {
-            //        _driver.FindElement(By.Id("item-form-price"))?.SendKeys("");
-            //        _driver.FindElement(By.Id("item-form-price"))?.SendKeys(adv.Price.ToString());
-            //    }
-
-            //    await Utility.Wait();
-
-            //    //انتخاب شهر
-            //    await Utility.Wait();
-            //    _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
-            //    await Utility.Wait(2);
-            //    var a = _driver.FindElements(By.ClassName("mode-district")).Any();
-            //    if (a)
-            //    {
-            //        _driver.FindElement(By.ClassName("mode-district")).FindElement(By.ClassName("link"))?.Click();
-            //        await Utility.Wait();
-            //        _driver.FindElement(By.ClassName("mode-city")).FindElement(By.ClassName("link"))?.Click();
-            //    }
-
-            //    await Utility.Wait(1);
-
-            //    _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(adv.State))?.Click();
-            //    await Utility.Wait(1);
-
-            //    var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(adv.City));
-            //    cc?.Click();
-            //    var cty = SheypoorCityBussines.GetAsync(adv?.City);
-            //    var simGuid = await SimcardBussines.GetAsync(adv.SimCardNumber);
-            //    var cityList = await SheypoorSimCityBussines.GetAllAsync(simGuid.Guid);
-            //    var rand = new Random().Next(0, cityList.Count);
-            //    await Utility.Wait(1);
-            //    var cityGuid = !string.IsNullOrEmpty(adv?.City) ? cty.Guid : cityList[rand].Guid;
-
-            //    var lst = await RegionBussiness.GetAllAsync(cityGuid, AdvertiseType.Sheypoor);
-            //    var regionList = lst?.ToList() ?? new List<RegionBussiness>();
-            //    if (regionList.Count > 0)
-            //    {
-            //        var rnd = new Random().Next(0, regionList.Count);
-            //        var regName = regionList[rnd].Name;
-            //        await Utility.Wait(2);
-            //        _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text == regName)
-            //            ?.Click();
-            //        adv.Region = regName;
-            //    }
-            //    // await Wait();
+                var t = _driver.FindElement(By.Id("item-form-description"));
+                t.Click();
+                await Utility.Wait();
+                t.SendKeys(OpenQA.Selenium.Keys.Control + "v");
+                var thread1 = new Thread(Clipboard.Clear);
+                thread1.SetApartmentState(ApartmentState.STA);
+                thread1.Start();
 
 
-            //    //کلیک روی دکمه ثبت آگهی
-            //    while (_driver.Url == "https://www.sheypoor.com/listing/new")
-            //    {
-            //        counter++;
-            //        await Utility.Wait(2);
-            //        _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "ثبت آگهی")
-            //            ?.Click();
-            //        await Utility.Wait();
-            //        var box = _driver.FindElements(By.ClassName("box")).Any(q => q.Text.Contains("حساب کاربری"));
-            //        if (box) return;
-            //        if (counter < 60) continue;
-            //        adv.URL = "---";
-            //        adv.AdvStatus = @"خطای درج";
-            //        adv.StatusCode = StatusCode.InsertError;
-            //        adv.AdvType = AdvertiseType.Sheypoor;
-            //        adv.IP = await Utility.GetLocalIpAddress();
-            //        await adv.SaveAsync();
-            //        await Utility.Wait();
-            //        counter = 0;
-            //        _driver.Navigate().GoToUrl("https://www.sheypoor.com");
-            //        return;
-            //    }
+                //درج قیمت
+                var txtPrice = _driver.FindElements(By.Id("item-form-price")).Count;
+                if (adv?.Price > 0 && txtPrice != 0)
+                {
+                    _driver.FindElement(By.Id("item-form-price"))?.SendKeys("");
+                    _driver.FindElement(By.Id("item-form-price"))?.SendKeys(adv.Price.ToString());
+                }
+
+                await Utility.Wait();
+
+                //انتخاب شهر
+                await Utility.Wait();
+                _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
+                await Utility.Wait(2);
+                var a = _driver.FindElements(By.ClassName("mode-district")).Any();
+                if (a)
+                {
+                    _driver.FindElement(By.ClassName("mode-district")).FindElement(By.ClassName("link"))?.Click();
+                    await Utility.Wait();
+                    _driver.FindElement(By.ClassName("mode-city")).FindElement(By.ClassName("link"))?.Click();
+                }
+
+                await Utility.Wait(1);
+
+                _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(adv.State))?.Click();
+                await Utility.Wait(1);
+
+                var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(adv.City));
+                cc?.Click();
+                var cty = SheypoorCityBussines.GetAsync(adv?.City);
+                var simGuid = await SimcardBussines.GetAsync(adv.SimCardNumber);
+                var cityList = await SheypoorSimCityBussines.GetAllAsync(simGuid.Guid);
+                var rand = new Random().Next(0, cityList.Count);
+                await Utility.Wait(1);
+                var cityGuid = !string.IsNullOrEmpty(adv?.City) ? cty.Guid : cityList[rand].Guid;
+
+                var lst = await RegionBussiness.GetAllAsync(cityGuid, AdvertiseType.Sheypoor);
+                var regionList = lst?.ToList() ?? new List<RegionBussiness>();
+                if (regionList.Count > 0)
+                {
+                    var rnd = new Random().Next(0, regionList.Count);
+                    var regName = regionList[rnd].Name;
+                    await Utility.Wait(2);
+                    _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text == regName)
+                        ?.Click();
+                    adv.Region = regName;
+                }
+                // await Wait();
+
+
+                //کلیک روی دکمه ثبت آگهی
+                while (_driver.Url == "https://www.sheypoor.com/listing/new")
+                {
+                    counter++;
+                    await Utility.Wait(2);
+                    _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "ثبت آگهی")
+                        ?.Click();
+                    await Utility.Wait();
+                    var box = _driver.FindElements(By.ClassName("box")).Any(q => q.Text.Contains("حساب کاربری"));
+                    if (box) return;
+                    if (counter < 60) continue;
+                    adv.URL = "---";
+                    adv.AdvStatus = @"خطای درج";
+                    adv.StatusCode = StatusCode.InsertError;
+                    adv.AdvType = AdvertiseType.Sheypoor;
+                    adv.IP = await Utility.GetLocalIpAddress();
+                    await adv.SaveAsync();
+                    await Utility.Wait();
+                    counter = 0;
+                    _driver.Navigate().GoToUrl("https://www.sheypoor.com");
+                    return;
+                }
 
 
 
-            //    //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
-            //    await Utility.Wait();
-            //    await Utility.Wait(2);
-            //    counter = 0;
-            //    adv.URL = await MakeUrl(_driver.Url);
-            //    adv.AdvStatus = @"در صف انتشار";
-            //    adv.StatusCode = StatusCode.InPublishQueue;
-            //    adv.AdvType = AdvertiseType.Sheypoor;
-            //    adv.IP = await Utility.GetLocalIpAddress();
-            //    await adv.SaveAsync();
-            //    await Utility.Wait();
-            //    if (!_driver.Url.Contains(adv.URL))
-            //        _driver.Navigate().GoToUrl("https://www.sheypoor.com");
+                //اگر آگهی با موفقیت ثبت شود لینک مدیریت آگهی ذخیره می شود
+                await Utility.Wait();
+                await Utility.Wait(2);
+                counter = 0;
+                adv.URL = await MakeUrl(_driver.Url);
+                adv.AdvStatus = @"در صف انتشار";
+                adv.StatusCode = StatusCode.InPublishQueue;
+                adv.AdvType = AdvertiseType.Sheypoor;
+                adv.IP = await Utility.GetLocalIpAddress();
+                await adv.SaveAsync();
+                await Utility.Wait();
+                if (!_driver.Url.Contains(adv.URL))
+                    _driver.Navigate().GoToUrl("https://www.sheypoor.com");
 
-            //    //بعد از درج آگهی در دیتابیس لاگ می شود
+                //بعد از درج آگهی در دیتابیس لاگ می شود
 
-            //}
-            //catch (Exception ex)
-            //{
-            //}
-            //finally { }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally { }
         }
 
         public async Task ViewAdv(long simCard, string url)
@@ -724,15 +491,15 @@ namespace Ads.Classes
         }
 
         private List<AdvertiseBussines> AdvertiseList { get; set; }
-        private async Task<AdvertiseLogBussines> GetNextAdv(long simCardNumber)
+        private async Task<AdvertiseLogBussines> GetNextAdv(SimcardBussines simCardNumber)
         {
             var newAdvertiseLogBusiness = new AdvertiseLogBussines();
             try
             {
-                newAdvertiseLogBusiness.SimCardNumber = simCardNumber;
+                newAdvertiseLogBusiness.SimCardNumber = simCardNumber.Number;
 
                 //لیست آگهی های سیمکارت
-                var simGuid = await SimcardBussines.GetAsync(simCardNumber);
+                var simGuid = await SimcardBussines.GetAsync(simCardNumber.Number);
                 var advList = await SimcardAdsBussines.GetAllAsync(simGuid.Guid);
                 advList = advList.ToList();
 
@@ -762,11 +529,13 @@ namespace Ads.Classes
                 #endregion
 
                 #region GetContent
+                var AllContent = await AdvContentBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
                 //کانتنت آگهی دریافت می شود
 
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content) || newAdvertiseLogBusiness.Content == "---")
                 {
-                    newAdvertiseLogBusiness.Content = AdvertiseList[nextAdvIndex].Content;
+                    var nextContentIndex = new Random(DateTime.Now.Millisecond).Next(AllContent.Count);
+                    newAdvertiseLogBusiness.Content = AllContent[nextContentIndex].Content;
                 }
 
                 // if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content)) return null;
@@ -775,11 +544,12 @@ namespace Ads.Classes
 
                 #region FindImages
 
+
                 while (newAdvertiseLogBusiness.ImagesPathList == null || newAdvertiseLogBusiness.ImagesPathList.Count == 0)
                 {
                     //عکسهای آگهی دریافت می شود
                     newAdvertiseLogBusiness.ImagesPathList =
-                        GetNextImages(newAdvertiseLogBusiness.Adv, cls?.SheypoorMaxImgCount ?? 3);
+                        await GetNextImages(AdvertiseList[nextAdvIndex].Guid, cls?.MaxImgCount ?? 3);
                     if (newAdvertiseLogBusiness.ImagesPathList.Count > 0)
                     {
                         newAdvertiseLogBusiness.ImagePath = "";
@@ -805,6 +575,15 @@ namespace Ads.Classes
                     newAdvertiseLogBusiness.City = cc?.Name;
                     newAdvertiseLogBusiness.State = cc?.StateName;
                 }
+
+
+                var guid1 = simCardNumber.SheypoorCatGuid1 ?? Guid.Empty;
+                newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
+
+                var guid2 = simCardNumber.SheypoorCatGuid2 ?? Guid.Empty;
+                newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
+
+                
                 return newAdvertiseLogBusiness;
             }
             catch (Exception e)
@@ -853,25 +632,24 @@ namespace Ads.Classes
             return region;
         }
 
-        private List<string> GetNextImages(string advFullPath, int imgCount = 3)
+        private async Task<List<string>> GetNextImages(Guid advGuid, int imgCount = 3)
         {
             var resultImages = new List<string>();
+
             try
             {
-                if (string.IsNullOrEmpty(advFullPath)) return resultImages;
                 //گرفتن تمام عکسهای پوشه و فیلتر کردن عکسهای درست
-                var picturesPath = Path.Combine(advFullPath, "Pictures");
-                var allImages = Utility.GetFiles(picturesPath, "*.jpg");
+                var allImages = await AdvPicturesBussines.GetAllAsync(advGuid);
                 var selectedImages = new List<string>();
                 //حذف عکسهای زیر پیکسل 600*600
                 foreach (var imgItem in allImages)
                 {
-                    var img = Image.FromFile(imgItem);
+                    var img = Image.FromFile(imgItem.PathGuid);
                     if (img.Width < 600 || img.Height < 600)
                         try
                         {
                             img.Dispose();
-                            File.Delete(imgItem);
+                            File.Delete(imgItem.PathGuid);
                         }
                         catch
                         {
@@ -879,9 +657,14 @@ namespace Ads.Classes
                         }
                     img.Dispose();
                 }
-                allImages = Utility.GetFiles(picturesPath, "*.jpg");
 
-                if (allImages.Count <= imgCount) selectedImages = allImages;
+                if (allImages.Count <= imgCount)
+                {
+                    foreach (var item in allImages)
+                    {
+                        selectedImages.Add(item.PathGuid + "\r\n");
+                    }
+                }
                 else
                 {
                     var indexes = new List<int>();
@@ -893,7 +676,7 @@ namespace Ads.Classes
                             indexes.Add(index);
                     }
 
-                    selectedImages.AddRange(indexes.Select(index => allImages[index]));
+                    selectedImages.AddRange(indexes.Select(index => allImages[index].PathGuid));
                 }
 
 
@@ -907,9 +690,9 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+
                 return resultImages;
             }
-            finally { }
         }
         public static async Task<SheypoorAdv> GetInstance()
         {
@@ -951,7 +734,7 @@ namespace Ads.Classes
             {
                 _driver = Utility.RefreshDriver(_driver);
                 if (dayCount == 0)
-                    dayCount = cls?.SheypoorDayCountForUpdateState ?? 10;
+                    dayCount = cls?.DayCountForUpdateState ?? 10;
 
                 var lastWeek = DateTime.Now.AddDays(-dayCount);
                 var lst = await AdvertiseLogBussines.GetAllAsync();

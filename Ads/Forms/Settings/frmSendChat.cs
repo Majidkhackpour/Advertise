@@ -151,8 +151,8 @@ namespace Ads.Forms.Settings
                 }
                
                 var divar = await DivarAdv.GetInstance();
-                await divar.SendChat(list2, int.Parse(txtChatCount.Text), txtCity.Text, txtCat1.Text, txtCat2.Text,
-                    txtCat3.Text);
+                //await divar.SendChat(list2, int.Parse(txtChatCount.Text), txtCity.Text, txtCat1.Text, txtCat2.Text,
+                //    txtCat3.Text);
             }
             catch (Exception exception)
             {

@@ -20,5 +20,12 @@ namespace DataLayer.Interface.Entities
         Guid? SheypoorCatGuid1 { get; set; }
         Guid? SheypoorCatGuid2 { get; set; }
         int ChatCount { get; set; }
+        Guid DivarCityForChat { get; set; }
+        Guid SheypoorCityForChat { get; set; }
+        Guid DivarChatCat1 { get; set; }
+        Guid DivarChatCat2 { get; set; }
+        Guid DivarChatCat3 { get; set; }
+        Guid SheypoorChatCat1 { get; set; }
+        Guid SheypoorChatCat2 { get; set; }
     }
 }

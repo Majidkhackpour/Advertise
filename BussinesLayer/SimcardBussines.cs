@@ -29,6 +29,13 @@ namespace BussinesLayer
         public Guid? SheypoorCatGuid1 { get; set; }
         public Guid? SheypoorCatGuid2 { get; set; }
         public int ChatCount { get; set; }
+        public Guid DivarCityForChat { get; set; }
+        public Guid SheypoorCityForChat { get; set; }
+        public Guid DivarChatCat1 { get; set; }
+        public Guid DivarChatCat2 { get; set; }
+        public Guid DivarChatCat3 { get; set; }
+        public Guid SheypoorChatCat1 { get; set; }
+        public Guid SheypoorChatCat2 { get; set; }
 
         public bool DivarToken
         {

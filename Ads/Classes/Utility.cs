@@ -16,7 +16,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BussinesLayer;
+using DataLayer;
 using DataLayer.Enums;
+using FMessegeBox;
 using Microsoft.Win32;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -156,7 +159,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 
@@ -363,7 +366,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 
@@ -449,125 +452,152 @@ namespace Ads.Classes
 
         private static List<string> lstMessage = new List<string>();
 
-        public static async Task ManageAdvSend()
+        public static async Task ManageAdvSend(SettingBussines clsSetting)
         {
             try
             {
                 var tokenSource = new CancellationTokenSource();
-              
-                var filePath = Path.Combine(Application.StartupPath, "GateWay.txt");
-                var filelst = ReadAllLines(filePath).ToList();
-                var GateWayCount = 0;
 
-                while (!tokenSource.IsCancellationRequested)
+                SimcardBussines firstSimCardBusiness = null;
+                var list = await SimcardBussines.GetAllAsync();
+                list = list.OrderBy(q => q.NextUse).Where(q => q.Status).ToList();
+                foreach (var simCard in list)
                 {
-                    var isIpFull = true;
-                    for (var i = (int)AdvertiseType.Divar; i <= (int)AdvertiseType.Sheypoor; i++)
+                    while (!await Utility.PingHost("www.google.com"))
                     {
-                        var lst = new List<long>();
-                        switch (i)
-                        {
-                            case (int)AdvertiseType.Divar:
-                                //maxDailyCountDivar = (short)cls.DivarSetting.AdvCountInDay;
-                                //maxMountlyCountDivar = (short)cls.DivarSetting.AdvCountInMonth;
-                                //maxAdvCountInIpInDayDivar = (short)cls.DivarSetting.CountAdvInIp;
-                                break;
-                            case (int)AdvertiseType.Sheypoor:
-                                //maxDailyCountSheypoor = (short)cls.SheypoorSetting.AdvCountInDay;
-                                //maxMountlyCountSheypoor = (short)cls.SheypoorSetting.AdvCountInMonth;
-                                //maxAdvCountInIpInDaySheypoor = (short)cls.SheypoorSetting.CountAdvInIp;
-                                break;
-                        }
+                        //خطا در برقراری اتصال به اینترنت
+                        await Utility.Wait(10);
+                        lstMessage.Clear();
+                        lstMessage.Add("خطا در برقراری اتصال به اینترنت");
+                        Utility.ShowBalloon("لطفا شبکه خود را چک نمایید", lstMessage);
+                    }
 
-                        //var number = await SimCardBusiness.GetNextSimCardNumberAsync(
-                        //    (short)i, maxDailyCountDivar, maxDailyCountSheypoor, await GetLocalIpAddress(),
-                        //    maxMountlyCountDivar, maxMountlyCountSheypoor, maxAdvCountInIpInDayDivar,
-                        //    maxAdvCountInIpInDaySheypoor, maxDailyCountNiazmandyHa, maxMountlyCountNiazmandyHa,
-                        //    maxAdvCountInIpInDayNiazmandyHa);
-                        //if (number != 0)
-                        //{
-                        //    isIpFull = false;
-                        //    lst.Add(number);
-                        //    if (i == (int)AdvertiseType.Divar)
-                        //    {
-                        //        if (await PingHost("185.105.239.1"))
-                        //        {
-                        //            var divar = await DivarAdv.GetInstance();
-                        //            await divar.StartRegisterAdv(lst, maxDailyCountDivar);
-                        //        }
-                        //    }
-                        //    else if (i == (int)AdvertiseType.Sheypoor)
-                        //    {
-                        //        if (await PingHost("185.105.239.1"))
-                        //        {
-                        //            var sheypoor = await SheypoorAdv.GetInstance();
-                        //            await sheypoor.StartRegisterAdv(lst, maxDailyCountSheypoor);
-                        //        }
-                        //    }
-                        //    else if (i == (int)AdvertiseType.NiazKade)
-                        //    {
-                        //        isIpFull = false;
-                        //        continue;
-                        //    }
-                        //    else if (i == (int)AdvertiseType.DivarChat)
-                        //    {
-                        //        isIpFull = false;
-                        //        continue;
-                        //    }
-                        //    else if (i == (int)AdvertiseType.NiazmandyHa)
-                        //    {
-                        //        //if (await PingHost("185.105.239.1"))
-                        //        //{
-                        //        //    var niazmandyHa = await NiazmandyHaAdv.GetInstance();
-                        //        //    await niazmandyHa.StartRegisterAdv(lst, maxDailyCountNiazmandyHa);
-                        //        //}
-                        //        isIpFull = false;
-                        //        continue;
-                        //    }
-                        //}
-                        CloseAllChromeWindows();
-                        if (!isIpFull) continue;
-                        GateWayCount++;
-                        if (GateWayCount > filelst.Count)
+                    if (simCard.IsSendAdv)
+                    {
+                        //کنترل شماره خروجی
+                        if (simCard.Number == 0)
                         {
-                            numbers = new List<int>();
-
-                            while (await GetLocalIpAddress() == null)
-                            {
-                                await Wait(10);
-                                lstMessage.Clear();
-                                lstMessage.Add("مودم مخابرات ریست شد. لطفا منتظر بمانید");
-                                ShowBalloon("درحال اتصال...", lstMessage);
-                            }
-                            await UpdateAdvStatus(1);
-                            i = -1;
-                            GateWayCount = 0;
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی در IP");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
                             continue;
                         }
 
-                        var gateway = await GetRandomGeteWay();
-                        if (gateway == null) continue;
-                        await SetGateway(gateway);
-                        lstMessage.Clear();
-                        lstMessage.Add(" GateWay تعویض شد. لطفا منتظر بمانید");
-                        ShowBalloon("درحال اتصال...", lstMessage);
-                        while (await GetLocalIpAddress() == null)
+                        //کنترل تعداد آگهی ارسال شده در هر IP
+                        while (clsSetting?.CountAdvInIP <=
+                               AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress()))
                         {
-                            await Wait(2);
-                            lstMessage.Add(" GateWay تعویض شد. لطفا منتظر بمانید");
-                            ShowBalloon("درحال اتصال...", lstMessage);
+                            await Utility.Wait(20);
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
                         }
 
-                        //GateWayCount = 0;
-                        i = -1;
+                        firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
+                        if (firstSimCardBusiness is null) continue;
 
+                        var lastUse = firstSimCardBusiness.NextUse;
+                        var card1 = simCard.Number;
+                        var startDayOfCurrentMonthOfDateShToMiladi = DateConvertor.StartDayOfPersianMonth();
+                        var startDayOfNextMonthOfDateShToMiladi = DateConvertor.EndDayOfPersianMonth().AddDays(1);
+                        //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
+                        var a1 = await AdvertiseLogBussines.GetAllAsync();
+                        a1 = a1.Where(p => p.SimCardNumber == card1
+                                           && (p.StatusCode ==
+                                               StatusCode
+                                                   .Published
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .InPublishQueue
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .WaitForPayment)
+                                           && p.DateM >=
+                                           startDayOfCurrentMonthOfDateShToMiladi).ToList();
+
+                        var registeredAdvCount = a1.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInMounth)
+                        {
+                            //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            continue;
+                        }
+
+                        //آمار آگهی های ثبت شده امروز
+                        var currentDate = DateTime.Now.Date;
+                        var a2 = await AdvertiseLogBussines.GetAllAsync();
+                        a2 = a2.Where(p =>
+                            p.SimCardNumber == card1
+                            && (p.StatusCode == StatusCode.Published
+                                || p.StatusCode == StatusCode.InPublishQueue
+                                || p.StatusCode == StatusCode.WaitForPayment)
+                            && p.DateM >= currentDate).ToList();
+                        registeredAdvCount = a2.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInDay)
+                        {
+                            //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            continue;
+                        }
+
+                        var divar = await DivarAdv.GetInstance();
+                        await divar.StartRegisterAdv(simCard);
+
+                        var shey = await SheypoorAdv.GetInstance();
+                        await shey.StartRegisterAdv(simCard);
+
+                        await Wait(60);
+
+                        simCard.NextUse = DateTime.Now.AddMinutes(30);
+                        await simCard.SaveAsync();
+                        await Wait(60);
                     }
 
+                    if (simCard.IsSendChat)
+                    {
+                        var lst = Directory.GetFiles(clsSetting.FierstLevelChatAddress).ToList();
+                        var passage1 = new List<string>();
+                        foreach (var item in lst)
+                        {
+                            var a = File.ReadAllText(item).Replace("\r\n", " ");
+                            passage1.Add(a);
+                        }
+                        var lst2 = Directory.GetFiles(clsSetting.SecondLevelChatAddress).ToList();
+                        var passage2 = new List<string>();
+                        foreach (var item in lst2)
+                        {
+                            var a = File.ReadAllText(item).Replace("\r\n", " ");
+                            passage2.Add(a);
+                        }
+
+                        var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
+
+                       // var cat1=AdvCategoryBussines.Get(simCard.)
+
+                        var divar = await DivarAdv.GetInstance();
+                        //await divar.SendChat(passage1,passage2,simCard.ChatCount,city.Name,)
+                    }
                 }
+                await Utility.Wait(10);
+                lstMessage.Clear();
+                lstMessage.Add("لیست کاملا پیمایش شد");
+                Utility.ShowBalloon("اتمام یک دور کامل از پیمایش سیمکارت ها", lstMessage);
+                await UpdateAdvStatus(clsSetting?.DayCountForUpdateState ?? 10);
+
             }
             catch (Exception ex)
             {
-               
+                FarsiMessegeBox.Show(ex.Message);
             }
         }
 
@@ -578,15 +608,13 @@ namespace Ads.Classes
                 var divar = await DivarAdv.GetInstance();
                 await divar.UpdateAllAdvStatus(dayCount);
 
-                //var sheypoor = await SheypoorAdv.GetInstance();
-                //await sheypoor.UpdateAllAdvStatus(dayCount);
+                var sheypoor = await SheypoorAdv.GetInstance();
+                await sheypoor.UpdateAllAdvStatus(dayCount);
 
-                //var niazmand = await NiazmandyHaAdv.GetInstance();
-                //await niazmand.UpdateAllAdvStatus(dayCount);
             }
             catch (Exception ex)
             {
-                //WebErrorLog.ErrorLogInstance.StartLog(ex);
+                FarsiMessegeBox.Show(ex.Message);
             }
         }
     }

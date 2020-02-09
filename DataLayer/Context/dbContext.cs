@@ -30,6 +30,7 @@ namespace DataLayer.Context
         public virtual DbSet<Advertise> Advertise { get; set; }
         public virtual DbSet<AdvPictures> AdvPictures { get; set; }
         public virtual DbSet<AdvTitles> AdvTitles { get; set; }
+        public virtual DbSet<AdvContent> AdvContents { get; set; }
     }
 
 }

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Ads.Classes;
 using Ads.Forms.Settings;
 using Ads.Forms.Simcard;
+using BussinesLayer;
 using FMessegeBox;
 
 namespace Ads.Forms.Mains
@@ -25,7 +26,7 @@ namespace Ads.Forms.Mains
                 picLogo.Image = Properties.Resources.AradPngpng;
                 picDivarChat.Image = Properties.Resources.chat;
                 ToolTip tt = new ToolTip();
-                tt.SetToolTip(picManager,"پنل مدیریت");
+                tt.SetToolTip(picManager, "پنل مدیریت");
                 tt.SetToolTip(picDivar, "ارسال آگهی به دیوار");
                 tt.SetToolTip(picSheypoor, "ارسال آگهی به شیپور");
                 tt.SetToolTip(picLogIn, "لاگین");
@@ -83,8 +84,9 @@ namespace Ads.Forms.Mains
         {
             try
             {
-                var divar = await DivarAdv.GetInstance();
-                await divar.StartRegisterAdv();
+                var res = SettingBussines.GetAll();
+                var clsSetting = res.Count == 0 ? new SettingBussines() : res[0];
+                await Utility.ManageAdvSend(clsSetting);
             }
             catch (Exception exception)
             {
@@ -198,8 +200,8 @@ namespace Ads.Forms.Mains
         {
             try
             {
-                var divar = await DivarAdv.GetInstance();
-                await divar.StartRegisterAdv();
+                //var divar = await DivarAdv.GetInstance();
+                //await divar.StartRegisterAdv();
             }
             catch (Exception exception)
             {

@@ -3,16 +3,13 @@ namespace DataLayer.Interface.Entities
 {
   public  interface ISetting:IHasGuid
     {
-        int CountAdvInDayDivar { get; set; }
-        int CountAdvInDaySheypoor { get; set; }
-        int CountAdvInMounthDivar { get; set; }
-        int CountAdvInMounthSheypoor { get; set; }
-        int CountAdvInIPDivar { get; set; }
-        int CountAdvInIPSheypoor { get; set; }
-        int DivarDayCountForUpdateState { get; set; }
-        int SheypoorDayCountForUpdateState { get; set; }
-        int DivarMaxImgCount { get; set; }
-        int SheypoorMaxImgCount { get; set; }
-        int DayCountForDelete { get; set; }
+        int CountAdvInDay { get; set; }
+        int CountAdvInMounth { get; set; }
+        int CountAdvInIP { get; set; }
+        int DayCountForUpdateState { get; set; }
+        int MaxImgCount { get; set; }
+        string Address { get; set; }
+        string FierstLevelChatAddress { get; set; }
+        string SecondLevelChatAddress { get; set; }
     }
 }

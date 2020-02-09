@@ -13,7 +13,6 @@ namespace DataLayer.Models
         public bool Status { get; set; }
         [MaxLength(150)]
         public string AdvName { get; set; }
-        public string Content { get; set; }
         [MaxLength(15)]
         public string Price { get; set; }
         public Guid DivarCatGuid1 { get; set; }

@@ -14,7 +14,6 @@ namespace BussinesLayer
         public string DateSabt { get; set; }
         public bool Status { get; set; }
         public string AdvName { get; set; }
-        public string Content { get; set; }
         public string Price { get; set; }
         public Guid DivarCatGuid1 { get; set; }
         public Guid DivarCatGuid2 { get; set; }
@@ -25,6 +24,7 @@ namespace BussinesLayer
         public bool Is_Checked { get; set; }
         public List<AdvTitlesBussines> Titles => AsyncContext.Run(() => AdvTitlesBussines.GetAllAsync(Guid));
         public List<AdvPicturesBussines> Images => AsyncContext.Run(() => AdvPicturesBussines.GetAllAsync(Guid));
+        public List<AdvContentBussines> Content => AsyncContext.Run(() => AdvContentBussines.GetAllAsync(Guid));
         public static async Task<AdvertiseBussines> GetAsync(string city)
         {
             using (var _context = new UnitOfWorkLid())
@@ -33,7 +33,7 @@ namespace BussinesLayer
                 return Mappings.Default.Map<AdvertiseBussines>(a);
             }
         }
-        public async Task SaveAsync(List<AdvTitlesBussines> lstTitles, List<AdvPicturesBussines> lstImg)
+        public async Task SaveAsync(List<AdvTitlesBussines> lstTitles, List<AdvPicturesBussines> lstImg, List<AdvContentBussines> lstCon)
         {
             try
             {
@@ -43,6 +43,8 @@ namespace BussinesLayer
                     if (!AdvTitlesBussines.RemoveAll(allTitles)) return;
                     var allImg = await AdvPicturesBussines.GetAllAsync(Guid);
                     if (!AdvPicturesBussines.RemoveAll(allImg)) return;
+                    var allCon = await AdvContentBussines.GetAllAsync(Guid);
+                    if (!AdvContentBussines.RemoveAll(allCon)) return;
 
                     if (lstTitles.Count > 0)
                     {
@@ -60,6 +62,17 @@ namespace BussinesLayer
                         foreach (var item in a1)
                         {
                             var res1 = _context.AdvPictures.Save(item);
+                            _context.Set_Save();
+                        }
+                    }
+
+
+                    if (lstCon.Count > 0)
+                    {
+                        var a1 = Mappings.Default.Map<List<AdvContent>>(lstCon);
+                        foreach (var item in a1)
+                        {
+                            var res1 = _context.AdvContents.Save(item);
                             _context.Set_Save();
                         }
                     }
@@ -85,7 +98,9 @@ namespace BussinesLayer
                     if (!AdvTitlesBussines.RemoveAll(allTitles)) return;
                     var allImg = await AdvPicturesBussines.GetAllAsync(Guid);
                     if (!AdvPicturesBussines.RemoveAll(allImg)) return;
-                    
+                    var allCon = await AdvContentBussines.GetAllAsync(Guid);
+                    if (!AdvContentBussines.RemoveAll(allCon)) return;
+
                     var a = Mappings.Default.Map<Advertise>(this);
                     var res = _context.Advertise.Save(a);
                     _context.Set_Save();

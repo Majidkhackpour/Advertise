@@ -116,11 +116,21 @@ namespace Ads.Forms.Simcard
                 cmbOperator.DataSource = a;
 
                 var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+                divarCat1 = divarCat1.OrderBy(q => q.Name).ToList();
                 DivarCat1BingingSource.DataSource = divarCat1;
 
 
                 var SheypoorCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
+                SheypoorCat1 = SheypoorCat1.OrderBy(q => q.Name).ToList();
                 SheypoorCat1BingingSource.DataSource = SheypoorCat1;
+
+                var dCity = await DivarCityBussines.GetAllAsync();
+                dCity = dCity.OrderBy(q => q.Name).ToList();
+                DivarCBindingSource.DataSource = dCity;
+
+                var shCity = await SheypoorCityBussines.GetAllAsync();
+                shCity = shCity.OrderBy(q => q.Name).ToList();
+                SheypoorCBindingSource.DataSource = shCity;
             }
             catch (Exception e)
             {
@@ -241,6 +251,8 @@ namespace Ads.Forms.Simcard
                 cls.IsSendAdv = chbIsSendAdv.Checked;
                 cls.IsSendChat = chbIsSendChat.Checked;
                 cls.ChatCount = int.Parse(txtChatCount.Text);
+                cls.DivarCityForChat = (Guid)cmbDivarCity.SelectedValue;
+                cls.SheypoorCityForChat = (Guid)cmbSheypoorCity.SelectedValue;
                 await cls.SaveAsync(listCity, listAds, listCitySh);
                 DialogResult = DialogResult.OK;
                 Close();
@@ -342,13 +354,15 @@ namespace Ads.Forms.Simcard
                 chbIsEnableChat.Checked = cls.IsEnableChat;
                 chbIsSendChat.Checked = cls.IsSendChat;
                 chbIsSendAdv.Checked = cls.IsSendAdv;
+                cmbDivarCity.SelectedValue = cls.DivarCityForChat;
+                cmbSheypoorCity.SelectedValue = cls.SheypoorCityForChat;
                 if (cls.Guid != Guid.Empty)
                 {
                     cmbDivarCat1.SelectedValue = cls?.DivarCatGuid1 ?? null;
                     cmbDivarCat2.SelectedValue = cls?.DivarCatGuid2 ?? null;
                     cmbDivarCat3.SelectedValue = cls?.DivarCatGuid3 ?? Guid.Empty;
                     cmbSheypoorCat1.SelectedValue = cls?.SheypoorCatGuid1 ?? null;
-                    cmbSheypoorCat2.SelectedValue = cls?.SheypoorCatGuid2 ;
+                    cmbSheypoorCat2.SelectedValue = cls?.SheypoorCatGuid2;
                 }
                 await SetCity(cls.Guid);
                 await SetAds(cls.Guid);
@@ -508,6 +522,7 @@ namespace Ads.Forms.Simcard
             try
             {
                 var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat2.SelectedValue, AdvertiseType.Divar);
+                divarCat3 = divarCat3.OrderBy(q => q.Name).ToList();
                 DivarCat3BingingSource.DataSource = divarCat3;
             }
             catch (Exception exception)
@@ -521,6 +536,7 @@ namespace Ads.Forms.Simcard
             try
             {
                 var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat1.SelectedValue, AdvertiseType.Divar);
+                divarCat2 = divarCat2.OrderBy(q => q.Name).ToList();
                 DivarCat2BingingSource.DataSource = divarCat2;
             }
             catch (Exception exception)
@@ -534,6 +550,7 @@ namespace Ads.Forms.Simcard
             try
             {
                 var sheypoorCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbSheypoorCat1.SelectedValue, AdvertiseType.Sheypoor);
+                sheypoorCat2 = sheypoorCat2.OrderBy(q => q.Name).ToList();
                 SheypoorCat2BingingSource.DataSource = sheypoorCat2;
             }
             catch (Exception exception)

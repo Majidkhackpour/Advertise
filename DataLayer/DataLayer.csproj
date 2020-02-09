@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IAdvContentRepository.cs" />
     <Compile Include="Core\IAdvertiseRepository.cs" />
     <Compile Include="Core\IAdvGroupRepositpry.cs" />
     <Compile Include="Core\IAdvCategoryRepository.cs" />
@@ -74,6 +75,20 @@
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
+    <Compile Include="Interface\Entities\IAdvContent.cs" />
+    <Compile Include="Migration\202002071329475_11.cs" />
+    <Compile Include="Migration\202002071329475_11.designer.cs">
+      <DependentUpon>202002071329475_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migration\202002071404172_12.cs" />
+    <Compile Include="Migration\202002071404172_12.designer.cs">
+      <DependentUpon>202002071404172_12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migration\202002091600209_13.cs" />
+    <Compile Include="Migration\202002091600209_13.designer.cs">
+      <DependentUpon>202002091600209_13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdvContent.cs" />
     <Compile Include="Models\AdvPictures.cs" />
     <Compile Include="Models\AdvTitles.cs" />
     <Compile Include="Interface\Entities\IAdvertise.cs" />
@@ -150,6 +165,7 @@
     <Compile Include="Models\SheypoorSimCity.cs" />
     <Compile Include="Models\States.cs" />
     <Compile Include="Persitence\AdvCategoryPersistenceRepository.cs" />
+    <Compile Include="Persitence\AdvContentPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvertiseLogPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvertisePersistenceRepository.cs" />
     <Compile Include="Persitence\AdvGroupPersistenceRepository.cs" />
@@ -203,6 +219,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migration\202002031620118_10.resx">
       <DependentUpon>202002031620118_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002071329475_11.resx">
+      <DependentUpon>202002071329475_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002071404172_12.resx">
+      <DependentUpon>202002071404172_12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migration\202002091600209_13.resx">
+      <DependentUpon>202002091600209_13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

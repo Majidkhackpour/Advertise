@@ -34,11 +34,11 @@ namespace BussinesLayer
         public string Adv { get; set; } = "---";
         public string AdvStatus { get; set; } = "---";
         public List<string> ImagesPathList { get; set; }
-        public static int GetAllAdvInDayFromIP(string ip,AdvertiseType type)
+        public static int GetAllAdvInDayFromIP(string ip)
         {
             using (var _context = new UnitOfWorkLid())
             {
-                return _context.AdvertiseLog.GetAllAdvInDayFromIP(ip, type);
+                return _context.AdvertiseLog.GetAllAdvInDayFromIP(ip);
             }
         }
         public async Task SaveAsync()

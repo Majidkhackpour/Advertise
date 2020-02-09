@@ -43,6 +43,10 @@
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.btnBack = new DevComponents.DotNetBar.ButtonX();
+            this.btnClear = new DevComponents.DotNetBar.ButtonX();
+            this.btnSaveInList = new DevComponents.DotNetBar.ButtonX();
+            this.btnInsNewContent = new DevComponents.DotNetBar.ButtonX();
             this.cmbSheypoorCat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.SheypoorCat2BingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDivarCat3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -235,6 +239,10 @@
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpAccount.ContextMenuStrip = this.contextMenuStrip1;
+            this.grpAccount.Controls.Add(this.btnBack);
+            this.grpAccount.Controls.Add(this.btnClear);
+            this.grpAccount.Controls.Add(this.btnSaveInList);
+            this.grpAccount.Controls.Add(this.btnInsNewContent);
             this.grpAccount.Controls.Add(this.cmbSheypoorCat2);
             this.grpAccount.Controls.Add(this.cmbDivarCat3);
             this.grpAccount.Controls.Add(this.cmbGroup);
@@ -291,6 +299,78 @@
             // 
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 55702;
+            // 
+            // btnBack
+            // 
+            this.btnBack.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnBack.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnBack.Location = new System.Drawing.Point(3, 210);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnBack.Size = new System.Drawing.Size(81, 25);
+            this.btnBack.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnBack.TabIndex = 55700;
+            this.btnBack.Text = "قبلی";
+            this.btnBack.TextColor = System.Drawing.Color.Silver;
+            this.btnBack.ThemeAware = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnClear.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnClear.Location = new System.Drawing.Point(3, 241);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnClear.Size = new System.Drawing.Size(81, 25);
+            this.btnClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnClear.TabIndex = 55700;
+            this.btnClear.Text = "پاک کردن ...";
+            this.btnClear.TextColor = System.Drawing.Color.Silver;
+            this.btnClear.ThemeAware = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnSaveInList
+            // 
+            this.btnSaveInList.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveInList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSaveInList.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSaveInList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaveInList.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSaveInList.Location = new System.Drawing.Point(101, 241);
+            this.btnSaveInList.Name = "btnSaveInList";
+            this.btnSaveInList.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSaveInList.Size = new System.Drawing.Size(81, 25);
+            this.btnSaveInList.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSaveInList.TabIndex = 55700;
+            this.btnSaveInList.Text = "ذخیره";
+            this.btnSaveInList.TextColor = System.Drawing.Color.Silver;
+            this.btnSaveInList.ThemeAware = true;
+            this.btnSaveInList.Click += new System.EventHandler(this.btnSaveInList_Click);
+            // 
+            // btnInsNewContent
+            // 
+            this.btnInsNewContent.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInsNewContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnInsNewContent.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnInsNewContent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsNewContent.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnInsNewContent.Location = new System.Drawing.Point(101, 210);
+            this.btnInsNewContent.Name = "btnInsNewContent";
+            this.btnInsNewContent.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnInsNewContent.Size = new System.Drawing.Size(81, 25);
+            this.btnInsNewContent.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnInsNewContent.TabIndex = 55700;
+            this.btnInsNewContent.Text = "بعدی";
+            this.btnInsNewContent.TextColor = System.Drawing.Color.Silver;
+            this.btnInsNewContent.ThemeAware = true;
+            this.btnInsNewContent.Click += new System.EventHandler(this.btnInsNewContent_Click);
             // 
             // cmbSheypoorCat2
             // 
@@ -804,5 +884,9 @@
         private System.Windows.Forms.BindingSource DivarCat3BingingSource;
         private System.Windows.Forms.BindingSource SheypoorCat1BingingSource;
         private System.Windows.Forms.BindingSource SheypoorCat2BingingSource;
+        public DevComponents.DotNetBar.ButtonX btnInsNewContent;
+        public DevComponents.DotNetBar.ButtonX btnBack;
+        public DevComponents.DotNetBar.ButtonX btnSaveInList;
+        public DevComponents.DotNetBar.ButtonX btnClear;
     }
 }

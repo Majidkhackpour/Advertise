@@ -54,6 +54,9 @@ namespace BussinesLayer
 
             CreateMap<AdvTitles, AdvTitlesBussines>();
             CreateMap<AdvTitlesBussines, AdvTitles>();
+
+            CreateMap<AdvContentBussines, AdvContent>();
+            CreateMap<AdvContent, AdvContentBussines>();
         }
     }
 }

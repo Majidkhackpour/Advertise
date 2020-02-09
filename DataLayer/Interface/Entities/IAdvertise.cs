@@ -5,7 +5,6 @@ namespace DataLayer.Interface.Entities
    public interface IAdvertise:IHasGuid
     {
         string AdvName { get; set; }
-        string Content { get; set; }
         string Price { get; set; }
         Guid DivarCatGuid1 { get; set; }
         Guid DivarCatGuid2 { get; set; }

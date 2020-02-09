@@ -46,6 +46,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSimcard_Main));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.chbIsSendChat = new System.Windows.Forms.CheckBox();
+            this.chbIsEnableChat = new System.Windows.Forms.CheckBox();
+            this.chbIsSendAdv = new System.Windows.Forms.CheckBox();
+            this.chbIsEnableNumber = new System.Windows.Forms.CheckBox();
             this.cmbOperator = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtOwner = new System.Windows.Forms.TextBox();
@@ -90,7 +94,6 @@
             this.dg_AdvGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.divarCatGuid1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.divarCatGuid2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,15 +106,17 @@
             this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.txtChatCount = new System.Windows.Forms.TextBox();
-            this.chbIsSendChat = new System.Windows.Forms.CheckBox();
-            this.chbIsEnableChat = new System.Windows.Forms.CheckBox();
-            this.chbIsSendAdv = new System.Windows.Forms.CheckBox();
-            this.chbIsEnableNumber = new System.Windows.Forms.CheckBox();
+            this.cmbSheypoorCity = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.SheypoorCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbSheypoorCat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.SheypoorCat2BingingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbDivarCity = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.DivarCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbSheypoorCat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.SheypoorCat1BingingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbDivarCat3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.DivarCat3BingingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -123,6 +128,14 @@
             this.cmbDivarCat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.DivarCat1BingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label17 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBoxEx2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBoxEx3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboBoxEx4 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.grpAccount.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -139,7 +152,9 @@
             this.cmAds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat2BingingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat1BingingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat3BingingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).BeginInit();
@@ -151,6 +166,10 @@
             this.grpAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grpAccount.Controls.Add(this.chbIsSendChat);
+            this.grpAccount.Controls.Add(this.chbIsEnableChat);
+            this.grpAccount.Controls.Add(this.chbIsSendAdv);
+            this.grpAccount.Controls.Add(this.chbIsEnableNumber);
             this.grpAccount.Controls.Add(this.cmbOperator);
             this.grpAccount.Controls.Add(this.txtUserName);
             this.grpAccount.Controls.Add(this.txtOwner);
@@ -162,7 +181,7 @@
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(7, 6);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(361, 241);
+            this.grpAccount.Size = new System.Drawing.Size(361, 330);
             // 
             // 
             // 
@@ -194,6 +213,58 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 0;
             // 
+            // chbIsSendChat
+            // 
+            this.chbIsSendChat.AutoSize = true;
+            this.chbIsSendChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendChat.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendChat.Location = new System.Drawing.Point(166, 289);
+            this.chbIsSendChat.Name = "chbIsSendChat";
+            this.chbIsSendChat.Size = new System.Drawing.Size(167, 24);
+            this.chbIsSendChat.TabIndex = 47;
+            this.chbIsSendChat.Text = "این سیمکارت چت ارسال کند";
+            this.chbIsSendChat.UseVisualStyleBackColor = false;
+            // 
+            // chbIsEnableChat
+            // 
+            this.chbIsEnableChat.AutoSize = true;
+            this.chbIsEnableChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsEnableChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsEnableChat.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsEnableChat.Location = new System.Drawing.Point(34, 229);
+            this.chbIsEnableChat.Name = "chbIsEnableChat";
+            this.chbIsEnableChat.Size = new System.Drawing.Size(98, 24);
+            this.chbIsEnableChat.TabIndex = 48;
+            this.chbIsEnableChat.Text = "چت فعال باشد";
+            this.chbIsEnableChat.UseVisualStyleBackColor = false;
+            // 
+            // chbIsSendAdv
+            // 
+            this.chbIsSendAdv.AutoSize = true;
+            this.chbIsSendAdv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendAdv.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendAdv.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendAdv.Location = new System.Drawing.Point(174, 259);
+            this.chbIsSendAdv.Name = "chbIsSendAdv";
+            this.chbIsSendAdv.Size = new System.Drawing.Size(159, 24);
+            this.chbIsSendAdv.TabIndex = 49;
+            this.chbIsSendAdv.Text = "این سیمکارت آگهی درج کند";
+            this.chbIsSendAdv.UseVisualStyleBackColor = false;
+            // 
+            // chbIsEnableNumber
+            // 
+            this.chbIsEnableNumber.AutoSize = true;
+            this.chbIsEnableNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsEnableNumber.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsEnableNumber.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsEnableNumber.Location = new System.Drawing.Point(149, 229);
+            this.chbIsEnableNumber.Name = "chbIsEnableNumber";
+            this.chbIsEnableNumber.Size = new System.Drawing.Size(184, 24);
+            this.chbIsEnableNumber.TabIndex = 50;
+            this.chbIsEnableNumber.Text = "نمایش شماره در آگهی فعال باشد";
+            this.chbIsEnableNumber.UseVisualStyleBackColor = false;
+            // 
             // cmbOperator
             // 
             this.cmbOperator.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -214,7 +285,7 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(13, 197);
+            this.txtUserName.Location = new System.Drawing.Point(7, 196);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(320, 27);
@@ -228,7 +299,7 @@
             this.txtOwner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.ForeColor = System.Drawing.Color.Silver;
-            this.txtOwner.Location = new System.Drawing.Point(13, 87);
+            this.txtOwner.Location = new System.Drawing.Point(7, 86);
             this.txtOwner.MaxLength = 3000;
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.Size = new System.Drawing.Size(320, 27);
@@ -242,7 +313,7 @@
             this.txtNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.ForeColor = System.Drawing.Color.Silver;
-            this.txtNumber.Location = new System.Drawing.Point(13, 32);
+            this.txtNumber.Location = new System.Drawing.Point(7, 31);
             this.txtNumber.MaxLength = 11;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(320, 27);
@@ -257,7 +328,7 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(262, 172);
+            this.label9.Location = new System.Drawing.Point(256, 171);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
@@ -270,7 +341,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(262, 62);
+            this.label7.Location = new System.Drawing.Point(256, 61);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 30;
@@ -283,7 +354,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(256, 115);
+            this.label8.Location = new System.Drawing.Point(244, 115);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -296,7 +367,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(262, 7);
+            this.label2.Location = new System.Drawing.Point(256, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 30;
@@ -328,7 +399,7 @@
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(0, 340);
+            this.line1.Location = new System.Drawing.Point(0, 430);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(399, 19);
             this.line1.TabIndex = 55690;
@@ -342,7 +413,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(240, 363);
+            this.btnFinish.Location = new System.Drawing.Point(240, 453);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(145, 25);
@@ -361,7 +432,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 363);
+            this.btnCancel.Location = new System.Drawing.Point(12, 453);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(125, 25);
@@ -382,7 +453,7 @@
             this.tabControl1.Location = new System.Drawing.Point(9, 48);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(382, 289);
+            this.tabControl1.Size = new System.Drawing.Size(382, 375);
             this.tabControl1.TabIndex = 55691;
             // 
             // tabPage1
@@ -392,7 +463,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(374, 256);
+            this.tabPage1.Size = new System.Drawing.Size(374, 342);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "اطلاعات عمومی";
             // 
@@ -403,7 +474,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(374, 256);
+            this.tabPage2.Size = new System.Drawing.Size(374, 342);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "شهرهای دیوار";
             // 
@@ -471,7 +542,7 @@
             this.dgCity.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgCity.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dgCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCity.Size = new System.Drawing.Size(368, 250);
+            this.dgCity.Size = new System.Drawing.Size(368, 336);
             this.dgCity.TabIndex = 55690;
             this.dgCity.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCity_CellClick);
             // 
@@ -545,7 +616,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(374, 256);
+            this.tabPage4.Size = new System.Drawing.Size(374, 342);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "شهرهای شیپور";
             // 
@@ -615,7 +686,7 @@
             this.dgSheypoorCity.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgSheypoorCity.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dgSheypoorCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgSheypoorCity.Size = new System.Drawing.Size(368, 250);
+            this.dgSheypoorCity.Size = new System.Drawing.Size(368, 336);
             this.dgSheypoorCity.TabIndex = 55691;
             this.dgSheypoorCity.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSheypoorCity_CellClick);
             // 
@@ -705,7 +776,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(374, 256);
+            this.tabPage3.Size = new System.Drawing.Size(374, 342);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "آگهی ها";
             // 
@@ -738,7 +809,6 @@
             this.dg_AdvGuid,
             this.dateSabtDataGridViewTextBoxColumn1,
             this.statusDataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.divarCatGuid1DataGridViewTextBoxColumn,
             this.divarCatGuid2DataGridViewTextBoxColumn,
@@ -781,7 +851,7 @@
             this.dgAds.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgAds.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dgAds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgAds.Size = new System.Drawing.Size(368, 250);
+            this.dgAds.Size = new System.Drawing.Size(368, 336);
             this.dgAds.TabIndex = 55691;
             this.dgAds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgAds_CellClick);
             // 
@@ -824,14 +894,6 @@
             this.statusDataGridViewCheckBoxColumn1.Name = "statusDataGridViewCheckBoxColumn1";
             this.statusDataGridViewCheckBoxColumn1.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Content";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Content";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -916,27 +978,35 @@
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.tabPage5.Controls.Add(this.txtChatCount);
-            this.tabPage5.Controls.Add(this.chbIsSendChat);
-            this.tabPage5.Controls.Add(this.chbIsEnableChat);
-            this.tabPage5.Controls.Add(this.chbIsSendAdv);
-            this.tabPage5.Controls.Add(this.chbIsEnableNumber);
+            this.tabPage5.Controls.Add(this.cmbSheypoorCity);
+            this.tabPage5.Controls.Add(this.comboBoxEx4);
             this.tabPage5.Controls.Add(this.cmbSheypoorCat2);
+            this.tabPage5.Controls.Add(this.cmbDivarCity);
+            this.tabPage5.Controls.Add(this.comboBoxEx3);
             this.tabPage5.Controls.Add(this.cmbSheypoorCat1);
+            this.tabPage5.Controls.Add(this.label15);
+            this.tabPage5.Controls.Add(this.label11);
             this.tabPage5.Controls.Add(this.label1);
+            this.tabPage5.Controls.Add(this.label14);
+            this.tabPage5.Controls.Add(this.label10);
             this.tabPage5.Controls.Add(this.label3);
             this.tabPage5.Controls.Add(this.cmbDivarCat3);
+            this.tabPage5.Controls.Add(this.comboBoxEx2);
             this.tabPage5.Controls.Add(this.cmbDivarCat2);
             this.tabPage5.Controls.Add(this.label4);
             this.tabPage5.Controls.Add(this.label6);
+            this.tabPage5.Controls.Add(this.label13);
             this.tabPage5.Controls.Add(this.label5);
+            this.tabPage5.Controls.Add(this.comboBoxEx1);
+            this.tabPage5.Controls.Add(this.label12);
             this.tabPage5.Controls.Add(this.cmbDivarCat1);
             this.tabPage5.Controls.Add(this.label17);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(374, 256);
+            this.tabPage5.Size = new System.Drawing.Size(374, 342);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "ارسال چت";
+            this.tabPage5.Text = "تنظیمات";
             // 
             // txtChatCount
             // 
@@ -952,53 +1022,26 @@
             this.txtChatCount.Enter += new System.EventHandler(this.txtChatCount_Enter);
             this.txtChatCount.Leave += new System.EventHandler(this.txtChatCount_Leave);
             // 
-            // chbIsSendChat
+            // cmbSheypoorCity
             // 
-            this.chbIsSendChat.AutoSize = true;
-            this.chbIsSendChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendChat.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendChat.Location = new System.Drawing.Point(10, 218);
-            this.chbIsSendChat.Name = "chbIsSendChat";
-            this.chbIsSendChat.Size = new System.Drawing.Size(167, 24);
-            this.chbIsSendChat.TabIndex = 46;
-            this.chbIsSendChat.Text = "این سیمکارت چت ارسال کند";
-            this.chbIsSendChat.UseVisualStyleBackColor = true;
+            this.cmbSheypoorCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbSheypoorCity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSheypoorCity.DataSource = this.SheypoorCBindingSource;
+            this.cmbSheypoorCity.DisplayMember = "Name";
+            this.cmbSheypoorCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSheypoorCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbSheypoorCity.ForeColor = System.Drawing.Color.Black;
+            this.cmbSheypoorCity.ItemHeight = 20;
+            this.cmbSheypoorCity.Location = new System.Drawing.Point(25, 195);
+            this.cmbSheypoorCity.Name = "cmbSheypoorCity";
+            this.cmbSheypoorCity.Size = new System.Drawing.Size(154, 28);
+            this.cmbSheypoorCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbSheypoorCity.TabIndex = 42;
+            this.cmbSheypoorCity.ValueMember = "Guid";
             // 
-            // chbIsEnableChat
+            // SheypoorCBindingSource
             // 
-            this.chbIsEnableChat.AutoSize = true;
-            this.chbIsEnableChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsEnableChat.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableChat.Location = new System.Drawing.Point(80, 182);
-            this.chbIsEnableChat.Name = "chbIsEnableChat";
-            this.chbIsEnableChat.Size = new System.Drawing.Size(98, 24);
-            this.chbIsEnableChat.TabIndex = 46;
-            this.chbIsEnableChat.Text = "چت فعال باشد";
-            this.chbIsEnableChat.UseVisualStyleBackColor = true;
-            // 
-            // chbIsSendAdv
-            // 
-            this.chbIsSendAdv.AutoSize = true;
-            this.chbIsSendAdv.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendAdv.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendAdv.Location = new System.Drawing.Point(209, 218);
-            this.chbIsSendAdv.Name = "chbIsSendAdv";
-            this.chbIsSendAdv.Size = new System.Drawing.Size(159, 24);
-            this.chbIsSendAdv.TabIndex = 46;
-            this.chbIsSendAdv.Text = "این سیمکارت آگهی درج کند";
-            this.chbIsSendAdv.UseVisualStyleBackColor = true;
-            // 
-            // chbIsEnableNumber
-            // 
-            this.chbIsEnableNumber.AutoSize = true;
-            this.chbIsEnableNumber.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsEnableNumber.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableNumber.Location = new System.Drawing.Point(184, 182);
-            this.chbIsEnableNumber.Name = "chbIsEnableNumber";
-            this.chbIsEnableNumber.Size = new System.Drawing.Size(184, 24);
-            this.chbIsEnableNumber.TabIndex = 46;
-            this.chbIsEnableNumber.Text = "نمایش شماره در آگهی فعال باشد";
-            this.chbIsEnableNumber.UseVisualStyleBackColor = true;
+            this.SheypoorCBindingSource.DataSource = typeof(BussinesLayer.SheypoorCityBussines);
             // 
             // cmbSheypoorCat2
             // 
@@ -1010,7 +1053,7 @@
             this.cmbSheypoorCat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorCat2.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorCat2.ItemHeight = 20;
-            this.cmbSheypoorCat2.Location = new System.Drawing.Point(25, 140);
+            this.cmbSheypoorCat2.Location = new System.Drawing.Point(25, 141);
             this.cmbSheypoorCat2.Name = "cmbSheypoorCat2";
             this.cmbSheypoorCat2.Size = new System.Drawing.Size(154, 28);
             this.cmbSheypoorCat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1020,6 +1063,28 @@
             // SheypoorCat2BingingSource
             // 
             this.SheypoorCat2BingingSource.DataSource = typeof(BussinesLayer.AdvGroupBussines);
+            // 
+            // cmbDivarCity
+            // 
+            this.cmbDivarCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbDivarCity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbDivarCity.DataSource = this.DivarCBindingSource;
+            this.cmbDivarCity.DisplayMember = "Name";
+            this.cmbDivarCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDivarCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbDivarCity.ForeColor = System.Drawing.Color.Black;
+            this.cmbDivarCity.ItemHeight = 20;
+            this.cmbDivarCity.Location = new System.Drawing.Point(214, 195);
+            this.cmbDivarCity.Name = "cmbDivarCity";
+            this.cmbDivarCity.Size = new System.Drawing.Size(154, 28);
+            this.cmbDivarCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbDivarCity.TabIndex = 43;
+            this.cmbDivarCity.ValueMember = "Guid";
+            this.cmbDivarCity.SelectedIndexChanged += new System.EventHandler(this.cmbSheypoorCat1_SelectedIndexChanged);
+            // 
+            // DivarCBindingSource
+            // 
+            this.DivarCBindingSource.DataSource = typeof(BussinesLayer.DivarCityBussines);
             // 
             // cmbSheypoorCat1
             // 
@@ -1031,7 +1096,7 @@
             this.cmbSheypoorCat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorCat1.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorCat1.ItemHeight = 20;
-            this.cmbSheypoorCat1.Location = new System.Drawing.Point(214, 140);
+            this.cmbSheypoorCat1.Location = new System.Drawing.Point(214, 141);
             this.cmbSheypoorCat1.Name = "cmbSheypoorCat1";
             this.cmbSheypoorCat1.Size = new System.Drawing.Size(154, 28);
             this.cmbSheypoorCat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1043,6 +1108,19 @@
             // 
             this.SheypoorCat1BingingSource.DataSource = typeof(BussinesLayer.AdvCategoryBussines);
             // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label11.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label11.ForeColor = System.Drawing.Color.Silver;
+            this.label11.Location = new System.Drawing.Point(19, 172);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(164, 20);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "شهر ارسالی چت شیپور";
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1050,11 +1128,24 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(19, 117);
+            this.label1.Location = new System.Drawing.Point(19, 118);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 20);
             this.label1.TabIndex = 44;
             this.label1.Text = "دسته بندی سطح دوم شیپور";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label10.ForeColor = System.Drawing.Color.Silver;
+            this.label10.Location = new System.Drawing.Point(203, 172);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 20);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "شهر ارسالی چت دیوار";
             // 
             // label3
             // 
@@ -1063,7 +1154,7 @@
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(203, 117);
+            this.label3.Location = new System.Drawing.Point(203, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 20);
             this.label3.TabIndex = 45;
@@ -1116,7 +1207,7 @@
             this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(3, 62);
+            this.label4.Location = new System.Drawing.Point(-2, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(180, 20);
             this.label4.TabIndex = 40;
@@ -1179,12 +1270,127 @@
             this.label17.TabIndex = 37;
             this.label17.Text = "دسته بندی سطح اول دیوار";
             // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label12.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label12.ForeColor = System.Drawing.Color.Silver;
+            this.label12.Location = new System.Drawing.Point(203, 228);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 20);
+            this.label12.TabIndex = 37;
+            this.label12.Text = "دسته بندی سطح اول دیوار چت\r\n";
+            // 
+            // comboBoxEx1
+            // 
+            this.comboBoxEx1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxEx1.DisplayMember = "Name";
+            this.comboBoxEx1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEx1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboBoxEx1.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEx1.ItemHeight = 20;
+            this.comboBoxEx1.Location = new System.Drawing.Point(214, 252);
+            this.comboBoxEx1.Name = "comboBoxEx1";
+            this.comboBoxEx1.Size = new System.Drawing.Size(154, 28);
+            this.comboBoxEx1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx1.TabIndex = 36;
+            this.comboBoxEx1.ValueMember = "Guid";
+            this.comboBoxEx1.SelectedIndexChanged += new System.EventHandler(this.cmbDivarCat1_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label13.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label13.ForeColor = System.Drawing.Color.Silver;
+            this.label13.Location = new System.Drawing.Point(25, 228);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(158, 20);
+            this.label13.TabIndex = 41;
+            this.label13.Text = "دسته بندی سطح دوم دیوار چت\r\n";
+            // 
+            // comboBoxEx2
+            // 
+            this.comboBoxEx2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxEx2.DisplayMember = "Name";
+            this.comboBoxEx2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEx2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboBoxEx2.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEx2.ItemHeight = 20;
+            this.comboBoxEx2.Location = new System.Drawing.Point(25, 252);
+            this.comboBoxEx2.Name = "comboBoxEx2";
+            this.comboBoxEx2.Size = new System.Drawing.Size(154, 28);
+            this.comboBoxEx2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx2.TabIndex = 39;
+            this.comboBoxEx2.ValueMember = "Guid";
+            this.comboBoxEx2.SelectedIndexChanged += new System.EventHandler(this.cmbDivarCat2_SelectedIndexChanged);
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label14.ForeColor = System.Drawing.Color.Silver;
+            this.label14.Location = new System.Drawing.Point(189, 285);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(178, 20);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "دسته بندی سطح اول شیپور چت\r\n";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label15.ForeColor = System.Drawing.Color.Silver;
+            this.label15.Location = new System.Drawing.Point(3, 285);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(180, 20);
+            this.label15.TabIndex = 44;
+            this.label15.Text = "دسته بندی سطح دوم شیپور چت\r\n";
+            // 
+            // comboBoxEx3
+            // 
+            this.comboBoxEx3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxEx3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxEx3.DisplayMember = "Name";
+            this.comboBoxEx3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEx3.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboBoxEx3.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEx3.ItemHeight = 20;
+            this.comboBoxEx3.Location = new System.Drawing.Point(214, 308);
+            this.comboBoxEx3.Name = "comboBoxEx3";
+            this.comboBoxEx3.Size = new System.Drawing.Size(154, 28);
+            this.comboBoxEx3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx3.TabIndex = 43;
+            this.comboBoxEx3.ValueMember = "Guid";
+            this.comboBoxEx3.SelectedIndexChanged += new System.EventHandler(this.cmbSheypoorCat1_SelectedIndexChanged);
+            // 
+            // comboBoxEx4
+            // 
+            this.comboBoxEx4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxEx4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxEx4.DisplayMember = "Name";
+            this.comboBoxEx4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEx4.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboBoxEx4.ForeColor = System.Drawing.Color.Black;
+            this.comboBoxEx4.ItemHeight = 20;
+            this.comboBoxEx4.Location = new System.Drawing.Point(25, 308);
+            this.comboBoxEx4.Name = "comboBoxEx4";
+            this.comboBoxEx4.Size = new System.Drawing.Size(154, 28);
+            this.comboBoxEx4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx4.TabIndex = 42;
+            this.comboBoxEx4.ValueMember = "Guid";
+            // 
             // frmSimcard_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(399, 400);
+            this.ClientSize = new System.Drawing.Size(399, 496);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
@@ -1196,9 +1402,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(415, 439);
+            this.MaximumSize = new System.Drawing.Size(415, 535);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(415, 439);
+            this.MinimumSize = new System.Drawing.Size(415, 535);
             this.Name = "frmSimcard_Main";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1222,7 +1428,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorCBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat2BingingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat1BingingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat3BingingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).EndInit();
@@ -1300,10 +1508,6 @@
         public DevComponents.DotNetBar.Controls.ComboBoxEx cmbSheypoorCat1;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chbIsSendChat;
-        private System.Windows.Forms.CheckBox chbIsEnableChat;
-        private System.Windows.Forms.CheckBox chbIsSendAdv;
-        private System.Windows.Forms.CheckBox chbIsEnableNumber;
         private System.Windows.Forms.BindingSource SheypoorCat2BingingSource;
         private System.Windows.Forms.BindingSource SheypoorCat1BingingSource;
         private System.Windows.Forms.BindingSource DivarCat3BingingSource;
@@ -1311,5 +1515,23 @@
         private System.Windows.Forms.BindingSource DivarCat1BingingSource;
         public System.Windows.Forms.TextBox txtChatCount;
         public System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chbIsSendChat;
+        private System.Windows.Forms.CheckBox chbIsEnableChat;
+        private System.Windows.Forms.CheckBox chbIsSendAdv;
+        private System.Windows.Forms.CheckBox chbIsEnableNumber;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx cmbSheypoorCity;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx cmbDivarCity;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label10;
+        private System.Windows.Forms.BindingSource SheypoorCBindingSource;
+        private System.Windows.Forms.BindingSource DivarCBindingSource;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx4;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx3;
+        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label label14;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx2;
+        public System.Windows.Forms.Label label13;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx1;
+        public System.Windows.Forms.Label label12;
     }
 }

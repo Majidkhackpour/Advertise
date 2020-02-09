@@ -31,30 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdsSettings));
             this.lblHeader = new System.Windows.Forms.Label();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.cmbDeleteDay = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem1 = new DevComponents.Editors.ComboItem();
-            this.comboItem2 = new DevComponents.Editors.ComboItem();
-            this.comboItem3 = new DevComponents.Editors.ComboItem();
-            this.comboItem4 = new DevComponents.Editors.ComboItem();
-            this.txtCat3 = new System.Windows.Forms.TextBox();
             this.btnSearchAdv = new DevComponents.DotNetBar.ButtonX();
             this.txtAdvAddress = new System.Windows.Forms.TextBox();
             this.txtUpdateDayCount = new System.Windows.Forms.TextBox();
             this.txtCountPic = new System.Windows.Forms.TextBox();
             this.txtAdvInIP = new System.Windows.Forms.TextBox();
-            this.txtCat2 = new System.Windows.Forms.TextBox();
             this.txtAdvInMounth = new System.Windows.Forms.TextBox();
-            this.txtCat1 = new System.Windows.Forms.TextBox();
             this.txtAdvInDay = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.uC_Date1 = new UC_Date.UC_Date();
@@ -62,6 +50,13 @@
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtFirstAdd = new System.Windows.Forms.TextBox();
+            this.btnSearch1 = new DevComponents.DotNetBar.ButtonX();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSecondAdd = new System.Windows.Forms.TextBox();
+            this.btnSearch2 = new DevComponents.DotNetBar.ButtonX();
+            this.folderBrowserDialog3 = new System.Windows.Forms.FolderBrowserDialog();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,31 +76,29 @@
             // 
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grpAccount.Controls.Add(this.cmbDeleteDay);
-            this.grpAccount.Controls.Add(this.txtCat3);
+            this.grpAccount.Controls.Add(this.btnSearch2);
+            this.grpAccount.Controls.Add(this.btnSearch1);
             this.grpAccount.Controls.Add(this.btnSearchAdv);
+            this.grpAccount.Controls.Add(this.txtSecondAdd);
+            this.grpAccount.Controls.Add(this.txtFirstAdd);
             this.grpAccount.Controls.Add(this.txtAdvAddress);
             this.grpAccount.Controls.Add(this.txtUpdateDayCount);
             this.grpAccount.Controls.Add(this.txtCountPic);
             this.grpAccount.Controls.Add(this.txtAdvInIP);
-            this.grpAccount.Controls.Add(this.txtCat2);
+            this.grpAccount.Controls.Add(this.label4);
             this.grpAccount.Controls.Add(this.txtAdvInMounth);
-            this.grpAccount.Controls.Add(this.txtCat1);
+            this.grpAccount.Controls.Add(this.label3);
             this.grpAccount.Controls.Add(this.txtAdvInDay);
-            this.grpAccount.Controls.Add(this.label10);
             this.grpAccount.Controls.Add(this.label12);
-            this.grpAccount.Controls.Add(this.label17);
             this.grpAccount.Controls.Add(this.label1);
             this.grpAccount.Controls.Add(this.label15);
             this.grpAccount.Controls.Add(this.label9);
-            this.grpAccount.Controls.Add(this.label6);
             this.grpAccount.Controls.Add(this.label7);
-            this.grpAccount.Controls.Add(this.label4);
             this.grpAccount.Controls.Add(this.label2);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(12, 55);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(361, 313);
+            this.grpAccount.Size = new System.Drawing.Size(361, 467);
             // 
             // 
             // 
@@ -137,56 +130,6 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 0;
             // 
-            // cmbDeleteDay
-            // 
-            this.cmbDeleteDay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbDeleteDay.DisplayMember = "Name";
-            this.cmbDeleteDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDeleteDay.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.cmbDeleteDay.ForeColor = System.Drawing.Color.Black;
-            this.cmbDeleteDay.ItemHeight = 20;
-            this.cmbDeleteDay.Items.AddRange(new object[] {
-            this.comboItem1,
-            this.comboItem2,
-            this.comboItem3,
-            this.comboItem4});
-            this.cmbDeleteDay.Location = new System.Drawing.Point(17, 197);
-            this.cmbDeleteDay.Name = "cmbDeleteDay";
-            this.cmbDeleteDay.Size = new System.Drawing.Size(139, 28);
-            this.cmbDeleteDay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbDeleteDay.TabIndex = 7;
-            this.cmbDeleteDay.ValueMember = "Guid";
-            // 
-            // comboItem1
-            // 
-            this.comboItem1.Text = "یک روز";
-            // 
-            // comboItem2
-            // 
-            this.comboItem2.Text = "یک هفته";
-            // 
-            // comboItem3
-            // 
-            this.comboItem3.Text = "پانزده روز";
-            // 
-            // comboItem4
-            // 
-            this.comboItem4.Text = "یک ماه";
-            // 
-            // txtCat3
-            // 
-            this.txtCat3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCat3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtCat3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCat3.ForeColor = System.Drawing.Color.Silver;
-            this.txtCat3.Location = new System.Drawing.Point(17, 143);
-            this.txtCat3.MaxLength = 300;
-            this.txtCat3.Name = "txtCat3";
-            this.txtCat3.Size = new System.Drawing.Size(139, 27);
-            this.txtCat3.TabIndex = 5;
-            this.txtCat3.Enter += new System.EventHandler(this.txtCat3_Enter);
-            this.txtCat3.Leave += new System.EventHandler(this.txtCat3_Leave);
-            // 
             // btnSearchAdv
             // 
             this.btnSearchAdv.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -194,7 +137,7 @@
             this.btnSearchAdv.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSearchAdv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearchAdv.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearchAdv.Location = new System.Drawing.Point(165, 260);
+            this.btnSearchAdv.Location = new System.Drawing.Point(5, 311);
             this.btnSearchAdv.Name = "btnSearchAdv";
             this.btnSearchAdv.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnSearchAdv.Size = new System.Drawing.Size(23, 27);
@@ -212,10 +155,10 @@
             this.txtAdvAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAdvAddress.Enabled = false;
             this.txtAdvAddress.ForeColor = System.Drawing.Color.Silver;
-            this.txtAdvAddress.Location = new System.Drawing.Point(194, 260);
+            this.txtAdvAddress.Location = new System.Drawing.Point(32, 311);
             this.txtAdvAddress.MaxLength = 3000;
             this.txtAdvAddress.Name = "txtAdvAddress";
-            this.txtAdvAddress.Size = new System.Drawing.Size(139, 27);
+            this.txtAdvAddress.Size = new System.Drawing.Size(301, 27);
             this.txtAdvAddress.TabIndex = 8;
             this.txtAdvAddress.Enter += new System.EventHandler(this.txtAdvAddress_Enter);
             this.txtAdvAddress.Leave += new System.EventHandler(this.txtAdvAddress_Leave);
@@ -226,10 +169,10 @@
             this.txtUpdateDayCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUpdateDayCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUpdateDayCount.ForeColor = System.Drawing.Color.Silver;
-            this.txtUpdateDayCount.Location = new System.Drawing.Point(17, 260);
+            this.txtUpdateDayCount.Location = new System.Drawing.Point(32, 254);
             this.txtUpdateDayCount.MaxLength = 3000;
             this.txtUpdateDayCount.Name = "txtUpdateDayCount";
-            this.txtUpdateDayCount.Size = new System.Drawing.Size(139, 27);
+            this.txtUpdateDayCount.Size = new System.Drawing.Size(301, 27);
             this.txtUpdateDayCount.TabIndex = 10;
             this.txtUpdateDayCount.Enter += new System.EventHandler(this.txtUpdateDayCount_Enter);
             this.txtUpdateDayCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUpdateDayCount_KeyPress);
@@ -241,10 +184,10 @@
             this.txtCountPic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtCountPic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCountPic.ForeColor = System.Drawing.Color.Silver;
-            this.txtCountPic.Location = new System.Drawing.Point(194, 198);
+            this.txtCountPic.Location = new System.Drawing.Point(32, 198);
             this.txtCountPic.MaxLength = 3000;
             this.txtCountPic.Name = "txtCountPic";
-            this.txtCountPic.Size = new System.Drawing.Size(139, 27);
+            this.txtCountPic.Size = new System.Drawing.Size(301, 27);
             this.txtCountPic.TabIndex = 6;
             this.txtCountPic.Enter += new System.EventHandler(this.txtCountPic_Enter);
             this.txtCountPic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCountPic_KeyPress);
@@ -256,28 +199,14 @@
             this.txtAdvInIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtAdvInIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAdvInIP.ForeColor = System.Drawing.Color.Silver;
-            this.txtAdvInIP.Location = new System.Drawing.Point(194, 143);
+            this.txtAdvInIP.Location = new System.Drawing.Point(32, 143);
             this.txtAdvInIP.MaxLength = 3000;
             this.txtAdvInIP.Name = "txtAdvInIP";
-            this.txtAdvInIP.Size = new System.Drawing.Size(139, 27);
+            this.txtAdvInIP.Size = new System.Drawing.Size(301, 27);
             this.txtAdvInIP.TabIndex = 4;
             this.txtAdvInIP.Enter += new System.EventHandler(this.txtAdvInIP_Enter);
             this.txtAdvInIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInIP_KeyPress);
             this.txtAdvInIP.Leave += new System.EventHandler(this.txtAdvInIP_Leave);
-            // 
-            // txtCat2
-            // 
-            this.txtCat2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCat2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtCat2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCat2.ForeColor = System.Drawing.Color.Silver;
-            this.txtCat2.Location = new System.Drawing.Point(17, 88);
-            this.txtCat2.MaxLength = 300;
-            this.txtCat2.Name = "txtCat2";
-            this.txtCat2.Size = new System.Drawing.Size(139, 27);
-            this.txtCat2.TabIndex = 3;
-            this.txtCat2.Enter += new System.EventHandler(this.txtCat2_Enter);
-            this.txtCat2.Leave += new System.EventHandler(this.txtCat2_Leave);
             // 
             // txtAdvInMounth
             // 
@@ -285,28 +214,14 @@
             this.txtAdvInMounth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtAdvInMounth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAdvInMounth.ForeColor = System.Drawing.Color.Silver;
-            this.txtAdvInMounth.Location = new System.Drawing.Point(194, 88);
+            this.txtAdvInMounth.Location = new System.Drawing.Point(32, 88);
             this.txtAdvInMounth.MaxLength = 3000;
             this.txtAdvInMounth.Name = "txtAdvInMounth";
-            this.txtAdvInMounth.Size = new System.Drawing.Size(139, 27);
+            this.txtAdvInMounth.Size = new System.Drawing.Size(301, 27);
             this.txtAdvInMounth.TabIndex = 2;
             this.txtAdvInMounth.Enter += new System.EventHandler(this.txtAdvInMounth_Enter);
             this.txtAdvInMounth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInMounth_KeyPress);
             this.txtAdvInMounth.Leave += new System.EventHandler(this.txtAdvInMounth_Leave);
-            // 
-            // txtCat1
-            // 
-            this.txtCat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCat1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtCat1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCat1.ForeColor = System.Drawing.Color.Silver;
-            this.txtCat1.Location = new System.Drawing.Point(17, 33);
-            this.txtCat1.MaxLength = 300;
-            this.txtCat1.Name = "txtCat1";
-            this.txtCat1.Size = new System.Drawing.Size(139, 27);
-            this.txtCat1.TabIndex = 1;
-            this.txtCat1.Enter += new System.EventHandler(this.txtCat1_Enter);
-            this.txtCat1.Leave += new System.EventHandler(this.txtCat1_Leave);
             // 
             // txtAdvInDay
             // 
@@ -314,27 +229,14 @@
             this.txtAdvInDay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtAdvInDay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAdvInDay.ForeColor = System.Drawing.Color.Silver;
-            this.txtAdvInDay.Location = new System.Drawing.Point(194, 33);
+            this.txtAdvInDay.Location = new System.Drawing.Point(32, 33);
             this.txtAdvInDay.MaxLength = 11;
             this.txtAdvInDay.Name = "txtAdvInDay";
-            this.txtAdvInDay.Size = new System.Drawing.Size(139, 27);
+            this.txtAdvInDay.Size = new System.Drawing.Size(301, 27);
             this.txtAdvInDay.TabIndex = 0;
             this.txtAdvInDay.Enter += new System.EventHandler(this.txtAdvInDay_Enter);
             this.txtAdvInDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdvInDay_KeyPress);
             this.txtAdvInDay.Leave += new System.EventHandler(this.txtAdvInDay_Leave);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label10.ForeColor = System.Drawing.Color.Silver;
-            this.label10.Location = new System.Drawing.Point(17, 118);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(138, 20);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "دسته بندی سطح سه";
             // 
             // label12
             // 
@@ -343,24 +245,11 @@
             this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label12.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label12.ForeColor = System.Drawing.Color.Silver;
-            this.label12.Location = new System.Drawing.Point(213, 235);
+            this.label12.Location = new System.Drawing.Point(180, 286);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 20);
+            this.label12.Size = new System.Drawing.Size(152, 20);
             this.label12.TabIndex = 30;
-            this.label12.Text = "آدرس آگهی ها";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label17.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label17.ForeColor = System.Drawing.Color.Silver;
-            this.label17.Location = new System.Drawing.Point(17, 173);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(138, 20);
-            this.label17.TabIndex = 30;
-            this.label17.Text = "حذف آگهی ها تا";
+            this.label12.Text = "آدرس ذخیره سازی اطلاعات";
             // 
             // label1
             // 
@@ -369,7 +258,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(17, 235);
+            this.label1.Location = new System.Drawing.Point(194, 229);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 20);
             this.label1.TabIndex = 30;
@@ -401,19 +290,6 @@
             this.label9.TabIndex = 30;
             this.label9.Text = "تعداد آگهی در هر IP";
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label6.ForeColor = System.Drawing.Color.Silver;
-            this.label6.Location = new System.Drawing.Point(17, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 20);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "دسته بندی سطح دو";
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -426,19 +302,6 @@
             this.label7.Size = new System.Drawing.Size(138, 20);
             this.label7.TabIndex = 30;
             this.label7.Text = "تعداد آگهی ارسال در ماه";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(3, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 20);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "دسته بندی سطح یک";
             // 
             // label2
             // 
@@ -456,7 +319,7 @@
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(4, 370);
+            this.line1.Location = new System.Drawing.Point(4, 528);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(399, 19);
             this.line1.TabIndex = 55695;
@@ -481,7 +344,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(228, 393);
+            this.btnFinish.Location = new System.Drawing.Point(228, 546);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(145, 25);
@@ -500,7 +363,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 393);
+            this.btnCancel.Location = new System.Drawing.Point(12, 546);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(125, 25);
@@ -511,12 +374,104 @@
             this.btnCancel.ThemeAware = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(124, 341);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(208, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "آدرس فایل اولیه چت ارسالی";
+            // 
+            // txtFirstAdd
+            // 
+            this.txtFirstAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtFirstAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstAdd.Enabled = false;
+            this.txtFirstAdd.ForeColor = System.Drawing.Color.Silver;
+            this.txtFirstAdd.Location = new System.Drawing.Point(32, 366);
+            this.txtFirstAdd.MaxLength = 3000;
+            this.txtFirstAdd.Name = "txtFirstAdd";
+            this.txtFirstAdd.Size = new System.Drawing.Size(301, 27);
+            this.txtFirstAdd.TabIndex = 8;
+            this.txtFirstAdd.Enter += new System.EventHandler(this.txtAdvAddress_Enter);
+            this.txtFirstAdd.Leave += new System.EventHandler(this.txtAdvAddress_Leave);
+            // 
+            // btnSearch1
+            // 
+            this.btnSearch1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearch1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSearch1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSearch1.Location = new System.Drawing.Point(5, 366);
+            this.btnSearch1.Name = "btnSearch1";
+            this.btnSearch1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSearch1.Size = new System.Drawing.Size(23, 27);
+            this.btnSearch1.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSearch1.TabIndex = 9;
+            this.btnSearch1.Text = "...";
+            this.btnSearch1.TextColor = System.Drawing.Color.Silver;
+            this.btnSearch1.ThemeAware = true;
+            this.btnSearch1.Click += new System.EventHandler(this.btnSearch1_Click);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.ForeColor = System.Drawing.Color.Silver;
+            this.label4.Location = new System.Drawing.Point(143, 394);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 20);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "آدرس فایل ثانویه چت ارسالی";
+            // 
+            // txtSecondAdd
+            // 
+            this.txtSecondAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSecondAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSecondAdd.Enabled = false;
+            this.txtSecondAdd.ForeColor = System.Drawing.Color.Silver;
+            this.txtSecondAdd.Location = new System.Drawing.Point(32, 419);
+            this.txtSecondAdd.MaxLength = 3000;
+            this.txtSecondAdd.Name = "txtSecondAdd";
+            this.txtSecondAdd.Size = new System.Drawing.Size(301, 27);
+            this.txtSecondAdd.TabIndex = 8;
+            this.txtSecondAdd.Enter += new System.EventHandler(this.txtAdvAddress_Enter);
+            this.txtSecondAdd.Leave += new System.EventHandler(this.txtAdvAddress_Leave);
+            // 
+            // btnSearch2
+            // 
+            this.btnSearch2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearch2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSearch2.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearch2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSearch2.Location = new System.Drawing.Point(5, 419);
+            this.btnSearch2.Name = "btnSearch2";
+            this.btnSearch2.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSearch2.Size = new System.Drawing.Size(23, 27);
+            this.btnSearch2.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSearch2.TabIndex = 9;
+            this.btnSearch2.Text = "...";
+            this.btnSearch2.TextColor = System.Drawing.Color.Silver;
+            this.btnSearch2.ThemeAware = true;
+            this.btnSearch2.Click += new System.EventHandler(this.btnSearch2_Click);
+            // 
             // frmAdsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(383, 427);
+            this.ClientSize = new System.Drawing.Size(383, 577);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.uC_Date1);
             this.Controls.Add(this.btnCancel);
@@ -528,9 +483,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(399, 466);
+            this.MaximumSize = new System.Drawing.Size(399, 616);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(399, 466);
+            this.MinimumSize = new System.Drawing.Size(399, 616);
             this.Name = "frmAdsSettings";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -552,30 +507,25 @@
         public System.Windows.Forms.Label label9;
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label2;
-        public DevComponents.DotNetBar.Controls.ComboBoxEx cmbDeleteDay;
         private DevComponents.DotNetBar.Controls.Line line1;
-        public System.Windows.Forms.TextBox txtCat3;
         public System.Windows.Forms.TextBox txtAdvAddress;
         public System.Windows.Forms.TextBox txtCountPic;
-        public System.Windows.Forms.TextBox txtCat2;
-        public System.Windows.Forms.TextBox txtCat1;
-        public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label12;
-        public System.Windows.Forms.Label label17;
         public System.Windows.Forms.Label label15;
-        public System.Windows.Forms.Label label6;
-        public System.Windows.Forms.Label label4;
         public DevComponents.DotNetBar.ButtonX btnSearchAdv;
         private UC_Date.UC_Date uC_Date1;
-        private DevComponents.Editors.ComboItem comboItem1;
-        private DevComponents.Editors.ComboItem comboItem2;
-        private DevComponents.Editors.ComboItem comboItem3;
-        private DevComponents.Editors.ComboItem comboItem4;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
         public System.Windows.Forms.TextBox txtUpdateDayCount;
         public System.Windows.Forms.Label label1;
         public DevComponents.DotNetBar.ButtonX btnFinish;
         public DevComponents.DotNetBar.ButtonX btnCancel;
+        public DevComponents.DotNetBar.ButtonX btnSearch2;
+        public DevComponents.DotNetBar.ButtonX btnSearch1;
+        public System.Windows.Forms.TextBox txtSecondAdd;
+        public System.Windows.Forms.TextBox txtFirstAdd;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog3;
     }
 }

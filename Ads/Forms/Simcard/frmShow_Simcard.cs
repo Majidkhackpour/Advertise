@@ -144,5 +144,53 @@ namespace Ads.Forms.Simcard
         {
             DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
+
+        private async void mnuDivarLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var divar = await DivarAdv.GetInstance();
+                await divar.Login(number);
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private async void mnuDivarChatLogIn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var divar = await DivarAdv.GetInstance();
+                await divar.LoginChat(number);
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private async void mnuSheypoorLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var shey = await SheypoorAdv.GetInstance();
+                await shey.Login(number);
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }

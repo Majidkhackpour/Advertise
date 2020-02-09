@@ -77,21 +77,21 @@ namespace Ads
                 //DivarCat3 = txtD_Cat3.Text,
                 //DivarCat1 = txtD_Cat1.Text,
                 //DivarPicPath = txtD_Address.Text,
-                CountAdvInDayDivar = int.Parse(txtD_CountInDay.Text),
-                CountAdvInDaySheypoor = int.Parse(txtSh_CountInDay.Text),
-                CountAdvInIPDivar = int.Parse(txtD_CountInIP.Text),
-                CountAdvInIPSheypoor = int.Parse(txtSh_CountInIP.Text),
-                CountAdvInMounthDivar = int.Parse(txtD_CountInMounth.Text),
-                CountAdvInMounthSheypoor = int.Parse(txtSh_CountInMounth.Text),
+                //CountAdvInDayDivar = int.Parse(txtD_CountInDay.Text),
+                //CountAdvInDaySheypoor = int.Parse(txtSh_CountInDay.Text),
+                //CountAdvInIPDivar = int.Parse(txtD_CountInIP.Text),
+                //CountAdvInIPSheypoor = int.Parse(txtSh_CountInIP.Text),
+                //CountAdvInMounthDivar = int.Parse(txtD_CountInMounth.Text),
+                //CountAdvInMounthSheypoor = int.Parse(txtSh_CountInMounth.Text),
                // DivarCat2 = txtD_Cat2.Text,
-                DivarDayCountForUpdateState = 10,
+               // DivarDayCountForUpdateState = 10,
                 //SheypoorCat1 = txtSh_Cat1.Text,
                 //SheypoorCat2 = txtSh_Cat2.Text,
                 //SheypoorCat3 = txtSh_Cat3.Text,
-                SheypoorDayCountForUpdateState = 10,
+               // SheypoorDayCountForUpdateState = 10,
                // SheypoorPicPath = txtSh_Address.Text,
-                DivarMaxImgCount = int.Parse(txtDivarMaxImg.Text),
-                SheypoorMaxImgCount = int.Parse(txtSheypoorMaxImg.Text)
+                //DivarMaxImgCount = int.Parse(txtDivarMaxImg.Text),
+                //SheypoorMaxImgCount = int.Parse(txtSheypoorMaxImg.Text)
             };
             await r.SaveAsync();
         }
@@ -125,8 +125,8 @@ namespace Ads
 
         private async void btnSendAdv_Click(object sender, EventArgs e)
         {
-            var divar = await DivarAdv.GetInstance();
-            await divar.StartRegisterAdv();
+            //var divar = await DivarAdv.GetInstance();
+            //await divar.StartRegisterAdv();
         }
 
         private async void btnInsSimcardAds_Click(object sender, EventArgs e)
@@ -197,7 +197,7 @@ namespace Ads
             var list = new List<string>();
             list.Add("نرم افزار حسابداری نوین پرداز...... تلفن جهت هماهنگی و مشاوره 05137597590");
             var divar = await DivarAdv.GetInstance();
-            await divar.SendChat(list, 5, "تهران", null, null, null);
+            //await divar.SendChat(list, 5, "تهران", null, null, null);
         }
     }
 }

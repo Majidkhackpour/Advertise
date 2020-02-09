@@ -18,10 +18,12 @@ namespace Ads.Forms.Mains
     {
         private AdvertiseBussines _adv;
         readonly List<string> lstList = new List<string>();
+        private List<string> lstContent = new List<string>();
         private string _pictureNameForClick = null;
         private PictureBox _orGpicBox;
         private PictureBox _fakepicBox;
         private string _picNameJari = "";
+        private int top;
         private Guid _groupGuid;
         public Guid GroupGuid
         {
@@ -102,8 +104,13 @@ namespace Ads.Forms.Mains
         {
             await LoadGroups();
             await FillAdvGroups();
+            txtDesc.Text = "";
             txtName.Text = _adv.AdvName;
-            txtDesc.Text = _adv.Content;
+            if (_adv.Content != null && _adv.Content.Count != 0)
+                lstContent = _adv.Content.Select(q => q.Content).OrderBy(p => p).ToList();
+            top = 0;
+            if (lstContent.Count > 0)
+                txtDesc.Text = lstContent[0];
             txtTitles.Text = "";
             if (_adv.Titles != null && _adv.Titles.Count != 0)
             {
@@ -135,10 +142,12 @@ namespace Ads.Forms.Mains
             try
             {
                 var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+                divarCat1 = divarCat1.OrderBy(q => q.Name).ToList();
                 DivarCat1BingingSource.DataSource = divarCat1;
 
 
                 var SheypoorCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
+                SheypoorCat1 = SheypoorCat1.OrderBy(q => q.Name).ToList();
                 SheypoorCat1BingingSource.DataSource = SheypoorCat1;
 
             }
@@ -416,6 +425,7 @@ namespace Ads.Forms.Mains
             try
             {
                 var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat2.SelectedValue, AdvertiseType.Divar);
+                divarCat3 = divarCat3.OrderBy(q => q.Name).ToList();
                 DivarCat3BingingSource.DataSource = divarCat3;
             }
             catch (Exception exception)
@@ -434,6 +444,7 @@ namespace Ads.Forms.Mains
             try
             {
                 var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat1.SelectedValue, AdvertiseType.Divar);
+                divarCat2 = divarCat2.OrderBy(q => q.Name).ToList();
                 DivarCat2BingingSource.DataSource = divarCat2;
             }
             catch (Exception exception)
@@ -447,6 +458,7 @@ namespace Ads.Forms.Mains
             try
             {
                 var sheypoorCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbSheypoorCat1.SelectedValue, AdvertiseType.Sheypoor);
+                sheypoorCat2 = sheypoorCat2.OrderBy(q => q.Name).ToList();
                 SheypoorCat2BingingSource.DataSource = sheypoorCat2;
             }
             catch (Exception exception)
@@ -555,23 +567,22 @@ namespace Ads.Forms.Mains
                             lstErrors.Add($"عنوان سطر {i} با عنوان سطر {j} مشابه است");
                 //////////////////////////////////////////////////////////////////////////
 
-                if (string.IsNullOrWhiteSpace(txtDesc.Text))
+                for (var i = 1; i < lstContent.Count; i++)
                 {
-                    error = "وارد کردن محتوای آگهی الزامی است";
-                    lstErrors.Add(error);
+                    if (lstContent[i - 1].Length < 20)
+                    {
+                        error = $"محتوای آگهی {txtDesc.Text.Length} حرف است. نباید کمتر از 20 کاراکتر باشد";
+                        lstErrors.Add(error);
+                    }
+                    else if (lstContent[i - 1].Length > 900)
+                    {
+                        error = $"محتوای آگهی {txtDesc.Text.Length} حرف است. نباید بیشتر از 900 کاراکتر باشد";
+                        lstErrors.Add(error);
+                    }
                 }
 
-                if (txtDesc.Text.Length < 20)
-                {
-                    error = $"محتوای آگهی {txtDesc.Text.Length} حرف است. نباید کمتر از 20 کاراکتر باشد";
-                    lstErrors.Add(error);
-                }
 
-                if (txtDesc.Text.Length > 900)
-                {
-                    error = $"محتوای آگهی {txtDesc.Text.Length} حرف است. نباید بیشتر از 900 کاراکتر باشد";
-                    lstErrors.Add(error);
-                }
+
 
                 if (string.IsNullOrWhiteSpace(txtPrice.Text))
                 {
@@ -608,15 +619,20 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                btnFinish.Enabled = false;
                 if (_adv.Guid == Guid.Empty)
                 {
                     _adv.Guid = Guid.NewGuid();
                     _adv.DateSabt = DateConvertor.M2SH(DateTime.Now);
                 }
+
                 var checker = await CheckValidation();
                 if (checker.Count > 0)
                 {
-                    FarsiMessegeBox.Show(checker.ToString());
+                    var msg = "";
+                    for (var i = 0; i < checker.Count; i++)
+                        msg += checker[i] + "\r\n";
+                    FarsiMessegeBox.Show(msg.Replace("\r\n", "'\n'"));
                     return;
                 }
 
@@ -670,7 +686,20 @@ namespace Ads.Forms.Mains
                     lstI.Add(a);
                 }
 
-                _adv.Content = txtDesc.Text.Trim();
+                var lstC = new List<AdvContentBussines>();
+                foreach (var item in lstContent)
+                {
+                    var a = new AdvContentBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        DateSabt = DateConvertor.M2SH(DateTime.Now),
+                        Status = true,
+                        Content = item,
+                        AdvGuid = _adv.Guid
+                    };
+                    lstC.Add(a);
+                }
+
                 _adv.AdvName = txtName.Text.Trim();
                 _adv.Price = txtPrice.Text;
                 _adv.Status = true;
@@ -681,7 +710,7 @@ namespace Ads.Forms.Mains
                 _adv.SheypoorCatGuid1 = (Guid)cmbSheypoorCat1.SelectedValue;
                 _adv.SheypoorCatGuid2 = (Guid)cmbSheypoorCat2.SelectedValue;
 
-                await _adv.SaveAsync(lstT, lstI);
+                await _adv.SaveAsync(lstT, lstI, lstC);
 
                 _adv = new AdvertiseBussines();
                 grpAccount.Enabled = false;
@@ -693,6 +722,10 @@ namespace Ads.Forms.Mains
             catch (Exception exception)
             {
                 FarsiMessegeBox.Show(exception.Message);
+            }
+            finally
+            {
+                btnFinish.Enabled = true;
             }
         }
 
@@ -710,6 +743,73 @@ namespace Ads.Forms.Mains
             {
                 FarsiMessegeBox.Show(exception.Message);
             }
+        }
+
+        private void btnInsNewContent_Click(object sender, EventArgs e)
+        {
+            Next();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Back();
+        }
+        public void Next()
+        {
+            try
+            {
+                if (top >= lstContent.Count - 1) return;
+                top++;
+                txtDesc.Text = lstContent[top];
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
+        public void Back()
+        {
+            try
+            {
+                if (top <= 0 || top - 1 > lstContent.Count) return;
+                top--;
+                txtDesc.Text = lstContent[top];
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
+
+        private void btnSaveInList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstContent.Count == top)
+                {
+                    lstContent.Add(txtDesc.Text);
+                    top++;
+                }
+                else
+                {
+                    lstContent.RemoveAt(top);
+                    lstContent.Add(txtDesc.Text);
+                    top++;
+                }
+                txtDesc.Text = "";
+                top = lstContent.Count;
+                txtDesc.Focus();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            top = lstContent.Count;
+            txtDesc.Text = "";
         }
     }
 }
