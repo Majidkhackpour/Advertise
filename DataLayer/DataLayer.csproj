@@ -62,6 +62,7 @@
     <Compile Include="Core\IAdvPicturesRepository.cs" />
     <Compile Include="Core\IAdvTitlesRepository.cs" />
     <Compile Include="Core\IAdvTokensRepository.cs" />
+    <Compile Include="Core\IChatNumbersRepository.cs" />
     <Compile Include="Core\IDivarCityRepository.cs" />
     <Compile Include="Core\IDivarSimCityRepository.cs" />
     <Compile Include="Core\IRegionRepository.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
     <Compile Include="Interface\Entities\IAdvContent.cs" />
+    <Compile Include="Interface\Entities\IChatNumbers.cs" />
     <Compile Include="Migration\202002071329475_11.cs" />
     <Compile Include="Migration\202002071329475_11.designer.cs">
       <DependentUpon>202002071329475_11.cs</DependentUpon>
@@ -155,6 +157,7 @@
     <Compile Include="Models\AdvertiseLog.cs" />
     <Compile Include="Models\AdvGroup.cs" />
     <Compile Include="Models\AdvTokens.cs" />
+    <Compile Include="Models\ChatNumbers.cs" />
     <Compile Include="Models\DivarCity.cs" />
     <Compile Include="Models\DivarSimCity.cs" />
     <Compile Include="Models\Region.cs" />
@@ -172,6 +175,7 @@
     <Compile Include="Persitence\AdvPicturesPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvTitlesPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvTokensPersistenceRepository.cs" />
+    <Compile Include="Persitence\ChatNumbersPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarCityPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarSimCityPersistenceRepository.cs" />
     <Compile Include="Persitence\GenericRepository.cs" />

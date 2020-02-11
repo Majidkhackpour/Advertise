@@ -24,6 +24,7 @@ namespace DataLayer.Persitence
         private IAdvPicturesRepository _advPicturesRepository;
         private IAdvTitlesRepository _advTitlesRepository;
         private IAdvContentRepository _advContentsRepository;
+        private IChatNumbersRepository _chatNumbersRepository;
 
         public void Dispose()
         {
@@ -56,5 +57,8 @@ namespace DataLayer.Persitence
         public IAdvPicturesRepository AdvPictures => _advPicturesRepository ?? (_advPicturesRepository = new AdvPicturesPersistenceRepository(db));
         public IAdvTitlesRepository AdvTitles => _advTitlesRepository ?? (_advTitlesRepository = new AdvTitlesPersistenceRepository(db));
         public IAdvContentRepository AdvContents => _advContentsRepository ?? (_advContentsRepository = new AdvContentPersistenceRepository(db));
+
+        public IChatNumbersRepository ChatNumbers =>
+            _chatNumbersRepository ?? (_chatNumbersRepository = new ChatNumbersPersistenceRepository(db));
     }
 }

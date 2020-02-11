@@ -53,6 +53,14 @@ namespace BussinesLayer
                 return !string.IsNullOrEmpty(tok);
             }
         }
+        public bool DivarChetToken
+        {
+            get
+            {
+                var tok = AdvTokensBussines.GetToken(Number, AdvertiseType.DivarChat)?.Token;
+                return !string.IsNullOrEmpty(tok);
+            }
+        }
 
         public static SimcardBussines GetAsync(AdvertiseType type)
         {

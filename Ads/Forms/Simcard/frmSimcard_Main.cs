@@ -265,7 +265,7 @@ namespace Ads.Forms.Simcard
                 cls.SheypoorCityForChat = (Guid)cmbSheypoorCity.SelectedValue;
                 cls.DivarChatCat1 = (Guid)cmbDivarChat1.SelectedValue;
                 cls.DivarChatCat2 = (Guid)cmbDivarChat2.SelectedValue;
-                cls.DivarChatCat3 = (Guid)cmbDivarChat3.SelectedValue;
+                cls.DivarChatCat3 = (Guid?)cmbDivarChat3.SelectedValue ?? Guid.Empty;
                 cls.SheypoorChatCat1 = (Guid)cmbSheypoorChat1.SelectedValue;
                 cls.SheypoorChatCat2 = (Guid)cmbSheypoorChat2.SelectedValue;
 

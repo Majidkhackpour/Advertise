@@ -154,6 +154,7 @@ namespace Ads.Forms.Simcard
                 var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
                 var divar = await DivarAdv.GetInstance();
                 await divar.Login(number);
+                await LoadData();
             }
             catch (Exception exception)
             {
@@ -170,6 +171,7 @@ namespace Ads.Forms.Simcard
                 var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
                 var divar = await DivarAdv.GetInstance();
                 await divar.LoginChat(number);
+                await LoadData();
             }
             catch (Exception exception)
             {
@@ -186,6 +188,7 @@ namespace Ads.Forms.Simcard
                 var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
                 var shey = await SheypoorAdv.GetInstance();
                 await shey.Login(number);
+                await LoadData();
             }
             catch (Exception exception)
             {

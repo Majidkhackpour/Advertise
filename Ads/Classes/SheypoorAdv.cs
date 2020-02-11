@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -583,7 +581,7 @@ namespace Ads.Classes
                 var guid2 = simCardNumber.SheypoorCatGuid2 ?? Guid.Empty;
                 newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
 
-                
+
                 return newAdvertiseLogBusiness;
             }
             catch (Exception e)
@@ -951,143 +949,156 @@ namespace Ads.Classes
 
 
         private List<string> lstMessage = new List<string>();
-        //public async Task SendChat(List<string> msg, int count, string city, string cat1, string cat2, string cat3)
-        //{
-        //    try
-        //    {
-        //        if (SemaphoreSlim.CurrentCount == 0)
-        //        {
-        //            var result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-        //                MessageBoxIcon.Question);
-        //            if (result == DialogResult.Yes)
-        //                _tokenSource?.Cancel();
-        //            else return;
-        //        }
-
-        //        var all = await SimcardBussines.GetAllAsync();
-        //        for (var k = 0; k <= all.Count; k++)
-        //        {
-        //            var sim = await SimcardBussines.GetNextSimForChat(AdvertiseType.Sheypoor);
-        //            if (sim == 0) return;
-        //            var simbus = await SimcardBussines.GetAsync(sim);
-        //            await simbus.SaveAsync();
-        //            var log = await Login(sim);
-        //            if (!log) return;
-        //            _driver.Navigate().GoToUrl("https://www.sheypoor.com");
-        //            await Utility.Wait();
-        //            _driver.FindElements(By.ClassName("pull-left")).FirstOrDefault(q => q.Text == "همه آگهی‌ها")?.Click();
-        //            await Utility.Wait();
-        //            if (!string.IsNullOrEmpty(cat1))
-        //            {
-        //                _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
-        //                await Utility.Wait();
-        //                if (string.IsNullOrEmpty(cat2))
-        //                {
-        //                    _driver.FindElements(By.TagName("strong")).FirstOrDefault(q => q.Text == cat1)?.Click();
-        //                    await Utility.Wait();
-        //                }
-        //                else
-        //                {
-        //                    _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == cat2)
-        //                        ?.Click();
-        //                    await Utility.Wait();
-        //                }
-        //            }
-
-        //            if (!string.IsNullOrEmpty(city))
-        //            {
-        //                _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
-        //                await Utility.Wait();
-        //                var citybus = await SheypoorCityBussines.GetAsync(city);
-        //                var statebus = await StateBussiness.GetAsync(citybus.StateGuid);
-        //                _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(statebus.StateName))
-        //                    ?.Click();
-        //                await Utility.Wait(1);
-        //                var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(city));
-        //                cc?.Click();
-        //                await Utility.Wait(1);
-        //            }
-        //            var ins = 0;
-        //            var name = new List<string>();
-        //            var isMatch = false;
-        //            var j = 0;
-        //            for (var i = 0; ins <= count; i++)
-        //            {
-        //                if (i >= 24 && i % 24 == 0)
-        //                {
-        //                    _driver.FindElements(By.ClassName("button")).LastOrDefault(t => t.Text == "بعدی")
-        //                        ?.Click();
-        //                    await Utility.Wait(2);
-        //                    j = 0;
-        //                }
-
-        //                var elp = _driver.FindElements(By.ClassName("serp-item"))[j];
-        //                if (name.Count <= 0)
-        //                    name.Add(elp?.Text);
-        //                foreach (var item in name)
-        //                {
-        //                    if (name.Count == 1)
-        //                        break;
-        //                    if (elp?.Text == item)
-        //                    {
-        //                        isMatch = true;
-        //                        break;
-        //                    }
-        //                    else isMatch = false;
-        //                }
-
-        //                if (isMatch) continue;
-        //                name.Add(elp?.Text);
-        //                var rnd = new Random().Next(0, msg.Count);
-        //                var send = await SendChat(elp, msg[rnd]);
-        //                if (!send) continue;
-        //                j++;
-        //                ins++;
-        //                await Utility.Wait();
-        //            }
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
-
-        private async Task<bool> SendChat(IWebElement elp, string msg)
+        public async Task SendChat(List<string> msg, List<string> msg2, int count, string city, string cat1, string cat2, string cat3, string fileName, SimcardBussines sim)
         {
             try
             {
-                elp?.Click();
-                await Utility.Wait();
-                var el = _driver.FindElements(By.TagName("span"))
-                    .Any(q => q.Text.Contains("چت با"));
-                if (!el)
+                if (SemaphoreSlim.CurrentCount == 0)
                 {
-                    _driver.Navigate().Back();
-                    return false;
-                }
-                _driver.FindElements(By.TagName("span"))
-                    .FirstOrDefault(q => q.Text.Contains("چت با"))?.Click();
-                await Utility.Wait(1);
-                var inp = _driver.FindElements(By.TagName("input")).Any();
-                while (!inp)
-                {
-                    await Utility.Wait();
-                    inp = _driver.FindElements(By.TagName("input")).Any();
+                    var result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                        _tokenSource?.Cancel();
+                    else return;
                 }
 
-                await Utility.Wait(3);
-                _driver.FindElement(By.TagName("input")).SendKeys(msg + '\n');
-                await Utility.Wait(1);
-                _driver.Navigate().Back();
-                return true;
+                //ورود به شیپور
+                if (sim.Number == 0) return;
+                var log = await Login(sim.Number);
+                if (!log) return;
+                _driver.Navigate().GoToUrl("https://www.sheypoor.com");
+                await Utility.Wait();
+                _driver.FindElements(By.ClassName("pull-left")).FirstOrDefault(q => q.Text == "همه آگهی‌ها")?.Click();
+                await Utility.Wait();
+                //انتخاب دسته بندی
+                if (!string.IsNullOrEmpty(cat1))
+                {
+                    _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
+                    await Utility.Wait();
+                    if (string.IsNullOrEmpty(cat2))
+                    {
+                        _driver.FindElements(By.TagName("strong")).FirstOrDefault(q => q.Text == cat1)?.Click();
+                        await Utility.Wait();
+                    }
+                    else
+                    {
+                        _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == cat2)
+                            ?.Click();
+                        await Utility.Wait();
+                    }
+                }
+
+                //انتخاب شهر
+                if (!string.IsNullOrEmpty(city))
+                {
+                    _driver.FindElements(By.ClassName("form-select")).LastOrDefault()?.Click();
+                    await Utility.Wait();
+                    var citybus = SheypoorCityBussines.GetAsync(city);
+                    var statebus = StateBussiness.Get(citybus.StateGuid).Name;
+                    _driver.FindElements(By.TagName("li"))?.FirstOrDefault(q => q.Text.Contains(statebus))
+                        ?.Click();
+                    await Utility.Wait(1);
+                    var cc = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text.Contains(city));
+                    cc?.Click();
+                    await Utility.Wait(1);
+                }
+                var ins = 0;
+
+                var j = 0;
+                for (var i = 0; ins <= count; i++)
+                {
+                    //رفتن به صفحه بعد در صورت نیاز
+                    if (i >= 24 && i % 24 == 0)
+                    {
+                        _driver.FindElements(By.ClassName("button")).LastOrDefault(t => t.Text == "بعدی")
+                            ?.Click();
+                        await Utility.Wait(2);
+                        j = 0;
+                    }
+
+                    //انتخاب آگهی
+                    _driver.FindElements(By.ClassName("serp-item"))[j]?.Click();
+                    //دریافت شماره
+                    var elo = _driver.FindElements(By.ClassName("button"))
+                       .FirstOrDefault(q => q.Text.Contains("تماس با"));
+
+                    elo?.Click();
+                    var txt = elo?.Text.FixString();
+
+                    //اگر شماره قبلا چت شده بود چت نکن
+                    var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Sheypoor);
+                    var n = 0;
+                    foreach (var item in allNumbers)
+                    {
+                        if (txt.FixString() == item.Number)
+                            n++;
+                    }
+
+                    if (n > 0)
+                    {
+                        _driver.Navigate().Back();
+                        continue;
+                    }
+
+                    //  متن اول چت
+
+                    var el = _driver.FindElements(By.TagName("span"))
+                        .Any(q => q.Text.Contains("چت با"));
+                    if (!el)
+                    {
+                        //چت ندارد. باید شماره ذخیره شود
+
+                        if (File.Exists(fileName))
+                        {
+                            var numbers = File.ReadAllLines(fileName).ToList();
+                            numbers.Add(txt.FixString());
+                            //غیر تکراری بودن شماره
+                            numbers = numbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
+                            File.WriteAllLines(fileName, numbers);
+                        }
+                        else
+                        {
+                            File.WriteAllText(fileName, txt.FixString());
+                        }
+
+                        _driver.Navigate().Back();
+                        continue;
+                    }
+
+                    await Utility.Wait(1);
+                    var inp = _driver.FindElements(By.TagName("input")).ToList();
+                    while (inp.Count == 1)
+                    {
+                        _driver.FindElements(By.TagName("span"))
+                            .FirstOrDefault(q => q.Text.Contains("چت با"))?.Click();
+                        await Utility.Wait(2);
+                        inp = _driver.FindElements(By.TagName("input")).ToList();
+                    }
+
+                    await Utility.Wait(3);
+                    var rnd = new Random().Next(0, msg.Count);
+                    _driver.FindElements(By.TagName("input")).FirstOrDefault()?.SendKeys(msg[rnd] + '\n');
+                    await Utility.Wait(1);
+                    // ذخیره شماره در جدول که بعدا کسی باهاش چت نکنه
+                    var chatNumbers = new ChatNumberBussines()
+                    {
+                        Guid = Guid.NewGuid(),
+                        Number = txt.FixString(),
+                        DateSabt = DateConvertor.M2SH(DateTime.Now),
+                        Status = true,
+                        Type = AdvertiseType.Sheypoor
+                    };
+                    await chatNumbers.SaveAsync();
+                    ins++;
+                    _driver.Navigate().Back();
+                    continue;
+                }
             }
             catch (Exception ex)
             {
-                return false;
+                FarsiMessegeBox.Show(ex.Message);
             }
         }
-
 
         public async Task GetCategory()
         {

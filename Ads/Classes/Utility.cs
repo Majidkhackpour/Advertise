@@ -117,7 +117,7 @@ namespace Ads.Classes
             if (rekey != null) rekey.Close();
         }
 
-        public static async Task Wait(double second = 0.5)
+        public static async Task Wait(double second = 1)
         {
             await Task.Delay((int)(second * 1000));
         }
@@ -582,11 +582,29 @@ namespace Ads.Classes
 
                         var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
 
-                       // var cat1=AdvCategoryBussines.Get(simCard.)
+                        var cat1 = AdvCategoryBussines.Get(simCard.DivarChatCat1).Name;
+                        var cat2 = AdvCategoryBussines.Get(simCard.DivarChatCat2).Name;
+                        var cat3 = AdvCategoryBussines.Get(simCard.DivarChatCat3).Name;
 
+                        var date = DateConvertor.M2SH(DateTime.Now);
+                        date = date.Replace("/", "_");
+                        var fileName = $"{cat1}__{cat2}__{cat3}__{date}";
+                        fileName = fileName.Replace(" ", "_");
                         var divar = await DivarAdv.GetInstance();
-                        //await divar.SendChat(passage1,passage2,simCard.ChatCount,city.Name,)
+                        await divar.SendChat(passage1, passage2, simCard.ChatCount, city.Name, cat1, cat2, cat3,
+                            fileName, simCard);
+
+                        var city1 =  SheypoorCityBussines.GetAsync(simCard.SheypoorCityForChat);
+
+                         cat1 = AdvCategoryBussines.Get(simCard.SheypoorChatCat1).Name;
+                         cat2 = AdvCategoryBussines.Get(simCard.SheypoorChatCat2).Name;
+
+                         var shey = await SheypoorAdv.GetInstance();
+                         await shey.SendChat(passage1, passage2, simCard.ChatCount, city1.Name, cat1, cat2, null,
+                             fileName, simCard);
                     }
+
+                    simCard.NextUse = DateTime.Now.AddHours(1);
                 }
                 await Utility.Wait(10);
                 lstMessage.Clear();
@@ -615,6 +633,35 @@ namespace Ads.Classes
             catch (Exception ex)
             {
                 FarsiMessegeBox.Show(ex.Message);
+            }
+        }
+        public static string FixString(this string input)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(input)) return "";
+                while (input.Contains("  "))
+                    input = input.Replace("  ", " ");
+                input = input.Replace("*", "×");
+                input = input.Replace("'", "");
+                input = input.Replace("ھ", "ه");
+                input = input.Replace("ك", "ک");
+                input = input.Replace("ي", "ی");
+                input = input.Replace("۰", "0").Replace("0", "0").Replace("٠", "0");
+                input = input.Replace("۱", "1").Replace("١", "1");
+                input = input.Replace("۲", "2").Replace("٢", "2");
+                input = input.Replace("٣", "3").Replace("۳", "3");
+                input = input.Replace("۴", "4").Replace("٤", "4");
+                input = input.Replace("٥", "5").Replace("۵", "5");
+                input = input.Replace("۶", "6").Replace("٦", "6");
+                input = input.Replace("٧", "7").Replace("۷", "7");
+                input = input.Replace("۸", "8").Replace("٨", "8");
+                input = input.Replace("۹", "9").Replace("٩", "9");
+                return input.Trim();
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

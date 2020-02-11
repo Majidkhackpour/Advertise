@@ -374,7 +374,7 @@ namespace Ads.Classes
             }
 
         }
-        private async Task RegisterAdv(AdvertiseLogBussines adv,SimcardBussines sim)
+        private async Task RegisterAdv(AdvertiseLogBussines adv, SimcardBussines sim)
         {
             try
             {
@@ -605,7 +605,7 @@ namespace Ads.Classes
                 }
 
 
-                
+
 
                 #endregion
 
@@ -1186,7 +1186,7 @@ namespace Ads.Classes
             }
         }
 
-        public async Task SendChat(List<string> msg, List<string> msg2, int count, string city, string cat1, string cat2, string cat3)
+        public async Task SendChat(List<string> msg, List<string> msg2, int count, string city, string cat1, string cat2, string cat3, string fileName,SimcardBussines sim)
         {
             try
             {
@@ -1199,103 +1199,170 @@ namespace Ads.Classes
                     else return;
                 }
 
-                var all = await SimcardBussines.GetAllAsync();
-                all = all.Where(q => q.Status).ToList();
-                foreach (var sim in all)
+
+                //توکن چت نداشت برگرد
+                var log2 = AdvTokensBussines.GetToken(sim.Number, AdvertiseType.DivarChat);
+                if (log2 != null && string.IsNullOrEmpty(log2.Token)) return;
+
+                //ورود به دیوار
+                var log = await Login(sim.Number);
+                if (!log) return;
+                _driver.Navigate().GoToUrl("https://divar.ir/");
+                await Utility.Wait();
+                //انتخاب شهر
+                _driver.FindElement(By.ClassName("city-selector")).Click();
+                await Utility.Wait();
+                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city)?.Click();
+                await Utility.Wait(2);
+
+                //انتخاب دسته بندی
+                if (!string.IsNullOrEmpty(cat1))
                 {
-                    var log2 = AdvTokensBussines.GetToken(sim.Number, AdvertiseType.DivarChat);
-                    if (log2 != null && string.IsNullOrEmpty(log2.Token)) continue;
-                    var simbus = await SimcardBussines.GetAsync(sim.Number);
-                    simbus.NextUse = DateTime.Now.AddDays(30);
-                    await simbus.SaveAsync();
-                    var log = await Login(sim.Number);
-                    if (!log) continue;
-                    _driver.Navigate().GoToUrl("https://divar.ir/");
+                    var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+                    if (!p) return;
+                    _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
                     await Utility.Wait();
-
-                    _driver.FindElement(By.ClassName("city-selector")).Click();
-                    await Utility.Wait();
-                    _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city)?.Click();
-                    await Utility.Wait(2);
-
-
-                    if (!string.IsNullOrEmpty(cat1))
-                    {
-                        var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
-                        if (!p) continue;
-                        _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
-                        await Utility.Wait();
-                        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat1)
+                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat1)
+                        ?.Click();
+                    if (string.IsNullOrEmpty(cat2))
+                        return;
+                    if (string.IsNullOrEmpty(cat3))
+                        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat2)
                             ?.Click();
-                        if (string.IsNullOrEmpty(cat2))
-                            continue;
-                        if (string.IsNullOrEmpty(cat3))
-                            _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat2)
-                                ?.Click();
-                        else
-                            _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat3)
-                                ?.Click();
-                        await Utility.Wait();
-                    }
-
-                    var j = 0;
-
-                    var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
-                    while (counter.Count <= count)
-                    {
-                        ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
-                        await Utility.Wait();
-                        counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
-                    }
-
-                    for (var i = 0; j < count; i++)
-                    {
-                        await Utility.Wait();
-                        _driver.FindElements(By.ClassName("col-xs-12"))[i + 1]?.Click();
-                        await Utility.Wait(1);
-                        var el = _driver.FindElements(By.ClassName("post-actions__chat")).Any();
-                        if (!el)
-                        {
-                            _driver.Navigate().Back();
-                            continue;
-                        }
-
-                        _driver.FindElement(By.ClassName("post-actions__chat")).Click();
-                        var qanoon = _driver.FindElements(By.TagName("button"))
-                            .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
-                        if (qanoon.Count > 0)
-                            qanoon.FirstOrDefault()?.Click();
-                        var dc = _driver.WindowHandles.Count;
-                        if (dc > 1)
-                            _driver.SwitchTo().Window(_driver.WindowHandles[1]);
-                        await Utility.Wait(2);
-                        var logEl = _driver.FindElements(By.ClassName("auth__input__view")).Any();
-                        if (logEl)
-                        {
-                            var tt = await LoginChat(sim.Number);
-                            if (!tt) continue;
-                        }
-                        await Utility.Wait(2);
-                        var rnd = new Random().Next(0, msg.Count);
-                        await Utility.Wait(2);
-                        try
-                        {
-                            _driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg[rnd] + '\n');
-                            await Utility.Wait(2);
-                            j++;
-                        }
-                        catch (Exception e)
-                        {
-                        }
-                        _driver.Close();
-                        _driver.SwitchTo().Window(_driver.WindowHandles[0]);
-                        _driver.Navigate().Back();
-                    }
+                    else
+                        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat3)
+                            ?.Click();
+                    await Utility.Wait();
                 }
 
-                lstMessage.Clear();
-                lstMessage.Add("لیست کاملا پیمایش شد");
-                Utility.ShowBalloon("اتمام یک دور کامل از پیمایش سیمکارت ها", lstMessage);
+                var j = 0;
+                //اسکرول تا تعداد مشخص
+                var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                while (counter.Count <= count)
+                {
+                    ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                    await Utility.Wait();
+                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                }
+
+                for (var i = 0; j < count; i++)
+                {
+                    //انتخاب آگهی
+                    await Utility.Wait();
+                    _driver.FindElements(By.ClassName("col-xs-12"))[i + 1]?.Click();
+                    await Utility.Wait(1);
+                    //دریافت شماره آگهی
+
+                    _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                    await Utility.Wait();
+
+                    var a = _driver.FindElements(By.ClassName("primary"))
+                        .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+                    if (a != null)
+                        _driver.FindElements(By.ClassName("primary"))
+                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                    await Utility.Wait(1);
+                    //چت
+                    var el = _driver.FindElements(By.ClassName("post-actions__chat")).Any();
+                    var txt = _driver.FindElements(By.ClassName("post-fields-item__value")).FirstOrDefault()?.Text;
+                    if (txt == "(پنهان‌شده؛ چت کنید)") continue;
+                    if (!el)
+                    {
+                        //چت ندارد. باید شماره ذخیره شود
+
+                        if (File.Exists(fileName))
+                        {
+                            var numbers = File.ReadAllLines(fileName).ToList();
+                            numbers.Add(txt.FixString());
+                            //غیر تکراری بودن شماره
+                            numbers = numbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
+                            File.WriteAllLines(fileName, numbers);
+                        }
+                        else
+                        {
+                            File.WriteAllText(fileName, txt.FixString());
+                        }
+
+
+                        _driver.Navigate().Back();
+                        continue;
+                    }
+                    //اگر شماره قبلا چت شده بود چت نکن
+                    var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Divar);
+                    var n = 0;
+                    foreach (var item in allNumbers)
+                    {
+                        if (txt.FixString() == item.Number)
+                            n++;
+                    }
+
+                    if (n > 0)
+                    {
+                        _driver.Navigate().Back();
+                        continue;
+                    }
+                    //شروع چت
+                    _driver.FindElement(By.ClassName("post-actions__chat")).Click();
+                    var qanoon = _driver.FindElements(By.TagName("button"))
+                        .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
+                    if (qanoon.Count > 0)
+                        qanoon.FirstOrDefault()?.Click();
+                    var dc = _driver.WindowHandles.Count;
+                    if (dc > 1)
+                        _driver.SwitchTo().Window(_driver.WindowHandles[1]);
+                    await Utility.Wait(2);
+                    var logEl = _driver.FindElements(By.ClassName("auth__input__view")).Any();
+                    if (logEl)
+                    {
+                        var tt = await LoginChat(sim.Number);
+                        if (!tt) continue;
+                    }
+                    await Utility.Wait(2);
+                    var rnd = new Random().Next(0, msg.Count);
+                    await Utility.Wait(2);
+                    try
+                    {
+
+                        //ارسال متن اول
+                        _driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg[rnd] + '\n');
+                        await Utility.Wait(2);
+
+
+                        //اگر کاربر جواب داده بود، متن دوم رو بفرست
+                        var allChat = _driver.FindElements(By.ClassName("dimmable"))
+                            .Where(q => q.Text.Contains("پیام جدید")&&!q.Text.Contains("پستچی دیوار")).ToList();
+                        await Utility.Wait(1);
+                        if (allChat.Count > 0)
+                        {
+                            foreach (var element in allChat)
+                            {
+                                element.Click();
+                                var rnd2 = new Random().Next(0, msg2.Count);
+                                await Utility.Wait(1);
+                                _driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg2[rnd2] + '\n');
+                                await Utility.Wait(2);
+                            }
+                        }
+                        
+                        // ذخیره شماره در جدول که بعدا کسی باهاش چت نکنه
+                        var chatNumbers = new ChatNumberBussines()
+                        {
+                            Guid = Guid.NewGuid(),
+                            Number = txt.FixString(),
+                            DateSabt = DateConvertor.M2SH(DateTime.Now),
+                            Status = true,
+                            Type = AdvertiseType.Divar
+                        };
+                        await chatNumbers.SaveAsync();
+                        j++;
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                    _driver.Close();
+                    _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                    _driver.Navigate().Back();
+                }
             }
             catch (Exception ex)
             {

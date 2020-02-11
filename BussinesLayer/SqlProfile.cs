@@ -57,6 +57,9 @@ namespace BussinesLayer
 
             CreateMap<AdvContentBussines, AdvContent>();
             CreateMap<AdvContent, AdvContentBussines>();
+
+            CreateMap<ChatNumbers, ChatNumberBussines>();
+            CreateMap<ChatNumberBussines, ChatNumbers>();
         }
     }
 }
