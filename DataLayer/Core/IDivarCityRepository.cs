@@ -1,4 +1,5 @@
-﻿using DataLayer.Models;
+﻿using System.Collections.Generic;
+using DataLayer.Models;
 
 namespace DataLayer.Core
 {
@@ -6,5 +7,6 @@ namespace DataLayer.Core
    {
        DivarCity GetAsync(string city);
        bool Check_Name(string name);
-   }
+       List<DivarCity> GetAllAsync(string search);
+    }
 }

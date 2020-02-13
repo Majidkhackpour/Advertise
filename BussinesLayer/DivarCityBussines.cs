@@ -90,5 +90,13 @@ namespace BussinesLayer
             {
             }
         }
+        public static async Task<List<DivarCityBussines>> GetAllAsync(string search)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.City.GetAllAsync(search);
+                return Mappings.Default.Map<List<DivarCityBussines>>(a);
+            }
+        }
     }
 }

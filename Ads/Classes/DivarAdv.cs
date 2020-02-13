@@ -409,14 +409,15 @@ namespace Ads.Classes
                     ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('ربات موفق به دریافت تصاویر آگهی نشد');");
                     return;
                 }
+
                 foreach (var item in adv.ImagesPathList)
                 {
                     try
                     {
                         //درج عکسها
                         _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input")).SendKeys(item);
-                        await Utility.Wait();
-                        // break;
+                        await Utility.Wait(); 
+                        //break;
                     }
                     catch (Exception e)
                     {
@@ -452,29 +453,27 @@ namespace Ads.Classes
 
                 await Utility.Wait(1);
 
-                if (sim.IsEnableChat)
+
+                var checkchat = _driver.FindElements(By.Id("root_contact_chat_enabled")).Any();
+                if (checkchat)
                 {
-                    var checkchat = _driver.FindElements(By.Id("root_contact_chat_enabled")).Any();
-                    if (checkchat)
-                    {
-                        var tttttt = _driver.FindElement(By.Id("root_contact_chat_enabled")).Selected;
-                        if (!tttttt)
-                            _driver.FindElement(By.Id("root_contact_chat_enabled")).Click();
-                    }
+                    var tttttt = _driver.FindElement(By.Id("root_contact_chat_enabled")).Selected;
+                    if (tttttt != sim.IsEnableChat)
+                        _driver.FindElement(By.Id("root_contact_chat_enabled")).Click();
                 }
 
+
                 await Utility.Wait(1);
-                if (sim.IsEnableNumber)
+                var checkshoemobile = _driver.FindElements(By.Id("root_contact_hide_phone")).Any();
+                if (checkshoemobile)
                 {
-                    var checkshoemobile = _driver.FindElements(By.Id("root_contact_hide_phone")).Any();
-                    if (checkshoemobile)
-                    {
-                        var eeeeee = _driver.FindElement(By.Id("root_contact_hide_phone")).Selected;
-                        if (eeeeee)
-                            _driver.FindElement(By.Id("root_contact_hide_phone")).Click();
-                    }
+                    var eeeeee = _driver.FindElement(By.Id("root_contact_hide_phone")).Selected;
+                    if (eeeeee==sim.IsEnableNumber)
+                        _driver.FindElement(By.Id("root_contact_hide_phone")).Click();
                 }
                 await Utility.Wait(1);
+
+
                 //درج قیمت
                 if (adv.Price > 0) _driver.FindElement(By.TagName("input")).SendKeys(adv.Price.ToString());
                 await Utility.Wait(1);
@@ -599,7 +598,7 @@ namespace Ads.Classes
                         newAdvertiseLogBusiness.ImagePath = "";
                         foreach (var item in newAdvertiseLogBusiness.ImagesPathList)
                         {
-                            newAdvertiseLogBusiness.ImagePath += item + "\r\n ";
+                            newAdvertiseLogBusiness.ImagePath += item + "\r\n";
                         }
                     }
                 }
@@ -1186,7 +1185,7 @@ namespace Ads.Classes
             }
         }
 
-        public async Task SendChat(List<string> msg, List<string> msg2, int count, string city, string cat1, string cat2, string cat3, string fileName,SimcardBussines sim)
+        public async Task SendChat(List<string> msg, List<string> msg2, int count, string city, string cat1, string cat2, string cat3, string fileName, SimcardBussines sim)
         {
             try
             {
@@ -1330,7 +1329,7 @@ namespace Ads.Classes
 
                         //اگر کاربر جواب داده بود، متن دوم رو بفرست
                         var allChat = _driver.FindElements(By.ClassName("dimmable"))
-                            .Where(q => q.Text.Contains("پیام جدید")&&!q.Text.Contains("پستچی دیوار")).ToList();
+                            .Where(q => q.Text.Contains("پیام جدید") && !q.Text.Contains("پستچی دیوار")).ToList();
                         await Utility.Wait(1);
                         if (allChat.Count > 0)
                         {
@@ -1343,7 +1342,7 @@ namespace Ads.Classes
                                 await Utility.Wait(2);
                             }
                         }
-                        
+
                         // ذخیره شماره در جدول که بعدا کسی باهاش چت نکنه
                         var chatNumbers = new ChatNumberBussines()
                         {
@@ -1433,6 +1432,14 @@ namespace Ads.Classes
                         if (listCat3.Count <= 0)
                         {
                             await Utility.Wait(2);
+                            var element10 = _driver
+                                .FindElements(By.ClassName("submit-post__category-selector--close__button")).Any();
+                            while (!element10)
+                            {
+                                element10 = _driver
+                                    .FindElements(By.ClassName("submit-post__category-selector--close__button")).Any();
+                                await Utility.Wait(2);
+                            }
                             _driver.FindElement(By.ClassName("submit-post__category-selector--close__button")).Click();
                             await Utility.Wait();
                             continue;

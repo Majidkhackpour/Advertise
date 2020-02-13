@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Models;
@@ -46,6 +44,22 @@ namespace DataLayer.Persitence
             catch (Exception exception)
             {
                 return false;
+            }
+        }
+
+        public List<DivarCity> GetAllAsync(string search)
+        {
+            try
+            {
+                using (var contex = new dbContext())
+                {
+                    var acc = contex.DivarCity.AsNoTracking().Where(q => q.Name.Contains(search)).ToList();
+                    return acc;
+                }
+            }
+            catch (Exception exception)
+            {
+                return null;
             }
         }
    }

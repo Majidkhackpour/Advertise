@@ -23,6 +23,8 @@ namespace Ads
             var config = new MapperConfiguration(c => { c.AddProfile(new SqlProfile()); });
             Mappings.Default = new Mapper(config);
 
+            //StartSqlService();
+
             UpdateMigration();
             Application.Run(new frmMain());
         }
@@ -36,6 +38,18 @@ namespace Ads
                 dbMigrator.Update();
             }
             catch 
+            {
+            }
+        }
+
+        private static void StartSqlService()
+        {
+            try
+            {
+                var process = new System.Diagnostics.Process {StartInfo = {FileName = "net start \"Sql Server (.)\""}};
+                process.Start();
+            }
+            catch (Exception e)
             {
             }
         }

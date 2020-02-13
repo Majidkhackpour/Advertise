@@ -173,6 +173,12 @@
     <Compile Include="Forms\Settings\frmSendChat.Designer.cs">
       <DependentUpon>frmSendChat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Simcard\frmShowCity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simcard\frmShowCity.Designer.cs">
+      <DependentUpon>frmShowCity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simcard\frmShow_Simcard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\frmSendChat.resx">
       <DependentUpon>frmSendChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simcard\frmShowCity.resx">
+      <DependentUpon>frmShowCity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmShow_Simcard.resx">
       <DependentUpon>frmShow_Simcard.cs</DependentUpon>
@@ -366,6 +375,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\22.png" />
+    <None Include="Resources\Untitled-1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets')" />

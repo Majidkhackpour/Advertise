@@ -190,6 +190,14 @@ namespace Ads.Forms.Simcard
                     return;
                 }
 
+                if (!chbIsEnableNumber.Checked && !chbIsEnableChat.Checked)
+                {
+                    FarsiMessegeBox.Show(
+                        "بنابر قوانین سایت دیوار و شیپور، حداقل یکی از گزینه های نمایش شماره یا ارسال چت باید فعال باشد");
+                    chbIsEnableNumber.Focus();
+                    return;
+                }
+
                 var listCity = new List<DivarSimCityBussines>();
                 for (int i = 0; i < dgCity.RowCount; i++)
                 {
@@ -631,6 +639,38 @@ namespace Ads.Forms.Simcard
         private void txtChatCount_Leave_1(object sender, EventArgs e)
         {
             txtSetter.Follow(txt2: txtChatCount);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowCity(AdvertiseType.Divar);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.CityGuid == Guid.Empty) return;
+                cmbDivarCity.SelectedValue = frm.CityGuid;
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+
+        }
+
+        private void btnSearch1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmShowCity(AdvertiseType.Sheypoor);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.CityGuid == Guid.Empty) return;
+                cmbSheypoorCity.SelectedValue = frm.CityGuid;
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+
         }
     }
 }

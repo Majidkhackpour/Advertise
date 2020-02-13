@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataLayer.Context;
 using DataLayer.Core;
@@ -44,6 +45,22 @@ namespace DataLayer.Persitence
             catch (Exception exception)
             {
                 return false;
+            }
+        }
+
+        public List<SheypoorCity> GetAllAsync(string search)
+        {
+            try
+            {
+                using (var contex = new dbContext())
+                {
+                    var acc = contex.SheypoorCity.AsNoTracking().Where(q => q.Name.Contains(search)).ToList();
+                    return acc;
+                }
+            }
+            catch (Exception exception)
+            {
+                return null;
             }
         }
     }

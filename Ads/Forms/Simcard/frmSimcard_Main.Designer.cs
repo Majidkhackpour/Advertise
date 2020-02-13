@@ -46,6 +46,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSimcard_Main));
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtChatCount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.chbIsSendChat = new System.Windows.Forms.CheckBox();
             this.chbIsEnableChat = new System.Windows.Forms.CheckBox();
             this.chbIsSendAdv = new System.Windows.Forms.CheckBox();
@@ -105,6 +107,14 @@
             this.mnuAdsSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnSearch1 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSearch = new DevComponents.DotNetBar.ButtonX();
+            this.cmbSheypoorChat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.SheypoorChatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbSheypoorChat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.SheypoorChatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.cmbSheypoorCity = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.SheypoorCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbSheypoorCat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -120,29 +130,21 @@
             this.cmbDivarCat3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.DivarCat3BingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDivarChat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.DivarChatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDivarCat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.DivarCat2BingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.cmbDivarChat3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.DivarChatBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.label16 = new System.Windows.Forms.Label();
             this.cmbDivarChat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.DivarChatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.cmbDivarCat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.DivarCat1BingingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label17 = new System.Windows.Forms.Label();
-            this.txtChatCount = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cmbDivarChat3 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cmbSheypoorChat2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cmbSheypoorChat1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.DivarChatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.DivarChatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.DivarChatBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.SheypoorChatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.SheypoorChatBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.grpAccount.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -159,18 +161,18 @@
             this.cmAds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat2BingingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat1BingingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat3BingingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarCat1BingingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCat1BingingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAccount
@@ -226,6 +228,32 @@
             // 
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 0;
+            // 
+            // txtChatCount
+            // 
+            this.txtChatCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtChatCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtChatCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtChatCount.ForeColor = System.Drawing.Color.Silver;
+            this.txtChatCount.Location = new System.Drawing.Point(13, 245);
+            this.txtChatCount.MaxLength = 11;
+            this.txtChatCount.Name = "txtChatCount";
+            this.txtChatCount.Size = new System.Drawing.Size(320, 27);
+            this.txtChatCount.TabIndex = 52;
+            this.txtChatCount.Enter += new System.EventHandler(this.txtChatCount_Enter_1);
+            this.txtChatCount.Leave += new System.EventHandler(this.txtChatCount_Leave_1);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.ForeColor = System.Drawing.Color.Silver;
+            this.label4.Location = new System.Drawing.Point(164, 222);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(180, 20);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "تعداد چت ارسالی به ازای هر شماره";
             // 
             // chbIsSendChat
             // 
@@ -299,7 +327,7 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(13, 193);
+            this.txtUserName.Location = new System.Drawing.Point(13, 195);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(320, 27);
@@ -342,11 +370,11 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(262, 168);
+            this.label9.Location = new System.Drawing.Point(262, 170);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
-            this.label9.Text = "نام کاربری";
+            this.label9.Text = "کدملی";
             // 
             // label7
             // 
@@ -368,7 +396,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(262, 114);
+            this.label8.Location = new System.Drawing.Point(262, 113);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -991,6 +1019,8 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.tabPage5.Controls.Add(this.btnSearch1);
+            this.tabPage5.Controls.Add(this.btnSearch);
             this.tabPage5.Controls.Add(this.cmbSheypoorChat2);
             this.tabPage5.Controls.Add(this.cmbSheypoorChat1);
             this.tabPage5.Controls.Add(this.label15);
@@ -1021,6 +1051,111 @@
             this.tabPage5.Size = new System.Drawing.Size(374, 342);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "تنظیمات";
+            // 
+            // btnSearch1
+            // 
+            this.btnSearch1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearch1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSearch1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSearch1.Location = new System.Drawing.Point(-1, 310);
+            this.btnSearch1.Name = "btnSearch1";
+            this.btnSearch1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSearch1.Size = new System.Drawing.Size(23, 27);
+            this.btnSearch1.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSearch1.TabIndex = 50;
+            this.btnSearch1.Text = "...";
+            this.btnSearch1.TextColor = System.Drawing.Color.Silver;
+            this.btnSearch1.ThemeAware = true;
+            this.btnSearch1.Click += new System.EventHandler(this.btnSearch1_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSearch.Location = new System.Drawing.Point(186, 309);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSearch.Size = new System.Drawing.Size(23, 27);
+            this.btnSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSearch.TabIndex = 50;
+            this.btnSearch.Text = "...";
+            this.btnSearch.TextColor = System.Drawing.Color.Silver;
+            this.btnSearch.ThemeAware = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cmbSheypoorChat2
+            // 
+            this.cmbSheypoorChat2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbSheypoorChat2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSheypoorChat2.DataSource = this.SheypoorChatBindingSource2;
+            this.cmbSheypoorChat2.DisplayMember = "Name";
+            this.cmbSheypoorChat2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSheypoorChat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbSheypoorChat2.ForeColor = System.Drawing.Color.Black;
+            this.cmbSheypoorChat2.ItemHeight = 20;
+            this.cmbSheypoorChat2.Location = new System.Drawing.Point(25, 256);
+            this.cmbSheypoorChat2.Name = "cmbSheypoorChat2";
+            this.cmbSheypoorChat2.Size = new System.Drawing.Size(154, 28);
+            this.cmbSheypoorChat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbSheypoorChat2.TabIndex = 46;
+            this.cmbSheypoorChat2.ValueMember = "Guid";
+            // 
+            // SheypoorChatBindingSource2
+            // 
+            this.SheypoorChatBindingSource2.DataSource = typeof(BussinesLayer.AdvGroupBussines);
+            // 
+            // cmbSheypoorChat1
+            // 
+            this.cmbSheypoorChat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbSheypoorChat1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSheypoorChat1.DataSource = this.SheypoorChatBindingSource1;
+            this.cmbSheypoorChat1.DisplayMember = "Name";
+            this.cmbSheypoorChat1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSheypoorChat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbSheypoorChat1.ForeColor = System.Drawing.Color.Black;
+            this.cmbSheypoorChat1.ItemHeight = 20;
+            this.cmbSheypoorChat1.Location = new System.Drawing.Point(214, 256);
+            this.cmbSheypoorChat1.Name = "cmbSheypoorChat1";
+            this.cmbSheypoorChat1.Size = new System.Drawing.Size(154, 28);
+            this.cmbSheypoorChat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbSheypoorChat1.TabIndex = 47;
+            this.cmbSheypoorChat1.ValueMember = "Guid";
+            this.cmbSheypoorChat1.SelectedIndexChanged += new System.EventHandler(this.cmbSheypoorChat1_SelectedIndexChanged);
+            // 
+            // SheypoorChatBindingSource1
+            // 
+            this.SheypoorChatBindingSource1.DataSource = typeof(BussinesLayer.AdvCategoryBussines);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label15.ForeColor = System.Drawing.Color.Silver;
+            this.label15.Location = new System.Drawing.Point(5, 233);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(180, 20);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "دسته بندی سطح دوم شیپور چت\r\n";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label14.ForeColor = System.Drawing.Color.Silver;
+            this.label14.Location = new System.Drawing.Point(191, 233);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(178, 20);
+            this.label14.TabIndex = 49;
+            this.label14.Text = "دسته بندی سطح اول شیپور چت\r\n";
             // 
             // cmbSheypoorCity
             // 
@@ -1197,6 +1332,10 @@
             this.cmbDivarChat2.ValueMember = "Guid";
             this.cmbDivarChat2.SelectedIndexChanged += new System.EventHandler(this.cmbDivarChat2_SelectedIndexChanged);
             // 
+            // DivarChatBindingSource2
+            // 
+            this.DivarChatBindingSource2.DataSource = typeof(BussinesLayer.AdvGroupBussines);
+            // 
             // cmbDivarCat2
             // 
             this.cmbDivarCat2.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1254,6 +1393,39 @@
             this.label5.TabIndex = 41;
             this.label5.Text = "دسته بندی سطح دوم دیوار";
             // 
+            // cmbDivarChat3
+            // 
+            this.cmbDivarChat3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbDivarChat3.DataSource = this.DivarChatBindingSource3;
+            this.cmbDivarChat3.DisplayMember = "Name";
+            this.cmbDivarChat3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDivarChat3.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbDivarChat3.ForeColor = System.Drawing.Color.Black;
+            this.cmbDivarChat3.ItemHeight = 20;
+            this.cmbDivarChat3.Location = new System.Drawing.Point(25, 143);
+            this.cmbDivarChat3.Name = "cmbDivarChat3";
+            this.cmbDivarChat3.Size = new System.Drawing.Size(154, 28);
+            this.cmbDivarChat3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbDivarChat3.TabIndex = 36;
+            this.cmbDivarChat3.ValueMember = "Guid";
+            this.cmbDivarChat3.SelectedIndexChanged += new System.EventHandler(this.cmbDivarCat1_SelectedIndexChanged);
+            // 
+            // DivarChatBindingSource3
+            // 
+            this.DivarChatBindingSource3.DataSource = typeof(BussinesLayer.AdvGroupBussines);
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label16.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label16.ForeColor = System.Drawing.Color.Silver;
+            this.label16.Location = new System.Drawing.Point(14, 119);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(164, 20);
+            this.label16.TabIndex = 37;
+            this.label16.Text = "دسته بندی سطح سوم دیوار چت\r\n";
+            // 
             // cmbDivarChat1
             // 
             this.cmbDivarChat1.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1270,6 +1442,10 @@
             this.cmbDivarChat1.TabIndex = 36;
             this.cmbDivarChat1.ValueMember = "Guid";
             this.cmbDivarChat1.SelectedIndexChanged += new System.EventHandler(this.cmbDivarChat1_SelectedIndexChanged);
+            // 
+            // DivarChatBindingSource1
+            // 
+            this.DivarChatBindingSource1.DataSource = typeof(BussinesLayer.AdvCategoryBussines);
             // 
             // label12
             // 
@@ -1316,142 +1492,6 @@
             this.label17.TabIndex = 37;
             this.label17.Text = "دسته بندی سطح اول دیوار";
             // 
-            // txtChatCount
-            // 
-            this.txtChatCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtChatCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtChatCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtChatCount.ForeColor = System.Drawing.Color.Silver;
-            this.txtChatCount.Location = new System.Drawing.Point(13, 245);
-            this.txtChatCount.MaxLength = 11;
-            this.txtChatCount.Name = "txtChatCount";
-            this.txtChatCount.Size = new System.Drawing.Size(320, 27);
-            this.txtChatCount.TabIndex = 52;
-            this.txtChatCount.Enter += new System.EventHandler(this.txtChatCount_Enter_1);
-            this.txtChatCount.Leave += new System.EventHandler(this.txtChatCount_Leave_1);
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(152, 222);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 20);
-            this.label4.TabIndex = 51;
-            this.label4.Text = "تعداد چت ارسالی به ازای هر شماره";
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label16.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label16.ForeColor = System.Drawing.Color.Silver;
-            this.label16.Location = new System.Drawing.Point(14, 119);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(164, 20);
-            this.label16.TabIndex = 37;
-            this.label16.Text = "دسته بندی سطح سوم دیوار چت\r\n";
-            // 
-            // cmbDivarChat3
-            // 
-            this.cmbDivarChat3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbDivarChat3.DataSource = this.DivarChatBindingSource3;
-            this.cmbDivarChat3.DisplayMember = "Name";
-            this.cmbDivarChat3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDivarChat3.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.cmbDivarChat3.ForeColor = System.Drawing.Color.Black;
-            this.cmbDivarChat3.ItemHeight = 20;
-            this.cmbDivarChat3.Location = new System.Drawing.Point(25, 143);
-            this.cmbDivarChat3.Name = "cmbDivarChat3";
-            this.cmbDivarChat3.Size = new System.Drawing.Size(154, 28);
-            this.cmbDivarChat3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbDivarChat3.TabIndex = 36;
-            this.cmbDivarChat3.ValueMember = "Guid";
-            this.cmbDivarChat3.SelectedIndexChanged += new System.EventHandler(this.cmbDivarCat1_SelectedIndexChanged);
-            // 
-            // cmbSheypoorChat2
-            // 
-            this.cmbSheypoorChat2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbSheypoorChat2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSheypoorChat2.DataSource = this.SheypoorChatBindingSource2;
-            this.cmbSheypoorChat2.DisplayMember = "Name";
-            this.cmbSheypoorChat2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSheypoorChat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.cmbSheypoorChat2.ForeColor = System.Drawing.Color.Black;
-            this.cmbSheypoorChat2.ItemHeight = 20;
-            this.cmbSheypoorChat2.Location = new System.Drawing.Point(25, 256);
-            this.cmbSheypoorChat2.Name = "cmbSheypoorChat2";
-            this.cmbSheypoorChat2.Size = new System.Drawing.Size(154, 28);
-            this.cmbSheypoorChat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbSheypoorChat2.TabIndex = 46;
-            this.cmbSheypoorChat2.ValueMember = "Guid";
-            // 
-            // cmbSheypoorChat1
-            // 
-            this.cmbSheypoorChat1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbSheypoorChat1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSheypoorChat1.DataSource = this.SheypoorChatBindingSource1;
-            this.cmbSheypoorChat1.DisplayMember = "Name";
-            this.cmbSheypoorChat1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSheypoorChat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.cmbSheypoorChat1.ForeColor = System.Drawing.Color.Black;
-            this.cmbSheypoorChat1.ItemHeight = 20;
-            this.cmbSheypoorChat1.Location = new System.Drawing.Point(214, 256);
-            this.cmbSheypoorChat1.Name = "cmbSheypoorChat1";
-            this.cmbSheypoorChat1.Size = new System.Drawing.Size(154, 28);
-            this.cmbSheypoorChat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbSheypoorChat1.TabIndex = 47;
-            this.cmbSheypoorChat1.ValueMember = "Guid";
-            this.cmbSheypoorChat1.SelectedIndexChanged += new System.EventHandler(this.cmbSheypoorChat1_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label15.ForeColor = System.Drawing.Color.Silver;
-            this.label15.Location = new System.Drawing.Point(5, 233);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(180, 20);
-            this.label15.TabIndex = 48;
-            this.label15.Text = "دسته بندی سطح دوم شیپور چت\r\n";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label14.ForeColor = System.Drawing.Color.Silver;
-            this.label14.Location = new System.Drawing.Point(191, 233);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(178, 20);
-            this.label14.TabIndex = 49;
-            this.label14.Text = "دسته بندی سطح اول شیپور چت\r\n";
-            // 
-            // DivarChatBindingSource1
-            // 
-            this.DivarChatBindingSource1.DataSource = typeof(BussinesLayer.AdvCategoryBussines);
-            // 
-            // DivarChatBindingSource2
-            // 
-            this.DivarChatBindingSource2.DataSource = typeof(BussinesLayer.AdvGroupBussines);
-            // 
-            // DivarChatBindingSource3
-            // 
-            this.DivarChatBindingSource3.DataSource = typeof(BussinesLayer.AdvGroupBussines);
-            // 
-            // SheypoorChatBindingSource1
-            // 
-            this.SheypoorChatBindingSource1.DataSource = typeof(BussinesLayer.AdvCategoryBussines);
-            // 
-            // SheypoorChatBindingSource2
-            // 
-            this.SheypoorChatBindingSource2.DataSource = typeof(BussinesLayer.AdvGroupBussines);
-            // 
             // frmSimcard_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1494,18 +1534,18 @@
             this.cmAds.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.adsBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat2BingingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCat1BingingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarCat3BingingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarCat1BingingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCat2BingingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarChatBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DivarCat1BingingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1611,5 +1651,7 @@
         private System.Windows.Forms.BindingSource DivarChatBindingSource3;
         private System.Windows.Forms.BindingSource SheypoorChatBindingSource1;
         private System.Windows.Forms.BindingSource SheypoorChatBindingSource2;
+        public DevComponents.DotNetBar.ButtonX btnSearch1;
+        public DevComponents.DotNetBar.ButtonX btnSearch;
     }
 }

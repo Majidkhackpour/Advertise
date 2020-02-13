@@ -30,14 +30,12 @@ namespace Ads.Forms.Mains
             picSimcard.Image = Properties.Resources.simcard;
             picDivarCity.Image = Properties.Resources.government;
             picState.Image = Properties.Resources.urban;
-            picRegion.Image = Properties.Resources.region;
             picSetting.Image = Properties.Resources.support;
             var tt = new ToolTip();
             tt.SetToolTip(picSimcard, "مدیریت سیمکارت ها");
             tt.SetToolTip(picSetting, "تنظیمات");
             tt.SetToolTip(picDivarCity, "دریافت شهرها از سایت دیوار");
             tt.SetToolTip(picState, "بروزرسانی لیست استان های کشور");
-            tt.SetToolTip(picRegion, "دریافت مناطق از سایت دیوار");
         }
 
         private void lbSimcard_MouseEnter(object sender, EventArgs e)
@@ -88,10 +86,19 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await DivarCityBussines.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "شهرهای دیوار پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
                 var divar = await DivarAdv.GetInstance();
                 var list = divar.GetAllCityFromDivar();
                 await DivarCityBussines.SaveAsync(list);
-                FarsiMessegeBox.Show($"تعداد {list.Count} شهر به روز رسانی شد");
+                await DivarRegion(list.Count);
+                Utility.CloseAllChromeWindows();
             }
             catch (Exception exception)
             {
@@ -103,10 +110,19 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await DivarCityBussines.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "شهرهای دیوار پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
                 var divar = await DivarAdv.GetInstance();
                 var list = divar.GetAllCityFromDivar();
                 await DivarCityBussines.SaveAsync(list);
-                FarsiMessegeBox.Show($"تعداد {list.Count} شهر به روز رسانی شد");
+                await DivarRegion(list.Count);
+                Utility.CloseAllChromeWindows();
             }
             catch (Exception exception)
             {
@@ -118,6 +134,14 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await StateBussiness.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "استان ها پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
                 var path = Path.Combine(Application.StartupPath, "State.txt");
                 if (!File.Exists(path))
                 {
@@ -159,6 +183,14 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await StateBussiness.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "استان ها پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
                 var path = Path.Combine(Application.StartupPath, "State.txt");
                 if (!File.Exists(path))
                 {
@@ -208,29 +240,16 @@ namespace Ads.Forms.Mains
 
         private async void picRegion_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var lst = new List<string>();
-                lst.Add("اصفهان");
-                lst.Add("اهواز");
-                lst.Add("تهران");
-                lst.Add("شیراز");
-                lst.Add("قم");
-                lst.Add("کرج");
-                lst.Add("مشهد");
-                var divar = await DivarAdv.GetInstance();
-                var regList = await divar.GetAllRegionFromDivar(lst);
-                await RegionBussiness.SaveAsync(AdvertiseType.Divar, regList);
-                FarsiMessegeBox.Show($"تعداد {regList.Count} منطقه بروزرسانی شد");
-            }
-            catch (Exception exception)
-            {
-                FarsiMessegeBox.Show(exception.Message);
-            }
+
         }
 
         private async void lblRegion_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private async Task DivarRegion(int cityCount)
+        {
             try
             {
                 var lst = new List<string>();
@@ -244,22 +263,12 @@ namespace Ads.Forms.Mains
                 var divar = await DivarAdv.GetInstance();
                 var regList = await divar.GetAllRegionFromDivar(lst);
                 await RegionBussiness.SaveAsync(AdvertiseType.Divar, regList);
-                FarsiMessegeBox.Show($"تعداد {regList.Count} منطقه بروزرسانی شد");
+                FarsiMessegeBox.Show($"تعداد {cityCount} شهر و {regList.Count} منظقه بروزرسانی شد");
             }
             catch (Exception exception)
             {
                 FarsiMessegeBox.Show(exception.Message);
             }
-        }
-
-        private void lblRegion_MouseEnter(object sender, EventArgs e)
-        {
-            lblSetter.GotFocose(lblRegion);
-        }
-
-        private void lblRegion_MouseLeave(object sender, EventArgs e)
-        {
-            lblSetter.LostFocose(lblRegion);
         }
 
         private void picSetting_Click(object sender, EventArgs e)
@@ -316,15 +325,6 @@ namespace Ads.Forms.Mains
             picDivarCity.Image = Properties.Resources.government;
         }
 
-        private void picRegion_MouseEnter(object sender, EventArgs e)
-        {
-            picRegion.Image = Properties.Resources.regionRed;
-        }
-
-        private void picRegion_MouseLeave(object sender, EventArgs e)
-        {
-            picRegion.Image = Properties.Resources.region;
-        }
 
         private void picState_MouseEnter(object sender, EventArgs e)
         {
@@ -350,11 +350,22 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await AdvCategoryBussines.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "دسته بندی ها پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
+
                 var sh = await SheypoorAdv.GetInstance();
                 await sh.GetCategory();
 
                 var d = await DivarAdv.GetInstance();
                 await d.GetCategory();
+
+                Utility.CloseAllChromeWindows();
             }
             catch (Exception exception)
             {
@@ -366,12 +377,24 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                var allcit = await SheypoorCityBussines.GetAllAsync();
+                if (allcit.Count > 0)
+                {
+                    if (FarsiMessegeBox.Show(
+                            "شهرهای شیپور پیش از این مقداردهی شده اند در صورت ادامه باید تمامی تنظیمات سیمکارت ها و آگهی ها دوباره انجام دهید. آیا ادامه میدهید؟.",
+                            "هشدار", FMessegeBoxButtons.YesNo, FMessegeBoxIcons.Information) == DialogResult.No)
+                        return;
+                }
+
                 var sh = await SheypoorAdv.GetInstance();
                 var list = await sh.GetAllCityFromSheypoor();
                 foreach (var item in list)
                 {
                     await item.SaveAsync();
                 }
+
+                await SheypoorRegion(list.Count);
+                Utility.CloseAllChromeWindows();
             }
             catch (Exception exception)
             {
@@ -379,7 +402,14 @@ namespace Ads.Forms.Mains
             }
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new frmAds().ShowDialog();
+        }
+
+        private async Task SheypoorRegion(int cityCount)
         {
             try
             {
@@ -414,17 +444,12 @@ namespace Ads.Forms.Mains
                     }
                 }
                 await RegionBussiness.SaveAsync(AdvertiseType.Sheypoor, finalList);
-                FarsiMessegeBox.Show($"{finalList.Count} محله بروزرسانی شد");
+                FarsiMessegeBox.Show($"تعداد {cityCount} شهر و {finalList.Count} محله بروزرسانی شد");
             }
             catch (Exception ex)
             {
                 FarsiMessegeBox.Show(ex.Message);
             }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            new frmAds().ShowDialog();
         }
     }
 }

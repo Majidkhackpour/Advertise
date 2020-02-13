@@ -40,18 +40,14 @@
             this.lblSimcard = new System.Windows.Forms.Label();
             this.picDivarCity = new System.Windows.Forms.PictureBox();
             this.picState = new System.Windows.Forms.PictureBox();
-            this.lblRegion = new System.Windows.Forms.Label();
-            this.picRegion = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivarCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picState)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegion)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,8 +86,6 @@
             this.grpAccount.Controls.Add(this.lblSimcard);
             this.grpAccount.Controls.Add(this.picDivarCity);
             this.grpAccount.Controls.Add(this.picState);
-            this.grpAccount.Controls.Add(this.lblRegion);
-            this.grpAccount.Controls.Add(this.picRegion);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(636, 51);
             this.grpAccount.Name = "grpAccount";
@@ -251,37 +245,6 @@
             this.picState.MouseEnter += new System.EventHandler(this.picState_MouseEnter);
             this.picState.MouseLeave += new System.EventHandler(this.picState_MouseLeave);
             // 
-            // lblRegion
-            // 
-            this.lblRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegion.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRegion.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblRegion.ForeColor = System.Drawing.Color.Silver;
-            this.lblRegion.Location = new System.Drawing.Point(24, 271);
-            this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(75, 20);
-            this.lblRegion.TabIndex = 30;
-            this.lblRegion.Text = "مناطق دیوار";
-            this.lblRegion.Click += new System.EventHandler(this.lblRegion_Click);
-            this.lblRegion.MouseEnter += new System.EventHandler(this.lblRegion_MouseEnter);
-            this.lblRegion.MouseLeave += new System.EventHandler(this.lblRegion_MouseLeave);
-            // 
-            // picRegion
-            // 
-            this.picRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picRegion.BackColor = System.Drawing.Color.Transparent;
-            this.picRegion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRegion.Location = new System.Drawing.Point(29, 205);
-            this.picRegion.Name = "picRegion";
-            this.picRegion.Size = new System.Drawing.Size(75, 63);
-            this.picRegion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picRegion.TabIndex = 2;
-            this.picRegion.TabStop = false;
-            this.picRegion.Click += new System.EventHandler(this.picRegion_Click);
-            this.picRegion.MouseEnter += new System.EventHandler(this.picRegion_MouseEnter);
-            this.picRegion.MouseLeave += new System.EventHandler(this.picRegion_MouseLeave);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(449, 110);
@@ -302,16 +265,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(449, 261);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(148, 61);
-            this.button3.TabIndex = 55684;
-            this.button3.Text = "مناطق شیپور";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(449, 339);
@@ -329,7 +282,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(784, 612);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.grpAccount);
@@ -350,7 +302,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDivarCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picState)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,11 +319,8 @@
         public System.Windows.Forms.Label lblSimcard;
         private System.Windows.Forms.PictureBox picDivarCity;
         private System.Windows.Forms.PictureBox picState;
-        public System.Windows.Forms.Label lblRegion;
-        private System.Windows.Forms.PictureBox picRegion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
     }
 }

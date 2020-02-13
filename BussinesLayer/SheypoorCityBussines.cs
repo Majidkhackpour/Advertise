@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
@@ -56,6 +54,14 @@ namespace BussinesLayer
             using (var _context = new UnitOfWorkLid())
             {
                 var a = _context.SheypoorCity.GetAll();
+                return Mappings.Default.Map<List<SheypoorCityBussines>>(a);
+            }
+        }
+        public static async Task<List<SheypoorCityBussines>> GetAllAsync(string search)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.SheypoorCity.GetAllAsync(search);
                 return Mappings.Default.Map<List<SheypoorCityBussines>>(a);
             }
         }

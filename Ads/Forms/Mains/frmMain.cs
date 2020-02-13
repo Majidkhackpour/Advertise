@@ -19,6 +19,8 @@ namespace Ads.Forms.Mains
         {
             try
             {
+               // pictureBox1.Image = Properties.Resources._22;
+               // pictureBox1.Visible = false;
                 picDivar.Image = Properties.Resources.ir_divar_512x512;
                 picSheypoor.Image = Properties.Resources.Sheypoor_portrate;
                 picManager.Image = Properties.Resources._03;
@@ -207,6 +209,16 @@ namespace Ads.Forms.Mains
             {
                 FarsiMessegeBox.Show(exception.Message);
             }
+        }
+
+        private void picManager_MouseEnter(object sender, EventArgs e)
+        {
+            //pictureBox1.Visible = true;
+        }
+
+        private void picManager_MouseLeave(object sender, EventArgs e)
+        {
+           // pictureBox1.Visible = false;
         }
     }
 }

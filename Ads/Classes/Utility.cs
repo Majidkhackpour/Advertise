@@ -582,9 +582,9 @@ namespace Ads.Classes
 
                         var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
 
-                        var cat1 = AdvCategoryBussines.Get(simCard.DivarChatCat1).Name;
-                        var cat2 = AdvCategoryBussines.Get(simCard.DivarChatCat2).Name;
-                        var cat3 = AdvCategoryBussines.Get(simCard.DivarChatCat3).Name;
+                        var cat1 = AdvCategoryBussines.Get(simCard.DivarChatCat1)?.Name ?? "";
+                        var cat2 = AdvCategoryBussines.Get(simCard.DivarChatCat2)?.Name ?? "";
+                        var cat3 = AdvCategoryBussines.Get(simCard.DivarChatCat3)?.Name ?? "";
 
                         var date = DateConvertor.M2SH(DateTime.Now);
                         date = date.Replace("/", "_");
@@ -594,17 +594,18 @@ namespace Ads.Classes
                         await divar.SendChat(passage1, passage2, simCard.ChatCount, city.Name, cat1, cat2, cat3,
                             fileName, simCard);
 
-                        var city1 =  SheypoorCityBussines.GetAsync(simCard.SheypoorCityForChat);
+                        var city1 = SheypoorCityBussines.GetAsync(simCard.SheypoorCityForChat);
 
-                         cat1 = AdvCategoryBussines.Get(simCard.SheypoorChatCat1).Name;
-                         cat2 = AdvCategoryBussines.Get(simCard.SheypoorChatCat2).Name;
+                        cat1 = AdvCategoryBussines.Get(simCard.SheypoorChatCat1)?.Name ?? "";
+                        cat2 = AdvCategoryBussines.Get(simCard.SheypoorChatCat2)?.Name ?? "";
 
-                         var shey = await SheypoorAdv.GetInstance();
-                         await shey.SendChat(passage1, passage2, simCard.ChatCount, city1.Name, cat1, cat2, null,
-                             fileName, simCard);
+                        var shey = await SheypoorAdv.GetInstance();
+                        await shey.SendChat(passage1, passage2, simCard.ChatCount, city1.Name, cat1, cat2, null,
+                            fileName, simCard);
                     }
 
                     simCard.NextUse = DateTime.Now.AddHours(1);
+                    await simCard.SaveAsync();
                 }
                 await Utility.Wait(10);
                 lstMessage.Clear();
