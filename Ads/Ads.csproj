@@ -155,12 +155,6 @@
     <Compile Include="Forms\Mains\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Mains\frmManagerMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Mains\frmManagerMain.Designer.cs">
-      <DependentUpon>frmManagerMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Settings\frmAdsSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,9 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mains\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Mains\frmManagerMain.resx">
-      <DependentUpon>frmManagerMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\frmAdsSettings.resx">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
@@ -375,6 +366,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\15.png" />
+    <None Include="Resources\23.png" />
+    <None Include="Resources\02.png" />
+    <None Include="Resources\18.png" />
+    <None Include="Resources\38.png" />
+    <None Include="Resources\108.png" />
+    <None Include="Resources\32.png" />
+    <None Include="Resources\045.png" />
     <None Include="Resources\22.png" />
     <None Include="Resources\Untitled-1.png" />
   </ItemGroup>
