@@ -294,6 +294,7 @@
             this.picBackUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBackUp.TabIndex = 2;
             this.picBackUp.TabStop = false;
+            this.picBackUp.Click += new System.EventHandler(this.picBackUp_Click);
             this.picBackUp.MouseEnter += new System.EventHandler(this.picBackUp_MouseEnter);
             this.picBackUp.MouseLeave += new System.EventHandler(this.picBackUp_MouseLeave);
             // 

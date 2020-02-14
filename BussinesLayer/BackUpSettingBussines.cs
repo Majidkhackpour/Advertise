@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
+using DataLayer.Models;
+using DataLayer.Persitence;
 
 namespace BussinesLayer
 {
@@ -12,5 +16,30 @@ namespace BussinesLayer
         public bool AutoBackUp { get; set; }
         public bool IsSendInTelegram { get; set; }
         public int? AutoTime { get; set; }
+        public static List<BackUpSettingBussines> GetAll()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.BackUpSetting.GetAll();
+                return Mappings.Default.Map<List<BackUpSettingBussines>>(a);
+            }
+        }
+        public async Task SaveAsync()
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var a = Mappings.Default.Map<BackUpSetting>(this);
+                    var res = _context.BackUpSetting.Save(a);
+                    _context.Set_Save();
+                    _context.Dispose();
+
+                }
+            }
+            catch (Exception exception)
+            {
+            }
+        }
     }
 }

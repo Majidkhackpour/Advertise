@@ -517,5 +517,17 @@ namespace Ads.Forms.Mains
                 FarsiMessegeBox.Show(ex.Message);
             }
         }
+
+        private void picBackUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmBackUpSetting().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }

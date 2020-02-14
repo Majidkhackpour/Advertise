@@ -172,11 +172,11 @@
     <Compile Include="Forms\Settings\frmAdsSettings.Designer.cs">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\frmSendChat.cs">
+    <Compile Include="Forms\Settings\frmBackUpSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\frmSendChat.Designer.cs">
-      <DependentUpon>frmSendChat.cs</DependentUpon>
+    <Compile Include="Forms\Settings\frmBackUpSetting.Designer.cs">
+      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simcard\frmAdvertiseLog.cs">
       <SubType>Form</SubType>
@@ -219,8 +219,8 @@
     <EmbeddedResource Include="Forms\Settings\frmAdsSettings.resx">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\frmSendChat.resx">
-      <DependentUpon>frmSendChat.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\frmBackUpSetting.resx">
+      <DependentUpon>frmBackUpSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmAdvertiseLog.resx">
       <DependentUpon>frmAdvertiseLog.cs</DependentUpon>
