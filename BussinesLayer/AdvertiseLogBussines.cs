@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DataLayer;
 using DataLayer.Enums;
@@ -34,6 +35,8 @@ namespace BussinesLayer
         public string Adv { get; set; } = "---";
         public string AdvStatus { get; set; } = "---";
         public List<string> ImagesPathList { get; set; }
+        public string TypeName => AdvType.GetDisplay();
+        public string StatusName => StatusCode.GetDisplay();
         public static int GetAllAdvInDayFromIP(string ip)
         {
             using (var _context = new UnitOfWorkLid())
@@ -64,6 +67,36 @@ namespace BussinesLayer
             {
                 var a = _context.AdvertiseLog.GetAll();
                 return Mappings.Default.Map<List<AdvertiseLogBussines>>(a);
+            }
+        }
+        public static List<AdvertiseLogBussines> GetAllAsync(long number,short type,string search="")
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.AdvertiseLog.GetAll(number);
+                if (type == 0)
+                    a = a.Where(q => q.AdvType == AdvertiseType.Divar).ToList();
+                else if (type == 1)
+                    a = a.Where(q => q.AdvType == AdvertiseType.Sheypoor).ToList();
+                a = a.Where(q => q.Title.Contains(search) || q.City.Contains(search)).ToList();
+                return Mappings.Default.Map<List<AdvertiseLogBussines>>(a);
+            }
+        }
+
+        public static async Task<List<int>> GetAdvCountInSpecialMounthAsync(int dayCount, AdvertiseType type)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.AdvertiseLog.GetAdvCountInSpecialMounthAsync(dayCount,type);
+                return a;
+            }
+        }
+        public static async Task<List<int>> GetPublishedAdvCountInSpecialMounthAsync(int dayCount, AdvertiseType type)
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.AdvertiseLog.GetPublishedAdvCountInSpecialMounthAsync(dayCount, type);
+                return a;
             }
         }
     }

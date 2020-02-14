@@ -55,7 +55,6 @@
             this.DivarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.uC_Date1 = new UC_Date.UC_Date();
             this.dgSheypoor = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.SheypoorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Radif1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgSheypoorCityGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +63,7 @@
             this.stateGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCheckedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.stateNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SheypoorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgDivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DivarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgSheypoor)).BeginInit();
@@ -346,10 +346,6 @@
             this.dgSheypoor.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgSheypoor_CellFormatting);
             this.dgSheypoor.DoubleClick += new System.EventHandler(this.dgSheypoor_DoubleClick);
             // 
-            // SheypoorBindingSource
-            // 
-            this.SheypoorBindingSource.DataSource = typeof(BussinesLayer.SheypoorCityBussines);
-            // 
             // Radif1
             // 
             this.Radif1.HeaderText = "ردیف";
@@ -413,6 +409,10 @@
             this.stateNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.stateNameDataGridViewTextBoxColumn.Width = 200;
             // 
+            // SheypoorBindingSource
+            // 
+            this.SheypoorBindingSource.DataSource = typeof(BussinesLayer.SheypoorCityBussines);
+            // 
             // frmShowCity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -430,6 +430,7 @@
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

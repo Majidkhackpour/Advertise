@@ -195,5 +195,20 @@ namespace Ads.Forms.Simcard
                 FarsiMessegeBox.Show(exception.Message);
             }
         }
+
+        private void mnuLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                new frmAdvertiseLog(number).ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
     }
 }

@@ -10,18 +10,19 @@ namespace DataLayer.Enums
     {
         [PersianNameAttribute.PersianName("دیوار")] Divar = 0,
         [PersianNameAttribute.PersianName("شیپور")] Sheypoor = 1,
-        [PersianNameAttribute.PersianName("چت دیوار")] DivarChat = 2
+        [PersianNameAttribute.PersianName("چت دیوار")] DivarChat = 2,
+        [PersianNameAttribute.PersianName("همه")] All = 100,
     }
     public enum StatusCode
     {
-        InPublishQueue = 1, //  در صف انتشار,
-        Published = 2,//  منتشر شده,
-        EditNeeded = 3,// "نیاز به اصلاح"
-        WaitForPayment = 4,//  "منتظر پرداخت"
-        Failed = 5,//  "رد شده"
-        Deleted = 6,//  "حذف شده"
-        Expired = 7,//  "منقضی شده"
-        InsertError = 10,//  "خطای درج"
-        Unknown = 0//  "نامشخص"
+        [PersianNameAttribute.PersianName("در صف انتشار")] InPublishQueue = 1,
+         [PersianNameAttribute.PersianName("منتشر شده")]Published = 2,
+         [PersianNameAttribute.PersianName("نیاز به اصلاح")]EditNeeded = 3,
+         [PersianNameAttribute.PersianName("منتظر پرداخت")]WaitForPayment = 4,
+         [PersianNameAttribute.PersianName("رد شده")]Failed = 5,
+         [PersianNameAttribute.PersianName("حذف شده")]Deleted = 6,
+         [PersianNameAttribute.PersianName("منقضی شده")]Expired = 7,
+         [PersianNameAttribute.PersianName("خطای درج")]InsertError = 10,
+        [PersianNameAttribute.PersianName("نامشخص")] Unknown = 0
     }
 }

@@ -103,9 +103,20 @@
     <Reference Include="LineNumbersControlForRichTextBox">
       <HintPath>..\..\..\..\..\New folder\Compressed\Dlls\LineNumbersControlForRichTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="persianCalender, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\UC_Date\UC_Date\bin\Debug\persianCalender.dll</HintPath>
+    </Reference>
+    <Reference Include="PersianDate">
+      <HintPath>..\..\..\..\UC_Date\UC_Date\bin\Debug\PersianDate.dll</HintPath>
+    </Reference>
+    <Reference Include="PersianDateControls">
+      <HintPath>..\..\..\..\UC_Date\UC_Date\bin\Debug\PersianDateControls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -167,6 +178,12 @@
     <Compile Include="Forms\Settings\frmSendChat.Designer.cs">
       <DependentUpon>frmSendChat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Simcard\frmAdvertiseLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simcard\frmAdvertiseLog.Designer.cs">
+      <DependentUpon>frmAdvertiseLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simcard\frmShowCity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,12 +195,6 @@
     </Compile>
     <Compile Include="Forms\Simcard\frmShow_Simcard.Designer.cs">
       <DependentUpon>frmShow_Simcard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Simcard\frmSimcardLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Simcard\frmSimcardLogin.Designer.cs">
-      <DependentUpon>frmSimcardLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simcard\frmSimcard_Main.cs">
       <SubType>Form</SubType>
@@ -211,14 +222,14 @@
     <EmbeddedResource Include="Forms\Settings\frmSendChat.resx">
       <DependentUpon>frmSendChat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simcard\frmAdvertiseLog.resx">
+      <DependentUpon>frmAdvertiseLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmShowCity.resx">
       <DependentUpon>frmShowCity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmShow_Simcard.resx">
       <DependentUpon>frmShow_Simcard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Simcard\frmSimcardLogin.resx">
-      <DependentUpon>frmSimcardLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmSimcard_Main.resx">
       <DependentUpon>frmSimcard_Main.cs</DependentUpon>
@@ -237,6 +248,7 @@
     <None Include="Properties\DataSources\Ads.Classes.Advertise.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvCategoryBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvertiseBussines.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.AdvertiseLogBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvGroupBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarSimCityBussines.datasource" />
@@ -366,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\99.png" />
     <None Include="Resources\15.png" />
     <None Include="Resources\23.png" />
     <None Include="Resources\02.png" />

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Ads.Classes;
 using Ads.Forms.Settings;
 using Ads.Forms.Simcard;
@@ -11,6 +12,7 @@ using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
 using FMessegeBox;
+using TMS.Class;
 
 namespace Ads.Forms.Mains
 {
@@ -21,7 +23,7 @@ namespace Ads.Forms.Mains
             InitializeComponent();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void PictureManager()
         {
             try
             {
@@ -32,6 +34,7 @@ namespace Ads.Forms.Mains
                 picStateNote.Image = Properties.Resources._22;
                 picCategoryNote.Image = Properties.Resources._22;
                 picSettingNote.Image = Properties.Resources._22;
+                picBackUpNote.Image = Properties.Resources._22;
                 picDivar.Image = Properties.Resources._18;
                 picLogo.Image = Properties.Resources.AradPngpng;
                 picAds.Image = Properties.Resources._045;
@@ -40,6 +43,7 @@ namespace Ads.Forms.Mains
                 picState.Image = Properties.Resources._32;
                 picCategory.Image = Properties.Resources._15;
                 picSetting.Image = Properties.Resources._02;
+                picBackUp.Image = Properties.Resources._99;
                 picDivarNote.Visible = false;
                 picAdsNote.Visible = false;
                 picSimcardNote.Visible = false;
@@ -47,6 +51,7 @@ namespace Ads.Forms.Mains
                 picStateNote.Visible = false;
                 picCategoryNote.Visible = false;
                 picSettingNote.Visible = false;
+                picBackUpNote.Visible = false;
                 lblCateNote.Visible = false;
                 lblCategoryNote.Visible = false;
                 lblCityNote.Visible = false;
@@ -54,6 +59,25 @@ namespace Ads.Forms.Mains
                 lblSettingNote.Visible = false;
                 lblSimcardNote.Visible = false;
                 lblStateNote.Visible = false;
+                lblBackUpNote.Visible = false;
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
+        private async void frmMain_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                PictureManager();
+                //await FillChart();
+                lblDay.Text = lblNewDate.Text = "";
+                var PRD = new MaftooxCalendar.MaftooxPersianCalendar.DateWork();
+                lblDay.Text = PRD.GetNameDayInMonth();
+                lblNewDate.Text = PRD.GetNumberDayInMonth() + " " + PRD.GetNameMonth() + " " + PRD.GetNumberYear();
+                timer1_Tick(null, null);
+                lblVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             catch (Exception exception)
             {
@@ -378,6 +402,119 @@ namespace Ads.Forms.Mains
             catch (Exception exception)
             {
                 FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void picBackUp_MouseEnter(object sender, EventArgs e)
+        {
+            picBackUpNote.Visible = true;
+            lblBackUpNote.Visible = true;
+        }
+
+        private void picBackUp_MouseLeave(object sender, EventArgs e)
+        {
+            picBackUpNote.Visible = false;
+            lblBackUpNote.Visible = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHour.Text = DateTime.Now.Hour.ToString();
+            lblMin.Text = DateTime.Now.Minute.ToString();
+            lblSec.Visible = !lblSec.Visible;
+        }
+
+
+        private async Task FillChart()
+        {
+            try
+            {
+                const int dayCount = 7;
+                //لیستی از تاریخ های شمسی هفته اخیر
+                var lstDate = new List<string>();
+                //تعداد کل آگهی ها ارسال شده
+                var lstAll = await AdvertiseLogBussines.GetAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.All);
+                //تعداد آگهی های ارسال شده در دیوار در هفته اخیر
+                var lstAllDivar = await AdvertiseLogBussines.GetAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.Divar);
+                //تعداد آگهی های ارسال شده در شیپور در هفته اخیر
+                var lstAllSheypoor = await AdvertiseLogBussines.GetAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.Sheypoor);
+
+                //تعداد کل آگهی های منتشر شده
+                var lstAllPub = await AdvertiseLogBussines.GetPublishedAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.All);
+                //تعداد آگهی های منتشر شده در دیوار
+                var lstDivarPublished = await
+                    AdvertiseLogBussines.GetPublishedAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.Divar);
+                //تعداد آگهی های منتظر شده در شیپور
+                var lstSheypoorPublished = await
+                    AdvertiseLogBussines.GetPublishedAdvCountInSpecialMounthAsync(dayCount, AdvertiseType.Sheypoor);
+
+                var firstDate = DateTime.Now.AddDays(-dayCount);
+                var secondDate = DateTime.Now;
+                //پرکردن لیست تاریخ از امروز تا 7 روز پیش به شمسی
+                for (var i = firstDate; i <= secondDate; i = i.AddDays(1))
+                {
+                    var stri = DateConvertor.M2SH(i);
+                    lstDate.Add(stri.Substring(5, 5));
+                }
+                //بدست آوردن درصد آگهی های منتشر شده به کل آگهی های یک روز
+                for (var i = 0; i < lstAll.Count; i++)
+                {
+                    var sub = ((float)lstAllPub[i] / (float)lstAll[i]);
+                    var per = 0;
+                    if (sub > 0)
+                        per = (int)(sub * 100);
+                    lstDate[i] = lstDate[i] + "  %" + per;
+                }
+
+
+                chart1.Palette = ChartColorPalette.Pastel;
+                chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+                chart1.Titles.Clear();
+                chart1.Series.Clear();
+                var divarserieAll = new Series { ChartType = SeriesChartType.Column, Name = "تعداد کل آگهی های دیوار" };
+                divarserieAll.ChartType = SeriesChartType.Column;
+                for (var i = 0; i < lstAllDivar.Count; i++)
+                {
+                    divarserieAll.Points.AddXY(lstDate[i], lstAllDivar[i]);
+                    divarserieAll.IsValueShownAsLabel = true;
+                }
+
+                var divarseriePublished = new Series { ChartType = SeriesChartType.Column, Name = "تعداد آگهی های منتشر شده در دیوار" };
+                divarseriePublished.ChartType = SeriesChartType.RangeColumn;
+                for (var i = 0; i < lstAllDivar.Count; i++)
+                {
+                    divarseriePublished.Points.AddXY(lstDate[i], lstDivarPublished[i]);
+                    divarseriePublished.IsValueShownAsLabel = true;
+                }
+
+
+                var sheyserieAll = new Series { ChartType = SeriesChartType.Column, Name = "تعداد کل آگهی های شیپور" };
+                sheyserieAll.ChartType = SeriesChartType.Column;
+                for (var i = 0; i < lstAllSheypoor.Count; i++)
+                {
+                    sheyserieAll.Points.AddXY(lstDate[i], lstAllSheypoor[i]);
+                    sheyserieAll.IsValueShownAsLabel = true;
+                }
+
+                var sheyseriePublished = new Series { ChartType = SeriesChartType.Column, Name = "تعداد آگهی های منتشر شده در شیپور" };
+                sheyseriePublished.ChartType = SeriesChartType.RangeColumn;
+                for (var i = 0; i < lstAllSheypoor.Count; i++)
+                {
+                    sheyseriePublished.Points.AddXY(lstDate[i], lstSheypoorPublished[i]);
+                    sheyseriePublished.IsValueShownAsLabel = true;
+                }
+
+              
+
+                chart1.Series.Add(divarserieAll);
+                chart1.Series.Add(divarseriePublished);
+                chart1.Series.Add(sheyserieAll);
+                chart1.Series.Add(sheyseriePublished);
+                chart1.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                FarsiMessegeBox.Show(ex.Message);
             }
         }
     }
