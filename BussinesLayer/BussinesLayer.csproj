@@ -80,6 +80,7 @@
     <Compile Include="AdvPicturesBussines.cs" />
     <Compile Include="AdvTitlesBussines.cs" />
     <Compile Include="AdvTokensBussines.cs" />
+    <Compile Include="BackUpSettingBussines.cs" />
     <Compile Include="ChatNumberBussines.cs" />
     <Compile Include="DivarCityBussines.cs" />
     <Compile Include="DivarSimCityBussines.cs" />

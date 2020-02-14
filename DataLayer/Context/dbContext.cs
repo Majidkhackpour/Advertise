@@ -1,4 +1,3 @@
-using DataLayer.Interface.Entities;
 using DataLayer.Migrations;
 using DataLayer.Models;
 
@@ -32,6 +31,7 @@ namespace DataLayer.Context
         public virtual DbSet<AdvTitles> AdvTitles { get; set; }
         public virtual DbSet<AdvContent> AdvContents { get; set; }
         public virtual DbSet<ChatNumbers> ChatNumbers { get; set; }
+        public virtual DbSet<BackUpSetting> BackUpSetting { get; set; }
     }
 
 }

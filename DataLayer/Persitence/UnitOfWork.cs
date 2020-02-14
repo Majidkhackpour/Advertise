@@ -25,6 +25,7 @@ namespace DataLayer.Persitence
         private IAdvTitlesRepository _advTitlesRepository;
         private IAdvContentRepository _advContentsRepository;
         private IChatNumbersRepository _chatNumbersRepository;
+        private IBackUpSettingRepository _backUpSettingRepository;
 
         public void Dispose()
         {
@@ -60,5 +61,7 @@ namespace DataLayer.Persitence
 
         public IChatNumbersRepository ChatNumbers =>
             _chatNumbersRepository ?? (_chatNumbersRepository = new ChatNumbersPersistenceRepository(db));
+        public IBackUpSettingRepository BackUpSetting =>
+            _backUpSettingRepository ?? (_backUpSettingRepository = new BackUpSettingPersistenceRepository(db));
     }
 }

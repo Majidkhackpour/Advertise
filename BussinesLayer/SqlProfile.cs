@@ -60,6 +60,9 @@ namespace BussinesLayer
 
             CreateMap<ChatNumbers, ChatNumberBussines>();
             CreateMap<ChatNumberBussines, ChatNumbers>();
+
+            CreateMap<BackUpSetting, BackUpSettingBussines>();
+            CreateMap<BackUpSettingBussines, BackUpSetting>();
         }
     }
 }
