@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,13 +72,16 @@ namespace Ads.Forms.Mains
             try
             {
                 PictureManager();
-                //await FillChart();
+                Invoke(new MethodInvoker(async () => await FillChart()));
                 lblDay.Text = lblNewDate.Text = "";
                 var PRD = new MaftooxCalendar.MaftooxPersianCalendar.DateWork();
                 lblDay.Text = PRD.GetNameDayInMonth();
                 lblNewDate.Text = PRD.GetNumberDayInMonth() + " " + PRD.GetNameMonth() + " " + PRD.GetNumberYear();
                 timer1_Tick(null, null);
                 lblVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                var a = BackUpSettingBussines.GetAll();
+                var cls = a.Count > 0 ? a[0] : new BackUpSettingBussines();
+                lblLastBackUp.Text = cls.LastBackUpTime + " " + cls.LastBackUpDate;
             }
             catch (Exception exception)
             {
@@ -467,8 +471,9 @@ namespace Ads.Forms.Mains
                 }
 
 
-                chart1.Palette = ChartColorPalette.Pastel;
+                chart1.Palette = ChartColorPalette.Grayscale;
                 chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+                chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 0;
                 chart1.Titles.Clear();
                 chart1.Series.Clear();
                 var divarserieAll = new Series { ChartType = SeriesChartType.Column, Name = "تعداد کل آگهی های دیوار" };
@@ -510,6 +515,7 @@ namespace Ads.Forms.Mains
                 chart1.Series.Add(divarseriePublished);
                 chart1.Series.Add(sheyserieAll);
                 chart1.Series.Add(sheyseriePublished);
+                chart1.ChartAreas[0].BackColor = Color.Transparent;
                 chart1.Visible = true;
             }
             catch (Exception ex)

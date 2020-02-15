@@ -56,20 +56,27 @@ namespace DataLayer.Persitence
         {
             try
             {
+                var lstReturn = new List<int>();
+                var firstDate = DateTime.Now.AddDays(-dayCount);
+                var secondDate = DateTime.Now;
                 using (var contex = new dbContext())
                 {
-                    var lst = new List<int>();
-                    for (var i = DateTime.Now.AddDays(-dayCount); i >= DateTime.Now; i = DateTime.Now.AddDays(1))
+                    for (var i = firstDate; i <= secondDate; i = i.AddDays(1))
                     {
-                        var acc = contex.AdvertiseLog.AsNoTracking().Count(q =>
-                            q.DateM>=i);
+                        var counter = 0;
+                        var strI = DateConvertor.M2SH(i);
+                        if (type != AdvertiseType.All)
+                            counter = contex.AdvertiseLog.AsNoTracking()
+                                .Count(q => q.DateSabt == strI && q.AdvType == type);
+                        else
+                            counter = contex.AdvertiseLog.AsNoTracking()
+                                .Count(q => q.DateSabt == strI);
+                        lstReturn.Add(counter);
                     }
-
-                    return lst;
                 }
-
+                return lstReturn;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -79,9 +86,29 @@ namespace DataLayer.Persitence
         {
             try
             {
-                throw new NotImplementedException();
+                var lstReturn = new List<int>();
+                var firstDate = DateTime.Now.AddDays(-dayCount);
+                var secondDate = DateTime.Now;
+                using (var contex = new dbContext())
+                {
+                    for (var i = firstDate; i <= secondDate; i = i.AddDays(1))
+                    {
+                        var counter = 0;
+                        var strI = DateConvertor.M2SH(i);
+                        if (type != AdvertiseType.All)
+                            counter = contex.AdvertiseLog.AsNoTracking()
+                                .Count(q => (q.DateSabt == strI) && (q.StatusCode == StatusCode.Published) &&
+                                            (q.AdvType == type));
+                        else
+                            counter = contex.AdvertiseLog.AsNoTracking()
+                                .Count(q => (q.DateSabt == strI) && (q.StatusCode == StatusCode.Published));
+                        lstReturn.Add(counter);
+                    }
+                }
+
+                return lstReturn;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }

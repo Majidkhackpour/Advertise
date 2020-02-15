@@ -251,6 +251,15 @@ namespace Ads.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to data source=.;initial catalog=Ads;integrated security=True;MultipleActiveResultSets=True;.
+        /// </summary>
+        internal static string ConnectionString {
+            get {
+                return ResourceManager.GetString("ConnectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap connector {

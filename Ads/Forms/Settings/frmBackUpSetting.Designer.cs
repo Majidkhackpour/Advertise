@@ -39,22 +39,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.chbAuto = new System.Windows.Forms.CheckBox();
+            this.chbIsSentToTelegram = new System.Windows.Forms.CheckBox();
+            this.line2 = new DevComponents.DotNetBar.Controls.Line();
+            this.btnRestore = new DevComponents.DotNetBar.ButtonX();
+            this.btnBackUp = new DevComponents.DotNetBar.ButtonX();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.uC_Date1 = new UC_Date.UC_Date();
-            this.chbAuto = new System.Windows.Forms.CheckBox();
-            this.chbIsSentToTelegram = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.line2 = new DevComponents.DotNetBar.Controls.Line();
-            this.btnBackUp = new DevComponents.DotNetBar.ButtonX();
-            this.btnRestore = new DevComponents.DotNetBar.ButtonX();
+            this.chbIsSendToEmail = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(0, 274);
+            this.line1.Location = new System.Drawing.Point(0, 352);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(399, 19);
             this.line1.TabIndex = 55701;
@@ -111,7 +114,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(213, 292);
+            this.btnFinish.Location = new System.Drawing.Point(213, 370);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(145, 25);
@@ -156,7 +159,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(20, 292);
+            this.btnCancel.Location = new System.Drawing.Point(20, 370);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(145, 25);
@@ -170,6 +173,7 @@
             // 
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grpAccount.Controls.Add(this.chbIsSendToEmail);
             this.grpAccount.Controls.Add(this.chbAuto);
             this.grpAccount.Controls.Add(this.chbIsSentToTelegram);
             this.grpAccount.Controls.Add(this.line2);
@@ -177,14 +181,16 @@
             this.grpAccount.Controls.Add(this.btnBackUp);
             this.grpAccount.Controls.Add(this.btnSearch);
             this.grpAccount.Controls.Add(this.txtAddress);
+            this.grpAccount.Controls.Add(this.txtEmailAddress);
             this.grpAccount.Controls.Add(this.txtAutoSecond);
+            this.grpAccount.Controls.Add(this.label3);
             this.grpAccount.Controls.Add(this.label12);
             this.grpAccount.Controls.Add(this.label2);
             this.grpAccount.Controls.Add(this.label1);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(9, 50);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(361, 218);
+            this.grpAccount.Size = new System.Drawing.Size(361, 300);
             // 
             // 
             // 
@@ -215,6 +221,93 @@
             // 
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 55697;
+            // 
+            // chbAuto
+            // 
+            this.chbAuto.AutoSize = true;
+            this.chbAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbAuto.ForeColor = System.Drawing.Color.Silver;
+            this.chbAuto.Location = new System.Drawing.Point(169, 91);
+            this.chbAuto.Name = "chbAuto";
+            this.chbAuto.Size = new System.Drawing.Size(182, 24);
+            this.chbAuto.TabIndex = 51;
+            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
+            this.chbAuto.UseVisualStyleBackColor = false;
+            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // chbIsSentToTelegram
+            // 
+            this.chbIsSentToTelegram.AutoSize = true;
+            this.chbIsSentToTelegram.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSentToTelegram.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSentToTelegram.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSentToTelegram.Location = new System.Drawing.Point(176, 61);
+            this.chbIsSentToTelegram.Name = "chbIsSentToTelegram";
+            this.chbIsSentToTelegram.Size = new System.Drawing.Size(175, 24);
+            this.chbIsSentToTelegram.TabIndex = 52;
+            this.chbIsSentToTelegram.Text = "ارسال فایل پشتیبان به تلگرام";
+            this.chbIsSentToTelegram.UseVisualStyleBackColor = false;
+            // 
+            // line2
+            // 
+            this.line2.BackColor = System.Drawing.Color.Transparent;
+            this.line2.ForeColor = System.Drawing.Color.Silver;
+            this.line2.Location = new System.Drawing.Point(16, 236);
+            this.line2.Name = "line2";
+            this.line2.Size = new System.Drawing.Size(324, 10);
+            this.line2.TabIndex = 55701;
+            this.line2.Text = "line1";
+            this.line2.Thickness = 2;
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRestore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnRestore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnRestore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRestore.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnRestore.Location = new System.Drawing.Point(8, 258);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnRestore.Size = new System.Drawing.Size(145, 25);
+            this.btnRestore.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnRestore.TabIndex = 55698;
+            this.btnRestore.Text = "بازیابی فایل پشتیبان";
+            this.btnRestore.TextColor = System.Drawing.Color.Silver;
+            this.btnRestore.ThemeAware = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            // 
+            // btnBackUp
+            // 
+            this.btnBackUp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnBackUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnBackUp.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnBackUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBackUp.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnBackUp.Location = new System.Drawing.Point(201, 258);
+            this.btnBackUp.Name = "btnBackUp";
+            this.btnBackUp.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnBackUp.Size = new System.Drawing.Size(145, 25);
+            this.btnBackUp.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnBackUp.TabIndex = 55698;
+            this.btnBackUp.Text = "ایجاد فایل پشتیبان";
+            this.btnBackUp.TextColor = System.Drawing.Color.Silver;
+            this.btnBackUp.ThemeAware = true;
+            this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label2.ForeColor = System.Drawing.Color.Silver;
+            this.label2.Location = new System.Drawing.Point(32, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 20);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "دقیقه";
             // 
             // lblHeader
             // 
@@ -251,97 +344,51 @@
             this.uC_Date1.Size = new System.Drawing.Size(380, 47);
             this.uC_Date1.TabIndex = 55702;
             // 
-            // chbAuto
+            // chbIsSendToEmail
             // 
-            this.chbAuto.AutoSize = true;
-            this.chbAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbAuto.ForeColor = System.Drawing.Color.Silver;
-            this.chbAuto.Location = new System.Drawing.Point(169, 91);
-            this.chbAuto.Name = "chbAuto";
-            this.chbAuto.Size = new System.Drawing.Size(182, 24);
-            this.chbAuto.TabIndex = 51;
-            this.chbAuto.Text = "پشتیبان گیری خودکار فعال باشد";
-            this.chbAuto.UseVisualStyleBackColor = false;
-            this.chbAuto.CheckedChanged += new System.EventHandler(this.chbAuto_CheckedChanged);
+            this.chbIsSendToEmail.AutoSize = true;
+            this.chbIsSendToEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendToEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendToEmail.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendToEmail.Location = new System.Drawing.Point(180, 155);
+            this.chbIsSendToEmail.Name = "chbIsSendToEmail";
+            this.chbIsSendToEmail.Size = new System.Drawing.Size(171, 24);
+            this.chbIsSendToEmail.TabIndex = 51;
+            this.chbIsSendToEmail.Text = "ارسال فایل پشتیبان به ایمیل";
+            this.chbIsSendToEmail.UseVisualStyleBackColor = false;
+            this.chbIsSendToEmail.CheckedChanged += new System.EventHandler(this.chbIsSendToEmail_CheckedChanged);
             // 
-            // chbIsSentToTelegram
+            // label3
             // 
-            this.chbIsSentToTelegram.AutoSize = true;
-            this.chbIsSentToTelegram.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsSentToTelegram.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSentToTelegram.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSentToTelegram.Location = new System.Drawing.Point(176, 61);
-            this.chbIsSentToTelegram.Name = "chbIsSentToTelegram";
-            this.chbIsSentToTelegram.Size = new System.Drawing.Size(175, 24);
-            this.chbIsSentToTelegram.TabIndex = 52;
-            this.chbIsSentToTelegram.Text = "ارسال فایل پشتیبان به تلگرام";
-            this.chbIsSentToTelegram.UseVisualStyleBackColor = false;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(130, 182);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(222, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "آدرس ایمیل";
             // 
-            // label2
+            // txtEmailAddress
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(32, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 20);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "دقیقه";
-            // 
-            // line2
-            // 
-            this.line2.BackColor = System.Drawing.Color.Transparent;
-            this.line2.ForeColor = System.Drawing.Color.Silver;
-            this.line2.Location = new System.Drawing.Point(16, 154);
-            this.line2.Name = "line2";
-            this.line2.Size = new System.Drawing.Size(324, 10);
-            this.line2.TabIndex = 55701;
-            this.line2.Text = "line1";
-            this.line2.Thickness = 2;
-            // 
-            // btnBackUp
-            // 
-            this.btnBackUp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnBackUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnBackUp.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnBackUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBackUp.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnBackUp.Location = new System.Drawing.Point(201, 176);
-            this.btnBackUp.Name = "btnBackUp";
-            this.btnBackUp.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnBackUp.Size = new System.Drawing.Size(145, 25);
-            this.btnBackUp.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnBackUp.TabIndex = 55698;
-            this.btnBackUp.Text = "ایجاد فایل پشتیبان";
-            this.btnBackUp.TextColor = System.Drawing.Color.Silver;
-            this.btnBackUp.ThemeAware = true;
-            // 
-            // btnRestore
-            // 
-            this.btnRestore.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRestore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnRestore.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnRestore.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRestore.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnRestore.Location = new System.Drawing.Point(8, 176);
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnRestore.Size = new System.Drawing.Size(145, 25);
-            this.btnRestore.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnRestore.TabIndex = 55698;
-            this.btnRestore.Text = "بازیابی فایل پشتیبان";
-            this.btnRestore.TextColor = System.Drawing.Color.Silver;
-            this.btnRestore.ThemeAware = true;
+            this.txtEmailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmailAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtEmailAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmailAddress.ForeColor = System.Drawing.Color.Silver;
+            this.txtEmailAddress.Location = new System.Drawing.Point(32, 205);
+            this.txtEmailAddress.MaxLength = 3000;
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(316, 27);
+            this.txtEmailAddress.TabIndex = 10;
             // 
             // frmBackUpSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(380, 323);
+            this.ClientSize = new System.Drawing.Size(380, 404);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.uC_Date1);
             this.Controls.Add(this.line1);
@@ -387,5 +434,8 @@
         public System.Windows.Forms.Label label2;
         public DevComponents.DotNetBar.ButtonX btnRestore;
         public DevComponents.DotNetBar.ButtonX btnBackUp;
+        private System.Windows.Forms.CheckBox chbIsSendToEmail;
+        public System.Windows.Forms.TextBox txtEmailAddress;
+        public System.Windows.Forms.Label label3;
     }
 }

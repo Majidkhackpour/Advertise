@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -8,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Net;
+using System.Net.Mail;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -20,6 +23,8 @@ using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
 using FMessegeBox;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
 using Microsoft.Win32;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -664,6 +669,110 @@ namespace Ads.Classes
             {
                 return null;
             }
+        }
+
+        public static async Task<bool> CreateBackUp(string dbName, string fileName, BackUpSettingBussines cls)
+        {
+            try
+            {
+                var path = Path.Combine(cls.BackUpAddress, fileName);
+                var command = @"BACKUP DATABASE " + dbName + "  TO Disk='" + path + "'";
+                var dataConnection = new SqlConnection(Properties.Resources.ConnectionString);
+                if (dataConnection.State != ConnectionState.Open)
+                    dataConnection.Open();
+                var cmd = new SqlCommand { Connection = dataConnection, CommandText = command };
+                cmd.ExecuteNonQuery();
+                cls.LastBackUpDate = DateConvertor.M2SH(DateTime.Now);
+                cls.LastBackUpTime = DateTime.Now.Hour + ":" + DateTime.Now.Minute;
+                await cls.SaveAsync();
+                if (cls.IsSendInEmail)
+                {
+                    await SendEmail("aradenj2211@gmail.com", "09382420272", cls.EmailAddress, fileName, "فایل پشتیبان",
+                        "smtp.gmail.com", 587, path);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+                return false;
+            }
+        }
+
+        public static async Task<bool> RestoreDatabase(string dbName, string fileName)
+        {
+            var con = new SqlConnection(Properties.Resources.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                var cmd1 =
+                    new SqlCommand("ALTER DATABASE [" + dbName + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE ", con);
+                cmd1.ExecuteNonQuery();
+                var cmd2 =
+                    new SqlCommand(
+                        "USE MASTER RESTORE DATABASE [" + dbName + "] FROM DISK='" + fileName + "' WITH REPLACE", con);
+                cmd2.ExecuteNonQuery();
+                var cmd3 = new SqlCommand("ALTER DATABASE [" + dbName + "] SET MULTI_USER", con);
+                cmd3.ExecuteNonQuery();
+                con.Close();
+                con.Close();
+                return true;
+            }
+            catch
+            {
+                FarsiMessegeBox.Show("خطا در بازیابی فایل پشتیبان");
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public static async  Task SendEmail(string from, string password, string to, string Message, string subject, string host, int port, string file)
+        {
+            try
+            {
+                var email = new MailMessage { From = new MailAddress(@from) };
+                email.To.Add(to);
+                email.Subject = subject;
+                email.Body = Message;
+                var smtp = new SmtpClient(host, port) { UseDefaultCredentials = false };
+                var nc = new NetworkCredential(from, password);
+                smtp.Credentials = nc;
+                smtp.EnableSsl = true;
+                email.IsBodyHtml = true;
+                email.Priority = MailPriority.Normal;
+                email.BodyEncoding = Encoding.UTF8;
+
+                if (file.Length > 0)
+                {
+                    var attachment = new Attachment(file);
+                    email.Attachments.Add(attachment);
+                }
+
+                smtp.SendCompleted += new SendCompletedEventHandler(SendCompletedCallBack);
+                var userstate = "sending ...";
+                smtp.SendAsync(email, userstate);
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
+        private static void SendCompletedCallBack(object sender, AsyncCompletedEventArgs e)
+        {
+            var result = "";
+            if (e.Cancelled)
+                FarsiMessegeBox.Show(string.Format("{0} send canceled.", e.UserState), "Message", FMessegeBoxButtons.Ok,
+                    FMessegeBoxIcons.Information);
+            else if (e.Error != null)
+                FarsiMessegeBox.Show(string.Format("{0} {1}", e.UserState, e.Error), "Message", FMessegeBoxButtons.Ok,
+                    FMessegeBoxIcons.Information);
+
+            else
+                FarsiMessegeBox.Show("your message is sended", "Message", FMessegeBoxButtons.Ok,
+                    FMessegeBoxIcons.Information);
         }
     }
 }

@@ -14,6 +14,10 @@ namespace DataLayer.Models
         public string BackUpAddress { get; set; }
         public bool AutoBackUp { get; set; }
         public bool IsSendInTelegram { get; set; }
+        public bool IsSendInEmail { get; set; }
         public int? AutoTime { get; set; }
+        public string LastBackUpDate { get; set; }
+        public string LastBackUpTime { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
