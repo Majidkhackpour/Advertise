@@ -66,6 +66,7 @@
     <Compile Include="Core\IChatNumbersRepository.cs" />
     <Compile Include="Core\IDivarCityRepository.cs" />
     <Compile Include="Core\IDivarSimCityRepository.cs" />
+    <Compile Include="Core\IProxyRepository.cs" />
     <Compile Include="Core\IRegionRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\ISettingRepository.cs" />
@@ -74,12 +75,15 @@
     <Compile Include="Core\ISheypoorSimCityRepository.cs" />
     <Compile Include="Core\ISimcardRepository.cs" />
     <Compile Include="Core\IStateRepository.cs" />
+    <Compile Include="Core\ITelegramBotSettingRepository.cs" />
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
     <Compile Include="Interface\Entities\IAdvContent.cs" />
     <Compile Include="Interface\Entities\IBackUpSetting.cs" />
     <Compile Include="Interface\Entities\IChatNumbers.cs" />
+    <Compile Include="Interface\Entities\IProxy.cs" />
+    <Compile Include="Interface\Entities\ITelegramBotSetting.cs" />
     <Compile Include="Migration\202002071329475_11.cs" />
     <Compile Include="Migration\202002071329475_11.designer.cs">
       <DependentUpon>202002071329475_11.cs</DependentUpon>
@@ -163,6 +167,7 @@
     <Compile Include="Models\ChatNumbers.cs" />
     <Compile Include="Models\DivarCity.cs" />
     <Compile Include="Models\DivarSimCity.cs" />
+    <Compile Include="Models\Proxy.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\SheypoorCity.cs" />
@@ -170,6 +175,7 @@
     <Compile Include="Models\SimcardAds.cs" />
     <Compile Include="Models\SheypoorSimCity.cs" />
     <Compile Include="Models\States.cs" />
+    <Compile Include="Models\TelegramBotSetting.cs" />
     <Compile Include="Persitence\AdvCategoryPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvContentPersistenceRepository.cs" />
     <Compile Include="Persitence\AdvertiseLogPersistenceRepository.cs" />
@@ -183,6 +189,7 @@
     <Compile Include="Persitence\DivarCityPersistenceRepository.cs" />
     <Compile Include="Persitence\DivarSimCityPersistenceRepository.cs" />
     <Compile Include="Persitence\GenericRepository.cs" />
+    <Compile Include="Persitence\ProxyPersistenceRepository.cs" />
     <Compile Include="Persitence\RegionPersistenceRepository.cs" />
     <Compile Include="Persitence\SettingPersistenceRepository.cs" />
     <Compile Include="Persitence\SheypoorCityPersistenceRepository.cs" />
@@ -190,6 +197,7 @@
     <Compile Include="Persitence\SheypoorSimCityPersistenceRepository.cs" />
     <Compile Include="Persitence\SimcardPersistendeRepository.cs" />
     <Compile Include="Persitence\StateOersistenceRepository.cs" />
+    <Compile Include="Persitence\TelegramBotSettingPersistenceRepository.cs" />
     <Compile Include="Persitence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

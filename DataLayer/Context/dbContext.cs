@@ -32,6 +32,8 @@ namespace DataLayer.Context
         public virtual DbSet<AdvContent> AdvContents { get; set; }
         public virtual DbSet<ChatNumbers> ChatNumbers { get; set; }
         public virtual DbSet<BackUpSetting> BackUpSetting { get; set; }
+        public virtual DbSet<Proxy> Proxy { get; set; }
+        public virtual DbSet<TelegramBotSetting> TelegramBotSetting { get; set; }
     }
 
 }

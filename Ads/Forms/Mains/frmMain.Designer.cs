@@ -66,10 +66,11 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblProxy = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.lblLastBackUp = new System.Windows.Forms.Label();
+            this.lblServerProxy = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAds)).BeginInit();
@@ -548,15 +549,17 @@
             this.lblVersion.TabIndex = 32;
             this.lblVersion.Text = "1.0.0.0";
             // 
-            // label4
+            // lblProxy
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(241, 569);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 20);
-            this.label4.TabIndex = 32;
-            this.label4.Text = "پروکسی:";
+            this.lblProxy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProxy.AutoSize = true;
+            this.lblProxy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblProxy.Location = new System.Drawing.Point(241, 569);
+            this.lblProxy.Name = "lblProxy";
+            this.lblProxy.Size = new System.Drawing.Size(52, 20);
+            this.lblProxy.TabIndex = 32;
+            this.lblProxy.Text = "پروکسی:";
+            this.lblProxy.Click += new System.EventHandler(this.lblProxy_Click);
             // 
             // chart1
             // 
@@ -592,6 +595,17 @@
             this.lblLastBackUp.TabIndex = 32;
             this.lblLastBackUp.Text = "1398/12/29 17:25";
             // 
+            // lblServerProxy
+            // 
+            this.lblServerProxy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblServerProxy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblServerProxy.Location = new System.Drawing.Point(44, 569);
+            this.lblServerProxy.Name = "lblServerProxy";
+            this.lblServerProxy.Size = new System.Drawing.Size(191, 20);
+            this.lblServerProxy.TabIndex = 32;
+            this.lblServerProxy.Text = "00";
+            this.lblServerProxy.Click += new System.EventHandler(this.lblProxy_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -608,7 +622,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblLastBackUp);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblServerProxy);
+            this.Controls.Add(this.lblProxy);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCategoryNote);
@@ -707,9 +722,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblProxy;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblLastBackUp;
+        private System.Windows.Forms.Label lblServerProxy;
     }
 }

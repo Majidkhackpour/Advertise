@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -13,6 +15,7 @@ using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
 using FMessegeBox;
+using Microsoft.SqlServer.Management.Smo;
 using TMS.Class;
 
 namespace Ads.Forms.Mains
@@ -67,6 +70,53 @@ namespace Ads.Forms.Mains
                 FarsiMessegeBox.Show(e.Message);
             }
         }
+
+        private async Task GetProxy()
+        {
+            var server = "در حال اتصال به پروکسی ...";
+            try
+            {
+                var list = await ProxyBussines.GetAllAsync();
+                foreach (var pr in list.ToList())
+                {
+                    var tt = false;
+                    if (!pr.Status) continue;
+                    var ts = new Thread(new ThreadStart(async () => tt = await PingHost(pr.Server, pr.Port)));
+                    ts.Start();
+                    if (tt)
+                    {
+                        server = pr.Server;
+                        return;
+                    }
+                    server = "عدم اتصال به پروکسی";
+                }
+            }
+            catch (Exception e)
+            {
+                server = "عدم اتصال به پروکسی";
+            }
+
+            Invoke(new MethodInvoker(() => lblServerProxy.Text = server));
+
+        }
+        private static async Task<bool> PingHost(string strIP, int intPort)
+        {
+            var blProxy = false;
+            try
+            {
+                var client = new TcpClient(strIP, intPort);
+                blProxy = true;
+            }
+            catch (SocketException)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return blProxy;
+        }
         private async void frmMain_Load(object sender, EventArgs e)
         {
             try
@@ -82,6 +132,8 @@ namespace Ads.Forms.Mains
                 var a = BackUpSettingBussines.GetAll();
                 var cls = a.Count > 0 ? a[0] : new BackUpSettingBussines();
                 lblLastBackUp.Text = cls.LastBackUpTime + " " + cls.LastBackUpDate;
+                var ts = new Thread(new ThreadStart(async () => await GetProxy()));
+                ts.Start();
             }
             catch (Exception exception)
             {
@@ -509,7 +561,7 @@ namespace Ads.Forms.Mains
                     sheyseriePublished.IsValueShownAsLabel = true;
                 }
 
-              
+
 
                 chart1.Series.Add(divarserieAll);
                 chart1.Series.Add(divarseriePublished);
@@ -529,6 +581,18 @@ namespace Ads.Forms.Mains
             try
             {
                 new frmBackUpSetting().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                FarsiMessegeBox.Show(exception.Message);
+            }
+        }
+
+        private void lblProxy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmProxy().ShowDialog();
             }
             catch (Exception exception)
             {

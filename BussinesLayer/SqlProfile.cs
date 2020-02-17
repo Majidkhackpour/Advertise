@@ -63,6 +63,12 @@ namespace BussinesLayer
 
             CreateMap<BackUpSetting, BackUpSettingBussines>();
             CreateMap<BackUpSettingBussines, BackUpSetting>();
+
+            CreateMap<Proxy, ProxyBussines>();
+            CreateMap<ProxyBussines, Proxy>();
+
+            CreateMap<TelegramBotSetting, TelegramBotSettingBussines>();
+            CreateMap<TelegramBotSettingBussines, TelegramBotSetting>();
         }
     }
 }
