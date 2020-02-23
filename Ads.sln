@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLayer", "BussinesLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandler", "ErrorHandler\ErrorHandler.csproj", "{7323E507-D78E-486B-8DBB-6E88542BFAD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B16F43D9-27E9-4877-B4FF-CBF95A36D9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7323E507-D78E-486B-8DBB-6E88542BFAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7323E507-D78E-486B-8DBB-6E88542BFAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7323E507-D78E-486B-8DBB-6E88542BFAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7323E507-D78E-486B-8DBB-6E88542BFAD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

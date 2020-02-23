@@ -222,6 +222,8 @@ namespace Ads.Classes
                 if (driver?.Title == null)
                 {
                     CloseAllChromeWindows();
+                    //var driverOSer = ChromeDriverService.CreateDefaultService();
+                    //driverOSer.HideCommandPromptWindow = true;
                     driver = new ChromeDriver();
                     driver?.Manage().Window.Maximize();
                 }
@@ -229,9 +231,10 @@ namespace Ads.Classes
             catch (Exception ex)
             {
                 CloseAllChromeWindows();
+                //var driverOSer = ChromeDriverService.CreateDefaultService();
+                //driverOSer.HideCommandPromptWindow = true;
                 driver = new ChromeDriver();
-                driver.Manage().Window.Maximize();
-                //  WebErrorLog.ErrorLogInstance.StartLog(ex);
+                driver?.Manage().Window.Maximize();
             }
             return driver;
         }
@@ -496,6 +499,7 @@ namespace Ads.Classes
                             lstMessage.Clear();
                             lstMessage.Add("پر شدن تعداد آگهی");
                             Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
+                            await SendChat(clsSetting, simCard);
                         }
 
                         firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
@@ -530,6 +534,7 @@ namespace Ads.Classes
                             lstMessage.Add(
                                 $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
                             Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
                             continue;
                         }
 
@@ -552,62 +557,32 @@ namespace Ads.Classes
                             lstMessage.Add(
                                 $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
                             Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
                             continue;
                         }
 
                         var divar = await DivarAdv.GetInstance();
                         await divar.StartRegisterAdv(simCard);
 
+                        await Wait(1);
+
                         var shey = await SheypoorAdv.GetInstance();
                         await shey.StartRegisterAdv(simCard);
 
-                        await Wait(60);
+                        //await Wait(60);
 
                         simCard.NextUse = DateTime.Now.AddMinutes(30);
                         await simCard.SaveAsync();
-                        await Wait(60);
+                        await Wait(10);
                     }
 
                     if (simCard.IsSendChat)
-                    {
-                        var lst = Directory.GetFiles(clsSetting.FierstLevelChatAddress).ToList();
-                        var passage1 = new List<string>();
-                        foreach (var item in lst)
-                        {
-                            var a = File.ReadAllText(item).Replace("\r\n", " ");
-                            passage1.Add(a);
-                        }
-                        var lst2 = Directory.GetFiles(clsSetting.SecondLevelChatAddress).ToList();
-                        var passage2 = new List<string>();
-                        foreach (var item in lst2)
-                        {
-                            var a = File.ReadAllText(item).Replace("\r\n", " ");
-                            passage2.Add(a);
-                        }
+                        await SendChat(clsSetting, simCard);
 
-                        var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
 
-                        var cat1 = AdvCategoryBussines.Get(simCard.DivarChatCat1)?.Name ?? "";
-                        var cat2 = AdvCategoryBussines.Get(simCard.DivarChatCat2)?.Name ?? "";
-                        var cat3 = AdvCategoryBussines.Get(simCard.DivarChatCat3)?.Name ?? "";
+                    CloseAllChromeWindows();
 
-                        var date = DateConvertor.M2SH(DateTime.Now);
-                        date = date.Replace("/", "_");
-                        var fileName = $"{cat1}__{cat2}__{cat3}__{date}";
-                        fileName = fileName.Replace(" ", "_");
-                        var divar = await DivarAdv.GetInstance();
-                        await divar.SendChat(passage1, passage2, simCard.ChatCount, city.Name, cat1, cat2, cat3,
-                            fileName, simCard);
 
-                        var city1 = SheypoorCityBussines.GetAsync(simCard.SheypoorCityForChat);
-
-                        cat1 = AdvCategoryBussines.Get(simCard.SheypoorChatCat1)?.Name ?? "";
-                        cat2 = AdvCategoryBussines.Get(simCard.SheypoorChatCat2)?.Name ?? "";
-
-                        var shey = await SheypoorAdv.GetInstance();
-                        await shey.SendChat(passage1, passage2, simCard.ChatCount, city1.Name, cat1, cat2, null,
-                            fileName, simCard);
-                    }
 
                     simCard.NextUse = DateTime.Now.AddHours(1);
                     await simCard.SaveAsync();
@@ -617,6 +592,8 @@ namespace Ads.Classes
                 lstMessage.Add("لیست کاملا پیمایش شد");
                 Utility.ShowBalloon("اتمام یک دور کامل از پیمایش سیمکارت ها", lstMessage);
                 await UpdateAdvStatus(clsSetting?.DayCountForUpdateState ?? 10);
+
+                CloseAllChromeWindows();
 
             }
             catch (Exception ex)
@@ -671,6 +648,62 @@ namespace Ads.Classes
             }
         }
 
+        private static async Task SendChat(SettingBussines clsSetting, SimcardBussines simCard)
+        {
+            try
+            {
+                if (simCard.IsSendChat)
+                {
+                    var lst = Directory.GetFiles(clsSetting.FierstLevelChatAddress).ToList();
+                    var passage1 = new List<string>();
+                    foreach (var item in lst)
+                    {
+                        var a = File.ReadAllText(item);
+                        passage1.Add(a);
+                    }
+                    var lst2 = Directory.GetFiles(clsSetting.SecondLevelChatAddress).ToList();
+                    var passage2 = new List<string>();
+                    foreach (var item in lst2)
+                    {
+                        var a = File.ReadAllText(item);
+                        passage2.Add(a);
+                    }
+
+                    var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
+
+                    var cat1 = AdvCategoryBussines.Get(simCard.DivarChatCat1)?.Name ?? "";
+                    var cat2 = AdvCategoryBussines.Get(simCard.DivarChatCat2)?.Name ?? "";
+                    var cat3 = AdvCategoryBussines.Get(simCard.DivarChatCat3)?.Name ?? "";
+
+                    var date = DateConvertor.M2SH(DateTime.Now);
+                    date = date.Replace("/", "_");
+                    var fileName = $"{cat1}__{cat2}__{cat3}__{date}";
+                    fileName = fileName.Replace(" ", "_");
+                    var ff = Path.Combine(clsSetting.Address, fileName + ".txt");
+                    var divar = await DivarAdv.GetInstance();
+                    await divar.SendChat(passage1, passage2, simCard.ChatCount, city.Name, cat1, cat2, cat3,
+                        ff, simCard);
+
+                    var city1 = SheypoorCityBussines.GetAsync(simCard.SheypoorCityForChat);
+
+                    cat1 = AdvCategoryBussines.Get(simCard.SheypoorChatCat1)?.Name ?? "";
+                    cat2 = AdvCategoryBussines.Get(simCard.SheypoorChatCat2)?.Name ?? "";
+                    fileName = $"{cat1}__{cat2}__{date}";
+                    ff = Path.Combine(clsSetting.Address, fileName + ".txt");
+
+                    var shey = await SheypoorAdv.GetInstance();
+                    await shey.SendChat(passage1, passage2, simCard.ChatCount, city1.Name, cat1, cat2, null,
+                        ff, simCard);
+
+                    simCard.NextUse = DateTime.Now.AddMinutes(30);
+                    await simCard.SaveAsync();
+                }
+            }
+            catch (Exception e)
+            {
+                FarsiMessegeBox.Show(e.Message);
+            }
+        }
         public static async Task<bool> CreateBackUp(string dbName, string fileName, BackUpSettingBussines cls)
         {
             try
@@ -729,7 +762,7 @@ namespace Ads.Classes
                 con.Close();
             }
         }
-        public static async  Task SendEmail(string from, string password, string to, string Message, string subject, string host, int port, string file)
+        public static async Task SendEmail(string from, string password, string to, string Message, string subject, string host, int port, string file)
         {
             try
             {

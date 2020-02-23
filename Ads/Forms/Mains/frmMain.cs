@@ -147,7 +147,8 @@ namespace Ads.Forms.Mains
             {
                 var res = SettingBussines.GetAll();
                 var clsSetting = res.Count == 0 ? new SettingBussines() : res[0];
-                Invoke(new MethodInvoker(async () => await Utility.ManageAdvSend(clsSetting)));
+                var t = new Thread(async () => await Utility.ManageAdvSend(clsSetting));
+                t.Start();
             }
             catch (Exception exception)
             {

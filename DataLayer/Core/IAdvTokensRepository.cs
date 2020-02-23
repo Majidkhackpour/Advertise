@@ -11,5 +11,6 @@ namespace DataLayer.Core
    public interface IAdvTokensRepository:IRepository<AdvTokens>
    {
        AdvTokens GetToken(long number, AdvertiseType type);
-   }
+       List<AdvTokens> GetAll(AdvertiseType type, long number);
+    }
 }

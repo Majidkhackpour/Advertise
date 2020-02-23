@@ -576,7 +576,7 @@ namespace Ads.Forms.Mains
                     }
                     else if (lstContent[i - 1].Length > 900)
                     {
-                        error = $"محتوای آگهی {txtDesc.Text.Length} حرف است. نباید بیشتر از 900 کاراکتر باشد";
+                        error = $"محتوای آگهی {lstContent[i - 1].Length} حرف است. نباید بیشتر از 900 کاراکتر باشد";
                         lstErrors.Add(error);
                     }
                 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataLayer.Context;
 using DataLayer.Core;
@@ -27,6 +28,24 @@ namespace DataLayer.Persitence
                 }
             }
             catch (Exception exception)
+            {
+                return null;
+            }
+        }
+
+        public List<AdvTokens> GetAll(AdvertiseType type, long number)
+        {
+            try
+            {
+                using (var context = new dbContext())
+                {
+                    var list = context.AdvTokens.AsNoTracking()
+                        .Where(q => q.Type == type && q.Number == number)
+                        .ToList();
+                    return list;
+                }
+            }
+            catch (Exception e)
             {
                 return null;
             }
