@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DataLayer.Enums;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -21,6 +22,7 @@ namespace BussinesLayer
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return EnumItem.ToString();
             }
         }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Interface;
+using ErrorHandler;
 
 namespace DataLayer.Persitence
 {
@@ -35,10 +36,10 @@ namespace DataLayer.Persitence
                     }
 
                     return query.ToList();
-                    transaction.Commit();
                 }
                 catch (Exception e)
                 {
+                    WebErrorLog.ErrorInstence.StartErrorLog(e);
                     transaction.Rollback();
                     return null;
                 }
@@ -52,10 +53,10 @@ namespace DataLayer.Persitence
                 try
                 {
                     return _dbSet.Find(guid);
-                    transaction.Commit();
                 }
                 catch (Exception e)
                 {
+                    WebErrorLog.ErrorInstence.StartErrorLog(e);
                     transaction.Rollback();
                     return null;
                 }
@@ -76,6 +77,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }
@@ -98,6 +100,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }
@@ -121,6 +124,7 @@ namespace DataLayer.Persitence
                 }
                 catch (Exception ex)
                 {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     transaction.Rollback();
                     return null;
                 }
@@ -135,10 +139,10 @@ namespace DataLayer.Persitence
                 {
                     _dbSet.Add(item);
                     return true;
-                    transaction.Commit();
                 }
                 catch (Exception ex)
                 {
+                    WebErrorLog.ErrorInstence.StartErrorLog(ex);
                     transaction.Rollback();
                     return false;
                 }
@@ -152,12 +156,12 @@ namespace DataLayer.Persitence
                 {
                     _dbContext.Entry(entity).State = EntityState.Modified;
                     return true;
-                    transaction.Commit();
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    WebErrorLog.ErrorInstence.StartErrorLog(e);
                     transaction.Rollback();
+                    return false;
                 }
             }
         }
@@ -181,6 +185,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }

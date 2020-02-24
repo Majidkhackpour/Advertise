@@ -5,6 +5,7 @@ using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Enums;
 using DataLayer.Models;
+using ErrorHandler;
 
 namespace DataLayer.Persitence
 {
@@ -31,6 +32,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return 0;
             }
         }
@@ -48,6 +50,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
         }
@@ -78,6 +81,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -110,6 +114,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BussinesLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Simcard
@@ -33,7 +34,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public frmShowCity(AdvertiseType type)
@@ -67,7 +68,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -83,7 +84,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -99,7 +100,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -123,7 +124,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Classes
@@ -70,7 +71,7 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public static void Switch_Language_To_English()

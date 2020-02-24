@@ -7,6 +7,7 @@ using DataLayer.Enums;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -60,7 +61,7 @@ namespace BussinesLayer
             {
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -82,6 +83,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public static ProxyBussines Get(Guid guid)

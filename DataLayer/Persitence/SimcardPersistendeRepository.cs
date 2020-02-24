@@ -8,6 +8,7 @@ using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Enums;
 using DataLayer.Models;
+using ErrorHandler;
 
 namespace DataLayer.Persitence
 {
@@ -37,6 +38,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
         }
@@ -53,6 +55,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
         }
@@ -63,8 +66,6 @@ namespace DataLayer.Persitence
             {
                 using (var contex = new dbContext())
                 {
-                    long num = 0;
-
                     var acc = contex.Simcard.AsNoTracking().Where(q => q.NextUse <= DateTime.Now)
                         .OrderBy(q => q.NextUse).ToList();
                     return acc.First().Number;
@@ -72,6 +73,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return 0;
             }
         }
@@ -89,6 +91,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
             }
         }
@@ -108,6 +111,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return null;
             }
         }

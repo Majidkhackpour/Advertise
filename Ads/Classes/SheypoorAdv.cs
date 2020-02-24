@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
 using OpenQA.Selenium;
 using Cookie = OpenQA.Selenium.Cookie;
@@ -103,7 +104,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
 
 
@@ -144,7 +145,7 @@ namespace Ads.Classes
                         await Utility.Wait();
                         // break;
                     }
-                    catch (Exception e)
+                    catch
                     {
                     }
                 }
@@ -264,6 +265,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             finally { }
         }
@@ -291,6 +293,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             finally
             {
@@ -418,12 +421,12 @@ namespace Ads.Classes
             }
             catch (WebException er)
             {
-                FarsiMessegeBox.Show(er.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(er);
                 return false;
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
 
@@ -599,11 +602,7 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
-                lstMessage.Clear();
-                lstMessage.Add(
-                    e.Message);
-                Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
-                //FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return null;
             }
         }
@@ -705,7 +704,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return resultImages;
             }
         }
@@ -725,6 +724,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -820,6 +820,7 @@ namespace Ads.Classes
                     }
                     catch (Exception ex)
                     {
+                        WebErrorLog.ErrorInstence.StartErrorLog(ex);
                         await Utility.Wait();
                         tryCount++;
                     }
@@ -831,6 +832,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
             finally
@@ -874,6 +876,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -961,6 +964,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -1140,7 +1144,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -1206,7 +1210,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 

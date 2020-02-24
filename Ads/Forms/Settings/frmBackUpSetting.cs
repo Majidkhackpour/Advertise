@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Settings
@@ -34,7 +35,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private void btnSearch_Click(object sender, EventArgs e)
@@ -72,12 +73,12 @@ namespace Ads.Forms.Settings
                 cls.IsSendInEmail = chbIsSendToEmail.Checked;
                 cls.EmailAddress = txtEmailAddress.Text;
                 await cls.SaveAsync();
-                FarsiMessegeBox.Show("اطلاعات ذخیره شد");
+                WebErrorLog.ErrorInstence.StartErrorLog("اطلاعات ذخیره شد", true);
                 SetData();
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             finally
             {
@@ -93,11 +94,11 @@ namespace Ads.Forms.Settings
                 date = date.Replace("/", "_") + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + ".bak";
 
                 if (await Utility.CreateBackUp("Ads", date, cls))
-                    FarsiMessegeBox.Show("پشتیبان گیری با موفقیت انجام شد");
+                    WebErrorLog.ErrorInstence.StartErrorLog("پشتیبان گیری با موفقیت انجام شد", true);
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -115,13 +116,13 @@ namespace Ads.Forms.Settings
                 ofd.Title = "فایل پشتیبان خود را انتخاب نمایید";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    if(await Utility.RestoreDatabase("Ads",ofd.FileName))
-                        FarsiMessegeBox.Show("بازیابی فایل پشتیبان با موفقیت انجام شد");
+                    if (await Utility.RestoreDatabase("Ads", ofd.FileName))
+                        WebErrorLog.ErrorInstence.StartErrorLog("بازیابی فایل پشتیبان با موفقیت انجام شد", true);
                 }
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }

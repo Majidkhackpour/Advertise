@@ -22,6 +22,7 @@ using System.Windows.Forms;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -70,6 +71,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -96,6 +98,7 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return null;
             }
 
@@ -164,7 +167,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -228,7 +231,7 @@ namespace Ads.Classes
                     driver?.Manage().Window.Maximize();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 CloseAllChromeWindows();
                 //var driverOSer = ChromeDriverService.CreateDefaultService();
@@ -266,6 +269,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 data = null;
             }
 
@@ -331,6 +335,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
         }
@@ -350,6 +355,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -374,7 +380,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -451,6 +457,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 gateWay = null;
             }
 
@@ -598,7 +605,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -615,7 +622,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         public static string FixString(this string input)
@@ -644,6 +651,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -701,7 +709,7 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public static async Task<bool> CreateBackUp(string dbName, string fileName, BackUpSettingBussines cls)
@@ -727,7 +735,7 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }
@@ -752,9 +760,9 @@ namespace Ads.Classes
                 con.Close();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                FarsiMessegeBox.Show("خطا در بازیابی فایل پشتیبان");
+                WebErrorLog.ErrorInstence.StartErrorLog(ex, "خطا در بازیابی فایل پشتیبان");
                 return false;
             }
             finally
@@ -790,22 +798,17 @@ namespace Ads.Classes
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private static void SendCompletedCallBack(object sender, AsyncCompletedEventArgs e)
         {
-            var result = "";
             if (e.Cancelled)
-                FarsiMessegeBox.Show(string.Format("{0} send canceled.", e.UserState), "Message", FMessegeBoxButtons.Ok,
-                    FMessegeBoxIcons.Information);
+                WebErrorLog.ErrorInstence.StartErrorLog(string.Format("{0} send canceled.", e.UserState), false);
             else if (e.Error != null)
-                FarsiMessegeBox.Show(string.Format("{0} {1}", e.UserState, e.Error), "Message", FMessegeBoxButtons.Ok,
-                    FMessegeBoxIcons.Information);
-
+                WebErrorLog.ErrorInstence.StartErrorLog(string.Format("{0} send canceled.", e.UserState), false);
             else
-                FarsiMessegeBox.Show("your message is sended", "Message", FMessegeBoxButtons.Ok,
-                    FMessegeBoxIcons.Information);
+                WebErrorLog.ErrorInstence.StartErrorLog("فایل پشتیبان به ایمیل شما ارسال شد", false);
         }
     }
 }

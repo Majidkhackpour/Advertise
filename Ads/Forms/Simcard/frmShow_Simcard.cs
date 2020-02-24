@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Simcard
@@ -20,7 +21,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
 
@@ -44,7 +45,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -70,7 +71,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -84,7 +85,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -101,7 +102,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -114,7 +115,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -136,7 +137,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -158,7 +159,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -175,7 +176,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -192,7 +193,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -207,7 +208,7 @@ namespace Ads.Forms.Simcard
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }

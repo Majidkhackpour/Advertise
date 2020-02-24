@@ -14,7 +14,9 @@ using Ads.Forms.Simcard;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
+using Microsoft.SqlServer.Management.Dmf;
 using Microsoft.SqlServer.Management.Smo;
 using TMS.Class;
 
@@ -67,7 +69,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
 
@@ -91,7 +93,7 @@ namespace Ads.Forms.Mains
                     server = "عدم اتصال به پروکسی";
                 }
             }
-            catch (Exception e)
+            catch
             {
                 server = "عدم اتصال به پروکسی";
             }
@@ -113,6 +115,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
             return blProxy;
@@ -137,11 +140,11 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
-        private async void picDivar_Click(object sender, EventArgs e)
+        private void picDivar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -152,7 +155,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -267,7 +270,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -312,11 +315,11 @@ namespace Ads.Forms.Mains
                     await stat.SaveAsync();
                 }
 
-                FarsiMessegeBox.Show($"تعداد {list.Count()} استان بروزرسانی شد");
+                WebErrorLog.ErrorInstence.StartErrorLog($"تعداد {list.Count()} استان بروزرسانی شد", true);
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -341,7 +344,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         private async Task DivarRegion(int cityCount)
@@ -362,7 +365,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -381,7 +384,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private async Task SheypoorRegion(int cityCount)
@@ -422,7 +425,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -434,7 +437,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -446,7 +449,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -458,7 +461,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -573,7 +576,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -585,7 +588,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -597,7 +600,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }

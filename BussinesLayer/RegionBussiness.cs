@@ -6,6 +6,7 @@ using DataLayer.Enums;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -59,6 +60,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public static bool RemoveAll(List<RegionBussiness> list)
@@ -75,6 +77,7 @@ namespace BussinesLayer
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }

@@ -246,7 +246,12 @@
       <DependentUpon>202002091600209_13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ErrorHandler\ErrorHandler.csproj">
+      <Project>{7323e507-d78e-486b-8dbb-6e88542bfad9}</Project>
+      <Name>ErrorHandler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

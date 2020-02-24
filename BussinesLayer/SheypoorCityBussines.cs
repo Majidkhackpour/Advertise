@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -47,6 +48,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public static async Task<List<SheypoorCityBussines>> GetAllAsync()

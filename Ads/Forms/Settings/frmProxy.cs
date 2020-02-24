@@ -6,6 +6,7 @@ using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Settings
@@ -22,7 +23,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public frmProxy()
@@ -49,7 +50,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private async void frmProxy_Load(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -170,7 +171,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -187,14 +188,14 @@ namespace Ads.Forms.Settings
 
                 if (string.IsNullOrWhiteSpace(txtServer.Text))
                 {
-                    FarsiMessegeBox.Show("لطفا نام سرور را وارد نمایید");
+                    WebErrorLog.ErrorInstence.StartErrorLog("لطفا نام سرور را وارد نمایید", false);
                     txtServer.Focus();
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtPort.Text))
                 {
-                    FarsiMessegeBox.Show("لطفا شماره پورت را وارد نمایید");
+                    WebErrorLog.ErrorInstence.StartErrorLog("لطفا شماره پورت را وارد نمایید", false);
                     txtPort.Focus();
                     return;
                 }
@@ -212,7 +213,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
             finally
             {
@@ -234,7 +235,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -257,7 +258,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 using Nito.AsyncEx;
 
 namespace BussinesLayer
@@ -86,6 +87,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public async Task SaveAsync()
@@ -110,6 +112,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public static async Task<List<AdvertiseBussines>> GetAllAsync()

@@ -123,7 +123,7 @@ namespace Ads
             divarCityBussinesBindingSource.DataSource = list3.ToList();
         }
 
-        private async void btnSendAdv_Click(object sender, EventArgs e)
+        private void btnSendAdv_Click(object sender, EventArgs e)
         {
             //var divar = await DivarAdv.GetInstance();
             //await divar.StartRegisterAdv();

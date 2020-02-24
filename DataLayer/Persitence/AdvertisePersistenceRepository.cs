@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Models;
+using ErrorHandler;
 
 namespace DataLayer.Persitence
 {
@@ -29,6 +30,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return null;
             }
         }
@@ -46,6 +48,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
                 return false;
             }
         }
@@ -65,6 +68,7 @@ namespace DataLayer.Persitence
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return null;
             }
         }

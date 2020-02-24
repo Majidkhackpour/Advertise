@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Settings
@@ -31,7 +32,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private void txtAdvInDay_Enter(object sender, EventArgs e)
@@ -106,7 +107,7 @@ namespace Ads.Forms.Settings
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -138,27 +139,31 @@ namespace Ads.Forms.Settings
                 btnFinish.Enabled = false;
                 if (int.Parse(txtAdvInDay.Text) > 10)
                 {
-                    FarsiMessegeBox.Show("تعداد آگهی ارسالی به ازای هر سیمکارت در روز نمی تواند بیشتر از 10 آگهی باشد");
+                    WebErrorLog.ErrorInstence.StartErrorLog(
+                        "تعداد آگهی ارسالی به ازای هر سیمکارت در روز نمی تواند بیشتر از 10 آگهی باشد", false);
                     txtAdvInDay.Focus();
                     return;
                 }
 
                 if (int.Parse(txtAdvInMounth.Text) > 30)
                 {
-                    FarsiMessegeBox.Show("تعداد آگهی ارسالی به ازای هر سیمکارت در ماه نمی تواند بیشتر از 30 آگهی باشد");
+                    WebErrorLog.ErrorInstence.StartErrorLog(
+                        "تعداد آگهی ارسالی به ازای هر سیمکارت در ماه نمی تواند بیشتر از 30 آگهی باشد", false);
                     txtAdvInMounth.Focus();
                     return;
                 }
 
                 if (int.Parse(txtCountPic.Text) > 10)
                 {
-                    FarsiMessegeBox.Show("تعداد تصاویر آگهی ارسالی نمی تواند بیشتر از 10 تصویر باشد");
+                    WebErrorLog.ErrorInstence.StartErrorLog("تعداد تصاویر آگهی ارسالی نمی تواند بیشتر از 10 تصویر باشد",
+                        false);
                     txtCountPic.Focus();
                     return;
                 }
                 if (int.Parse(txtUpdateDayCount.Text) > 30)
                 {
-                    FarsiMessegeBox.Show("روزهای بروزرسانی آگهی نمی تواند بیشتر از 30 روز باشد");
+                    WebErrorLog.ErrorInstence.StartErrorLog("روزهای بروزرسانی آگهی نمی تواند بیشتر از 30 روز باشد",
+                        false);
                     txtUpdateDayCount.Focus();
                     return;
                 }
@@ -172,12 +177,12 @@ namespace Ads.Forms.Settings
                 cls.FierstLevelChatAddress = txtFirstAdd.Text;
                 cls.SecondLevelChatAddress = txtSecondAdd.Text;
                 await cls.SaveAsync();
-                FarsiMessegeBox.Show("اطلاعات ذخیره شد");
+                WebErrorLog.ErrorInstence.StartErrorLog("اطلاعات ذخیره شد", true);
                 SetData();
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
             finally
             {

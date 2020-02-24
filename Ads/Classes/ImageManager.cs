@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using ErrorHandler;
 
 //using PacketParser.Entities;
 
@@ -57,6 +58,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return "";
             }
         }

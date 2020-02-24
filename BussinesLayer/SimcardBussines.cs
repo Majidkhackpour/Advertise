@@ -6,6 +6,7 @@ using DataLayer.Enums;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -71,7 +72,6 @@ namespace BussinesLayer
                     case AdvertiseType.Divar:
                         var a = _context.Simcard.GetAsync(type);
                         return Mappings.Default.Map<SimcardBussines>(a);
-                        break;
                 }
 
                 return null;
@@ -108,6 +108,7 @@ namespace BussinesLayer
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public async Task SaveAsync(List<DivarSimCityBussines>lstCity,List<SimcardAdsBussines>lstAds, List<SheypoorSimCityBussines> lstCitysh)
@@ -162,6 +163,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 

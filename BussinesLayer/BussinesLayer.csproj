@@ -103,6 +103,10 @@
       <Project>{b16f43d9-27e9-4877-b4ff-cbf95a36d9b2}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ErrorHandler\ErrorHandler.csproj">
+      <Project>{7323e507-d78e-486b-8dbb-6e88542bfad9}</Project>
+      <Name>ErrorHandler</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

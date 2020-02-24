@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Mains
@@ -44,7 +45,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
 
@@ -59,7 +60,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private void txtName_Enter(object sender, System.EventArgs e)
@@ -94,13 +95,13 @@ namespace Ads.Forms.Mains
                 }
                 if (string.IsNullOrEmpty(txtName.Text))
                 {
-                    FarsiMessegeBox.Show("عنوان گروه نمی تواند خالی باشد");
+                    WebErrorLog.ErrorInstence.StartErrorLog("عنوان گروه نمی تواند خالی باشد", false);
                     txtName.Focus();
                     return;
                 }
                 if (!AdvGroupBussines.Check_Name(txtName.Text, cls.Guid))
                 {
-                    FarsiMessegeBox.Show("عنوان وارد شده تکراری است");
+                    WebErrorLog.ErrorInstence.StartErrorLog("عنوان وارد شده تکراری است", false);
                     txtName.Focus();
                     return;
                 }
@@ -114,7 +115,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -134,7 +135,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
     }

@@ -6,6 +6,7 @@ using Ads.Forms.Mains;
 using AutoMapper;
 using BussinesLayer;
 using DataLayer;
+using ErrorHandler;
 
 namespace Ads
 {
@@ -51,6 +52,7 @@ namespace Ads
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
     }

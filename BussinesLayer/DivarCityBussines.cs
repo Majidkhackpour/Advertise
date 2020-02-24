@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
 using DataLayer.Persitence;
+using ErrorHandler;
 
 namespace BussinesLayer
 {
@@ -54,6 +55,7 @@ namespace BussinesLayer
             }
             catch (Exception e)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
                 return false;
             }
         }
@@ -88,6 +90,7 @@ namespace BussinesLayer
             }
             catch (Exception exception)
             {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         public static async Task<List<DivarCityBussines>> GetAllAsync(string search)

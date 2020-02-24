@@ -10,6 +10,7 @@ using Ads.Classes;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
+using ErrorHandler;
 using FMessegeBox;
 
 namespace Ads.Forms.Mains
@@ -87,7 +88,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public frmAds()
@@ -153,7 +154,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         private async void mnuInsGroup_Click(object sender, System.EventArgs e)
@@ -168,7 +169,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -208,12 +209,11 @@ namespace Ads.Forms.Mains
                         return;
                     }
                 }
-
-                FarsiMessegeBox.Show("گروه یا آگهی انتخابی معتبر نمی باشد");
+                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد",false);
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -234,7 +234,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -248,8 +248,8 @@ namespace Ads.Forms.Mains
                     var childCount = AdvGroupBussines.ChildCounter(group.Guid);
                     if (childCount > 0)
                     {
-                        FarsiMessegeBox.Show(
-                            $"گروه {group.Name} به علت داشتن {childCount} زیر گروه فعال مجاز به حذف نمی باشد");
+                        WebErrorLog.ErrorInstence.StartErrorLog(
+                            $"گروه {group.Name} به علت داشتن {childCount} زیر گروه فعال مجاز به حذف نمی باشد", false);
                         return;
                     }
                     var message = "آیا از حذف گروه آگهی " + group.Name + " " + "اطمینان دارید؟";
@@ -280,11 +280,11 @@ namespace Ads.Forms.Mains
                     }
 
                 }
-                FarsiMessegeBox.Show("گروه یا آگهی انتخابی معتبر نمی باشد");
+                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد",false);
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         private void Make_Picture_Boxes(List<string> lst)
@@ -311,7 +311,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         private void picbox_Click(object sender, EventArgs e)
@@ -338,7 +338,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         private void txtName_Enter(object sender, EventArgs e)
@@ -368,7 +368,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private static void ShowNormalSizePic(PictureBox pic)
@@ -379,7 +379,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
         private void FillTxtTitles(List<string> sortedTitles)
@@ -400,7 +400,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
 
@@ -430,7 +430,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -449,7 +449,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -463,7 +463,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -502,7 +502,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
         private async Task<List<string>> CheckValidation()
@@ -595,7 +595,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception ex)
             {
-                FarsiMessegeBox.Show(ex.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return null;
             }
         }
@@ -721,7 +721,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
             finally
             {
@@ -741,7 +741,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
@@ -764,7 +764,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
         public void Back()
@@ -777,7 +777,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception e)
             {
-                FarsiMessegeBox.Show(e.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
 
@@ -802,7 +802,7 @@ namespace Ads.Forms.Mains
             }
             catch (Exception exception)
             {
-                FarsiMessegeBox.Show(exception.Message);
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
 
