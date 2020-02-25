@@ -125,5 +125,17 @@ namespace Ads.Forms.Settings
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
+
+        private void btnTelegramBotSetting_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new frmTelegramBotSetting().ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
     }
 }

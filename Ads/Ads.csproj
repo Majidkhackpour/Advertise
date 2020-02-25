@@ -283,6 +283,12 @@
     <Compile Include="Forms\Settings\frmProxy.Designer.cs">
       <DependentUpon>frmProxy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\frmTelegramBotSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\frmTelegramBotSetting.Designer.cs">
+      <DependentUpon>frmTelegramBotSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simcard\frmAdvertiseLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\frmProxy.resx">
       <DependentUpon>frmProxy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\frmTelegramBotSetting.resx">
+      <DependentUpon>frmTelegramBotSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simcard\frmAdvertiseLog.resx">
       <DependentUpon>frmAdvertiseLog.cs</DependentUpon>

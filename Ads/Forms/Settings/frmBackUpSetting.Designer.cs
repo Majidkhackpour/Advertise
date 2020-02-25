@@ -39,18 +39,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.chbIsSendToEmail = new System.Windows.Forms.CheckBox();
             this.chbAuto = new System.Windows.Forms.CheckBox();
             this.chbIsSentToTelegram = new System.Windows.Forms.CheckBox();
             this.line2 = new DevComponents.DotNetBar.Controls.Line();
             this.btnRestore = new DevComponents.DotNetBar.ButtonX();
             this.btnBackUp = new DevComponents.DotNetBar.ButtonX();
+            this.btnTelegramBotSetting = new DevComponents.DotNetBar.ButtonX();
+            this.txtEmailAddress = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.uC_Date1 = new UC_Date.UC_Date();
-            this.chbIsSendToEmail = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,6 +180,7 @@
             this.grpAccount.Controls.Add(this.line2);
             this.grpAccount.Controls.Add(this.btnRestore);
             this.grpAccount.Controls.Add(this.btnBackUp);
+            this.grpAccount.Controls.Add(this.btnTelegramBotSetting);
             this.grpAccount.Controls.Add(this.btnSearch);
             this.grpAccount.Controls.Add(this.txtAddress);
             this.grpAccount.Controls.Add(this.txtEmailAddress);
@@ -221,6 +223,20 @@
             // 
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 55697;
+            // 
+            // chbIsSendToEmail
+            // 
+            this.chbIsSendToEmail.AutoSize = true;
+            this.chbIsSendToEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendToEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendToEmail.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendToEmail.Location = new System.Drawing.Point(180, 155);
+            this.chbIsSendToEmail.Name = "chbIsSendToEmail";
+            this.chbIsSendToEmail.Size = new System.Drawing.Size(171, 24);
+            this.chbIsSendToEmail.TabIndex = 51;
+            this.chbIsSendToEmail.Text = "ارسال فایل پشتیبان به ایمیل";
+            this.chbIsSendToEmail.UseVisualStyleBackColor = false;
+            this.chbIsSendToEmail.CheckedChanged += new System.EventHandler(this.chbIsSendToEmail_CheckedChanged);
             // 
             // chbAuto
             // 
@@ -296,6 +312,50 @@
             this.btnBackUp.ThemeAware = true;
             this.btnBackUp.Click += new System.EventHandler(this.btnBackUp_Click);
             // 
+            // btnTelegramBotSetting
+            // 
+            this.btnTelegramBotSetting.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTelegramBotSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnTelegramBotSetting.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTelegramBotSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTelegramBotSetting.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnTelegramBotSetting.Location = new System.Drawing.Point(32, 58);
+            this.btnTelegramBotSetting.Name = "btnTelegramBotSetting";
+            this.btnTelegramBotSetting.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnTelegramBotSetting.Size = new System.Drawing.Size(138, 27);
+            this.btnTelegramBotSetting.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnTelegramBotSetting.TabIndex = 9;
+            this.btnTelegramBotSetting.Text = "تنظیمات ربات تلگرام";
+            this.btnTelegramBotSetting.TextColor = System.Drawing.Color.Silver;
+            this.btnTelegramBotSetting.ThemeAware = true;
+            this.btnTelegramBotSetting.Click += new System.EventHandler(this.btnTelegramBotSetting_Click);
+            // 
+            // txtEmailAddress
+            // 
+            this.txtEmailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmailAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtEmailAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmailAddress.ForeColor = System.Drawing.Color.Silver;
+            this.txtEmailAddress.Location = new System.Drawing.Point(32, 205);
+            this.txtEmailAddress.MaxLength = 3000;
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(316, 27);
+            this.txtEmailAddress.TabIndex = 10;
+            this.txtEmailAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(130, 182);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(222, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "آدرس ایمیل";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -343,45 +403,6 @@
             this.uC_Date1.Name = "uC_Date1";
             this.uC_Date1.Size = new System.Drawing.Size(380, 47);
             this.uC_Date1.TabIndex = 55702;
-            // 
-            // chbIsSendToEmail
-            // 
-            this.chbIsSendToEmail.AutoSize = true;
-            this.chbIsSendToEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsSendToEmail.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendToEmail.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendToEmail.Location = new System.Drawing.Point(180, 155);
-            this.chbIsSendToEmail.Name = "chbIsSendToEmail";
-            this.chbIsSendToEmail.Size = new System.Drawing.Size(171, 24);
-            this.chbIsSendToEmail.TabIndex = 51;
-            this.chbIsSendToEmail.Text = "ارسال فایل پشتیبان به ایمیل";
-            this.chbIsSendToEmail.UseVisualStyleBackColor = false;
-            this.chbIsSendToEmail.CheckedChanged += new System.EventHandler(this.chbIsSendToEmail_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(130, 182);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(222, 20);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "آدرس ایمیل";
-            // 
-            // txtEmailAddress
-            // 
-            this.txtEmailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmailAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtEmailAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmailAddress.ForeColor = System.Drawing.Color.Silver;
-            this.txtEmailAddress.Location = new System.Drawing.Point(32, 205);
-            this.txtEmailAddress.MaxLength = 3000;
-            this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(316, 27);
-            this.txtEmailAddress.TabIndex = 10;
             // 
             // frmBackUpSetting
             // 
@@ -437,5 +458,6 @@
         private System.Windows.Forms.CheckBox chbIsSendToEmail;
         public System.Windows.Forms.TextBox txtEmailAddress;
         public System.Windows.Forms.Label label3;
+        public DevComponents.DotNetBar.ButtonX btnTelegramBotSetting;
     }
 }
