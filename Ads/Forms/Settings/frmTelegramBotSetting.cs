@@ -20,7 +20,7 @@ namespace Ads.Forms.Settings
             try
             {
                 txtToken.Text = cls.Token;
-                txtBackUpChannel.Text = cls.ChanelForAds;
+                txtBackUpChannel.Text = "@" + cls.ChanelForAds;
             }
             catch (Exception e)
             {

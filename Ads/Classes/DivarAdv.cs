@@ -652,14 +652,14 @@ namespace Ads.Classes
                     newAdvertiseLogBusiness.State = "";
                 }
 
-                var guid1 = simCardNumber.DivarCatGuid1 ?? Guid.Empty;
-                newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
+                //var guid1 = simCardNumber.DivarCatGuid1 ?? Guid.Empty;
+                //newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
 
-                var guid2 = simCardNumber.DivarCatGuid2 ?? Guid.Empty;
-                newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
+                //var guid2 = simCardNumber.DivarCatGuid2 ?? Guid.Empty;
+                //newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
 
-                var guid3 = simCardNumber.DivarCatGuid3 ?? Guid.Empty;
-                newAdvertiseLogBusiness.SubCategory2 = AdvCategoryBussines.Get(guid3)?.Name ?? "";
+                //var guid3 = simCardNumber.DivarCatGuid3 ?? Guid.Empty;
+                //newAdvertiseLogBusiness.SubCategory2 = AdvCategoryBussines.Get(guid3)?.Name ?? "";
 
                 return newAdvertiseLogBusiness;
             }

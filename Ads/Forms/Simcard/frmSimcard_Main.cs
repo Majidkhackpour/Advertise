@@ -118,12 +118,8 @@ namespace Ads.Forms.Simcard
 
                 var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
                 divarCat1 = divarCat1.OrderBy(q => q.Name).ToList();
-                DivarCat1BingingSource.DataSource = divarCat1;
+                PostCat1BindingSource.DataSource = divarCat1;
 
-
-                var SheypoorCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
-                SheypoorCat1 = SheypoorCat1.OrderBy(q => q.Name).ToList();
-                SheypoorCat1BingingSource.DataSource = SheypoorCat1;
 
                 var dCity = await DivarCityBussines.GetAllAsync();
                 dCity = dCity.OrderBy(q => q.Name).ToList();
@@ -139,9 +135,14 @@ namespace Ads.Forms.Simcard
                 divarChat1 = divarChat1.OrderBy(q => q.Name).ToList();
                 DivarChatBindingSource1.DataSource = divarChat1;
 
-                var SheypoorChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
-                SheypoorChat1 = SheypoorChat1.OrderBy(q => q.Name).ToList();
-                SheypoorChatBindingSource1.DataSource = SheypoorChat1;
+                var sheypoorChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
+                sheypoorChat1 = sheypoorChat1.OrderBy(q => q.Name).ToList();
+                SheypoorChatBindingSource1.DataSource = sheypoorChat1;
+
+                var postCity = await DivarCityBussines.GetAllAsync();
+                postCity = postCity.OrderBy(q => q.Name).ToList();
+                PostCityBindingSource.DataSource = postCity;
+                cmbPostCity.SelectedIndex = 0;
             }
             catch (Exception e)
             {
@@ -261,11 +262,9 @@ namespace Ads.Forms.Simcard
                 cls.NextUse = DateTime.Now;
                 cls.Operator = cmbOperator.Text;
                 cls.UserName = txtUserName.Text;
-                cls.DivarCatGuid1 = (Guid?)cmbDivarCat1.SelectedValue ?? null;
-                cls.DivarCatGuid2 = (Guid?)cmbDivarCat2.SelectedValue ?? null;
-                cls.DivarCatGuid3 = (Guid?)cmbDivarCat3.SelectedValue ?? null;
-                cls.SheypoorCatGuid1 = (Guid?)cmbSheypoorCat1.SelectedValue ?? null;
-                cls.SheypoorCatGuid2 = (Guid?)cmbSheypoorCat2.SelectedValue ?? null;
+                cls.DivarPostCat1 = (Guid?)cmbPostCat1.SelectedValue ?? null;
+                cls.DivarPostCat2 = (Guid?)cmbPostCat2.SelectedValue ?? null;
+                cls.DivarPostCat3 = (Guid?)cmbPostCat3.SelectedValue ?? null;
                 cls.IsEnableChat = chbIsEnableChat.Checked;
                 cls.IsEnableNumber = chbIsEnableNumber.Checked;
                 cls.IsSendAdv = chbIsSendAdv.Checked;
@@ -278,6 +277,14 @@ namespace Ads.Forms.Simcard
                 cls.DivarChatCat3 = (Guid?)cmbDivarChat3.SelectedValue ?? Guid.Empty;
                 cls.SheypoorChatCat1 = (Guid)cmbSheypoorChat1.SelectedValue;
                 cls.SheypoorChatCat2 = (Guid)cmbSheypoorChat2.SelectedValue;
+                cls.isSendPostToTelegram = chbIsSendPostToTelegram.Checked;
+                cls.ChannelForSendPost = txtChannel.Text;
+                cls.PostCount = txtPostCount.Text?.ParseToInt() ?? null;
+                cls.CityForGetPost = (Guid?)cmbPostCity.SelectedValue ?? null;
+                cls.DescriptionForPost = txtPostDescription.Text;
+                cls.isSendSecondChat = chbIsSendSecondText.Checked;
+                cls.FirstChatPassage = txtFirstChatPassage.Text;
+                cls.SecondChatPassage = txtSecondChatPassage.Text;
 
                 await cls.SaveAsync(listCity, listAds, listCitySh);
                 DialogResult = DialogResult.OK;
@@ -382,13 +389,24 @@ namespace Ads.Forms.Simcard
                 chbIsSendAdv.Checked = cls.IsSendAdv;
                 cmbDivarCity.SelectedValue = cls.DivarCityForChat;
                 cmbSheypoorCity.SelectedValue = cls.SheypoorCityForChat;
+                chbIsSendPostToTelegram.Checked = cls.isSendPostToTelegram;
+                txtChannel.Text = cls.ChannelForSendPost;
+                txtPostCount.Text = cls.PostCount?.ToString() ?? "";
+                txtPostDescription.Text = cls.DescriptionForPost;
+                chbIsSendSecondText.Checked = cls.isSendSecondChat;
+                chbIsSendChat.Checked = cls.isSendSecondChat;
+                txtFirstChatPassage.Text = cls.FirstChatPassage;
+                txtSecondChatPassage.Text = cls.SecondChatPassage;
                 if (cls.Guid != Guid.Empty)
                 {
-                    cmbDivarCat1.SelectedValue = cls?.DivarCatGuid1 ?? null;
-                    cmbDivarCat2.SelectedValue = cls?.DivarCatGuid2 ?? null;
-                    cmbDivarCat3.SelectedValue = cls?.DivarCatGuid3 ?? Guid.Empty;
-                    cmbSheypoorCat1.SelectedValue = cls?.SheypoorCatGuid1 ?? null;
-                    cmbSheypoorCat2.SelectedValue = cls?.SheypoorCatGuid2;
+                    cmbPostCat1.SelectedValue = cls?.DivarPostCat1 ?? Guid.Empty;
+                    if (cmbPostCat1.SelectedValue != null && (Guid)cmbPostCat1.SelectedValue != Guid.Empty)
+                        cmbPostCat1_SelectedIndexChanged(null, null);
+                    cmbPostCat2.SelectedValue = cls?.DivarPostCat2 ?? Guid.Empty;
+                    if (cmbPostCat2.SelectedValue != null && (Guid)cmbPostCat2.SelectedValue != Guid.Empty)
+                        cmbPostCat2_SelectedIndexChanged(null, null);
+                    cmbPostCat3.SelectedValue = cls?.DivarPostCat3 ?? Guid.Empty;
+                    cmbPostCity.SelectedValue = cls?.CityForGetPost ?? Guid.Empty;
 
                     cmbDivarChat1.SelectedValue = cls?.DivarChatCat1 ?? Guid.Empty;
                     cmbDivarChat2.SelectedValue = cls?.DivarChatCat2 ?? Guid.Empty;
@@ -396,6 +414,7 @@ namespace Ads.Forms.Simcard
                     cmbSheypoorChat1.SelectedValue = cls?.SheypoorChatCat1 ?? Guid.Empty;
                     cmbSheypoorChat2.SelectedValue = cls?.SheypoorChatCat2 ?? Guid.Empty;
                 }
+                grpTelegram.Enabled = chbIsSendPostToTelegram.Checked;
                 await SetCity(cls.Guid);
                 await SetAds(cls.Guid);
             }
@@ -549,13 +568,34 @@ namespace Ads.Forms.Simcard
             }
         }
 
-        private async void cmbDivarCat2_SelectedIndexChanged(object sender, EventArgs e)
+
+
+
+
+
+
+        private void txtChatCount_Enter_1(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtChatCount);
+        }
+
+        private void txtChatCount_Leave_1(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtChatCount);
+        }
+
+
+
+
+
+        private async void cmbPostCat2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat2.SelectedValue, AdvertiseType.Divar);
+                if (cmbPostCat2.SelectedValue == null) return;
+                var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat2.SelectedValue, AdvertiseType.Divar);
                 divarCat3 = divarCat3.OrderBy(q => q.Name).ToList();
-                DivarCat3BingingSource.DataSource = divarCat3;
+                PostCat3BindingSource.DataSource = divarCat3;
             }
             catch (Exception exception)
             {
@@ -563,13 +603,14 @@ namespace Ads.Forms.Simcard
             }
         }
 
-        private async void cmbDivarCat1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbPostCat1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbDivarCat1.SelectedValue, AdvertiseType.Divar);
+                if (cmbPostCat1.SelectedValue == null) return;
+                var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat1.SelectedValue, AdvertiseType.Divar);
                 divarCat2 = divarCat2.OrderBy(q => q.Name).ToList();
-                DivarCat2BingingSource.DataSource = divarCat2;
+                PostCat2BindingSource.DataSource = divarCat2;
             }
             catch (Exception exception)
             {
@@ -577,21 +618,7 @@ namespace Ads.Forms.Simcard
             }
         }
 
-        private async void cmbSheypoorCat1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var sheypoorCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbSheypoorCat1.SelectedValue, AdvertiseType.Sheypoor);
-                sheypoorCat2 = sheypoorCat2.OrderBy(q => q.Name).ToList();
-                SheypoorCat2BingingSource.DataSource = sheypoorCat2;
-            }
-            catch (Exception exception)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(exception);
-            }
-        }
-
-        private async void cmbDivarChat1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbDivarChat1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             try
             {
@@ -633,14 +660,19 @@ namespace Ads.Forms.Simcard
             }
         }
 
-        private void txtChatCount_Enter_1(object sender, EventArgs e)
+        private void btnSearch1_Click(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtChatCount);
-        }
-
-        private void txtChatCount_Leave_1(object sender, EventArgs e)
-        {
-            txtSetter.Follow(txt2: txtChatCount);
+            try
+            {
+                var frm = new frmShowCity(AdvertiseType.Sheypoor);
+                if (frm.ShowDialog() != DialogResult.OK) return;
+                if (frm.CityGuid == Guid.Empty) return;
+                cmbSheypoorCity.SelectedValue = frm.CityGuid;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -656,23 +688,76 @@ namespace Ads.Forms.Simcard
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
-
         }
 
-        private void btnSearch1_Click(object sender, EventArgs e)
+        private void chbIsSendPostToTelegram_CheckedChanged(object sender, EventArgs e)
+        {
+            grpTelegram.Enabled = chbIsSendPostToTelegram.Checked;
+        }
+
+        private void btnSearchPostCity_Click(object sender, EventArgs e)
         {
             try
             {
-                var frm = new frmShowCity(AdvertiseType.Sheypoor);
+                var frm = new frmShowCity(AdvertiseType.Divar);
                 if (frm.ShowDialog() != DialogResult.OK) return;
                 if (frm.CityGuid == Guid.Empty) return;
-                cmbSheypoorCity.SelectedValue = frm.CityGuid;
+                cmbPostCity.SelectedValue = frm.CityGuid;
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
 
+        private void txtChannel_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtChannel);
+        }
+
+        private void txtPostCount_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtPostCount);
+        }
+
+        private void txtPostDescription_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtPostDescription);
+        }
+
+        private void txtFirstChatPassage_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtFirstChatPassage);
+        }
+
+        private void txtSecondChatPassage_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSecondChatPassage);
+        }
+
+        private void txtSecondChatPassage_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSecondChatPassage);
+        }
+
+        private void txtFirstChatPassage_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtFirstChatPassage);
+        }
+
+        private void txtPostDescription_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtPostDescription);
+        }
+
+        private void txtPostCount_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtPostCount);
+        }
+
+        private void txtChannel_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtChannel);
         }
     }
 }

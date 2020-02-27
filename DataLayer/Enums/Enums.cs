@@ -30,4 +30,9 @@ namespace DataLayer.Enums
         [PersianNameAttribute.PersianName("MtProto")] MtProto = 0,
         [PersianNameAttribute.PersianName("Socks5")] Socks5 = 1
     }
+    public enum TelegramSendType
+    {
+        [PersianNameAttribute.PersianName("ارسال فایل پشتیبان")] SendBackUp = 0,
+        [PersianNameAttribute.PersianName("ارسال پست تبلیغاتی")] SendPost = 1
+    }
 }

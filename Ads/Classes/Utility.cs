@@ -8,7 +8,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Management;
 using System.Net;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
@@ -23,9 +22,6 @@ using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
 using ErrorHandler;
-using FMessegeBox;
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
 using Microsoft.Win32;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -43,8 +39,17 @@ namespace Ads.Classes
         private static extern bool OpenProcessToken(IntPtr processHandle, uint desiredAccess, out IntPtr tokenHandle);
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool CloseHandle(IntPtr hObject);
 
+        private static extern bool CloseHandle(IntPtr hObject);
+        public static event Action SubmitEvent;
+        private static void RaiseEvent()
+        {
+            var handler = SubmitEvent;
+            if (handler != null)
+            {
+                SubmitEvent();
+            }
+        }
 
         const int WtsCurrentSession = -1;
         static readonly IntPtr WtsCurrentServerHandle = IntPtr.Zero;
@@ -726,10 +731,11 @@ namespace Ads.Classes
                 cls.LastBackUpDate = DateConvertor.M2SH(DateTime.Now);
                 cls.LastBackUpTime = DateTime.Now.Hour + ":" + DateTime.Now.Minute;
                 await cls.SaveAsync();
-                if (cls.IsSendInEmail)
+                RaiseEvent();
+
+                if (cls.IsSendInTelegram)
                 {
-                    await SendEmail("aradenj2211@gmail.com", "09382420272", cls.EmailAddress, fileName, "فایل پشتیبان",
-                        "smtp.gmail.com", 587, path);
+                    await SendBackUpToTelegram(path);
                 }
                 return true;
             }
@@ -770,6 +776,7 @@ namespace Ads.Classes
                 con.Close();
             }
         }
+
         public static async Task SendEmail(string from, string password, string to, string Message, string subject, string host, int port, string file)
         {
             try
@@ -808,7 +815,22 @@ namespace Ads.Classes
             else if (e.Error != null)
                 WebErrorLog.ErrorInstence.StartErrorLog(string.Format("{0} send canceled.", e.UserState), false);
             else
-                WebErrorLog.ErrorInstence.StartErrorLog("فایل پشتیبان به ایمیل شما ارسال شد", false);
+                WebErrorLog.ErrorInstence.StartErrorLog("فایل پشتیبان به ایمیل شما ارسال شد", true);
+        }
+
+        private static async Task SendBackUpToTelegram(string fileName)
+        {
+            try
+            {
+                var tel = await TelegramBot.GetInstance();
+                var ts = new Thread(new ThreadStart(async () =>
+                    await tel.StartSending(TelegramSendType.SendBackUp, fileName: fileName)));
+                ts.Start();
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
         }
     }
 }

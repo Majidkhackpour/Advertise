@@ -24,11 +24,6 @@ namespace BussinesLayer
         public string OwnerName { get; set; }
         public bool IsSendAdv { get; set; }
         public bool IsSendChat { get; set; }
-        public Guid? DivarCatGuid1 { get; set; }
-        public Guid? DivarCatGuid2 { get; set; }
-        public Guid? DivarCatGuid3 { get; set; }
-        public Guid? SheypoorCatGuid1 { get; set; }
-        public Guid? SheypoorCatGuid2 { get; set; }
         public int ChatCount { get; set; }
         public Guid DivarCityForChat { get; set; }
         public Guid SheypoorCityForChat { get; set; }
@@ -37,6 +32,17 @@ namespace BussinesLayer
         public Guid DivarChatCat3 { get; set; }
         public Guid SheypoorChatCat1 { get; set; }
         public Guid SheypoorChatCat2 { get; set; }
+        public bool isSendSecondChat { get; set; }
+        public bool isSendPostToTelegram { get; set; }
+        public string ChannelForSendPost { get; set; }
+        public int? PostCount { get; set; }
+        public Guid? CityForGetPost { get; set; }
+        public Guid? DivarPostCat1 { get; set; }
+        public Guid? DivarPostCat2 { get; set; }
+        public Guid? DivarPostCat3 { get; set; }
+        public string DescriptionForPost { get; set; }
+        public string FirstChatPassage { get; set; }
+        public string SecondChatPassage { get; set; }
 
         public bool DivarToken
         {

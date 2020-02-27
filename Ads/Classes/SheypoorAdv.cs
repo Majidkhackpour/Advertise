@@ -591,11 +591,11 @@ namespace Ads.Classes
                 }
 
 
-                var guid1 = simCardNumber.SheypoorCatGuid1 ?? Guid.Empty;
-                newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
+                //var guid1 = simCardNumber.SheypoorCatGuid1 ?? Guid.Empty;
+                //newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
 
-                var guid2 = simCardNumber.SheypoorCatGuid2 ?? Guid.Empty;
-                newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
+                //var guid2 = simCardNumber.SheypoorCatGuid2 ?? Guid.Empty;
+                //newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
 
 
                 return newAdvertiseLogBusiness;

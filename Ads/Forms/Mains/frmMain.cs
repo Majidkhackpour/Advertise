@@ -27,8 +27,14 @@ namespace Ads.Forms.Mains
         public frmMain()
         {
             InitializeComponent();
+            Utility.SubmitEvent -= UtilityOnSubmitEvent;
+            Utility.SubmitEvent += UtilityOnSubmitEvent;
         }
 
+        private void UtilityOnSubmitEvent()
+        {
+            SetBackUpLables();
+        }
         private void PictureManager()
         {
             try
@@ -132,9 +138,7 @@ namespace Ads.Forms.Mains
                 lblNewDate.Text = PRD.GetNumberDayInMonth() + " " + PRD.GetNameMonth() + " " + PRD.GetNumberYear();
                 timer1_Tick(null, null);
                 lblVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                var a = BackUpSettingBussines.GetAll();
-                var cls = a.Count > 0 ? a[0] : new BackUpSettingBussines();
-                lblLastBackUp.Text = cls.LastBackUpTime + " " + cls.LastBackUpDate;
+                SetBackUpLables();
                 var ts = new Thread(new ThreadStart(async () => await GetProxy()));
                 ts.Start();
             }
@@ -144,6 +148,19 @@ namespace Ads.Forms.Mains
             }
         }
 
+        private void SetBackUpLables()
+        {
+            try
+            {
+                var a = BackUpSettingBussines.GetAll();
+                var cls = a.Count > 0 ? a[0] : new BackUpSettingBussines();
+                lblLastBackUp.Text = cls.LastBackUpTime + " " + cls.LastBackUpDate;
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
         private void picDivar_Click(object sender, EventArgs e)
         {
             try

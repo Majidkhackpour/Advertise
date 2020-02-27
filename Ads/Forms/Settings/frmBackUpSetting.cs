@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
@@ -16,7 +17,30 @@ namespace Ads.Forms.Settings
             InitializeComponent();
             var a = BackUpSettingBussines.GetAll();
             cls = a.Count > 0 ? a[0] : new BackUpSettingBussines();
+            TelegramBot.SubmitEvent -= TelegramBotOnSubmitEvent;
+            TelegramBot.SubmitEvent += TelegramBotOnSubmitEvent;
         }
+
+        public string FilePath { get; set; }
+        public string FileName { get; set; }
+        private async void TelegramBotOnSubmitEvent()
+        {
+            try
+            {
+                if (cls.IsSendInEmail)
+                {
+                    await Utility.SendEmail("aradenj2211@gmail.com", "09382420272", cls.EmailAddress, FileName,
+                        "فایل پشتیبان",
+                        "smtp.gmail.com", 587, FilePath);
+                }
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
+
+
         private void SetData()
         {
             try
@@ -92,7 +116,8 @@ namespace Ads.Forms.Settings
             {
                 var date = DateConvertor.M2SH(DateTime.Now);
                 date = date.Replace("/", "_") + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + ".bak";
-
+                FilePath = Path.Combine(cls.BackUpAddress, date);
+                FileName = date;
                 if (await Utility.CreateBackUp("Ads", date, cls))
                     WebErrorLog.ErrorInstence.StartErrorLog("پشتیبان گیری با موفقیت انجام شد", true);
             }

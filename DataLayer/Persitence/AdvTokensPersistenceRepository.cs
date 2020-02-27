@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using DataLayer.Context;
 using DataLayer.Core;
 using DataLayer.Enums;
@@ -24,9 +25,14 @@ namespace DataLayer.Persitence
             {
                 using (var contex = new dbContext())
                 {
-                    var acc = contex.AdvTokens.AsNoTracking().SingleOrDefault(q => q.Number == number && q.Type == type);
+                    var acc = contex.AdvTokens.AsNoTracking()
+                        .SingleOrDefault(q => q.Number == number && q.Type == type);
                     return acc;
                 }
+            }
+            catch (ThreadAbortException)
+            {
+                return null;
             }
             catch (Exception exception)
             {

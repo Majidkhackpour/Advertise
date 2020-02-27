@@ -12,7 +12,7 @@ namespace ErrorHandler
         public frmNotification(string message,bool isSuccess)
         {
             InitializeComponent();
-            TopMost = true;
+            TopMost = false;
             lblMessage.Text = message;
             LeftSide.BackgroundImage = isSuccess ? Resources.Like : Resources.DisLike;
         }
