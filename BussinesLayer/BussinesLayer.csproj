@@ -82,10 +82,12 @@
     <Compile Include="AdvTokensBussines.cs" />
     <Compile Include="BackUpSettingBussines.cs" />
     <Compile Include="ChatNumberBussines.cs" />
+    <Compile Include="Defaults\NaqzDefaults.cs" />
     <Compile Include="DivarCityBussines.cs" />
     <Compile Include="DivarSimCityBussines.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Mappings.cs" />
+    <Compile Include="NaqzBussines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyBussines.cs" />
     <Compile Include="RegionBussiness.cs" />
@@ -111,5 +113,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

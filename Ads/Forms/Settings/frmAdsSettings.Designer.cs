@@ -50,12 +50,6 @@
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtFirstAdd = new System.Windows.Forms.TextBox();
-            this.btnSearch1 = new DevComponents.DotNetBar.ButtonX();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSecondAdd = new System.Windows.Forms.TextBox();
-            this.btnSearch2 = new DevComponents.DotNetBar.ButtonX();
             this.folderBrowserDialog3 = new System.Windows.Forms.FolderBrowserDialog();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
@@ -76,18 +70,12 @@
             // 
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grpAccount.Controls.Add(this.btnSearch2);
-            this.grpAccount.Controls.Add(this.btnSearch1);
             this.grpAccount.Controls.Add(this.btnSearchAdv);
-            this.grpAccount.Controls.Add(this.txtSecondAdd);
-            this.grpAccount.Controls.Add(this.txtFirstAdd);
             this.grpAccount.Controls.Add(this.txtAdvAddress);
             this.grpAccount.Controls.Add(this.txtUpdateDayCount);
             this.grpAccount.Controls.Add(this.txtCountPic);
             this.grpAccount.Controls.Add(this.txtAdvInIP);
-            this.grpAccount.Controls.Add(this.label4);
             this.grpAccount.Controls.Add(this.txtAdvInMounth);
-            this.grpAccount.Controls.Add(this.label3);
             this.grpAccount.Controls.Add(this.txtAdvInDay);
             this.grpAccount.Controls.Add(this.label12);
             this.grpAccount.Controls.Add(this.label1);
@@ -98,7 +86,7 @@
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(12, 55);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(361, 467);
+            this.grpAccount.Size = new System.Drawing.Size(361, 353);
             // 
             // 
             // 
@@ -319,7 +307,7 @@
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(4, 528);
+            this.line1.Location = new System.Drawing.Point(4, 411);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(399, 19);
             this.line1.TabIndex = 55695;
@@ -344,7 +332,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(228, 546);
+            this.btnFinish.Location = new System.Drawing.Point(228, 429);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(145, 25);
@@ -363,7 +351,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 546);
+            this.btnCancel.Location = new System.Drawing.Point(12, 429);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(125, 25);
@@ -374,104 +362,12 @@
             this.btnCancel.ThemeAware = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(124, 341);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(208, 20);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "آدرس فایل اولیه چت ارسالی";
-            // 
-            // txtFirstAdd
-            // 
-            this.txtFirstAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFirstAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtFirstAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFirstAdd.Enabled = false;
-            this.txtFirstAdd.ForeColor = System.Drawing.Color.Silver;
-            this.txtFirstAdd.Location = new System.Drawing.Point(32, 366);
-            this.txtFirstAdd.MaxLength = 3000;
-            this.txtFirstAdd.Name = "txtFirstAdd";
-            this.txtFirstAdd.Size = new System.Drawing.Size(301, 27);
-            this.txtFirstAdd.TabIndex = 8;
-            this.txtFirstAdd.Enter += new System.EventHandler(this.txtAdvAddress_Enter);
-            this.txtFirstAdd.Leave += new System.EventHandler(this.txtAdvAddress_Leave);
-            // 
-            // btnSearch1
-            // 
-            this.btnSearch1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearch1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnSearch1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearch1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearch1.Location = new System.Drawing.Point(5, 366);
-            this.btnSearch1.Name = "btnSearch1";
-            this.btnSearch1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnSearch1.Size = new System.Drawing.Size(23, 27);
-            this.btnSearch1.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnSearch1.TabIndex = 9;
-            this.btnSearch1.Text = "...";
-            this.btnSearch1.TextColor = System.Drawing.Color.Silver;
-            this.btnSearch1.ThemeAware = true;
-            this.btnSearch1.Click += new System.EventHandler(this.btnSearch1_Click);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(143, 394);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(189, 20);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "آدرس فایل ثانویه چت ارسالی";
-            // 
-            // txtSecondAdd
-            // 
-            this.txtSecondAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSecondAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtSecondAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSecondAdd.Enabled = false;
-            this.txtSecondAdd.ForeColor = System.Drawing.Color.Silver;
-            this.txtSecondAdd.Location = new System.Drawing.Point(32, 419);
-            this.txtSecondAdd.MaxLength = 3000;
-            this.txtSecondAdd.Name = "txtSecondAdd";
-            this.txtSecondAdd.Size = new System.Drawing.Size(301, 27);
-            this.txtSecondAdd.TabIndex = 8;
-            this.txtSecondAdd.Enter += new System.EventHandler(this.txtAdvAddress_Enter);
-            this.txtSecondAdd.Leave += new System.EventHandler(this.txtAdvAddress_Leave);
-            // 
-            // btnSearch2
-            // 
-            this.btnSearch2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSearch2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnSearch2.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSearch2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearch2.Location = new System.Drawing.Point(5, 419);
-            this.btnSearch2.Name = "btnSearch2";
-            this.btnSearch2.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnSearch2.Size = new System.Drawing.Size(23, 27);
-            this.btnSearch2.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnSearch2.TabIndex = 9;
-            this.btnSearch2.Text = "...";
-            this.btnSearch2.TextColor = System.Drawing.Color.Silver;
-            this.btnSearch2.ThemeAware = true;
-            this.btnSearch2.Click += new System.EventHandler(this.btnSearch2_Click);
-            // 
             // frmAdsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(383, 577);
+            this.ClientSize = new System.Drawing.Size(383, 460);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.uC_Date1);
             this.Controls.Add(this.btnCancel);
@@ -483,9 +379,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(399, 616);
+            this.MaximumSize = new System.Drawing.Size(399, 499);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(399, 616);
+            this.MinimumSize = new System.Drawing.Size(399, 499);
             this.Name = "frmAdsSettings";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -520,12 +416,6 @@
         public System.Windows.Forms.Label label1;
         public DevComponents.DotNetBar.ButtonX btnFinish;
         public DevComponents.DotNetBar.ButtonX btnCancel;
-        public DevComponents.DotNetBar.ButtonX btnSearch2;
-        public DevComponents.DotNetBar.ButtonX btnSearch1;
-        public System.Windows.Forms.TextBox txtSecondAdd;
-        public System.Windows.Forms.TextBox txtFirstAdd;
-        public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.Label label3;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog3;
     }
 }

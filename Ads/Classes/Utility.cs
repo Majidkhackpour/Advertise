@@ -667,20 +667,8 @@ namespace Ads.Classes
             {
                 if (simCard.IsSendChat)
                 {
-                    var lst = Directory.GetFiles(clsSetting.FierstLevelChatAddress).ToList();
-                    var passage1 = new List<string>();
-                    foreach (var item in lst)
-                    {
-                        var a = File.ReadAllText(item);
-                        passage1.Add(a);
-                    }
-                    var lst2 = Directory.GetFiles(clsSetting.SecondLevelChatAddress).ToList();
-                    var passage2 = new List<string>();
-                    foreach (var item in lst2)
-                    {
-                        var a = File.ReadAllText(item);
-                        passage2.Add(a);
-                    }
+                    var passage1 = new List<string> {simCard.FirstChatPassage};
+                    var passage2 = new List<string> {simCard.SecondChatPassage};
 
                     var city = DivarCityBussines.GetAsync(simCard.DivarCityForChat);
 

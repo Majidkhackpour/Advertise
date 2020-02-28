@@ -27,8 +27,6 @@ namespace Ads.Forms.Settings
                 txtCountPic.Text = cls.MaxImgCount.ToString();
                 txtAdvAddress.Text = cls.Address;
                 txtUpdateDayCount.Text = cls.DayCountForUpdateState.ToString();
-                txtFirstAdd.Text = cls.FierstLevelChatAddress;
-                txtSecondAdd.Text = cls.SecondLevelChatAddress;
             }
             catch (Exception e)
             {
@@ -174,8 +172,6 @@ namespace Ads.Forms.Settings
                 cls.MaxImgCount = int.Parse(txtCountPic.Text);
                 cls.Address = txtAdvAddress.Text;
                 cls.DayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);
-                cls.FierstLevelChatAddress = txtFirstAdd.Text;
-                cls.SecondLevelChatAddress = txtSecondAdd.Text;
                 await cls.SaveAsync();
                 WebErrorLog.ErrorInstence.StartErrorLog("اطلاعات ذخیره شد", true);
                 SetData();
@@ -213,18 +209,6 @@ namespace Ads.Forms.Settings
         private void txtUpdateDayCount_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtSetter.KeyPress_Whitout_Dot(txtUpdateDayCount, e);
-        }
-
-        private void btnSearch1_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
-                txtFirstAdd.Text = folderBrowserDialog2.SelectedPath;
-        }
-
-        private void btnSearch2_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog3.ShowDialog() == DialogResult.OK)
-                txtSecondAdd.Text = folderBrowserDialog3.SelectedPath;
         }
     }
 }

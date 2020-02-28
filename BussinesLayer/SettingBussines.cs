@@ -19,8 +19,6 @@ namespace BussinesLayer
         public int DayCountForUpdateState { get; set; }
         public int MaxImgCount { get; set; }
         public string Address { get; set; }
-        public string FierstLevelChatAddress { get; set; }
-        public string SecondLevelChatAddress { get; set; }
 
         public static List<SettingBussines> GetAll()
         {

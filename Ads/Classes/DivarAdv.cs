@@ -489,6 +489,7 @@ namespace Ads.Classes
                 if (checkchat)
                 {
                     var tttttt = _driver.FindElement(By.Id("root_contact_chat_enabled")).Selected;
+                    await Utility.Wait(1);
                     if (tttttt != sim.IsEnableChat)
                         _driver.FindElement(By.Id("root_contact_chat_enabled")).Click();
                 }
@@ -499,12 +500,20 @@ namespace Ads.Classes
                 if (checkshoemobile)
                 {
                     var eeeeee = _driver.FindElement(By.Id("root_contact_hide_phone")).Selected;
+                    await Utility.Wait(1);
                     if (eeeeee == sim.IsEnableNumber)
                         _driver.FindElement(By.Id("root_contact_hide_phone")).Click();
                 }
                 await Utility.Wait(1);
 
-
+                var radio = _driver.FindElements(By.ClassName("radion")).ToList();
+                await Utility.Wait(1);
+                if (radio.Count > 0)
+                {
+                    await Utility.Wait(1);
+                    _driver.FindElements(By.TagName("span")).FirstOrDefault(q => q.Text == "فروشی")?.Click();
+                }
+                await Utility.Wait(1);
                 //درج قیمت
                 if (adv.Price > 0) _driver.FindElement(By.TagName("input")).SendKeys(adv.Price.ToString());
                 await Utility.Wait(1);
@@ -652,14 +661,14 @@ namespace Ads.Classes
                     newAdvertiseLogBusiness.State = "";
                 }
 
-                //var guid1 = simCardNumber.DivarCatGuid1 ?? Guid.Empty;
-                //newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
+                var guid1 = AdvertiseList[nextAdvIndex]?.DivarCatGuid1 ?? Guid.Empty;
+                newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
 
-                //var guid2 = simCardNumber.DivarCatGuid2 ?? Guid.Empty;
-                //newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
+                var guid2 = AdvertiseList[nextAdvIndex]?.DivarCatGuid2 ?? Guid.Empty;
+                newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
 
-                //var guid3 = simCardNumber.DivarCatGuid3 ?? Guid.Empty;
-                //newAdvertiseLogBusiness.SubCategory2 = AdvCategoryBussines.Get(guid3)?.Name ?? "";
+                var guid3 = AdvertiseList[nextAdvIndex]?.DivarCatGuid3 ?? Guid.Empty;
+                newAdvertiseLogBusiness.SubCategory2 = AdvCategoryBussines.Get(guid3)?.Name ?? "";
 
                 return newAdvertiseLogBusiness;
             }
@@ -1361,37 +1370,40 @@ namespace Ads.Classes
                             //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg[rnd] + '\n');
                             await Utility.Wait(2);
 
-
-                            //اگر کاربر جواب داده بود، متن دوم رو بفرست
-                            var allChat = _driver.FindElements(By.ClassName("dimmable"))
-                                .Where(q => q.Text.Contains("پیام جدید") && !q.Text.Contains("پستچی دیوار")).ToList();
-                            await Utility.Wait(1);
-                            if (allChat.Count > 0)
+                            if (sim.isSendSecondChat)
                             {
-                                foreach (var element in allChat)
+                                //اگر کاربر جواب داده بود، متن دوم رو بفرست
+                                var allChat = _driver.FindElements(By.ClassName("dimmable"))
+                                    .Where(q => q.Text.Contains("پیام جدید") && !q.Text.Contains("پستچی دیوار"))
+                                    .ToList();
+                                await Utility.Wait(1);
+                                if (allChat.Count > 0)
                                 {
-                                    element.Click();
-                                    var rnd2 = new Random().Next(0, msg2.Count);
-                                    await Utility.Wait(1);
+                                    foreach (var element in allChat)
+                                    {
+                                        element.Click();
+                                        var rnd2 = new Random().Next(0, msg2.Count);
+                                        await Utility.Wait(1);
 
 
-                                    var thread10 = new Thread(() => Clipboard.SetText(msg2[rnd2]));
-                                    thread10.SetApartmentState(ApartmentState.STA);
-                                    thread10.Start();
+                                        var thread10 = new Thread(() => Clipboard.SetText(msg2[rnd2]));
+                                        thread10.SetApartmentState(ApartmentState.STA);
+                                        thread10.Start();
 
-                                    var t2 = _driver.FindElement(By.ClassName("chat-box__input"));
-                                    t2.Click();
-                                    await Utility.Wait();
-                                    t2.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-                                    t2.SendKeys("" + '\n');
-                                    var thread101 = new Thread(Clipboard.Clear);
-                                    thread101.SetApartmentState(ApartmentState.STA);
-                                    thread101.Start();
+                                        var t2 = _driver.FindElement(By.ClassName("chat-box__input"));
+                                        t2.Click();
+                                        await Utility.Wait();
+                                        t2.SendKeys(OpenQA.Selenium.Keys.Control + "v");
+                                        t2.SendKeys("" + '\n');
+                                        var thread101 = new Thread(Clipboard.Clear);
+                                        thread101.SetApartmentState(ApartmentState.STA);
+                                        thread101.Start();
 
 
 
-                                    //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg2[rnd2] + '\n');
-                                    await Utility.Wait(2);
+                                        //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg2[rnd2] + '\n');
+                                        await Utility.Wait(2);
+                                    }
                                 }
                             }
 

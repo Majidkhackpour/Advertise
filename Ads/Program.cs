@@ -25,8 +25,10 @@ namespace Ads
             Mappings.Default = new Mapper(config);
 
             //StartSqlService();
+            
 
             UpdateMigration();
+            BussinesLayer.Defaults.NaqzDefaults.AddDef();
             Application.Run(new frmMain());
         }
 

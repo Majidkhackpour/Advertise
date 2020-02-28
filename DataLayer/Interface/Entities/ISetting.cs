@@ -9,7 +9,5 @@ namespace DataLayer.Interface.Entities
         int DayCountForUpdateState { get; set; }
         int MaxImgCount { get; set; }
         string Address { get; set; }
-        string FierstLevelChatAddress { get; set; }
-        string SecondLevelChatAddress { get; set; }
     }
 }

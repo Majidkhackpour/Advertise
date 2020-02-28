@@ -69,6 +69,9 @@ namespace BussinesLayer
 
             CreateMap<TelegramBotSetting, TelegramBotSettingBussines>();
             CreateMap<TelegramBotSettingBussines, TelegramBotSetting>();
+
+            CreateMap<Naqz, NaqzBussines>();
+            CreateMap<NaqzBussines, Naqz>();
         }
     }
 }

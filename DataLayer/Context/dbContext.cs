@@ -34,6 +34,7 @@ namespace DataLayer.Context
         public virtual DbSet<BackUpSetting> BackUpSetting { get; set; }
         public virtual DbSet<Proxy> Proxy { get; set; }
         public virtual DbSet<TelegramBotSetting> TelegramBotSetting { get; set; }
+        public virtual DbSet<Naqz> Naqz { get; set; }
     }
 
 }

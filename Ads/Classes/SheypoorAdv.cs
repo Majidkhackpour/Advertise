@@ -591,11 +591,11 @@ namespace Ads.Classes
                 }
 
 
-                //var guid1 = simCardNumber.SheypoorCatGuid1 ?? Guid.Empty;
-                //newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
+                var guid1 = AdvertiseList[nextAdvIndex]?.SheypoorCatGuid1 ?? Guid.Empty;
+                newAdvertiseLogBusiness.Category = AdvCategoryBussines.Get(guid1)?.Name ?? "";
 
-                //var guid2 = simCardNumber.SheypoorCatGuid2 ?? Guid.Empty;
-                //newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
+                var guid2 = AdvertiseList[nextAdvIndex]?.SheypoorCatGuid2 ?? Guid.Empty;
+                newAdvertiseLogBusiness.SubCategory1 = AdvCategoryBussines.Get(guid2)?.Name ?? "";
 
 
                 return newAdvertiseLogBusiness;
@@ -974,15 +974,6 @@ namespace Ads.Classes
         {
             try
             {
-                //if (SemaphoreSlim.CurrentCount == 0)
-                //{
-                //    var result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-                //        MessageBoxIcon.Question);
-                //    if (result == DialogResult.Yes)
-                //        _tokenSource?.Cancel();
-                //    else return;
-                //}
-
                 //ورود به شیپور
                 if (sim.Number == 0) return;
                 var log = await Login(sim.Number);
@@ -992,26 +983,31 @@ namespace Ads.Classes
                 _driver.FindElements(By.ClassName("pull-left")).FirstOrDefault(q => q.Text == "همه آگهی‌ها")?.Click();
                 await Utility.Wait();
                 //انتخاب دسته بندی
-                if (!string.IsNullOrEmpty(cat1))
+                _driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
+                await Utility.Wait(2);
+                var list = _driver.FindElement(By.ClassName("cols-1-5")).FindElements(By.TagName("li")).ToList();
+                await Utility.Wait(1);
+                var find = false;
+                foreach (var element in list)
                 {
-                    var elem = _driver.FindElement(By.ClassName("clearable-parent")).FindElement(By.TagName("input"));
+                    await Utility.Wait(1);
+                    if (element == null) continue;
+                    if (element.Text != cat2) continue;
+                    element.FindElement(By.TagName("a")).Click();
+                    find = true;
+                }
 
-                    //_driver.FindElements(By.ClassName("form-select")).FirstOrDefault()?.Click();
-                    await Utility.Wait();
-                    if (string.IsNullOrEmpty(cat2))
-                    {
-                        //_driver.FindElements(By.TagName("strong")).FirstOrDefault(q => q.Text == cat1)?.Click();
-                        elem.SendKeys(cat1);
-                        await Utility.Wait();
-                    }
-                    else
-                    {
-                        //_driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == cat2)
-                        //  ?.Click();
-                        elem.SendKeys(cat2);
-                        elem.SendKeys("\n");
-                        await Utility.Wait();
-                    }
+                await Utility.Wait(1);
+
+                if (!find)
+                {
+                    var more = _driver.FindElements(By.TagName("span")).Where(q => q.Text == "بیشتر").ToList();
+                    if (more.Count <= 0) return;
+                    more.LastOrDefault()?.Click();
+
+                    var category = _driver.FindElements(By.TagName("li")).FirstOrDefault(q => q.Text == cat2);
+                    if (category == null) return;
+                    category?.Click();
                 }
 
                 //انتخاب شهر
