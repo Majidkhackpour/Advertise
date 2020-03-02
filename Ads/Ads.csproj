@@ -263,11 +263,23 @@
     <Compile Include="Forms\Mains\frmAdsGroup.Designer.cs">
       <DependentUpon>frmAdsGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Mains\frmChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mains\frmChart.Designer.cs">
+      <DependentUpon>frmChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Mains\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Mains\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mains\frmShowNumbers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mains\frmShowNumbers.Designer.cs">
+      <DependentUpon>frmShowNumbers.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\frmAdsSettings.cs">
       <SubType>Form</SubType>
@@ -328,8 +340,14 @@
     <EmbeddedResource Include="Forms\Mains\frmAdsGroup.resx">
       <DependentUpon>frmAdsGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mains\frmChart.resx">
+      <DependentUpon>frmChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mains\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mains\frmShowNumbers.resx">
+      <DependentUpon>frmShowNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\frmAdsSettings.resx">
       <DependentUpon>frmAdsSettings.cs</DependentUpon>
@@ -371,6 +389,7 @@
     <None Include="Properties\DataSources\BussinesLayer.AdvertiseBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvertiseLogBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.AdvGroupBussines.datasource" />
+    <None Include="Properties\DataSources\BussinesLayer.ChatNumberBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.DivarSimCityBussines.datasource" />
     <None Include="Properties\DataSources\BussinesLayer.ProxyBussines.datasource" />
@@ -504,6 +523,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arad_Icon.ico" />
+    <None Include="Resources\4806821127639943052.gif" />
+    <None Include="Resources\48068211276399430523.gif" />
     <None Include="Resources\99.png" />
     <None Include="Resources\15.png" />
     <None Include="Resources\23.png" />

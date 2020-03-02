@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,7 +13,9 @@ using DataLayer;
 using DataLayer.Enums;
 using ErrorHandler;
 using FMessegeBox;
+using MihaZupan;
 using OpenQA.Selenium;
+using Telegram.Bot;
 using Cookie = OpenQA.Selenium.Cookie;
 
 
@@ -215,7 +218,7 @@ namespace Ads.Classes
                         tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
                         if (simBusiness is null)
                         {
-                            simBusiness = new AdvTokensBussines() {Guid = Guid.NewGuid()};
+                            simBusiness = new AdvTokensBussines() { Guid = Guid.NewGuid() };
                         }
 
                         simBusiness.Token = tokenInDatabase;
@@ -226,7 +229,7 @@ namespace Ads.Classes
 
                         await simBusiness.SaveAsync(AdvertiseType.Divar, simBusiness.Number);
                         var message = $@"شماره: {simCardNumber}  \r\nلاگین انجام شد ";
-                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
                         await Utility.Wait(2);
                         _driver.SwitchTo().Alert().Accept();
                         return true;
@@ -236,7 +239,7 @@ namespace Ads.Classes
                         var a = await SimcardBussines.GetAsync(simCardNumber);
                         var name = a.OwnerName;
                         var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
 
                         await Utility.Wait(3);
                         try
@@ -415,18 +418,18 @@ namespace Ads.Classes
                 _driver.Navigate().GoToUrl("https://divar.ir/new");
                 await Utility.Wait(1);
                 //کلیک کردن روی کتگوری اصلی
-                var a1 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == adv.Category);
+                var a1 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.Category);
                 adv.Category = a1?.Text;
                 a1?.Click();
 
                 await Utility.Wait(2);
                 //کلیک روی ساب کتگوری 1
-                var a2 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == adv.SubCategory1);
+                var a2 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.SubCategory1);
                 adv.SubCategory1 = a2?.Text;
                 a2?.Click();
                 await Utility.Wait();
                 //کلیک روی ساب کتگوری2
-                var a3 = _driver.FindElements(By.ClassName("submit-post__category-selector--open__item")).FirstOrDefault(p => p.Text == adv.SubCategory2);
+                var a3 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.SubCategory2);
                 adv.SubCategory2 = a3?.Text;
                 a3?.Click();
 
@@ -446,7 +449,8 @@ namespace Ads.Classes
                 {
                     try
                     {
-                        //درج عکسها_driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input")).SendKeys(item);
+                        //درج عکسها
+                        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
                         await Utility.Wait();
                         //break;
                     }
@@ -1684,6 +1688,251 @@ namespace Ads.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
+
+        public async Task GetPost(long number, string cat1, string cat2, string cat3, string city, int count, string chatId)
+        {
+            try
+            {
+                _driver = Utility.RefreshDriver(_driver);
+                var log = await Login(number);
+                if (!log) return;
+                _driver.Navigate().GoToUrl("https://divar.ir/");
+                await Utility.Wait();
+                //انتخاب شهر
+                _driver.FindElement(By.ClassName("city-selector")).Click();
+                await Utility.Wait();
+                _driver.FindElements(By.TagName("a")).LastOrDefault(q => q.Text == city)?.Click();
+                await Utility.Wait(2);
+                var savePathFile = Path.Combine(Application.StartupPath, "TelegramImages");
+                if (!Directory.Exists(savePathFile)) Directory.CreateDirectory(savePathFile);
+                //testBanner__.jpg حتما در پوشه برنامه موجود شود
+                var bannerPath = Path.Combine(Application.StartupPath, "testBanner__.jpg");
+                if (!File.Exists(bannerPath)) return;
+                await Utility.Wait(3);
+                //انتخاب دسته بندی
+
+                if (!string.IsNullOrEmpty(cat1))
+                {
+                    await Utility.Wait(1);
+                    var p = _driver.FindElements(By.ClassName("category-dropdown__icon")).Any();
+                    if (!p) return;
+                    _driver.FindElements(By.ClassName("category-dropdown__icon")).FirstOrDefault()?.Click();
+                    await Utility.Wait(1);
+                    _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat1)
+                        ?.Click();
+                    if (string.IsNullOrEmpty(cat2))
+                        return;
+                    if (string.IsNullOrEmpty(cat3))
+                        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat2)
+                            ?.Click();
+                    else
+                        _driver.FindElements(By.ClassName("category-button")).FirstOrDefault(q => q.Text == cat3)
+                            ?.Click();
+                    await Utility.Wait();
+                }
+
+                var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                while (counter.Count <= 0)
+                {
+                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                }
+                while (counter.Count <= count)
+                {
+                    ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                    await Utility.Wait();
+                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                }
+
+                //دریافت آگهی ها
+                for (var i = 0; i < count; i++)
+                {
+                    await Utility.Wait();
+                    _driver.FindElements(By.ClassName("col-xs-12"))[i + 1]?.Click();
+                    await Utility.Wait(2);
+                    var noPic = _driver.FindElements(By.ClassName("no-picture-image")).Any();
+                    if (noPic)
+                    {
+                        _driver.Navigate().Back();
+                        await Utility.Wait(2);
+                        continue;
+                    }
+                    var im = _driver.FindElements(By.TagName("img")).ToList();
+                    if (im.Count > 0)
+                    {
+                        //دریافت اولین تصویر آگهی
+                        var ul = _driver.FindElements(By.ClassName("slick-dots")).Any();
+                        List<IWebElement> li = null;
+                        if (ul)
+                        {
+                            //اگر چندتا عکس داشت، اولی رو بردار
+                            li = _driver.FindElement(By.ClassName("slick-dots")).FindElements(By.TagName("li"))
+                                .ToList();
+                        }
+                        else
+                        {
+                            //اگر یک عکس داشت بردار
+                            li = new List<IWebElement>();
+                            li.Add(_driver.FindElement(By.ClassName("slick-track")));
+                        }
+
+                        await Utility.Wait(2);
+                        var src = li.FirstOrDefault()?.FindElement(By.TagName("img"))
+                            .GetAttribute("src");
+                        var path = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
+                        var pathsave = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
+                        var finnalPath = Path.Combine(savePathFile, Guid.NewGuid() + ".jpg");
+                        //دانلود تصویر
+                        DownloadImage(src, path);
+                        //ایجاد تصویر با بنر
+                        CreateNewImage(path, bannerPath, pathsave);
+                        //دریافت محتویات پست
+                        var title = _driver.FindElement(By.ClassName("post-header__title")).Text.FixString();
+                        await Utility.Wait(1);
+                        var content = _driver.FindElement(By.ClassName("post-page__description")).Text;
+                        //دریافت شماره پست 
+                        await Utility.Wait(2);
+                        _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                        await Utility.Wait(2);
+
+                        var a = _driver.FindElements(By.ClassName("primary"))
+                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
+                        await Utility.Wait(1);
+                        if (a != null)
+                            _driver.FindElements(By.ClassName("primary"))
+                                .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                        await Utility.Wait();
+                        var pr = _driver.FindElements(By.ClassName("post-fields-item__value"))
+                                     .FirstOrDefault(q => q.Text.Contains("تومان") || q.Text.Contains("توافقی"))?.Text
+                                     ?.FixString() ?? "توافقی";
+
+                        await Utility.Wait(1);
+                        var num = "";
+                        var txt = _driver.FindElements(By.ClassName("post-fields-item__value")).FirstOrDefault()?.Text;
+                        if (txt == "(پنهان‌شده؛ چت کنید)") txt = "";
+                        if (!string.IsNullOrEmpty(txt)) num = txt.FixString();
+                        var passage = title + "\r\n" + content + "\r\n" + num;
+                        //ایجاد تصویر نهایی
+                        WriteTextOnImage(title, num, pr, pathsave, finnalPath);
+
+
+                        //ارسال به تلگرام
+                        var the = new Thread(async () => await BotInitial(chatId, passage, finnalPath));
+                        the.Start(); _driver.Navigate().Back();
+                        await Utility.Wait(1);
+                    }
+                    else
+                    {
+                        _driver.Navigate().Back();
+                        await Utility.Wait(1);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private void DownloadImage(string src, string path)
+        {
+            var webClient = new WebClient();
+            webClient.DownloadFile(src, path);
+        }
+
+        private void CreateNewImage(string bodyPath, string bannerPath, string savePath)
+        {
+            try
+            {
+                var banner = Image.FromFile(bannerPath);
+                var body = Image.FromFile(bodyPath);
+                var bitmap = new Bitmap(body.Width, body.Height);
+                var canvas = Graphics.FromImage(bitmap);
+                canvas.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                canvas.DrawImage(body, new Rectangle(0, 0, body.Width, body.Height),
+                    new Rectangle(0, 0, body.Width, body.Height), GraphicsUnit.Pixel);
+                canvas.DrawImage(banner, 0, body.Height - 75, body.Width, 75);
+                canvas.Save();
+                bitmap.Save(savePath);
+                bitmap.Dispose();
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
+
+        private void WriteTextOnImage(string text, string num, string pric, string filePath, string savePath)
+        {
+            try
+            {
+                var firstText = text;
+                var number = num;
+                var price = pric;
+                var link = "@bazarcheh_mashhad";
+
+                var imageFilePath = filePath;
+                var bitmap = (Bitmap)Image.FromFile(imageFilePath);
+
+
+                var firstLocation = new PointF();
+                if (firstText.Length < 20)
+                    firstLocation = new PointF(bitmap.Width - 200, bitmap.Height - 70);
+                else if (firstText.Length >= 20 && firstText.Length < 30)
+                    firstLocation = new PointF(bitmap.Width - 300, bitmap.Height - 70);
+                else if (firstText.Length >= 30 && firstText.Length < 40)
+                    firstLocation = new PointF(bitmap.Width - 415, bitmap.Height - 70);
+                else if (firstText.Length > 40)
+                    firstLocation = new PointF(bitmap.Width - 435, bitmap.Height - 70);
+                var numberLocation = new PointF(number.Length * 20, bitmap.Height - 30);
+                var linkLocation = new PointF(bitmap.Width - 150, bitmap.Height - 20);
+                var priceLocation = new PointF(firstText.Length, bitmap.Height - 65);
+
+                if (firstText.Length > 40)
+                    firstText = "..." + firstText.Remove(38, firstText.Length - 38);
+
+                var graphics = Graphics.FromImage(bitmap);
+
+
+                var arialFont = new Font("B Mehr", 18);
+                var numberFont = new Font("B Yekan", 14);
+                var linkFont = new Font("B Yekan", 8);
+                var priceFont = new Font("B Morvarid", 18);
+
+
+
+                graphics.DrawString(firstText, arialFont, Brushes.Black, firstLocation);
+                graphics.DrawString(number, numberFont, Brushes.Red, numberLocation);
+                graphics.DrawString(link, linkFont, Brushes.Black, linkLocation);
+                graphics.DrawString(price, priceFont, Brushes.White, priceLocation);
+
+                bitmap.Save(savePath);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+
+
+        private async Task BotInitial(string chatid, string caption, string fileName)
+        {
+            try
+            {
+                var tel = await TelegramBot.GetInstance();
+                var ts = new Thread(new ThreadStart(async () =>
+                    await tel.StartSending(TelegramSendType.SendPost, chatId: chatid, fileName: fileName,
+                        caption: caption)));
+                ts.Start();
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+            //var proxy = new HttpToSocks5Proxy("192.168.1.11", 1080) { ResolveHostnamesLocally = false };
+            //_bot = new TelegramBotClient(@"942511223:AAFxQXqFRm10gmo_ls9Ng20WKsk6kLcgPZw", proxy);
+        }
+        private TelegramBotClient _bot;
 
         #endregion
 

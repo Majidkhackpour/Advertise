@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblSimcardNote = new System.Windows.Forms.Label();
             this.lblCateNote = new System.Windows.Forms.Label();
@@ -67,10 +66,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblProxy = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.lblLastBackUp = new System.Windows.Forms.Label();
             this.lblServerProxy = new System.Windows.Forms.Label();
+            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+            this.btnShow_Numbers = new DevComponents.DotNetBar.ButtonX();
+            this.btnAdvLog = new DevComponents.DotNetBar.ButtonX();
+            this.btnChart = new DevComponents.DotNetBar.ButtonX();
+            this.pnlContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblNaqz = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAds)).BeginInit();
@@ -88,7 +97,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCityNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStateNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCategoryNote)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.expandablePanel1.SuspendLayout();
+            this.grpAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSimcardNote
@@ -334,7 +346,7 @@
             this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.picLogo.BackColor = System.Drawing.Color.Transparent;
             this.picLogo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.picLogo.Location = new System.Drawing.Point(12, 456);
+            this.picLogo.Location = new System.Drawing.Point(26, 469);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(85, 113);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -561,20 +573,6 @@
             this.lblProxy.Text = "پروکسی:";
             this.lblProxy.Click += new System.EventHandler(this.lblProxy_Click);
             // 
-            // chart1
-            // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chart1.BackColor = System.Drawing.Color.Transparent;
-            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.Black;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(12, 19);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(502, 431);
-            this.chart1.TabIndex = 38;
-            this.chart1.Text = "chart1";
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -606,13 +604,231 @@
             this.lblServerProxy.Text = "00";
             this.lblServerProxy.Click += new System.EventHandler(this.lblProxy_Click);
             // 
+            // expandablePanel1
+            // 
+            this.expandablePanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.expandablePanel1.CanvasColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.expandablePanel1.CollapseDirection = DevComponents.DotNetBar.eCollapseDirection.RightToLeft;
+            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel1.Controls.Add(this.grpAccount);
+            this.expandablePanel1.Controls.Add(this.pnlContent);
+            this.expandablePanel1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.expandablePanel1.Expanded = false;
+            this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(1, 1, 1005, 588);
+            this.expandablePanel1.ExpandOnTitleClick = true;
+            this.expandablePanel1.HideControlsWhenCollapsed = true;
+            this.expandablePanel1.Location = new System.Drawing.Point(1, 1);
+            this.expandablePanel1.Name = "expandablePanel1";
+            this.expandablePanel1.Size = new System.Drawing.Size(30, 588);
+            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.expandablePanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.expandablePanel1.Style.BorderColor.Color = System.Drawing.Color.Silver;
+            this.expandablePanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandablePanel1.Style.GradientAngle = 90;
+            this.expandablePanel1.TabIndex = 38;
+            this.expandablePanel1.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.TitleStyle.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.expandablePanel1.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.expandablePanel1.TitleStyle.BorderColor.Color = System.Drawing.Color.Silver;
+            this.expandablePanel1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.expandablePanel1.TitleStyle.ForeColor.Color = System.Drawing.Color.Silver;
+            this.expandablePanel1.TitleStyle.GradientAngle = 90;
+            this.expandablePanel1.TitleText = "آمار";
+            // 
+            // grpAccount
+            // 
+            this.grpAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpAccount.BackColor = System.Drawing.Color.White;
+            this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grpAccount.Controls.Add(this.buttonX5);
+            this.grpAccount.Controls.Add(this.buttonX4);
+            this.grpAccount.Controls.Add(this.btnShow_Numbers);
+            this.grpAccount.Controls.Add(this.btnAdvLog);
+            this.grpAccount.Controls.Add(this.btnChart);
+            this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
+            this.grpAccount.Location = new System.Drawing.Point(-128, 28);
+            this.grpAccount.Name = "grpAccount";
+            this.grpAccount.Size = new System.Drawing.Size(149, 553);
+            // 
+            // 
+            // 
+            this.grpAccount.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.grpAccount.Style.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.grpAccount.Style.BackColorGradientAngle = 90;
+            this.grpAccount.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpAccount.Style.BorderBottomWidth = 3;
+            this.grpAccount.Style.BorderColor = System.Drawing.Color.Silver;
+            this.grpAccount.Style.BorderColor2 = System.Drawing.Color.Silver;
+            this.grpAccount.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpAccount.Style.BorderLeftWidth = 3;
+            this.grpAccount.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpAccount.Style.BorderRightWidth = 3;
+            this.grpAccount.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.grpAccount.Style.BorderTopWidth = 3;
+            this.grpAccount.Style.CornerDiameter = 4;
+            this.grpAccount.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.grpAccount.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.grpAccount.Style.TextColor = System.Drawing.Color.Black;
+            this.grpAccount.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            // 
+            // 
+            // 
+            this.grpAccount.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.grpAccount.TabIndex = 5;
+            // 
+            // buttonX5
+            // 
+            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.buttonX5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonX5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.buttonX5.Location = new System.Drawing.Point(1, 264);
+            this.buttonX5.Name = "buttonX5";
+            this.buttonX5.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.buttonX5.Size = new System.Drawing.Size(130, 55);
+            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.buttonX5.TabIndex = 2;
+            this.buttonX5.Text = "ارسال پیامک";
+            this.buttonX5.TextColor = System.Drawing.Color.Silver;
+            this.buttonX5.ThemeAware = true;
+            // 
+            // buttonX4
+            // 
+            this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.buttonX4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonX4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.buttonX4.Location = new System.Drawing.Point(1, 202);
+            this.buttonX4.Name = "buttonX4";
+            this.buttonX4.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.buttonX4.Size = new System.Drawing.Size(130, 55);
+            this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.buttonX4.TabIndex = 2;
+            this.buttonX4.Text = "تنظیمات پنل پیامک";
+            this.buttonX4.TextColor = System.Drawing.Color.Silver;
+            this.buttonX4.ThemeAware = true;
+            // 
+            // btnShow_Numbers
+            // 
+            this.btnShow_Numbers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnShow_Numbers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShow_Numbers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnShow_Numbers.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnShow_Numbers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShow_Numbers.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnShow_Numbers.Location = new System.Drawing.Point(1, 139);
+            this.btnShow_Numbers.Name = "btnShow_Numbers";
+            this.btnShow_Numbers.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnShow_Numbers.Size = new System.Drawing.Size(130, 55);
+            this.btnShow_Numbers.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnShow_Numbers.TabIndex = 2;
+            this.btnShow_Numbers.Text = "شماره های دریافتی از چت";
+            this.btnShow_Numbers.TextColor = System.Drawing.Color.Silver;
+            this.btnShow_Numbers.ThemeAware = true;
+            this.btnShow_Numbers.Click += new System.EventHandler(this.btnShow_Numbers_Click);
+            // 
+            // btnAdvLog
+            // 
+            this.btnAdvLog.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdvLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdvLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnAdvLog.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnAdvLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdvLog.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnAdvLog.Location = new System.Drawing.Point(1, 78);
+            this.btnAdvLog.Name = "btnAdvLog";
+            this.btnAdvLog.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnAdvLog.Size = new System.Drawing.Size(130, 55);
+            this.btnAdvLog.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnAdvLog.TabIndex = 2;
+            this.btnAdvLog.Text = "جدول ارسال آگهی ها";
+            this.btnAdvLog.TextColor = System.Drawing.Color.Silver;
+            this.btnAdvLog.ThemeAware = true;
+            this.btnAdvLog.Click += new System.EventHandler(this.btnAdvLog_Click);
+            // 
+            // btnChart
+            // 
+            this.btnChart.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnChart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnChart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChart.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnChart.Location = new System.Drawing.Point(1, 17);
+            this.btnChart.Name = "btnChart";
+            this.btnChart.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnChart.Size = new System.Drawing.Size(130, 55);
+            this.btnChart.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnChart.TabIndex = 2;
+            this.btnChart.Text = "نمودار ارسال آگهی ها";
+            this.btnChart.TextColor = System.Drawing.Color.Silver;
+            this.btnChart.ThemeAware = true;
+            this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.pnlContent.Location = new System.Drawing.Point(6, 28);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(834, 553);
+            this.pnlContent.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.Image = global::Ads.Properties.Resources._4806821127639943052;
+            this.pictureBox1.Location = new System.Drawing.Point(326, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(253, 65);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 42;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox2.Image = global::Ads.Properties.Resources._48068211276399430523;
+            this.pictureBox2.Location = new System.Drawing.Point(326, 133);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(253, 65);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 42;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lblNaqz
+            // 
+            this.lblNaqz.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblNaqz.ForeColor = System.Drawing.Color.Gold;
+            this.lblNaqz.Location = new System.Drawing.Point(241, 82);
+            this.lblNaqz.Name = "lblNaqz";
+            this.lblNaqz.Size = new System.Drawing.Size(429, 48);
+            this.lblNaqz.TabIndex = 32;
+            this.lblNaqz.Text = "00";
+            this.lblNaqz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(1009, 594);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.expandablePanel1);
             this.Controls.Add(this.lblSec);
             this.Controls.Add(this.lblMin);
             this.Controls.Add(this.lblHour);
@@ -621,6 +837,7 @@
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblLastBackUp);
+            this.Controls.Add(this.lblNaqz);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblServerProxy);
             this.Controls.Add(this.lblProxy);
@@ -651,6 +868,8 @@
             this.Controls.Add(this.picCityNote);
             this.Controls.Add(this.picStateNote);
             this.Controls.Add(this.picCategoryNote);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.ForeColor = System.Drawing.Color.Silver;
@@ -680,7 +899,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCityNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStateNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCategoryNote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.expandablePanel1.ResumeLayout(false);
+            this.grpAccount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -723,9 +945,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblProxy;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblLastBackUp;
         private System.Windows.Forms.Label lblServerProxy;
+        private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
+        private System.Windows.Forms.FlowLayoutPanel pnlContent;
+        public DevComponents.DotNetBar.Controls.GroupPanel grpAccount;
+        public DevComponents.DotNetBar.ButtonX btnShow_Numbers;
+        public DevComponents.DotNetBar.ButtonX btnAdvLog;
+        public DevComponents.DotNetBar.ButtonX btnChart;
+        public DevComponents.DotNetBar.ButtonX buttonX5;
+        public DevComponents.DotNetBar.ButtonX buttonX4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblNaqz;
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace ErrorHandler
 {
@@ -34,7 +37,7 @@ namespace ErrorHandler
             var description = _description;
 
 
-            var msg = $"Version:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()}" + "\r\n" +
+            var msg = $"Version:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}" + "\r\n" +
                       $"ClassName:{className}" + "\r\n" +
                       $"FunctionName:{funcName}" + "\r\n" +
                       $"Time:{time}" + "\r\n" +
@@ -43,8 +46,8 @@ namespace ErrorHandler
                       $"StackTrace:{stackTrace}" + "\r\n" +
                       $"Description:{description}";
 
-
-            var th = new Thread(() => SendErrorToTelegram.Send.StartSending(msg));
+            var fileName = GetScreenShot();
+            var th = new Thread(() => SendErrorToTelegram.Send.StartSending(msg, fileName));
             th.Start();
             var frm = new frmNotification(ex);
             frm.Show();
@@ -59,5 +62,27 @@ namespace ErrorHandler
         }
 
         public static WebErrorLog ErrorInstence => NestedCallInfo._instence;
+
+        private static string GetScreenShot()
+        {
+            var address = "";
+            try
+            {
+                var folder = Path.Combine(Application.StartupPath, "ScreenShot");
+                if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+                var printScreen = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                var graphic = Graphics.FromImage(printScreen as Image);
+                graphic.CopyFromScreen(0, 0, 0, 0, printScreen.Size);
+                var path = Path.Combine(folder, Guid.NewGuid() + ".png");
+                printScreen.Save(path, ImageFormat.Png);
+                address = path;
+            }
+            catch
+            {
+                address = "";
+            }
+
+            return address;
+        }
     }
 }

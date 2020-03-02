@@ -16,6 +16,7 @@ namespace BussinesLayer
         public bool Status { get; set; }
         public string Number { get; set; }
         public AdvertiseType Type { get; set; }
+        public string TypeName => Type.GetDisplay();
         public static List<ChatNumberBussines> GetAll(AdvertiseType type)
         {
             using (var _context = new UnitOfWorkLid())
@@ -40,6 +41,14 @@ namespace BussinesLayer
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        public static List<ChatNumberBussines> GetAll()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.ChatNumbers.GetAll();
+                return Mappings.Default.Map<List<ChatNumberBussines>>(a);
             }
         }
     }

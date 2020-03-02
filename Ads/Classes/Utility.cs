@@ -492,6 +492,19 @@ namespace Ads.Classes
                         Utility.ShowBalloon("لطفا شبکه خود را چک نمایید", lstMessage);
                     }
 
+                    if (simCard.isSendPostToTelegram)
+                    {
+                        var city = DivarCityBussines.GetAsync(simCard.CityForGetPost ?? Guid.Empty)?.Name ?? "مشهد";
+                        var cat1 = AdvCategoryBussines.Get(simCard.DivarPostCat1 ?? Guid.Empty)?.Name ?? "خدمات";
+                        var cat2 = AdvCategoryBussines.Get(simCard.DivarPostCat2 ?? Guid.Empty)?.Name ??
+                                   "آرایشگری و زیبایی";
+                        var cat3 = AdvCategoryBussines.Get(simCard.DivarPostCat3??Guid.Empty)?.Name ?? "";
+                        var chatID = simCard.ChannelForSendPost ?? "@Test2_2211201";
+                        var divar = await DivarAdv.GetInstance();
+                        await divar.GetPost(simCard.Number, cat1, cat2, cat3
+                            , city, simCard.PostCount ?? 5, chatID);
+                    }
+
                     if (simCard.IsSendAdv)
                     {
                         //کنترل شماره خروجی

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,10 @@ namespace Ads.Forms.Simcard
         {
             try
             {
-                var list = AdvertiseLogBussines.GetAllAsync(number, type, search);
+                List<AdvertiseLogBussines> list = null;
+                list = number == 0
+                    ? AdvertiseLogBussines.GetAllAsync(type, search)
+                    : AdvertiseLogBussines.GetAllAsync(number, type, search);
                 LogBindingSource.DataSource = list.OrderBy(q => q.DateM);
                 lblCounter.Text = LogBindingSource.Count.ToString();
             }
@@ -31,6 +35,24 @@ namespace Ads.Forms.Simcard
             Number = number;
             Type = 2;
             rbtnAll.Checked = true;
+            dgSimNumber.Visible = false;
+            dgUrl.Visible = true;
+        }
+
+        public frmAdvertiseLog()
+        {
+            InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            uC_Date1.Visible = false;
+            Number = 0;
+            Type = 3;
+            rbtnAll.Checked = true;
+            dgSimNumber.Visible = true;
+            label1.Visible = false;
+            dgUrl.Visible = false;
+            label2.Visible = false;
+            lblCounter.Visible = false;
+            line1.Visible = false;
         }
 
         private async void frmAdvertiseLog_Load(object sender, EventArgs e)
@@ -87,6 +109,11 @@ namespace Ads.Forms.Simcard
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
+
+        private void DGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DGrid.Rows[e.RowIndex].Cells["Radif"].Value = e.RowIndex + 1;
         }
     }
 }

@@ -759,5 +759,33 @@ namespace Ads.Forms.Simcard
         {
             txtSetter.Follow(txt2: txtChannel);
         }
+
+        private async void cmbPostCat1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat1.SelectedValue, AdvertiseType.Divar);
+                divarCat2 = divarCat2.OrderBy(q => q.Name).ToList();
+                PostCat2BindingSource.DataSource = divarCat2;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async void cmbPostCat2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat2.SelectedValue, AdvertiseType.Divar);
+                divarCat3 = divarCat3.OrderBy(q => q.Name).ToList();
+                PostCat3BindingSource.DataSource = divarCat3;
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
     }
 }

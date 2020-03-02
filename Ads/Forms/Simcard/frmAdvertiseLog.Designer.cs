@@ -42,15 +42,18 @@
             this.uC_Date1 = new UC_Date.UC_Date();
             this.lblCounter = new System.Windows.Forms.Label();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.LogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rbtnAll = new System.Windows.Forms.RadioButton();
+            this.rbtnDivar = new System.Windows.Forms.RadioButton();
+            this.rbtnSheypoor = new System.Windows.Forms.RadioButton();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.simCardNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgSimNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,8 +61,9 @@
             this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subCategory1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subCategory2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgUrl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.visitCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,10 +71,6 @@
             this.imagePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.advDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.advStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rbtnAll = new System.Windows.Forms.RadioButton();
-            this.rbtnDivar = new System.Windows.Forms.RadioButton();
-            this.rbtnSheypoor = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -190,7 +190,7 @@
             this.titleDataGridViewTextBoxColumn,
             this.StatusName,
             this.contentDataGridViewTextBoxColumn,
-            this.simCardNumberDataGridViewTextBoxColumn,
+            this.dgSimNumber,
             this.stateDataGridViewTextBoxColumn,
             this.cityDataGridViewTextBoxColumn,
             this.regionDataGridViewTextBoxColumn,
@@ -198,7 +198,7 @@
             this.categoryDataGridViewTextBoxColumn,
             this.subCategory1DataGridViewTextBoxColumn,
             this.subCategory2DataGridViewTextBoxColumn,
-            this.uRLDataGridViewTextBoxColumn,
+            this.dgUrl,
             this.iPDataGridViewTextBoxColumn,
             this.TypeName,
             this.visitCountDataGridViewTextBoxColumn,
@@ -243,6 +243,56 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(787, 404);
             this.DGrid.TabIndex = 55696;
+            this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
+            // 
+            // LogBindingSource
+            // 
+            this.LogBindingSource.DataSource = typeof(BussinesLayer.AdvertiseLogBussines);
+            // 
+            // rbtnAll
+            // 
+            this.rbtnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnAll.AutoSize = true;
+            this.rbtnAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnAll.ForeColor = System.Drawing.Color.Silver;
+            this.rbtnAll.Location = new System.Drawing.Point(710, 60);
+            this.rbtnAll.Name = "rbtnAll";
+            this.rbtnAll.Size = new System.Drawing.Size(85, 24);
+            this.rbtnAll.TabIndex = 55700;
+            this.rbtnAll.TabStop = true;
+            this.rbtnAll.Text = "همه آگهی ها";
+            this.rbtnAll.UseVisualStyleBackColor = true;
+            this.rbtnAll.CheckedChanged += new System.EventHandler(this.rbtnAll_CheckedChanged);
+            // 
+            // rbtnDivar
+            // 
+            this.rbtnDivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnDivar.AutoSize = true;
+            this.rbtnDivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnDivar.ForeColor = System.Drawing.Color.Silver;
+            this.rbtnDivar.Location = new System.Drawing.Point(651, 60);
+            this.rbtnDivar.Name = "rbtnDivar";
+            this.rbtnDivar.Size = new System.Drawing.Size(53, 24);
+            this.rbtnDivar.TabIndex = 55700;
+            this.rbtnDivar.TabStop = true;
+            this.rbtnDivar.Text = "دیوار";
+            this.rbtnDivar.UseVisualStyleBackColor = true;
+            this.rbtnDivar.CheckedChanged += new System.EventHandler(this.rbtnDivar_CheckedChanged);
+            // 
+            // rbtnSheypoor
+            // 
+            this.rbtnSheypoor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnSheypoor.AutoSize = true;
+            this.rbtnSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbtnSheypoor.ForeColor = System.Drawing.Color.Silver;
+            this.rbtnSheypoor.Location = new System.Drawing.Point(588, 60);
+            this.rbtnSheypoor.Name = "rbtnSheypoor";
+            this.rbtnSheypoor.Size = new System.Drawing.Size(58, 24);
+            this.rbtnSheypoor.TabIndex = 55700;
+            this.rbtnSheypoor.TabStop = true;
+            this.rbtnSheypoor.Text = "شیپور";
+            this.rbtnSheypoor.UseVisualStyleBackColor = true;
+            this.rbtnSheypoor.CheckedChanged += new System.EventHandler(this.rbtnSheypoor_CheckedChanged);
             // 
             // Radif
             // 
@@ -250,21 +300,6 @@
             this.Radif.Name = "Radif";
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
-            // 
-            // StatusName
-            // 
-            this.StatusName.DataPropertyName = "StatusName";
-            this.StatusName.HeaderText = "وضعیت";
-            this.StatusName.Name = "StatusName";
-            this.StatusName.ReadOnly = true;
-            // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "TypeName";
-            this.TypeName.HeaderText = "نوع";
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            this.TypeName.Width = 80;
             // 
             // guidDataGridViewTextBoxColumn
             // 
@@ -297,6 +332,13 @@
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // StatusName
+            // 
+            this.StatusName.DataPropertyName = "StatusName";
+            this.StatusName.HeaderText = "وضعیت";
+            this.StatusName.Name = "StatusName";
+            this.StatusName.ReadOnly = true;
+            // 
             // contentDataGridViewTextBoxColumn
             // 
             this.contentDataGridViewTextBoxColumn.DataPropertyName = "Content";
@@ -305,13 +347,13 @@
             this.contentDataGridViewTextBoxColumn.ReadOnly = true;
             this.contentDataGridViewTextBoxColumn.Visible = false;
             // 
-            // simCardNumberDataGridViewTextBoxColumn
+            // dgSimNumber
             // 
-            this.simCardNumberDataGridViewTextBoxColumn.DataPropertyName = "SimCardNumber";
-            this.simCardNumberDataGridViewTextBoxColumn.HeaderText = "SimCardNumber";
-            this.simCardNumberDataGridViewTextBoxColumn.Name = "simCardNumberDataGridViewTextBoxColumn";
-            this.simCardNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.simCardNumberDataGridViewTextBoxColumn.Visible = false;
+            this.dgSimNumber.DataPropertyName = "SimCardNumber";
+            this.dgSimNumber.HeaderText = "شماره";
+            this.dgSimNumber.Name = "dgSimNumber";
+            this.dgSimNumber.ReadOnly = true;
+            this.dgSimNumber.Visible = false;
             // 
             // stateDataGridViewTextBoxColumn
             // 
@@ -368,13 +410,14 @@
             this.subCategory2DataGridViewTextBoxColumn.ReadOnly = true;
             this.subCategory2DataGridViewTextBoxColumn.Visible = false;
             // 
-            // uRLDataGridViewTextBoxColumn
+            // dgUrl
             // 
-            this.uRLDataGridViewTextBoxColumn.DataPropertyName = "URL";
-            this.uRLDataGridViewTextBoxColumn.HeaderText = "لینک مدیریت";
-            this.uRLDataGridViewTextBoxColumn.Name = "uRLDataGridViewTextBoxColumn";
-            this.uRLDataGridViewTextBoxColumn.ReadOnly = true;
-            this.uRLDataGridViewTextBoxColumn.Width = 150;
+            this.dgUrl.DataPropertyName = "URL";
+            this.dgUrl.HeaderText = "لینک مدیریت";
+            this.dgUrl.Name = "dgUrl";
+            this.dgUrl.ReadOnly = true;
+            this.dgUrl.Visible = false;
+            this.dgUrl.Width = 150;
             // 
             // iPDataGridViewTextBoxColumn
             // 
@@ -383,6 +426,14 @@
             this.iPDataGridViewTextBoxColumn.Name = "iPDataGridViewTextBoxColumn";
             this.iPDataGridViewTextBoxColumn.ReadOnly = true;
             this.iPDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "TypeName";
+            this.TypeName.HeaderText = "نوع";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            this.TypeName.Width = 80;
             // 
             // visitCountDataGridViewTextBoxColumn
             // 
@@ -440,55 +491,6 @@
             this.advStatusDataGridViewTextBoxColumn.ReadOnly = true;
             this.advStatusDataGridViewTextBoxColumn.Visible = false;
             // 
-            // LogBindingSource
-            // 
-            this.LogBindingSource.DataSource = typeof(BussinesLayer.AdvertiseLogBussines);
-            // 
-            // rbtnAll
-            // 
-            this.rbtnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnAll.AutoSize = true;
-            this.rbtnAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnAll.ForeColor = System.Drawing.Color.Silver;
-            this.rbtnAll.Location = new System.Drawing.Point(710, 60);
-            this.rbtnAll.Name = "rbtnAll";
-            this.rbtnAll.Size = new System.Drawing.Size(85, 24);
-            this.rbtnAll.TabIndex = 55700;
-            this.rbtnAll.TabStop = true;
-            this.rbtnAll.Text = "همه آگهی ها";
-            this.rbtnAll.UseVisualStyleBackColor = true;
-            this.rbtnAll.CheckedChanged += new System.EventHandler(this.rbtnAll_CheckedChanged);
-            // 
-            // rbtnDivar
-            // 
-            this.rbtnDivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnDivar.AutoSize = true;
-            this.rbtnDivar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnDivar.ForeColor = System.Drawing.Color.Silver;
-            this.rbtnDivar.Location = new System.Drawing.Point(651, 60);
-            this.rbtnDivar.Name = "rbtnDivar";
-            this.rbtnDivar.Size = new System.Drawing.Size(53, 24);
-            this.rbtnDivar.TabIndex = 55700;
-            this.rbtnDivar.TabStop = true;
-            this.rbtnDivar.Text = "دیوار";
-            this.rbtnDivar.UseVisualStyleBackColor = true;
-            this.rbtnDivar.CheckedChanged += new System.EventHandler(this.rbtnDivar_CheckedChanged);
-            // 
-            // rbtnSheypoor
-            // 
-            this.rbtnSheypoor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnSheypoor.AutoSize = true;
-            this.rbtnSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rbtnSheypoor.ForeColor = System.Drawing.Color.Silver;
-            this.rbtnSheypoor.Location = new System.Drawing.Point(588, 60);
-            this.rbtnSheypoor.Name = "rbtnSheypoor";
-            this.rbtnSheypoor.Size = new System.Drawing.Size(58, 24);
-            this.rbtnSheypoor.TabIndex = 55700;
-            this.rbtnSheypoor.TabStop = true;
-            this.rbtnSheypoor.Text = "شیپور";
-            this.rbtnSheypoor.UseVisualStyleBackColor = true;
-            this.rbtnSheypoor.CheckedChanged += new System.EventHandler(this.rbtnSheypoor_CheckedChanged);
-            // 
             // frmAdvertiseLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -531,6 +533,9 @@
         private UC_Date.UC_Date uC_Date1;
         private System.Windows.Forms.Label lblCounter;
         private DevComponents.DotNetBar.Controls.DataGridViewX DGrid;
+        private System.Windows.Forms.RadioButton rbtnAll;
+        private System.Windows.Forms.RadioButton rbtnDivar;
+        private System.Windows.Forms.RadioButton rbtnSheypoor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Radif;
         private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateSabtDataGridViewTextBoxColumn;
@@ -538,7 +543,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn contentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn simCardNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgSimNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn regionDataGridViewTextBoxColumn;
@@ -546,7 +551,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subCategory1DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subCategory2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgUrl;
         private System.Windows.Forms.DataGridViewTextBoxColumn iPDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn visitCountDataGridViewTextBoxColumn;
@@ -556,8 +561,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn imagePathDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn advDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn advStatusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.RadioButton rbtnAll;
-        private System.Windows.Forms.RadioButton rbtnDivar;
-        private System.Windows.Forms.RadioButton rbtnSheypoor;
     }
 }

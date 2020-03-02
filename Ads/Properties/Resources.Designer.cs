@@ -213,6 +213,26 @@ namespace Ads.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _4806821127639943052 {
+            get {
+                object obj = ResourceManager.GetObject("_4806821127639943052", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _48068211276399430523 {
+            get {
+                object obj = ResourceManager.GetObject("_48068211276399430523", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _99 {
             get {
                 object obj = ResourceManager.GetObject("_99", resourceCulture);

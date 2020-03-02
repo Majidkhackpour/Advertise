@@ -13,12 +13,22 @@ namespace BussinesLayer
         public string DateSabt { get; set; }
         public bool Status { get; set; }
         public string Message { get; set; }
-        public static void Save(List<NaqzBussines>list)
+        public static List<NaqzBussines> GetAll()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.Naqz.GetAll();
+                return Mappings.Default.Map<List<NaqzBussines>>(a);
+            }
+        }
+        public static void Save(List<NaqzBussines> list)
         {
             try
             {
                 using (var _context = new UnitOfWorkLid())
                 {
+                    var lst = GetAll();
+                    if (lst.Count > 0) return;
                     foreach (var item in list)
                     {
                         var a = Mappings.Default.Map<Naqz>(item);

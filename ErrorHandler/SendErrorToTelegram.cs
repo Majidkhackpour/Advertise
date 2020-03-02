@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,21 +25,21 @@ namespace ErrorHandler
 
         public static SendErrorToTelegram Send => NestedCallInfo._instence;
         private TelegramBotClient bot;
-        public void StartSending(string message)
+        public void StartSending(string message, string fileName)
         {
             var token = @"937505998:AAEio5mETihkBgLyERRb8KhJG8A1g8SCMXQ";
             var proxy = new HttpToSocks5Proxy("so2.10g2.cf", 8085, "p7", "341") { ResolveHostnamesLocally = false };
             bot = new TelegramBotClient(token, proxy);
-            var ts = new Thread(new ThreadStart(async () => await Send_(message)));
+            var ts = new Thread(new ThreadStart(async () => await Send_(message, fileName)));
             ts.Start();
         }
-        private async Task Send_(string message)
+        private async Task Send_(string message, string fileName)
         {
             try
             {
-                await SendMessageAsync(message);
+                await SendMessageAsync(message, fileName);
             }
-            catch 
+            catch
             {
             }
         }
@@ -47,11 +48,13 @@ namespace ErrorHandler
             var chatid = "@ErrorHandlerAdvertise";
             return chatid;
         }
-        private async Task SendMessageAsync(string message)
+        private async Task SendMessageAsync(string message, string fileName)
         {
             try
             {
-                await bot.SendTextMessageAsync(GetChatId(), message);
+                var picFile = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                await bot.SendPhotoAsync(GetChatId(), picFile, message);
+                //await bot.SendTextMessageAsync(GetChatId(), message);
             }
             catch (Telegram.Bot.Exceptions.BadRequestException)
             {

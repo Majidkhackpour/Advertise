@@ -101,5 +101,18 @@ namespace BussinesLayer
                 return a;
             }
         }
+        public static List<AdvertiseLogBussines> GetAllAsync(short type, string search = "")
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.AdvertiseLog.GetAll();
+                if (type == 0)
+                    a = a.Where(q => q.AdvType == AdvertiseType.Divar).ToList();
+                else if (type == 1)
+                    a = a.Where(q => q.AdvType == AdvertiseType.Sheypoor).ToList();
+                a = a.Where(q => q.Title.Contains(search) || q.City.Contains(search)).ToList();
+                return Mappings.Default.Map<List<AdvertiseLogBussines>>(a);
+            }
+        }
     }
 }
