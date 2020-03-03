@@ -502,7 +502,7 @@ namespace Ads.Classes
                         var chatID = simCard.ChannelForSendPost ?? "@Test2_2211201";
                         var divar = await DivarAdv.GetInstance();
                         await divar.GetPost(simCard.Number, cat1, cat2, cat3
-                            , city, simCard.PostCount ?? 5, chatID);
+                            , city, simCard.PostCount ?? 5, chatID, simCard.DescriptionForPost ?? "");
                     }
 
                     if (simCard.IsSendAdv)

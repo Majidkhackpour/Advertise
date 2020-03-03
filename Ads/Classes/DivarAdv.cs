@@ -1689,7 +1689,7 @@ namespace Ads.Classes
             }
         }
 
-        public async Task GetPost(long number, string cat1, string cat2, string cat3, string city, int count, string chatId)
+        public async Task GetPost(long number, string cat1, string cat2, string cat3, string city, int count, string chatId, string desc)
         {
             try
             {
@@ -1810,7 +1810,7 @@ namespace Ads.Classes
                         var txt = _driver.FindElements(By.ClassName("post-fields-item__value")).FirstOrDefault()?.Text;
                         if (txt == "(پنهان‌شده؛ چت کنید)") txt = "";
                         if (!string.IsNullOrEmpty(txt)) num = txt.FixString();
-                        var passage = title + "\r\n" + content + "\r\n" + num;
+                        var passage = title + "\r\n" + content + "\r\n" + num + "\r\n" + desc;
                         //ایجاد تصویر نهایی
                         WriteTextOnImage(title, num, pr, pathsave, finnalPath);
 
