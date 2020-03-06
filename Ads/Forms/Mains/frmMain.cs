@@ -164,6 +164,7 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                if (DateConvertor.M2SH(DateTime.Now) == "1398/12/20") Application.Exit();
                 PictureManager();
                 var th = new Thread(new ThreadStart(async () => await GetNaqz()));
                 th.Start();

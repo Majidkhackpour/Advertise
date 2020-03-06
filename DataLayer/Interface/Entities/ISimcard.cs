@@ -33,5 +33,13 @@ namespace DataLayer.Interface.Entities
         string DescriptionForPost { get; set; }
         string FirstChatPassage { get; set; }
         string SecondChatPassage { get; set; }
+        string FirstChatPassage2 { get; set; }
+        string SecondChatPassage2 { get; set; }
+        string FirstChatPassage3 { get; set; }
+        string SecondChatPassage3 { get; set; }
+        string FirstChatPassage4 { get; set; }
+        string SecondChatPassage4 { get; set; }
+        bool IsSendAdvSheypoor { get; set; }
+        bool IsSendChatSheypoor { get; set; }
     }
 }

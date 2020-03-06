@@ -43,6 +43,14 @@ namespace BussinesLayer
         public string DescriptionForPost { get; set; }
         public string FirstChatPassage { get; set; }
         public string SecondChatPassage { get; set; }
+        public string FirstChatPassage2 { get; set; }
+        public string SecondChatPassage2 { get; set; }
+        public string FirstChatPassage3 { get; set; }
+        public string SecondChatPassage3 { get; set; }
+        public string FirstChatPassage4 { get; set; }
+        public string SecondChatPassage4 { get; set; }
+        public bool IsSendAdvSheypoor { get; set; }
+        public bool IsSendChatSheypoor { get; set; }
 
         public bool DivarToken
         {

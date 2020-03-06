@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -56,6 +57,7 @@ namespace ErrorHandler
                 await bot.SendPhotoAsync(GetChatId(), picFile, message);
                 //await bot.SendTextMessageAsync(GetChatId(), message);
             }
+            catch (HttpRequestException) { }
             catch (Telegram.Bot.Exceptions.BadRequestException)
             {
             }

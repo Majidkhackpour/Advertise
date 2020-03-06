@@ -29,8 +29,8 @@ namespace Ads.Forms.Simcard
         {
             try
             {
-                var a = SettingBussines.GetAll();
                 var list2 = await AdvertiseBussines.GetAllAsync();
+                list2 = list2.Where(q => q.Status).ToList();
                 adsBindingSource.DataSource = list2;
             }
             catch (Exception e)
@@ -267,8 +267,10 @@ namespace Ads.Forms.Simcard
                 cls.DivarPostCat3 = (Guid?)cmbPostCat3.SelectedValue ?? null;
                 cls.IsEnableChat = chbIsEnableChat.Checked;
                 cls.IsEnableNumber = chbIsEnableNumber.Checked;
-                cls.IsSendAdv = chbIsSendAdv.Checked;
-                cls.IsSendChat = chbIsSendChat.Checked;
+                cls.IsSendAdv = chbIsSendAdvDivar.Checked;
+                cls.IsSendAdvSheypoor = chbIsSendAdvSheypoor.Checked;
+                cls.IsSendChat = chbIsSendChatDivar.Checked;
+                cls.IsSendChatSheypoor = chbIsSendChatSheypoor.Checked;
                 cls.ChatCount = int.Parse(txtChatCount.Text);
                 cls.DivarCityForChat = (Guid)cmbDivarCity.SelectedValue;
                 cls.SheypoorCityForChat = (Guid)cmbSheypoorCity.SelectedValue;
@@ -283,8 +285,14 @@ namespace Ads.Forms.Simcard
                 cls.CityForGetPost = (Guid?)cmbPostCity.SelectedValue ?? null;
                 cls.DescriptionForPost = txtPostDescription.Text;
                 cls.isSendSecondChat = chbIsSendSecondText.Checked;
-                cls.FirstChatPassage = txtFirstChatPassage.Text;
-                cls.SecondChatPassage = txtSecondChatPassage.Text;
+                cls.FirstChatPassage = txtFirstChatPassage1.Text;
+                cls.FirstChatPassage2 = txtFirstChatPassage2.Text;
+                cls.FirstChatPassage3 = txtFirstChatPassage3.Text;
+                cls.FirstChatPassage4 = txtFirstChatPassage4.Text;
+                cls.SecondChatPassage = txtSecondChatPassage1.Text;
+                cls.FirstChatPassage2 = txtFirstChatPassage2.Text;
+                cls.FirstChatPassage3 = txtFirstChatPassage3.Text;
+                cls.FirstChatPassage4 = txtFirstChatPassage4.Text;
 
                 await cls.SaveAsync(listCity, listAds, listCitySh);
                 DialogResult = DialogResult.OK;
@@ -385,8 +393,10 @@ namespace Ads.Forms.Simcard
                 txtChatCount.Text = cls.ChatCount.ToString();
                 chbIsEnableNumber.Checked = cls.IsEnableNumber;
                 chbIsEnableChat.Checked = cls.IsEnableChat;
-                chbIsSendChat.Checked = cls.IsSendChat;
-                chbIsSendAdv.Checked = cls.IsSendAdv;
+                chbIsSendChatDivar.Checked = cls.IsSendChat;
+                chbIsSendChatSheypoor.Checked = cls.IsSendChatSheypoor;
+                chbIsSendAdvDivar.Checked = cls.IsSendAdv;
+                chbIsSendAdvSheypoor.Checked = cls.IsSendAdvSheypoor;
                 cmbDivarCity.SelectedValue = cls.DivarCityForChat;
                 cmbSheypoorCity.SelectedValue = cls.SheypoorCityForChat;
                 chbIsSendPostToTelegram.Checked = cls.isSendPostToTelegram;
@@ -394,9 +404,15 @@ namespace Ads.Forms.Simcard
                 txtPostCount.Text = cls.PostCount?.ToString() ?? "";
                 txtPostDescription.Text = cls.DescriptionForPost;
                 chbIsSendSecondText.Checked = cls.isSendSecondChat;
-                chbIsSendChat.Checked = cls.isSendSecondChat;
-                txtFirstChatPassage.Text = cls.FirstChatPassage;
-                txtSecondChatPassage.Text = cls.SecondChatPassage;
+                chbIsSendChatDivar.Checked = cls.isSendSecondChat;
+                txtFirstChatPassage1.Text = cls.FirstChatPassage;
+                txtFirstChatPassage2.Text = cls.FirstChatPassage2;
+                txtFirstChatPassage3.Text = cls.FirstChatPassage3;
+                txtFirstChatPassage4.Text = cls.FirstChatPassage4;
+                txtSecondChatPassage1.Text = cls.SecondChatPassage;
+                txtSecondChatPassage2.Text = cls.SecondChatPassage2;
+                txtSecondChatPassage3.Text = cls.SecondChatPassage3;
+                txtSecondChatPassage4.Text = cls.SecondChatPassage4;
                 if (cls.Guid != Guid.Empty)
                 {
                     cmbPostCat1.SelectedValue = cls?.DivarPostCat1 ?? Guid.Empty;
@@ -567,13 +583,7 @@ namespace Ads.Forms.Simcard
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
-
-
-
-
-
-
-
+        
         private void txtChatCount_Enter_1(object sender, EventArgs e)
         {
             txtSetter.Follow(txt2: txtChatCount);
@@ -583,11 +593,7 @@ namespace Ads.Forms.Simcard
         {
             txtSetter.Follow(txt2: txtChatCount);
         }
-
-
-
-
-
+        
         private async void cmbPostCat2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -727,22 +733,22 @@ namespace Ads.Forms.Simcard
 
         private void txtFirstChatPassage_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtFirstChatPassage);
+            txtSetter.Focus(txt2: txtFirstChatPassage1);
         }
 
         private void txtSecondChatPassage_Enter(object sender, EventArgs e)
         {
-            txtSetter.Focus(txt2: txtSecondChatPassage);
+            txtSetter.Focus(txt2: txtSecondChatPassage1);
         }
 
         private void txtSecondChatPassage_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtSecondChatPassage);
+            txtSetter.Follow(txt2: txtSecondChatPassage1);
         }
 
         private void txtFirstChatPassage_Leave(object sender, EventArgs e)
         {
-            txtSetter.Follow(txt2: txtFirstChatPassage);
+            txtSetter.Follow(txt2: txtFirstChatPassage1);
         }
 
         private void txtPostDescription_Leave(object sender, EventArgs e)
@@ -764,6 +770,7 @@ namespace Ads.Forms.Simcard
         {
             try
             {
+                if (cmbPostCat1.SelectedValue == null) return;
                 var divarCat2 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat1.SelectedValue, AdvertiseType.Divar);
                 divarCat2 = divarCat2.OrderBy(q => q.Name).ToList();
                 PostCat2BindingSource.DataSource = divarCat2;
@@ -778,6 +785,7 @@ namespace Ads.Forms.Simcard
         {
             try
             {
+                if (cmbPostCat2.SelectedValue == null) return;
                 var divarCat3 = await AdvCategoryBussines.GetAllAsync((Guid)cmbPostCat2.SelectedValue, AdvertiseType.Divar);
                 divarCat3 = divarCat3.OrderBy(q => q.Name).ToList();
                 PostCat3BindingSource.DataSource = divarCat3;
@@ -786,6 +794,86 @@ namespace Ads.Forms.Simcard
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
+
+        private void txtFirstChatPassage2_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtFirstChatPassage2);
+        }
+
+        private void txtFirstChatPassage3_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtFirstChatPassage3);
+        }
+
+        private void txtFirstChatPassage4_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtFirstChatPassage4);
+        }
+
+        private void txtSecondChatPassage1_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSecondChatPassage1);
+        }
+
+        private void txtFirstChatPassage1_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtFirstChatPassage1);
+        }
+
+        private void txtSecondChatPassage2_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSecondChatPassage2);
+        }
+
+        private void txtSecondChatPassage3_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSecondChatPassage3);
+        }
+
+        private void txtSecondChatPassage4_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSecondChatPassage4);
+        }
+
+        private void txtFirstChatPassage1_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtFirstChatPassage1);
+        }
+
+        private void txtFirstChatPassage2_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtFirstChatPassage2);
+        }
+
+        private void txtFirstChatPassage3_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtFirstChatPassage3);
+        }
+
+        private void txtFirstChatPassage4_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtFirstChatPassage4);
+        }
+
+        private void txtSecondChatPassage1_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSecondChatPassage1);
+        }
+
+        private void txtSecondChatPassage2_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSecondChatPassage2);
+        }
+
+        private void txtSecondChatPassage3_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSecondChatPassage3);
+        }
+
+        private void txtSecondChatPassage4_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSecondChatPassage4);
         }
     }
 }

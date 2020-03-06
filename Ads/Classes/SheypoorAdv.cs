@@ -419,14 +419,16 @@ namespace Ads.Classes
                 return false;
 
             }
+            catch (StaleElementReferenceException rf)
+            {
+                return false;
+            }
             catch (WebException er)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(er);
                 return false;
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
 
@@ -1138,6 +1140,7 @@ namespace Ads.Classes
                     continue;
                 }
             }
+            catch (StaleElementReferenceException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

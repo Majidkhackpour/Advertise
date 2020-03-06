@@ -218,7 +218,7 @@ namespace Ads.Classes
                         tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
                         if (simBusiness is null)
                         {
-                            simBusiness = new AdvTokensBussines() { Guid = Guid.NewGuid() };
+                            simBusiness = new AdvTokensBussines() {Guid = Guid.NewGuid()};
                         }
 
                         simBusiness.Token = tokenInDatabase;
@@ -229,7 +229,7 @@ namespace Ads.Classes
 
                         await simBusiness.SaveAsync(AdvertiseType.Divar, simBusiness.Number);
                         var message = $@"شماره: {simCardNumber}  \r\nلاگین انجام شد ";
-                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
                         await Utility.Wait(2);
                         _driver.SwitchTo().Alert().Accept();
                         return true;
@@ -239,7 +239,7 @@ namespace Ads.Classes
                         var a = await SimcardBussines.GetAsync(simCardNumber);
                         var name = a.OwnerName;
                         var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
 
                         await Utility.Wait(3);
                         try
@@ -257,11 +257,18 @@ namespace Ads.Classes
 
                 return false;
             }
+            catch (StaleElementReferenceException rf)
+            {
+                return false;
+            }
             catch (WebException er)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(er);
                 return false;
 
+            }
+            catch (WebDriverException ef)
+            {
+                return false;
             }
             catch (Exception ex)
             {
@@ -373,7 +380,7 @@ namespace Ads.Classes
 
                         await simBusiness.SaveAsync(AdvertiseType.DivarChat, simBusiness.Number);
 
-                        ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('لاگین انجام شد');");
+                        ((IJavaScriptExecutor) _driver).ExecuteScript(@"alert('لاگین انجام شد');");
                         await Utility.Wait();
                         _driver.SwitchTo().Alert().Accept();
                         return true;
@@ -383,7 +390,7 @@ namespace Ads.Classes
                         var a = await SimcardBussines.GetAsync(simCardNumber);
                         var name = a.OwnerName;
                         var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
 
                         await Utility.Wait(3);
                         try
@@ -401,7 +408,14 @@ namespace Ads.Classes
 
                 return false;
             }
-            catch (WebException) { return false; }
+            catch (NoAlertPresentException)
+            {
+                return false;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -515,7 +529,7 @@ namespace Ads.Classes
                 if (radio.Count > 0)
                 {
                     await Utility.Wait(1);
-                    _driver.FindElements(By.TagName("span")).FirstOrDefault(q => q.Text == "فروشی")?.Click();
+                    _driver.FindElements(By.TagName("span")).FirstOrDefault(q => q.Text.Contains("فروشی"))?.Click();
                 }
                 await Utility.Wait(1);
                 //درج قیمت
@@ -1576,6 +1590,7 @@ namespace Ads.Classes
                     }
                 }
             }
+            catch (StaleElementReferenceException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

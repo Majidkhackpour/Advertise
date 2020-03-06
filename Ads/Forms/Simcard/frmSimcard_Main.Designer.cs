@@ -75,11 +75,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtChatCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.chbIsSendChat = new System.Windows.Forms.CheckBox();
-            this.chbIsSendSecondText = new System.Windows.Forms.CheckBox();
-            this.chbIsEnableChat = new System.Windows.Forms.CheckBox();
-            this.chbIsSendAdv = new System.Windows.Forms.CheckBox();
-            this.chbIsEnableNumber = new System.Windows.Forms.CheckBox();
             this.cmbOperator = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtOwner = new System.Windows.Forms.TextBox();
@@ -99,8 +94,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.txtSecondChatPassage = new System.Windows.Forms.TextBox();
-            this.txtFirstChatPassage = new System.Windows.Forms.TextBox();
+            this.chbIsSendChatSheypoor = new System.Windows.Forms.CheckBox();
+            this.chbIsSendChatDivar = new System.Windows.Forms.CheckBox();
+            this.chbIsSendSecondText = new System.Windows.Forms.CheckBox();
+            this.chbIsEnableChat = new System.Windows.Forms.CheckBox();
+            this.chbIsSendAdvSheypoor = new System.Windows.Forms.CheckBox();
+            this.chbIsSendAdvDivar = new System.Windows.Forms.CheckBox();
+            this.chbIsEnableNumber = new System.Windows.Forms.CheckBox();
             this.chbIsSendPostToTelegram = new System.Windows.Forms.CheckBox();
             this.grpTelegram = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.txtPostDescription = new System.Windows.Forms.TextBox();
@@ -122,6 +122,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.line4 = new DevComponents.DotNetBar.Controls.Line();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.txtSecondChatPassage4 = new System.Windows.Forms.TextBox();
+            this.txtSecondChatPassage3 = new System.Windows.Forms.TextBox();
+            this.txtSecondChatPassage2 = new System.Windows.Forms.TextBox();
+            this.txtSecondChatPassage1 = new System.Windows.Forms.TextBox();
+            this.txtFirstChatPassage4 = new System.Windows.Forms.TextBox();
+            this.txtFirstChatPassage3 = new System.Windows.Forms.TextBox();
+            this.txtFirstChatPassage2 = new System.Windows.Forms.TextBox();
+            this.txtFirstChatPassage1 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -179,6 +188,7 @@
             this.tabPage5.SuspendLayout();
             this.grpTelegram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PostCityBindingSource)).BeginInit();
+            this.tabPage6.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCity)).BeginInit();
             this.cmCity.SuspendLayout();
@@ -220,11 +230,6 @@
             this.grpAccount.Controls.Add(this.label12);
             this.grpAccount.Controls.Add(this.txtChatCount);
             this.grpAccount.Controls.Add(this.label4);
-            this.grpAccount.Controls.Add(this.chbIsSendChat);
-            this.grpAccount.Controls.Add(this.chbIsSendSecondText);
-            this.grpAccount.Controls.Add(this.chbIsEnableChat);
-            this.grpAccount.Controls.Add(this.chbIsSendAdv);
-            this.grpAccount.Controls.Add(this.chbIsEnableNumber);
             this.grpAccount.Controls.Add(this.cmbOperator);
             this.grpAccount.Controls.Add(this.txtUserName);
             this.grpAccount.Controls.Add(this.txtOwner);
@@ -275,10 +280,10 @@
             this.btnSearch1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSearch1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearch1.Location = new System.Drawing.Point(4, 407);
+            this.btnSearch1.Location = new System.Drawing.Point(10, 388);
             this.btnSearch1.Name = "btnSearch1";
             this.btnSearch1.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnSearch1.Size = new System.Drawing.Size(194, 27);
+            this.btnSearch1.Size = new System.Drawing.Size(196, 27);
             this.btnSearch1.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this.btnSearch1.TabIndex = 55701;
             this.btnSearch1.Text = "...";
@@ -296,7 +301,7 @@
             this.cmbSheypoorCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorCity.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorCity.ItemHeight = 20;
-            this.cmbSheypoorCity.Location = new System.Drawing.Point(4, 373);
+            this.cmbSheypoorCity.Location = new System.Drawing.Point(4, 354);
             this.cmbSheypoorCity.Name = "cmbSheypoorCity";
             this.cmbSheypoorCity.Size = new System.Drawing.Size(195, 28);
             this.cmbSheypoorCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -314,7 +319,7 @@
             this.label11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label11.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label11.ForeColor = System.Drawing.Color.Silver;
-            this.label11.Location = new System.Drawing.Point(104, 346);
+            this.label11.Location = new System.Drawing.Point(104, 327);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 20);
             this.label11.TabIndex = 55700;
@@ -330,7 +335,7 @@
             this.cmbSheypoorChat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorChat2.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorChat2.ItemHeight = 20;
-            this.cmbSheypoorChat2.Location = new System.Drawing.Point(228, 373);
+            this.cmbSheypoorChat2.Location = new System.Drawing.Point(228, 354);
             this.cmbSheypoorChat2.Name = "cmbSheypoorChat2";
             this.cmbSheypoorChat2.Size = new System.Drawing.Size(195, 28);
             this.cmbSheypoorChat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -351,7 +356,7 @@
             this.cmbSheypoorChat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorChat1.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorChat1.ItemHeight = 20;
-            this.cmbSheypoorChat1.Location = new System.Drawing.Point(453, 373);
+            this.cmbSheypoorChat1.Location = new System.Drawing.Point(453, 354);
             this.cmbSheypoorChat1.Name = "cmbSheypoorChat1";
             this.cmbSheypoorChat1.Size = new System.Drawing.Size(194, 28);
             this.cmbSheypoorChat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -370,7 +375,7 @@
             this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label15.ForeColor = System.Drawing.Color.Silver;
-            this.label15.Location = new System.Drawing.Point(286, 346);
+            this.label15.Location = new System.Drawing.Point(286, 327);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(129, 20);
             this.label15.TabIndex = 55697;
@@ -383,7 +388,7 @@
             this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label14.ForeColor = System.Drawing.Color.Silver;
-            this.label14.Location = new System.Drawing.Point(499, 346);
+            this.label14.Location = new System.Drawing.Point(499, 327);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(141, 20);
             this.label14.TabIndex = 55698;
@@ -396,7 +401,7 @@
             this.btnSearch.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearch.Location = new System.Drawing.Point(422, 276);
+            this.btnSearch.Location = new System.Drawing.Point(422, 259);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnSearch.Size = new System.Drawing.Size(26, 28);
@@ -417,7 +422,7 @@
             this.cmbDivarCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbDivarCity.ForeColor = System.Drawing.Color.Black;
             this.cmbDivarCity.ItemHeight = 20;
-            this.cmbDivarCity.Location = new System.Drawing.Point(459, 276);
+            this.cmbDivarCity.Location = new System.Drawing.Point(453, 259);
             this.cmbDivarCity.Name = "cmbDivarCity";
             this.cmbDivarCity.Size = new System.Drawing.Size(194, 28);
             this.cmbDivarCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -435,7 +440,7 @@
             this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label10.ForeColor = System.Drawing.Color.Silver;
-            this.label10.Location = new System.Drawing.Point(559, 253);
+            this.label10.Location = new System.Drawing.Point(553, 236);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 20);
             this.label10.TabIndex = 55693;
@@ -445,7 +450,7 @@
             // 
             this.line3.BackColor = System.Drawing.Color.Transparent;
             this.line3.ForeColor = System.Drawing.Color.Silver;
-            this.line3.Location = new System.Drawing.Point(4, 324);
+            this.line3.Location = new System.Drawing.Point(4, 307);
             this.line3.Name = "line3";
             this.line3.Size = new System.Drawing.Size(527, 19);
             this.line3.TabIndex = 55691;
@@ -456,7 +461,7 @@
             // 
             this.line2.BackColor = System.Drawing.Color.Transparent;
             this.line2.ForeColor = System.Drawing.Color.Silver;
-            this.line2.Location = new System.Drawing.Point(4, 153);
+            this.line2.Location = new System.Drawing.Point(4, 136);
             this.line2.Name = "line2";
             this.line2.Size = new System.Drawing.Size(527, 19);
             this.line2.TabIndex = 55691;
@@ -472,7 +477,7 @@
             this.cmbDivarChat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbDivarChat2.ForeColor = System.Drawing.Color.Black;
             this.cmbDivarChat2.ItemHeight = 20;
-            this.cmbDivarChat2.Location = new System.Drawing.Point(234, 212);
+            this.cmbDivarChat2.Location = new System.Drawing.Point(234, 195);
             this.cmbDivarChat2.Name = "cmbDivarChat2";
             this.cmbDivarChat2.Size = new System.Drawing.Size(195, 28);
             this.cmbDivarChat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -490,7 +495,7 @@
             this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(486, 320);
+            this.label3.Location = new System.Drawing.Point(486, 303);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 20);
             this.label3.TabIndex = 58;
@@ -502,7 +507,7 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("B Yekan", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(486, 152);
+            this.label1.Location = new System.Drawing.Point(486, 135);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 20);
             this.label1.TabIndex = 58;
@@ -514,7 +519,7 @@
             this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label13.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label13.ForeColor = System.Drawing.Color.Silver;
-            this.label13.Location = new System.Drawing.Point(304, 186);
+            this.label13.Location = new System.Drawing.Point(304, 169);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(129, 20);
             this.label13.TabIndex = 58;
@@ -529,7 +534,7 @@
             this.cmbDivarChat3.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbDivarChat3.ForeColor = System.Drawing.Color.Black;
             this.cmbDivarChat3.ItemHeight = 20;
-            this.cmbDivarChat3.Location = new System.Drawing.Point(4, 212);
+            this.cmbDivarChat3.Location = new System.Drawing.Point(11, 195);
             this.cmbDivarChat3.Name = "cmbDivarChat3";
             this.cmbDivarChat3.Size = new System.Drawing.Size(194, 28);
             this.cmbDivarChat3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -546,7 +551,7 @@
             this.label16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label16.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label16.ForeColor = System.Drawing.Color.Silver;
-            this.label16.Location = new System.Drawing.Point(39, 186);
+            this.label16.Location = new System.Drawing.Point(46, 169);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(164, 20);
             this.label16.TabIndex = 55;
@@ -561,7 +566,7 @@
             this.cmbDivarChat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbDivarChat1.ForeColor = System.Drawing.Color.Black;
             this.cmbDivarChat1.ItemHeight = 20;
-            this.cmbDivarChat1.Location = new System.Drawing.Point(459, 212);
+            this.cmbDivarChat1.Location = new System.Drawing.Point(459, 195);
             this.cmbDivarChat1.Name = "cmbDivarChat1";
             this.cmbDivarChat1.Size = new System.Drawing.Size(195, 28);
             this.cmbDivarChat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -579,7 +584,7 @@
             this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label12.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label12.ForeColor = System.Drawing.Color.Silver;
-            this.label12.Location = new System.Drawing.Point(538, 186);
+            this.label12.Location = new System.Drawing.Point(538, 169);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(120, 20);
             this.label12.TabIndex = 56;
@@ -591,7 +596,7 @@
             this.txtChatCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtChatCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChatCount.ForeColor = System.Drawing.Color.Silver;
-            this.txtChatCount.Location = new System.Drawing.Point(234, 84);
+            this.txtChatCount.Location = new System.Drawing.Point(216, 84);
             this.txtChatCount.MaxLength = 11;
             this.txtChatCount.Name = "txtChatCount";
             this.txtChatCount.Size = new System.Drawing.Size(195, 27);
@@ -611,71 +616,6 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "تعداد چت ارسالی";
             // 
-            // chbIsSendChat
-            // 
-            this.chbIsSendChat.AutoSize = true;
-            this.chbIsSendChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsSendChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendChat.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendChat.Location = new System.Drawing.Point(264, 125);
-            this.chbIsSendChat.Name = "chbIsSendChat";
-            this.chbIsSendChat.Size = new System.Drawing.Size(80, 24);
-            this.chbIsSendChat.TabIndex = 47;
-            this.chbIsSendChat.Text = "ارسال چت";
-            this.chbIsSendChat.UseVisualStyleBackColor = false;
-            // 
-            // chbIsSendSecondText
-            // 
-            this.chbIsSendSecondText.AutoSize = true;
-            this.chbIsSendSecondText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsSendSecondText.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendSecondText.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendSecondText.Location = new System.Drawing.Point(74, 125);
-            this.chbIsSendSecondText.Name = "chbIsSendSecondText";
-            this.chbIsSendSecondText.Size = new System.Drawing.Size(124, 24);
-            this.chbIsSendSecondText.TabIndex = 48;
-            this.chbIsSendSecondText.Text = "ارسال متن دوم چت";
-            this.chbIsSendSecondText.UseVisualStyleBackColor = false;
-            // 
-            // chbIsEnableChat
-            // 
-            this.chbIsEnableChat.AutoSize = true;
-            this.chbIsEnableChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsEnableChat.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsEnableChat.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableChat.Location = new System.Drawing.Point(568, 125);
-            this.chbIsEnableChat.Name = "chbIsEnableChat";
-            this.chbIsEnableChat.Size = new System.Drawing.Size(85, 24);
-            this.chbIsEnableChat.TabIndex = 48;
-            this.chbIsEnableChat.Text = "دریافت چت";
-            this.chbIsEnableChat.UseVisualStyleBackColor = false;
-            // 
-            // chbIsSendAdv
-            // 
-            this.chbIsSendAdv.AutoSize = true;
-            this.chbIsSendAdv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsSendAdv.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsSendAdv.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendAdv.Location = new System.Drawing.Point(422, 125);
-            this.chbIsSendAdv.Name = "chbIsSendAdv";
-            this.chbIsSendAdv.Size = new System.Drawing.Size(72, 24);
-            this.chbIsSendAdv.TabIndex = 49;
-            this.chbIsSendAdv.Text = "درج آگهی";
-            this.chbIsSendAdv.UseVisualStyleBackColor = false;
-            // 
-            // chbIsEnableNumber
-            // 
-            this.chbIsEnableNumber.AutoSize = true;
-            this.chbIsEnableNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.chbIsEnableNumber.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chbIsEnableNumber.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableNumber.Location = new System.Drawing.Point(15, 84);
-            this.chbIsEnableNumber.Name = "chbIsEnableNumber";
-            this.chbIsEnableNumber.Size = new System.Drawing.Size(184, 24);
-            this.chbIsEnableNumber.TabIndex = 50;
-            this.chbIsEnableNumber.Text = "نمایش شماره در آگهی فعال باشد";
-            this.chbIsEnableNumber.UseVisualStyleBackColor = false;
-            // 
             // cmbOperator
             // 
             this.cmbOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -684,7 +624,7 @@
             this.cmbOperator.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbOperator.ForeColor = System.Drawing.Color.Black;
             this.cmbOperator.ItemHeight = 20;
-            this.cmbOperator.Location = new System.Drawing.Point(459, 83);
+            this.cmbOperator.Location = new System.Drawing.Point(441, 83);
             this.cmbOperator.Name = "cmbOperator";
             this.cmbOperator.Size = new System.Drawing.Size(195, 28);
             this.cmbOperator.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -697,10 +637,10 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(15, 29);
+            this.txtUserName.Location = new System.Drawing.Point(4, 30);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(183, 27);
+            this.txtUserName.Size = new System.Drawing.Size(195, 27);
             this.txtUserName.TabIndex = 3;
             this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
@@ -711,7 +651,7 @@
             this.txtOwner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.ForeColor = System.Drawing.Color.Silver;
-            this.txtOwner.Location = new System.Drawing.Point(234, 29);
+            this.txtOwner.Location = new System.Drawing.Point(216, 29);
             this.txtOwner.MaxLength = 3000;
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.Size = new System.Drawing.Size(195, 27);
@@ -725,7 +665,7 @@
             this.txtNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.ForeColor = System.Drawing.Color.Silver;
-            this.txtNumber.Location = new System.Drawing.Point(459, 30);
+            this.txtNumber.Location = new System.Drawing.Point(441, 30);
             this.txtNumber.MaxLength = 11;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(195, 27);
@@ -740,7 +680,7 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(131, 4);
+            this.label9.Location = new System.Drawing.Point(132, 5);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
@@ -753,7 +693,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(363, 4);
+            this.label7.Location = new System.Drawing.Point(345, 4);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 30;
@@ -766,7 +706,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(588, 60);
+            this.label8.Location = new System.Drawing.Point(570, 60);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -779,7 +719,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(587, 4);
+            this.label2.Location = new System.Drawing.Point(569, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 30;
@@ -871,6 +811,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -894,14 +835,17 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.tabPage5.Controls.Add(this.txtSecondChatPassage);
-            this.tabPage5.Controls.Add(this.txtFirstChatPassage);
+            this.tabPage5.Controls.Add(this.chbIsSendChatSheypoor);
+            this.tabPage5.Controls.Add(this.chbIsSendChatDivar);
+            this.tabPage5.Controls.Add(this.chbIsSendSecondText);
+            this.tabPage5.Controls.Add(this.chbIsEnableChat);
+            this.tabPage5.Controls.Add(this.chbIsSendAdvSheypoor);
+            this.tabPage5.Controls.Add(this.chbIsSendAdvDivar);
+            this.tabPage5.Controls.Add(this.chbIsEnableNumber);
             this.tabPage5.Controls.Add(this.chbIsSendPostToTelegram);
             this.tabPage5.Controls.Add(this.grpTelegram);
             this.tabPage5.Controls.Add(this.line4);
             this.tabPage5.Controls.Add(this.label5);
-            this.tabPage5.Controls.Add(this.label25);
-            this.tabPage5.Controls.Add(this.label24);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -909,37 +853,96 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "اطلاعات عمومی";
             // 
-            // txtSecondChatPassage
+            // chbIsSendChatSheypoor
             // 
-            this.txtSecondChatPassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSecondChatPassage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtSecondChatPassage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSecondChatPassage.ForeColor = System.Drawing.Color.Silver;
-            this.txtSecondChatPassage.Location = new System.Drawing.Point(28, 329);
-            this.txtSecondChatPassage.MaxLength = 11;
-            this.txtSecondChatPassage.Multiline = true;
-            this.txtSecondChatPassage.Name = "txtSecondChatPassage";
-            this.txtSecondChatPassage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSecondChatPassage.Size = new System.Drawing.Size(288, 134);
-            this.txtSecondChatPassage.TabIndex = 55701;
-            this.txtSecondChatPassage.Enter += new System.EventHandler(this.txtSecondChatPassage_Enter);
-            this.txtSecondChatPassage.Leave += new System.EventHandler(this.txtSecondChatPassage_Leave);
+            this.chbIsSendChatSheypoor.AutoSize = true;
+            this.chbIsSendChatSheypoor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendChatSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendChatSheypoor.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendChatSheypoor.Location = new System.Drawing.Point(300, 398);
+            this.chbIsSendChatSheypoor.Name = "chbIsSendChatSheypoor";
+            this.chbIsSendChatSheypoor.Size = new System.Drawing.Size(114, 24);
+            this.chbIsSendChatSheypoor.TabIndex = 55708;
+            this.chbIsSendChatSheypoor.Text = "ارسال چت شیپور";
+            this.chbIsSendChatSheypoor.UseVisualStyleBackColor = false;
             // 
-            // txtFirstChatPassage
+            // chbIsSendChatDivar
             // 
-            this.txtFirstChatPassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFirstChatPassage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
-            this.txtFirstChatPassage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFirstChatPassage.ForeColor = System.Drawing.Color.Silver;
-            this.txtFirstChatPassage.Location = new System.Drawing.Point(364, 329);
-            this.txtFirstChatPassage.MaxLength = 11;
-            this.txtFirstChatPassage.Multiline = true;
-            this.txtFirstChatPassage.Name = "txtFirstChatPassage";
-            this.txtFirstChatPassage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFirstChatPassage.Size = new System.Drawing.Size(282, 134);
-            this.txtFirstChatPassage.TabIndex = 55701;
-            this.txtFirstChatPassage.Enter += new System.EventHandler(this.txtFirstChatPassage_Enter);
-            this.txtFirstChatPassage.Leave += new System.EventHandler(this.txtFirstChatPassage_Leave);
+            this.chbIsSendChatDivar.AutoSize = true;
+            this.chbIsSendChatDivar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendChatDivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendChatDivar.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendChatDivar.Location = new System.Drawing.Point(537, 398);
+            this.chbIsSendChatDivar.Name = "chbIsSendChatDivar";
+            this.chbIsSendChatDivar.Size = new System.Drawing.Size(109, 24);
+            this.chbIsSendChatDivar.TabIndex = 55708;
+            this.chbIsSendChatDivar.Text = "ارسال چت دیوار";
+            this.chbIsSendChatDivar.UseVisualStyleBackColor = false;
+            // 
+            // chbIsSendSecondText
+            // 
+            this.chbIsSendSecondText.AutoSize = true;
+            this.chbIsSendSecondText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendSecondText.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendSecondText.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendSecondText.Location = new System.Drawing.Point(45, 317);
+            this.chbIsSendSecondText.Name = "chbIsSendSecondText";
+            this.chbIsSendSecondText.Size = new System.Drawing.Size(124, 24);
+            this.chbIsSendSecondText.TabIndex = 55709;
+            this.chbIsSendSecondText.Text = "ارسال متن دوم چت";
+            this.chbIsSendSecondText.UseVisualStyleBackColor = false;
+            // 
+            // chbIsEnableChat
+            // 
+            this.chbIsEnableChat.AutoSize = true;
+            this.chbIsEnableChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsEnableChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsEnableChat.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsEnableChat.Location = new System.Drawing.Point(509, 317);
+            this.chbIsEnableChat.Name = "chbIsEnableChat";
+            this.chbIsEnableChat.Size = new System.Drawing.Size(137, 24);
+            this.chbIsEnableChat.TabIndex = 55710;
+            this.chbIsEnableChat.Text = "دریافت چت فعال باشد";
+            this.chbIsEnableChat.UseVisualStyleBackColor = false;
+            // 
+            // chbIsSendAdvSheypoor
+            // 
+            this.chbIsSendAdvSheypoor.AutoSize = true;
+            this.chbIsSendAdvSheypoor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendAdvSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendAdvSheypoor.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendAdvSheypoor.Location = new System.Drawing.Point(308, 358);
+            this.chbIsSendAdvSheypoor.Name = "chbIsSendAdvSheypoor";
+            this.chbIsSendAdvSheypoor.Size = new System.Drawing.Size(106, 24);
+            this.chbIsSendAdvSheypoor.TabIndex = 55711;
+            this.chbIsSendAdvSheypoor.Text = "درج آگهی شیپور";
+            this.chbIsSendAdvSheypoor.UseVisualStyleBackColor = false;
+            // 
+            // chbIsSendAdvDivar
+            // 
+            this.chbIsSendAdvDivar.AutoSize = true;
+            this.chbIsSendAdvDivar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsSendAdvDivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsSendAdvDivar.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsSendAdvDivar.Location = new System.Drawing.Point(545, 358);
+            this.chbIsSendAdvDivar.Name = "chbIsSendAdvDivar";
+            this.chbIsSendAdvDivar.Size = new System.Drawing.Size(101, 24);
+            this.chbIsSendAdvDivar.TabIndex = 55711;
+            this.chbIsSendAdvDivar.Text = "درج آگهی دیوار";
+            this.chbIsSendAdvDivar.UseVisualStyleBackColor = false;
+            // 
+            // chbIsEnableNumber
+            // 
+            this.chbIsEnableNumber.AutoSize = true;
+            this.chbIsEnableNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.chbIsEnableNumber.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chbIsEnableNumber.ForeColor = System.Drawing.Color.Silver;
+            this.chbIsEnableNumber.Location = new System.Drawing.Point(230, 317);
+            this.chbIsEnableNumber.Name = "chbIsEnableNumber";
+            this.chbIsEnableNumber.Size = new System.Drawing.Size(184, 24);
+            this.chbIsEnableNumber.TabIndex = 55712;
+            this.chbIsEnableNumber.Text = "نمایش شماره در آگهی فعال باشد";
+            this.chbIsEnableNumber.UseVisualStyleBackColor = false;
             // 
             // chbIsSendPostToTelegram
             // 
@@ -1016,7 +1019,7 @@
             this.txtPostDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtPostDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPostDescription.ForeColor = System.Drawing.Color.Silver;
-            this.txtPostDescription.Location = new System.Drawing.Point(11, 156);
+            this.txtPostDescription.Location = new System.Drawing.Point(5, 151);
             this.txtPostDescription.MaxLength = 11;
             this.txtPostDescription.Multiline = true;
             this.txtPostDescription.Name = "txtPostDescription";
@@ -1259,16 +1262,164 @@
             this.label5.TabIndex = 55704;
             this.label5.Text = "تنظیمات ارسال پست در تلگرام";
             // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.tabPage6.Controls.Add(this.txtSecondChatPassage4);
+            this.tabPage6.Controls.Add(this.txtSecondChatPassage3);
+            this.tabPage6.Controls.Add(this.txtSecondChatPassage2);
+            this.tabPage6.Controls.Add(this.txtSecondChatPassage1);
+            this.tabPage6.Controls.Add(this.txtFirstChatPassage4);
+            this.tabPage6.Controls.Add(this.txtFirstChatPassage3);
+            this.tabPage6.Controls.Add(this.txtFirstChatPassage2);
+            this.tabPage6.Controls.Add(this.txtFirstChatPassage1);
+            this.tabPage6.Controls.Add(this.label25);
+            this.tabPage6.Controls.Add(this.label24);
+            this.tabPage6.Location = new System.Drawing.Point(4, 29);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(687, 466);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "اطلاعات عمومی";
+            // 
+            // txtSecondChatPassage4
+            // 
+            this.txtSecondChatPassage4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondChatPassage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSecondChatPassage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSecondChatPassage4.ForeColor = System.Drawing.Color.Silver;
+            this.txtSecondChatPassage4.Location = new System.Drawing.Point(40, 350);
+            this.txtSecondChatPassage4.MaxLength = 33700;
+            this.txtSecondChatPassage4.Multiline = true;
+            this.txtSecondChatPassage4.Name = "txtSecondChatPassage4";
+            this.txtSecondChatPassage4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSecondChatPassage4.Size = new System.Drawing.Size(288, 100);
+            this.txtSecondChatPassage4.TabIndex = 55704;
+            this.txtSecondChatPassage4.Enter += new System.EventHandler(this.txtSecondChatPassage4_Enter);
+            this.txtSecondChatPassage4.Leave += new System.EventHandler(this.txtSecondChatPassage4_Leave);
+            // 
+            // txtSecondChatPassage3
+            // 
+            this.txtSecondChatPassage3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondChatPassage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSecondChatPassage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSecondChatPassage3.ForeColor = System.Drawing.Color.Silver;
+            this.txtSecondChatPassage3.Location = new System.Drawing.Point(40, 244);
+            this.txtSecondChatPassage3.MaxLength = 33700;
+            this.txtSecondChatPassage3.Multiline = true;
+            this.txtSecondChatPassage3.Name = "txtSecondChatPassage3";
+            this.txtSecondChatPassage3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSecondChatPassage3.Size = new System.Drawing.Size(288, 100);
+            this.txtSecondChatPassage3.TabIndex = 55704;
+            this.txtSecondChatPassage3.Enter += new System.EventHandler(this.txtSecondChatPassage3_Enter);
+            this.txtSecondChatPassage3.Leave += new System.EventHandler(this.txtSecondChatPassage3_Leave);
+            // 
+            // txtSecondChatPassage2
+            // 
+            this.txtSecondChatPassage2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondChatPassage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSecondChatPassage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSecondChatPassage2.ForeColor = System.Drawing.Color.Silver;
+            this.txtSecondChatPassage2.Location = new System.Drawing.Point(40, 138);
+            this.txtSecondChatPassage2.MaxLength = 33700;
+            this.txtSecondChatPassage2.Multiline = true;
+            this.txtSecondChatPassage2.Name = "txtSecondChatPassage2";
+            this.txtSecondChatPassage2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSecondChatPassage2.Size = new System.Drawing.Size(288, 100);
+            this.txtSecondChatPassage2.TabIndex = 55704;
+            this.txtSecondChatPassage2.Enter += new System.EventHandler(this.txtSecondChatPassage2_Enter);
+            this.txtSecondChatPassage2.Leave += new System.EventHandler(this.txtSecondChatPassage2_Leave);
+            // 
+            // txtSecondChatPassage1
+            // 
+            this.txtSecondChatPassage1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondChatPassage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSecondChatPassage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSecondChatPassage1.ForeColor = System.Drawing.Color.Silver;
+            this.txtSecondChatPassage1.Location = new System.Drawing.Point(40, 32);
+            this.txtSecondChatPassage1.MaxLength = 33700;
+            this.txtSecondChatPassage1.Multiline = true;
+            this.txtSecondChatPassage1.Name = "txtSecondChatPassage1";
+            this.txtSecondChatPassage1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSecondChatPassage1.Size = new System.Drawing.Size(288, 100);
+            this.txtSecondChatPassage1.TabIndex = 55704;
+            this.txtSecondChatPassage1.Enter += new System.EventHandler(this.txtSecondChatPassage1_Enter);
+            this.txtSecondChatPassage1.Leave += new System.EventHandler(this.txtSecondChatPassage1_Leave);
+            // 
+            // txtFirstChatPassage4
+            // 
+            this.txtFirstChatPassage4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstChatPassage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtFirstChatPassage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstChatPassage4.ForeColor = System.Drawing.Color.Silver;
+            this.txtFirstChatPassage4.Location = new System.Drawing.Point(376, 350);
+            this.txtFirstChatPassage4.MaxLength = 33700;
+            this.txtFirstChatPassage4.Multiline = true;
+            this.txtFirstChatPassage4.Name = "txtFirstChatPassage4";
+            this.txtFirstChatPassage4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFirstChatPassage4.Size = new System.Drawing.Size(282, 100);
+            this.txtFirstChatPassage4.TabIndex = 55705;
+            this.txtFirstChatPassage4.Enter += new System.EventHandler(this.txtFirstChatPassage4_Enter);
+            this.txtFirstChatPassage4.Leave += new System.EventHandler(this.txtFirstChatPassage4_Leave);
+            // 
+            // txtFirstChatPassage3
+            // 
+            this.txtFirstChatPassage3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstChatPassage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtFirstChatPassage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstChatPassage3.ForeColor = System.Drawing.Color.Silver;
+            this.txtFirstChatPassage3.Location = new System.Drawing.Point(376, 244);
+            this.txtFirstChatPassage3.MaxLength = 33700;
+            this.txtFirstChatPassage3.Multiline = true;
+            this.txtFirstChatPassage3.Name = "txtFirstChatPassage3";
+            this.txtFirstChatPassage3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFirstChatPassage3.Size = new System.Drawing.Size(282, 100);
+            this.txtFirstChatPassage3.TabIndex = 55705;
+            this.txtFirstChatPassage3.Enter += new System.EventHandler(this.txtFirstChatPassage3_Enter);
+            this.txtFirstChatPassage3.Leave += new System.EventHandler(this.txtFirstChatPassage3_Leave);
+            // 
+            // txtFirstChatPassage2
+            // 
+            this.txtFirstChatPassage2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstChatPassage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtFirstChatPassage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstChatPassage2.ForeColor = System.Drawing.Color.Silver;
+            this.txtFirstChatPassage2.Location = new System.Drawing.Point(376, 138);
+            this.txtFirstChatPassage2.MaxLength = 33700;
+            this.txtFirstChatPassage2.Multiline = true;
+            this.txtFirstChatPassage2.Name = "txtFirstChatPassage2";
+            this.txtFirstChatPassage2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFirstChatPassage2.Size = new System.Drawing.Size(282, 100);
+            this.txtFirstChatPassage2.TabIndex = 55705;
+            this.txtFirstChatPassage2.Enter += new System.EventHandler(this.txtFirstChatPassage2_Enter);
+            this.txtFirstChatPassage2.Leave += new System.EventHandler(this.txtFirstChatPassage2_Leave);
+            // 
+            // txtFirstChatPassage1
+            // 
+            this.txtFirstChatPassage1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFirstChatPassage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtFirstChatPassage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFirstChatPassage1.ForeColor = System.Drawing.Color.Silver;
+            this.txtFirstChatPassage1.Location = new System.Drawing.Point(376, 32);
+            this.txtFirstChatPassage1.MaxLength = 33700;
+            this.txtFirstChatPassage1.Multiline = true;
+            this.txtFirstChatPassage1.Name = "txtFirstChatPassage1";
+            this.txtFirstChatPassage1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFirstChatPassage1.Size = new System.Drawing.Size(282, 100);
+            this.txtFirstChatPassage1.TabIndex = 55705;
+            this.txtFirstChatPassage1.Enter += new System.EventHandler(this.txtFirstChatPassage1_Enter);
+            this.txtFirstChatPassage1.Leave += new System.EventHandler(this.txtFirstChatPassage1_Leave);
+            // 
             // label25
             // 
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label25.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label25.ForeColor = System.Drawing.Color.Silver;
-            this.label25.Location = new System.Drawing.Point(156, 306);
+            this.label25.Location = new System.Drawing.Point(168, 9);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(164, 20);
-            this.label25.TabIndex = 55698;
+            this.label25.TabIndex = 55702;
             this.label25.Text = "متن چت دوم ارسالی";
             // 
             // label24
@@ -1277,10 +1428,10 @@
             this.label24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label24.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label24.ForeColor = System.Drawing.Color.Silver;
-            this.label24.Location = new System.Drawing.Point(475, 306);
+            this.label24.Location = new System.Drawing.Point(487, 9);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(164, 20);
-            this.label24.TabIndex = 55698;
+            this.label24.TabIndex = 55703;
             this.label24.Text = "متن چت اول ارسالی";
             // 
             // tabPage2
@@ -1834,6 +1985,8 @@
             this.grpTelegram.ResumeLayout(false);
             this.grpTelegram.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PostCityBindingSource)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgCity)).EndInit();
             this.cmCity.ResumeLayout(false);
@@ -1908,10 +2061,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dg_StateGuid;
         private System.Windows.Forms.ContextMenuStrip cmSheypoor;
         private System.Windows.Forms.ToolStripMenuItem mnuSheypoorSelectAll;
-        private System.Windows.Forms.CheckBox chbIsSendChat;
-        private System.Windows.Forms.CheckBox chbIsEnableChat;
-        private System.Windows.Forms.CheckBox chbIsSendAdv;
-        private System.Windows.Forms.CheckBox chbIsEnableNumber;
         private System.Windows.Forms.BindingSource SheypoorCBindingSource;
         private System.Windows.Forms.BindingSource DivarCBindingSource;
         public System.Windows.Forms.TextBox txtChatCount;
@@ -1944,7 +2093,6 @@
         private System.Windows.Forms.BindingSource PostCat1BindingSource;
         private System.Windows.Forms.BindingSource PostCat2BindingSource;
         private System.Windows.Forms.BindingSource PostCat3BindingSource;
-        private System.Windows.Forms.CheckBox chbIsSendSecondText;
         private System.Windows.Forms.TabPage tabPage5;
         public DevComponents.DotNetBar.Controls.GroupPanel grpTelegram;
         public System.Windows.Forms.TextBox txtPostDescription;
@@ -1966,10 +2114,24 @@
         private DevComponents.DotNetBar.Controls.Line line4;
         public System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chbIsSendPostToTelegram;
-        public System.Windows.Forms.TextBox txtSecondChatPassage;
-        public System.Windows.Forms.TextBox txtFirstChatPassage;
+        private System.Windows.Forms.BindingSource PostCityBindingSource;
+        private System.Windows.Forms.CheckBox chbIsSendChatDivar;
+        private System.Windows.Forms.CheckBox chbIsSendSecondText;
+        private System.Windows.Forms.CheckBox chbIsEnableChat;
+        private System.Windows.Forms.CheckBox chbIsSendAdvDivar;
+        private System.Windows.Forms.CheckBox chbIsEnableNumber;
+        private System.Windows.Forms.TabPage tabPage6;
+        public System.Windows.Forms.TextBox txtSecondChatPassage1;
+        public System.Windows.Forms.TextBox txtFirstChatPassage1;
         public System.Windows.Forms.Label label25;
         public System.Windows.Forms.Label label24;
-        private System.Windows.Forms.BindingSource PostCityBindingSource;
+        private System.Windows.Forms.CheckBox chbIsSendChatSheypoor;
+        private System.Windows.Forms.CheckBox chbIsSendAdvSheypoor;
+        public System.Windows.Forms.TextBox txtSecondChatPassage4;
+        public System.Windows.Forms.TextBox txtSecondChatPassage3;
+        public System.Windows.Forms.TextBox txtSecondChatPassage2;
+        public System.Windows.Forms.TextBox txtFirstChatPassage4;
+        public System.Windows.Forms.TextBox txtFirstChatPassage3;
+        public System.Windows.Forms.TextBox txtFirstChatPassage2;
     }
 }
