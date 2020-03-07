@@ -29,6 +29,8 @@ namespace DataLayer.Persitence
         private IProxyRepository _proxyRepository;
         private ITelegramBotSettingRepository _telegramBotSettingRepository;
         private INaqzRepository _naqzRepository;
+        private IPanelsRepository _panelRepository;
+        private IPanelsLineNumberRepository _panelsLineNumberRepository;
 
         public void Dispose()
         {
@@ -72,6 +74,13 @@ namespace DataLayer.Persitence
         public ITelegramBotSettingRepository TelegramBotSetting =>
             _telegramBotSettingRepository ??
             (_telegramBotSettingRepository = new TelegramBotSettingPersistenceRepository(db));
+
+        public IPanelsRepository Panels =>
+            _panelRepository ??
+            (_panelRepository = new PanelsPersistenceRepository(db));
+        public IPanelsLineNumberRepository PanelLineNumber =>
+            _panelsLineNumberRepository ??
+            (_panelsLineNumberRepository = new PanelsLineNumberPersistenceRepository(db));
 
         public INaqzRepository Naqz =>
             _naqzRepository ??

@@ -113,10 +113,6 @@ namespace Ads.Classes
                     Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
                     return;
                 }
-                //while (adv == null)
-                //{
-                //    adv = await GetNextAdv(sim);
-                //}
 
                 lstMessage.Clear();
                 lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count + 1} تصویر دریافت شد");
@@ -218,7 +214,7 @@ namespace Ads.Classes
                         tokenInDatabase = _driver.Manage().Cookies.GetCookieNamed("token").Value;
                         if (simBusiness is null)
                         {
-                            simBusiness = new AdvTokensBussines() {Guid = Guid.NewGuid()};
+                            simBusiness = new AdvTokensBussines() { Guid = Guid.NewGuid() };
                         }
 
                         simBusiness.Token = tokenInDatabase;
@@ -229,7 +225,7 @@ namespace Ads.Classes
 
                         await simBusiness.SaveAsync(AdvertiseType.Divar, simBusiness.Number);
                         var message = $@"شماره: {simCardNumber}  \r\nلاگین انجام شد ";
-                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
                         await Utility.Wait(2);
                         _driver.SwitchTo().Alert().Accept();
                         return true;
@@ -239,7 +235,7 @@ namespace Ads.Classes
                         var a = await SimcardBussines.GetAsync(simCardNumber);
                         var name = a.OwnerName;
                         var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
 
                         await Utility.Wait(3);
                         try
@@ -380,7 +376,7 @@ namespace Ads.Classes
 
                         await simBusiness.SaveAsync(AdvertiseType.DivarChat, simBusiness.Number);
 
-                        ((IJavaScriptExecutor) _driver).ExecuteScript(@"alert('لاگین انجام شد');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript(@"alert('لاگین انجام شد');");
                         await Utility.Wait();
                         _driver.SwitchTo().Alert().Accept();
                         return true;
@@ -390,7 +386,7 @@ namespace Ads.Classes
                         var a = await SimcardBussines.GetAsync(simCardNumber);
                         var name = a.OwnerName;
                         var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                        ((IJavaScriptExecutor) _driver).ExecuteScript($"alert('{message}');");
+                        ((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
 
                         await Utility.Wait(3);
                         try
@@ -617,15 +613,16 @@ namespace Ads.Classes
                 var AllTitles = await AdvTitlesBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
 
                 //تایتل آگهی دریافت می شود
-                while (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title) || newAdvertiseLogBusiness.Title == "---")
+                var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AllTitles.Count);
+                newAdvertiseLogBusiness.Title = AllTitles[nextTitleIndex].Title;
+
+                if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title) || newAdvertiseLogBusiness.Title == "---")
                 {
-                    var nextTitleIndex = new Random(DateTime.Now.Millisecond).Next(AllTitles.Count);
-                    newAdvertiseLogBusiness.Title = AllTitles[nextTitleIndex].Title;
+                    WebErrorLog.ErrorInstence.StartErrorLog(new ArgumentNullException(),
+                        $"آگهی {newAdvertiseLogBusiness.Adv}موفق به دریافت عنوان نشد");
+                    return null;
                 }
 
-
-
-                //if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Title)) return null;
                 #endregion
 
                 #region GetContent
@@ -634,12 +631,15 @@ namespace Ads.Classes
                 var AllContent = await AdvContentBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
                 //کانتنت آگهی دریافت می شود
 
-                while (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content) || newAdvertiseLogBusiness.Content == "---")
-                {
                     var nextContentIndex = new Random(DateTime.Now.Millisecond).Next(AllContent.Count);
                     newAdvertiseLogBusiness.Content = AllContent[nextContentIndex].Content;
-                }
 
+                if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content) || newAdvertiseLogBusiness.Content == "---")
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(new ArgumentNullException(),
+                        $"آگهی {newAdvertiseLogBusiness.Adv} موفق به دریافت توضیحات نشد");
+                    return null;
+                }
 
                 // if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content)) return null;
 
@@ -647,22 +647,24 @@ namespace Ads.Classes
 
                 #region FindImages
 
-                while (newAdvertiseLogBusiness.ImagesPathList == null || newAdvertiseLogBusiness.ImagesPathList.Count == 0)
+                //عکسهای آگهی دریافت می شود
+                newAdvertiseLogBusiness.ImagesPathList =
+                    await GetNextImages(AdvertiseList[nextAdvIndex].Guid, clsSetting?.MaxImgCount ?? 3);
+                if (newAdvertiseLogBusiness.ImagesPathList.Count > 0)
                 {
-                    //عکسهای آگهی دریافت می شود
-                    newAdvertiseLogBusiness.ImagesPathList =
-                        await GetNextImages(AdvertiseList[nextAdvIndex].Guid, clsSetting?.MaxImgCount ?? 3);
-                    if (newAdvertiseLogBusiness.ImagesPathList.Count > 0)
+                    newAdvertiseLogBusiness.ImagePath = "";
+                    foreach (var item in newAdvertiseLogBusiness.ImagesPathList)
                     {
-                        newAdvertiseLogBusiness.ImagePath = "";
-                        foreach (var item in newAdvertiseLogBusiness.ImagesPathList)
-                        {
-                            newAdvertiseLogBusiness.ImagePath += item + "\r\n";
-                        }
+                        newAdvertiseLogBusiness.ImagePath += item + "\r\n";
                     }
                 }
 
-
+                if (newAdvertiseLogBusiness.ImagesPathList == null || newAdvertiseLogBusiness.ImagesPathList.Count == 0)
+                {
+                    WebErrorLog.ErrorInstence.StartErrorLog(new ArgumentNullException(),
+                        $"آگهی {newAdvertiseLogBusiness.Adv} موفق به دریاقت تصویر نشد");
+                    return null;
+                }
 
 
                 #endregion

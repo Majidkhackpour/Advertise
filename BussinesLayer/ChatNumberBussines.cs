@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DataLayer;
 using DataLayer.Enums;
 using DataLayer.Interface.Entities;
 using DataLayer.Models;
@@ -12,8 +13,8 @@ namespace BussinesLayer
     public class ChatNumberBussines : IChatNumbers
     {
         public Guid Guid { get; set; }
-        public string DateSabt { get; set; }
-        public bool Status { get; set; }
+        public string DateSabt { get; set; } = DateConvertor.M2SH(DateTime.Now);
+        public bool Status { get; set; } = true;
         public string Number { get; set; }
         public AdvertiseType Type { get; set; }
         public string TypeName => Type.GetDisplay();
@@ -29,6 +30,8 @@ namespace BussinesLayer
         {
             try
             {
+                var num = Number.ParseToInt();
+                if (num == 0) return;
                 using (var _context = new UnitOfWorkLid())
                 {
                     var a = Mappings.Default.Map<ChatNumbers>(this);

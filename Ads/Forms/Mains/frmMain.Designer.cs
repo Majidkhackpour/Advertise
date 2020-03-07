@@ -72,7 +72,7 @@
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSMS_Panel = new DevComponents.DotNetBar.ButtonX();
             this.btnShow_Numbers = new DevComponents.DotNetBar.ButtonX();
             this.btnAdvLog = new DevComponents.DotNetBar.ButtonX();
             this.btnChart = new DevComponents.DotNetBar.ButtonX();
@@ -614,13 +614,11 @@
             this.expandablePanel1.Controls.Add(this.grpAccount);
             this.expandablePanel1.Controls.Add(this.pnlContent);
             this.expandablePanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.expandablePanel1.Expanded = false;
-            this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(1, 1, 1005, 588);
             this.expandablePanel1.ExpandOnTitleClick = true;
             this.expandablePanel1.HideControlsWhenCollapsed = true;
             this.expandablePanel1.Location = new System.Drawing.Point(1, 1);
             this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(30, 588);
+            this.expandablePanel1.Size = new System.Drawing.Size(1005, 588);
             this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.expandablePanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
@@ -647,12 +645,12 @@
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpAccount.Controls.Add(this.buttonX5);
-            this.grpAccount.Controls.Add(this.buttonX4);
+            this.grpAccount.Controls.Add(this.btnSMS_Panel);
             this.grpAccount.Controls.Add(this.btnShow_Numbers);
             this.grpAccount.Controls.Add(this.btnAdvLog);
             this.grpAccount.Controls.Add(this.btnChart);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpAccount.Location = new System.Drawing.Point(-128, 28);
+            this.grpAccount.Location = new System.Drawing.Point(847, 28);
             this.grpAccount.Name = "grpAccount";
             this.grpAccount.Size = new System.Drawing.Size(149, 553);
             // 
@@ -694,7 +692,7 @@
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.buttonX5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonX5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX5.Location = new System.Drawing.Point(1, 264);
+            this.buttonX5.Location = new System.Drawing.Point(6, 264);
             this.buttonX5.Name = "buttonX5";
             this.buttonX5.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.buttonX5.Size = new System.Drawing.Size(130, 55);
@@ -704,23 +702,24 @@
             this.buttonX5.TextColor = System.Drawing.Color.Silver;
             this.buttonX5.ThemeAware = true;
             // 
-            // buttonX4
+            // btnSMS_Panel
             // 
-            this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX4.Location = new System.Drawing.Point(1, 202);
-            this.buttonX4.Name = "buttonX4";
-            this.buttonX4.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.buttonX4.Size = new System.Drawing.Size(130, 55);
-            this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.buttonX4.TabIndex = 2;
-            this.buttonX4.Text = "تنظیمات پنل پیامک";
-            this.buttonX4.TextColor = System.Drawing.Color.Silver;
-            this.buttonX4.ThemeAware = true;
+            this.btnSMS_Panel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSMS_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSMS_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSMS_Panel.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSMS_Panel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSMS_Panel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSMS_Panel.Location = new System.Drawing.Point(6, 202);
+            this.btnSMS_Panel.Name = "btnSMS_Panel";
+            this.btnSMS_Panel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSMS_Panel.Size = new System.Drawing.Size(130, 55);
+            this.btnSMS_Panel.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSMS_Panel.TabIndex = 2;
+            this.btnSMS_Panel.Text = "تنظیمات پنل پیامک";
+            this.btnSMS_Panel.TextColor = System.Drawing.Color.Silver;
+            this.btnSMS_Panel.ThemeAware = true;
+            this.btnSMS_Panel.Click += new System.EventHandler(this.btnSMS_Panel_Click);
             // 
             // btnShow_Numbers
             // 
@@ -730,7 +729,7 @@
             this.btnShow_Numbers.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnShow_Numbers.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnShow_Numbers.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnShow_Numbers.Location = new System.Drawing.Point(1, 139);
+            this.btnShow_Numbers.Location = new System.Drawing.Point(6, 139);
             this.btnShow_Numbers.Name = "btnShow_Numbers";
             this.btnShow_Numbers.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnShow_Numbers.Size = new System.Drawing.Size(130, 55);
@@ -749,7 +748,7 @@
             this.btnAdvLog.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnAdvLog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdvLog.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnAdvLog.Location = new System.Drawing.Point(1, 78);
+            this.btnAdvLog.Location = new System.Drawing.Point(6, 78);
             this.btnAdvLog.Name = "btnAdvLog";
             this.btnAdvLog.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnAdvLog.Size = new System.Drawing.Size(130, 55);
@@ -768,7 +767,7 @@
             this.btnChart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnChart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChart.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnChart.Location = new System.Drawing.Point(1, 17);
+            this.btnChart.Location = new System.Drawing.Point(6, 17);
             this.btnChart.Name = "btnChart";
             this.btnChart.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnChart.Size = new System.Drawing.Size(130, 55);
@@ -955,7 +954,7 @@
         public DevComponents.DotNetBar.ButtonX btnAdvLog;
         public DevComponents.DotNetBar.ButtonX btnChart;
         public DevComponents.DotNetBar.ButtonX buttonX5;
-        public DevComponents.DotNetBar.ButtonX buttonX4;
+        public DevComponents.DotNetBar.ButtonX btnSMS_Panel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblNaqz;

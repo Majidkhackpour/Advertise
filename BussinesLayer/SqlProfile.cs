@@ -72,6 +72,12 @@ namespace BussinesLayer
 
             CreateMap<Naqz, NaqzBussines>();
             CreateMap<NaqzBussines, Naqz>();
+
+            CreateMap<Panels, PanelBussines>();
+            CreateMap<PanelBussines, Panels>();
+
+            CreateMap<PanelLineNumber, PanelLineNumberBussines>();
+            CreateMap<PanelLineNumberBussines, PanelLineNumber>();
         }
     }
 }

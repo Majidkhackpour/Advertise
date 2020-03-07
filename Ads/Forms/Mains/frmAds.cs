@@ -638,10 +638,6 @@ namespace Ads.Forms.Mains
 
                 for (var i = fPanel.Controls.Count - 1; i >= 0; i--)
                     fPanel.Controls[i].Dispose();
-                //foreach (var item in lstListFinal)
-                //{
-                //    File.Delete(item);
-                //}
 
                 var lstTitles = new List<string>();
                 lstTitles.Clear();
@@ -650,13 +646,6 @@ namespace Ads.Forms.Mains
 
                 var direc = Path.Combine(Application.StartupPath, "AdvPictures");
                 if (!Directory.Exists(direc)) Directory.CreateDirectory(direc);
-                //foreach (var item in lstList)
-                //{
-                //    var npath = Path.Combine(direc, Guid.NewGuid() + ".jpg");
-                //    File.Copy(item, npath);
-                //    lstListFinal.Add(npath);
-                //}
-
 
                 var lstT = new List<AdvTitlesBussines>();
                 foreach (var item in lstTitles)
@@ -706,7 +695,7 @@ namespace Ads.Forms.Mains
                 _adv.GroupGuid = (Guid)cmbGroup.SelectedValue;
                 _adv.DivarCatGuid1 = (Guid)cmbDivarCat1.SelectedValue;
                 _adv.DivarCatGuid2 = (Guid)cmbDivarCat2.SelectedValue;
-                _adv.DivarCatGuid3 = (Guid)cmbDivarCat3.SelectedValue;
+                _adv.DivarCatGuid3 = (Guid?) cmbDivarCat3?.SelectedValue ?? Guid.Empty;
                 _adv.SheypoorCatGuid1 = (Guid)cmbSheypoorCat1.SelectedValue;
                 _adv.SheypoorCatGuid2 = (Guid)cmbSheypoorCat2.SelectedValue;
 

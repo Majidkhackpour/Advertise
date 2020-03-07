@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Ads.Classes;
 using Ads.Forms.Settings;
 using Ads.Forms.Simcard;
+using Ads.Forms.SMS_Panel;
 using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
@@ -594,6 +595,18 @@ namespace Ads.Forms.Mains
             try
             {
                 LoadNewForm(new frmShowNumbers());
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private void btnSMS_Panel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmPanel());
             }
             catch (Exception exception)
             {

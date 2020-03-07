@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using DataLayer.Context;
 using DataLayer.Core;
@@ -8,25 +8,26 @@ using ErrorHandler;
 
 namespace DataLayer.Persitence
 {
-    public class AdvPicturesPersistenceRepository : GenericRepository<AdvPictures>, IAdvPicturesRepository
+   public class PanelsPersistenceRepository : GenericRepository<Panels>, IPanelsRepository
     {
         private dbContext dbContext;
 
-        public AdvPicturesPersistenceRepository(dbContext db) : base(db)
+        public PanelsPersistenceRepository(dbContext db) : base(db)
         {
             dbContext = db;
         }
 
-        public List<AdvPictures> GetAllAsync(Guid guid)
+        public Panels Change_Status(Guid accGuid, bool status)
         {
             try
             {
                 using (var context = new dbContext())
                 {
-                    var list = context.AdvPictures.AsNoTracking()
-                        .Where(q => q.AdvGuid == guid)
-                        .ToList();
-                    return list;
+                    var acc = context.Panel.AsNoTracking().FirstOrDefault(q => q.Guid == accGuid);
+                    acc.Status = status;
+                    context.Panel.AddOrUpdate(acc);
+                    context.SaveChanges();
+                    return acc;
                 }
             }
             catch (Exception e)

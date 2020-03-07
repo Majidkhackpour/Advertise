@@ -88,6 +88,8 @@
     <Compile Include="Extentions.cs" />
     <Compile Include="Mappings.cs" />
     <Compile Include="NaqzBussines.cs" />
+    <Compile Include="PanelBussines.cs" />
+    <Compile Include="PanelLineNumberBussines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyBussines.cs" />
     <Compile Include="RegionBussiness.cs" />

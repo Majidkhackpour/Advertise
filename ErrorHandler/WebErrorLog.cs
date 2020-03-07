@@ -33,7 +33,6 @@ namespace ErrorHandler
             var time = DateTime.Now.ToLongTimeString();
             var exceptionType = ex.GetType().ToString();
             var exceptionMessage = ex.Message;
-            var stackTrace = ex.StackTrace;
             var description = _description;
 
 
@@ -43,14 +42,13 @@ namespace ErrorHandler
                       $"Time:{time}" + "\r\n" +
                       $"Type:{exceptionType}" + "\r\n" +
                       $"Message:{exceptionMessage}" + "\r\n" +
-                      $"StackTrace:{stackTrace}" + "\r\n" +
                       $"Description:{description}";
 
             var fileName = GetScreenShot();
             var th = new Thread(() => SendErrorToTelegram.Send.StartSending(msg, fileName));
             th.Start();
-            var frm = new frmNotification(ex);
-            frm.Show();
+            //var frm = new frmNotification(ex);
+            //frm.Show();
         }
         private class NestedCallInfo
         {

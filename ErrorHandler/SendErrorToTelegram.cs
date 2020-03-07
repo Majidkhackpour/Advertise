@@ -3,7 +3,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using MihaZupan;
 using Telegram.Bot;
 
@@ -55,7 +54,6 @@ namespace ErrorHandler
             {
                 var picFile = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 await bot.SendPhotoAsync(GetChatId(), picFile, message);
-                //await bot.SendTextMessageAsync(GetChatId(), message);
             }
             catch (HttpRequestException) { }
             catch (Telegram.Bot.Exceptions.BadRequestException)

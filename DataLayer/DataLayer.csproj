@@ -67,6 +67,8 @@
     <Compile Include="Core\IDivarCityRepository.cs" />
     <Compile Include="Core\IDivarSimCityRepository.cs" />
     <Compile Include="Core\INaqzRepository.cs" />
+    <Compile Include="Core\IPanelsLineNumberRepository.cs" />
+    <Compile Include="Core\IPanelsRepository.cs" />
     <Compile Include="Core\IProxyRepository.cs" />
     <Compile Include="Core\IRegionRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Interface\Entities\IBackUpSetting.cs" />
     <Compile Include="Interface\Entities\IChatNumbers.cs" />
     <Compile Include="Interface\Entities\INaqz.cs" />
+    <Compile Include="Interface\Entities\IPanelLineNumbers.cs" />
+    <Compile Include="Interface\Entities\IPanels.cs" />
     <Compile Include="Interface\Entities\IProxy.cs" />
     <Compile Include="Interface\Entities\ITelegramBotSetting.cs" />
     <Compile Include="Migration\202002071329475_11.cs" />
@@ -170,6 +174,8 @@
     <Compile Include="Models\DivarCity.cs" />
     <Compile Include="Models\DivarSimCity.cs" />
     <Compile Include="Models\Naqz.cs" />
+    <Compile Include="Models\PanelLineNumber.cs" />
+    <Compile Include="Models\Panels.cs" />
     <Compile Include="Models\Proxy.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Setting.cs" />
@@ -193,6 +199,8 @@
     <Compile Include="Persitence\DivarSimCityPersistenceRepository.cs" />
     <Compile Include="Persitence\GenericRepository.cs" />
     <Compile Include="Persitence\NaqzPersistenceRepository.cs" />
+    <Compile Include="Persitence\PanelsLineNumberPersistenceRepository.cs" />
+    <Compile Include="Persitence\PanelsPersistenceRepository.cs" />
     <Compile Include="Persitence\ProxyPersistenceRepository.cs" />
     <Compile Include="Persitence\RegionPersistenceRepository.cs" />
     <Compile Include="Persitence\SettingPersistenceRepository.cs" />
