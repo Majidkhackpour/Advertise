@@ -12,6 +12,6 @@ namespace DataLayer.Models
         public string DateSabt { get; set; }
         public bool Status { get; set; }
         public Guid PanelGuid { get; set; }
-        public int LineNumber { get; set; }
+        public long LineNumber { get; set; }
     }
 }

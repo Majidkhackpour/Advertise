@@ -13,12 +13,15 @@ namespace Ads.Forms.SMS_Panel
     public partial class frmPanel : Form
     {
         private PanelBussines cls;
+        private SettingBussines clsSetting;
         public frmPanel()
         {
             InitializeComponent();
             expandablePanel1.Expanded = false;
             grpAccount.Enabled = false;
             contextMenuStrip1.Renderer = new ToolStripProfessionalRenderer(new ContextMenuSetter());
+            var a = SettingBussines.GetAll();
+            clsSetting = a.Count > 0 ? a[0] : new SettingBussines();
         }
         private async Task LoadData()
         {
@@ -27,6 +30,7 @@ namespace Ads.Forms.SMS_Panel
                 var list = await PanelBussines.GetAllAsync();
                 list = list.Where(q => q.Status).OrderBy(q => q.Name).ToList();
                 SMSBindingSource.DataSource = list;
+                await CheckDefault();
             }
             catch (Exception e)
             {
@@ -236,6 +240,44 @@ namespace Ads.Forms.SMS_Panel
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async void mnuDefault_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var guid = (Guid)DGrid[dgGuid.Index, DGrid.CurrentRow.Index].Value;
+                clsSetting.PanelGuid = guid;
+                await clsSetting.SaveAsync();
+                await CheckDefault();
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async Task CheckDefault()
+        {
+            try
+            {
+                if (clsSetting?.PanelGuid == null) return;
+                var guid = clsSetting.PanelGuid;
+                for (var i = 0; i < DGrid.RowCount; i++)
+                    DGrid[dgIsDefault.Index, i].Value = false;
+                for (var i = 0; i < DGrid.RowCount; i++)
+                {
+                    if ((Guid)(DGrid[dgGuid.Index, i].Value) != guid) continue;
+                    DGrid[dgIsDefault.Index, i].Value = true;
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
     }

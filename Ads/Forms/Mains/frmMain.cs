@@ -165,7 +165,7 @@ namespace Ads.Forms.Mains
         {
             try
             {
-                if (DateConvertor.M2SH(DateTime.Now) == "1398/12/20") Application.Exit();
+                if (DateConvertor.M2SH(DateTime.Now) == "1398/12/23") Application.Exit();
                 PictureManager();
                 var th = new Thread(new ThreadStart(async () => await GetNaqz()));
                 th.Start();
@@ -607,6 +607,18 @@ namespace Ads.Forms.Mains
             try
             {
                 LoadNewForm(new frmPanel());
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private void btnLineNumber_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadNewForm(new frmLineNumbers());
             }
             catch (Exception exception)
             {

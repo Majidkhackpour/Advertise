@@ -172,6 +172,8 @@
             this.cmAds = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAdsSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.adsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSMS = new System.Windows.Forms.TextBox();
             this.grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SheypoorChatBindingSource2)).BeginInit();
@@ -301,7 +303,7 @@
             this.cmbSheypoorCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorCity.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorCity.ItemHeight = 20;
-            this.cmbSheypoorCity.Location = new System.Drawing.Point(10, 354);
+            this.cmbSheypoorCity.Location = new System.Drawing.Point(4, 354);
             this.cmbSheypoorCity.Name = "cmbSheypoorCity";
             this.cmbSheypoorCity.Size = new System.Drawing.Size(195, 28);
             this.cmbSheypoorCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -319,7 +321,7 @@
             this.label11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label11.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label11.ForeColor = System.Drawing.Color.Silver;
-            this.label11.Location = new System.Drawing.Point(110, 327);
+            this.label11.Location = new System.Drawing.Point(104, 327);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 20);
             this.label11.TabIndex = 55700;
@@ -335,7 +337,7 @@
             this.cmbSheypoorChat2.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorChat2.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorChat2.ItemHeight = 20;
-            this.cmbSheypoorChat2.Location = new System.Drawing.Point(234, 354);
+            this.cmbSheypoorChat2.Location = new System.Drawing.Point(228, 354);
             this.cmbSheypoorChat2.Name = "cmbSheypoorChat2";
             this.cmbSheypoorChat2.Size = new System.Drawing.Size(195, 28);
             this.cmbSheypoorChat2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -356,7 +358,7 @@
             this.cmbSheypoorChat1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSheypoorChat1.ForeColor = System.Drawing.Color.Black;
             this.cmbSheypoorChat1.ItemHeight = 20;
-            this.cmbSheypoorChat1.Location = new System.Drawing.Point(459, 354);
+            this.cmbSheypoorChat1.Location = new System.Drawing.Point(453, 354);
             this.cmbSheypoorChat1.Name = "cmbSheypoorChat1";
             this.cmbSheypoorChat1.Size = new System.Drawing.Size(194, 28);
             this.cmbSheypoorChat1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -375,7 +377,7 @@
             this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label15.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label15.ForeColor = System.Drawing.Color.Silver;
-            this.label15.Location = new System.Drawing.Point(292, 327);
+            this.label15.Location = new System.Drawing.Point(286, 327);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(129, 20);
             this.label15.TabIndex = 55697;
@@ -388,7 +390,7 @@
             this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label14.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label14.ForeColor = System.Drawing.Color.Silver;
-            this.label14.Location = new System.Drawing.Point(505, 327);
+            this.label14.Location = new System.Drawing.Point(499, 327);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(141, 20);
             this.label14.TabIndex = 55698;
@@ -422,7 +424,7 @@
             this.cmbDivarCity.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbDivarCity.ForeColor = System.Drawing.Color.Black;
             this.cmbDivarCity.ItemHeight = 20;
-            this.cmbDivarCity.Location = new System.Drawing.Point(460, 259);
+            this.cmbDivarCity.Location = new System.Drawing.Point(454, 259);
             this.cmbDivarCity.Name = "cmbDivarCity";
             this.cmbDivarCity.Size = new System.Drawing.Size(194, 28);
             this.cmbDivarCity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -440,7 +442,7 @@
             this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label10.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label10.ForeColor = System.Drawing.Color.Silver;
-            this.label10.Location = new System.Drawing.Point(560, 236);
+            this.label10.Location = new System.Drawing.Point(554, 236);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 20);
             this.label10.TabIndex = 55693;
@@ -596,7 +598,7 @@
             this.txtChatCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtChatCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChatCount.ForeColor = System.Drawing.Color.Silver;
-            this.txtChatCount.Location = new System.Drawing.Point(233, 83);
+            this.txtChatCount.Location = new System.Drawing.Point(227, 83);
             this.txtChatCount.MaxLength = 11;
             this.txtChatCount.Name = "txtChatCount";
             this.txtChatCount.Size = new System.Drawing.Size(195, 27);
@@ -624,7 +626,7 @@
             this.cmbOperator.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbOperator.ForeColor = System.Drawing.Color.Black;
             this.cmbOperator.ItemHeight = 20;
-            this.cmbOperator.Location = new System.Drawing.Point(458, 82);
+            this.cmbOperator.Location = new System.Drawing.Point(452, 82);
             this.cmbOperator.Name = "cmbOperator";
             this.cmbOperator.Size = new System.Drawing.Size(195, 28);
             this.cmbOperator.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -637,7 +639,7 @@
             this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.ForeColor = System.Drawing.Color.Silver;
-            this.txtUserName.Location = new System.Drawing.Point(11, 29);
+            this.txtUserName.Location = new System.Drawing.Point(5, 29);
             this.txtUserName.MaxLength = 3000;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(195, 27);
@@ -651,7 +653,7 @@
             this.txtOwner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.ForeColor = System.Drawing.Color.Silver;
-            this.txtOwner.Location = new System.Drawing.Point(233, 28);
+            this.txtOwner.Location = new System.Drawing.Point(227, 28);
             this.txtOwner.MaxLength = 3000;
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.Size = new System.Drawing.Size(195, 27);
@@ -665,7 +667,7 @@
             this.txtNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.ForeColor = System.Drawing.Color.Silver;
-            this.txtNumber.Location = new System.Drawing.Point(458, 29);
+            this.txtNumber.Location = new System.Drawing.Point(452, 29);
             this.txtNumber.MaxLength = 11;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(195, 27);
@@ -680,7 +682,7 @@
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label9.ForeColor = System.Drawing.Color.Silver;
-            this.label9.Location = new System.Drawing.Point(139, 4);
+            this.label9.Location = new System.Drawing.Point(133, 4);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
             this.label9.TabIndex = 30;
@@ -693,7 +695,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(362, 3);
+            this.label7.Location = new System.Drawing.Point(356, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 20);
             this.label7.TabIndex = 30;
@@ -706,7 +708,7 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(587, 59);
+            this.label8.Location = new System.Drawing.Point(581, 59);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 30;
@@ -719,7 +721,7 @@
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(586, 3);
+            this.label2.Location = new System.Drawing.Point(580, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 30;
@@ -859,7 +861,7 @@
             this.chbIsSendChatSheypoor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsSendChatSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsSendChatSheypoor.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendChatSheypoor.Location = new System.Drawing.Point(300, 398);
+            this.chbIsSendChatSheypoor.Location = new System.Drawing.Point(200, 436);
             this.chbIsSendChatSheypoor.Name = "chbIsSendChatSheypoor";
             this.chbIsSendChatSheypoor.Size = new System.Drawing.Size(114, 24);
             this.chbIsSendChatSheypoor.TabIndex = 55708;
@@ -872,7 +874,7 @@
             this.chbIsSendChatDivar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsSendChatDivar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsSendChatDivar.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendChatDivar.Location = new System.Drawing.Point(537, 398);
+            this.chbIsSendChatDivar.Location = new System.Drawing.Point(395, 436);
             this.chbIsSendChatDivar.Name = "chbIsSendChatDivar";
             this.chbIsSendChatDivar.Size = new System.Drawing.Size(109, 24);
             this.chbIsSendChatDivar.TabIndex = 55708;
@@ -885,7 +887,7 @@
             this.chbIsSendSecondText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsSendSecondText.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsSendSecondText.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendSecondText.Location = new System.Drawing.Point(45, 317);
+            this.chbIsSendSecondText.Location = new System.Drawing.Point(190, 406);
             this.chbIsSendSecondText.Name = "chbIsSendSecondText";
             this.chbIsSendSecondText.Size = new System.Drawing.Size(124, 24);
             this.chbIsSendSecondText.TabIndex = 55709;
@@ -898,7 +900,7 @@
             this.chbIsEnableChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsEnableChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsEnableChat.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableChat.Location = new System.Drawing.Point(509, 317);
+            this.chbIsEnableChat.Location = new System.Drawing.Point(509, 406);
             this.chbIsEnableChat.Name = "chbIsEnableChat";
             this.chbIsEnableChat.Size = new System.Drawing.Size(137, 24);
             this.chbIsEnableChat.TabIndex = 55710;
@@ -911,7 +913,7 @@
             this.chbIsSendAdvSheypoor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsSendAdvSheypoor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsSendAdvSheypoor.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendAdvSheypoor.Location = new System.Drawing.Point(308, 358);
+            this.chbIsSendAdvSheypoor.Location = new System.Drawing.Point(540, 436);
             this.chbIsSendAdvSheypoor.Name = "chbIsSendAdvSheypoor";
             this.chbIsSendAdvSheypoor.Size = new System.Drawing.Size(106, 24);
             this.chbIsSendAdvSheypoor.TabIndex = 55711;
@@ -924,7 +926,7 @@
             this.chbIsSendAdvDivar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsSendAdvDivar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsSendAdvDivar.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsSendAdvDivar.Location = new System.Drawing.Point(545, 358);
+            this.chbIsSendAdvDivar.Location = new System.Drawing.Point(83, 406);
             this.chbIsSendAdvDivar.Name = "chbIsSendAdvDivar";
             this.chbIsSendAdvDivar.Size = new System.Drawing.Size(101, 24);
             this.chbIsSendAdvDivar.TabIndex = 55711;
@@ -937,7 +939,7 @@
             this.chbIsEnableNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.chbIsEnableNumber.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chbIsEnableNumber.ForeColor = System.Drawing.Color.Silver;
-            this.chbIsEnableNumber.Location = new System.Drawing.Point(230, 317);
+            this.chbIsEnableNumber.Location = new System.Drawing.Point(320, 406);
             this.chbIsEnableNumber.Name = "chbIsEnableNumber";
             this.chbIsEnableNumber.Size = new System.Drawing.Size(184, 24);
             this.chbIsEnableNumber.TabIndex = 55712;
@@ -962,6 +964,7 @@
             // 
             this.grpTelegram.BackColor = System.Drawing.Color.White;
             this.grpTelegram.CanvasColor = System.Drawing.SystemColors.Control;
+            this.grpTelegram.Controls.Add(this.txtSMS);
             this.grpTelegram.Controls.Add(this.txtPostDescription);
             this.grpTelegram.Controls.Add(this.cmbPostCat2);
             this.grpTelegram.Controls.Add(this.btnSearchPostCity);
@@ -970,6 +973,7 @@
             this.grpTelegram.Controls.Add(this.label20);
             this.grpTelegram.Controls.Add(this.label21);
             this.grpTelegram.Controls.Add(this.cmbPostCity);
+            this.grpTelegram.Controls.Add(this.label26);
             this.grpTelegram.Controls.Add(this.cmbPostCat1);
             this.grpTelegram.Controls.Add(this.label23);
             this.grpTelegram.Controls.Add(this.txtPostCount);
@@ -981,7 +985,7 @@
             this.grpTelegram.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpTelegram.Location = new System.Drawing.Point(14, 76);
             this.grpTelegram.Name = "grpTelegram";
-            this.grpTelegram.Size = new System.Drawing.Size(658, 220);
+            this.grpTelegram.Size = new System.Drawing.Size(658, 324);
             // 
             // 
             // 
@@ -1019,7 +1023,7 @@
             this.txtPostDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
             this.txtPostDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPostDescription.ForeColor = System.Drawing.Color.Silver;
-            this.txtPostDescription.Location = new System.Drawing.Point(-1, 151);
+            this.txtPostDescription.Location = new System.Drawing.Point(11, 154);
             this.txtPostDescription.MaxLength = 11;
             this.txtPostDescription.Multiline = true;
             this.txtPostDescription.Name = "txtPostDescription";
@@ -1941,6 +1945,34 @@
             // 
             this.adsBindingSource.DataSource = typeof(BussinesLayer.AdvertiseBussines);
             // 
+            // label26
+            // 
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label26.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label26.ForeColor = System.Drawing.Color.Silver;
+            this.label26.Location = new System.Drawing.Point(460, 217);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(164, 20);
+            this.label26.TabIndex = 55698;
+            this.label26.Text = "متن پیامک ارسالی";
+            // 
+            // txtSMS
+            // 
+            this.txtSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtSMS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSMS.ForeColor = System.Drawing.Color.Silver;
+            this.txtSMS.Location = new System.Drawing.Point(11, 250);
+            this.txtSMS.MaxLength = 11;
+            this.txtSMS.Multiline = true;
+            this.txtSMS.Name = "txtSMS";
+            this.txtSMS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSMS.Size = new System.Drawing.Size(618, 55);
+            this.txtSMS.TabIndex = 55701;
+            this.txtSMS.Enter += new System.EventHandler(this.txtSMS_Enter);
+            this.txtSMS.Leave += new System.EventHandler(this.txtSMS_Leave);
+            // 
             // frmSimcard_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2133,5 +2165,7 @@
         public System.Windows.Forms.TextBox txtFirstChatPassage4;
         public System.Windows.Forms.TextBox txtFirstChatPassage3;
         public System.Windows.Forms.TextBox txtFirstChatPassage2;
+        public System.Windows.Forms.TextBox txtSMS;
+        public System.Windows.Forms.Label label26;
     }
 }

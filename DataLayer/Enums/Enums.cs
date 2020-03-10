@@ -35,4 +35,9 @@ namespace DataLayer.Enums
         [PersianNameAttribute.PersianName("ارسال فایل پشتیبان")] SendBackUp = 0,
         [PersianNameAttribute.PersianName("ارسال پست تبلیغاتی")] SendPost = 1
     }
+    public enum SMSType
+    {
+        [PersianNameAttribute.PersianName("پیام کوتاه")] SMS = 0,
+        [PersianNameAttribute.PersianName("پیام صوتی")] MMS = 1
+    }
 }

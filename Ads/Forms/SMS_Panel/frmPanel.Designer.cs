@@ -36,6 +36,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPanel));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgIsDefault = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuIns = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuDefault = new System.Windows.Forms.ToolStripMenuItem();
+            this.SMSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
@@ -48,23 +63,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuIns = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aPIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SMSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
-            this.expandablePanel1.SuspendLayout();
-            this.grpAccount.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SMSBindingSource)).BeginInit();
+            this.expandablePanel1.SuspendLayout();
+            this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGrid
@@ -97,6 +100,7 @@
             this.dateSabtDataGridViewTextBoxColumn,
             this.statusDataGridViewCheckBoxColumn,
             this.nameDataGridViewTextBoxColumn,
+            this.dgIsDefault,
             this.aPIDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn,
             this.passwordDataGridViewTextBoxColumn});
@@ -136,6 +140,125 @@
             this.DGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGrid.Size = new System.Drawing.Size(733, 535);
             this.DGrid.TabIndex = 55698;
+            // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
+            // dateSabtDataGridViewTextBoxColumn
+            // 
+            this.dateSabtDataGridViewTextBoxColumn.DataPropertyName = "DateSabt";
+            this.dateSabtDataGridViewTextBoxColumn.HeaderText = "DateSabt";
+            this.dateSabtDataGridViewTextBoxColumn.Name = "dateSabtDataGridViewTextBoxColumn";
+            this.dateSabtDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateSabtDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // statusDataGridViewCheckBoxColumn
+            // 
+            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
+            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.statusDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dgIsDefault
+            // 
+            this.dgIsDefault.DataPropertyName = "IsDefault";
+            this.dgIsDefault.HeaderText = "پیش فرض";
+            this.dgIsDefault.Name = "dgIsDefault";
+            this.dgIsDefault.ReadOnly = true;
+            this.dgIsDefault.Width = 75;
+            // 
+            // aPIDataGridViewTextBoxColumn
+            // 
+            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
+            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
+            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
+            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aPIDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.contextMenuStrip1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuIns,
+            this.mnuEdit,
+            this.mnuDelete,
+            this.toolStripMenuItem1,
+            this.mnuDefault});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(233, 106);
+            // 
+            // mnuIns
+            // 
+            this.mnuIns.ForeColor = System.Drawing.Color.DarkGray;
+            this.mnuIns.Name = "mnuIns";
+            this.mnuIns.Size = new System.Drawing.Size(232, 24);
+            this.mnuIns.Text = "درج پنل جدید";
+            this.mnuIns.Click += new System.EventHandler(this.mnuIns_Click);
+            // 
+            // mnuEdit
+            // 
+            this.mnuEdit.ForeColor = System.Drawing.Color.Silver;
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(232, 24);
+            this.mnuEdit.Text = "ویرایش پنل جاری";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(232, 24);
+            this.mnuDelete.Text = "حذف پنل جاری";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(229, 6);
+            // 
+            // mnuDefault
+            // 
+            this.mnuDefault.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDefault.Name = "mnuDefault";
+            this.mnuDefault.Size = new System.Drawing.Size(232, 24);
+            this.mnuDefault.Text = "انتخاب به عنوان پنل پیش فرض";
+            this.mnuDefault.Click += new System.EventHandler(this.mnuDefault_Click);
+            // 
+            // SMSBindingSource
+            // 
+            this.SMSBindingSource.DataSource = typeof(BussinesLayer.PanelBussines);
             // 
             // expandablePanel1
             // 
@@ -360,102 +483,6 @@
             this.label2.TabIndex = 30;
             this.label2.Text = "عنوان";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.contextMenuStrip1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuIns,
-            this.mnuEdit,
-            this.mnuDelete});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 98);
-            // 
-            // mnuIns
-            // 
-            this.mnuIns.ForeColor = System.Drawing.Color.DarkGray;
-            this.mnuIns.Name = "mnuIns";
-            this.mnuIns.Size = new System.Drawing.Size(180, 24);
-            this.mnuIns.Text = "درج پنل جدید";
-            this.mnuIns.Click += new System.EventHandler(this.mnuIns_Click);
-            // 
-            // mnuEdit
-            // 
-            this.mnuEdit.ForeColor = System.Drawing.Color.Silver;
-            this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(180, 24);
-            this.mnuEdit.Text = "ویرایش پنل جاری";
-            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
-            // 
-            // mnuDelete
-            // 
-            this.mnuDelete.ForeColor = System.Drawing.Color.Silver;
-            this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(180, 24);
-            this.mnuDelete.Text = "حذف پنل جاری";
-            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // dateSabtDataGridViewTextBoxColumn
-            // 
-            this.dateSabtDataGridViewTextBoxColumn.DataPropertyName = "DateSabt";
-            this.dateSabtDataGridViewTextBoxColumn.HeaderText = "DateSabt";
-            this.dateSabtDataGridViewTextBoxColumn.Name = "dateSabtDataGridViewTextBoxColumn";
-            this.dateSabtDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateSabtDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // statusDataGridViewCheckBoxColumn
-            // 
-            this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.statusDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "عنوان";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // aPIDataGridViewTextBoxColumn
-            // 
-            this.aPIDataGridViewTextBoxColumn.DataPropertyName = "API";
-            this.aPIDataGridViewTextBoxColumn.HeaderText = "API";
-            this.aPIDataGridViewTextBoxColumn.Name = "aPIDataGridViewTextBoxColumn";
-            this.aPIDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aPIDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.userNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            this.passwordDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // SMSBindingSource
-            // 
-            this.SMSBindingSource.DataSource = typeof(BussinesLayer.PanelBussines);
-            // 
             // frmPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -478,11 +505,11 @@
             this.Load += new System.EventHandler(this.frmPanel_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPanel_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SMSBindingSource)).EndInit();
             this.expandablePanel1.ResumeLayout(false);
             this.grpAccount.ResumeLayout(false);
             this.grpAccount.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SMSBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -511,8 +538,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateSabtDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn statusDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgIsDefault;
         private System.Windows.Forms.DataGridViewTextBoxColumn aPIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuDefault;
     }
 }

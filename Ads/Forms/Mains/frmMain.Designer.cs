@@ -80,6 +80,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblNaqz = new System.Windows.Forms.Label();
+            this.btnLineNumber = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAds)).BeginInit();
@@ -645,6 +646,7 @@
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpAccount.Controls.Add(this.buttonX5);
+            this.grpAccount.Controls.Add(this.btnLineNumber);
             this.grpAccount.Controls.Add(this.btnSMS_Panel);
             this.grpAccount.Controls.Add(this.btnShow_Numbers);
             this.grpAccount.Controls.Add(this.btnAdvLog);
@@ -692,7 +694,7 @@
             this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.buttonX5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonX5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX5.Location = new System.Drawing.Point(6, 264);
+            this.buttonX5.Location = new System.Drawing.Point(6, 330);
             this.buttonX5.Name = "buttonX5";
             this.buttonX5.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.buttonX5.Size = new System.Drawing.Size(130, 55);
@@ -820,6 +822,25 @@
             this.lblNaqz.TabIndex = 32;
             this.lblNaqz.Text = "00";
             this.lblNaqz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnLineNumber
+            // 
+            this.btnLineNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnLineNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLineNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnLineNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnLineNumber.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLineNumber.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnLineNumber.Location = new System.Drawing.Point(6, 265);
+            this.btnLineNumber.Name = "btnLineNumber";
+            this.btnLineNumber.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnLineNumber.Size = new System.Drawing.Size(130, 55);
+            this.btnLineNumber.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnLineNumber.TabIndex = 2;
+            this.btnLineNumber.Text = "شماره خط ارسالی";
+            this.btnLineNumber.TextColor = System.Drawing.Color.Silver;
+            this.btnLineNumber.ThemeAware = true;
+            this.btnLineNumber.Click += new System.EventHandler(this.btnLineNumber_Click);
             // 
             // frmMain
             // 
@@ -958,5 +979,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblNaqz;
+        public DevComponents.DotNetBar.ButtonX btnLineNumber;
     }
 }

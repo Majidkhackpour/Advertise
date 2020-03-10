@@ -782,6 +782,7 @@ namespace Ads.Classes
                             }
                         }
                         if (adv.URL == "---") continue;
+                        if (adv.URL == "https://divar.ir/new") continue;
                         var code = adv.URL.Remove(0, 25) ?? null;
                         await Utility.Wait();
                         var el = _driver.FindElements(By.TagName("img")).Any(q =>
@@ -808,11 +809,8 @@ namespace Ads.Classes
                         _driver.FindElement(By.Id("listing-" + code))?.Click();
                         await Utility.Wait();
                         adv.AdvStatus = "منتشر شده";
-                        //var counter = _driver.FindElement(By.ClassName("total-view"))?.FindElement(By.TagName("strong"))
-                        //                  ?
-                        //                  .Text.FixString() ?? "0";
-                        var counter = _driver.FindElement(By.ClassName("stat-view"))?.Text.ToString() ?? "0";
-                        adv.VisitCount = int.Parse(counter);
+                        var counter = _driver.FindElement(By.ClassName("stat-view"))?.Text.FixString() ?? "0";
+                        adv.VisitCount = counter.ParseToInt();
                         adv.StatusCode = StatusCode.Published;
                         adv.AdvType = AdvertiseType.Sheypoor;
                         await adv.SaveAsync();
@@ -1140,7 +1138,9 @@ namespace Ads.Classes
                     continue;
                 }
             }
+            
             catch (StaleElementReferenceException) { }
+            catch (WebDriverException) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);

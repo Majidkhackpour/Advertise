@@ -19,6 +19,8 @@ namespace BussinesLayer
         public int DayCountForUpdateState { get; set; }
         public int MaxImgCount { get; set; }
         public string Address { get; set; }
+        public Guid? PanelGuid { get; set; }
+        public Guid? LineNumberGuid { get; set; }
 
         public static List<SettingBussines> GetAll()
         {

@@ -130,6 +130,7 @@ namespace Ads.Classes
                 lstMessage.Add(body.ToString());
                 Utility.ShowBalloon(title, lstMessage);
             }
+            catch (WebDriverException er) { }
             catch (Exception ex)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -760,10 +761,6 @@ namespace Ads.Classes
                 return resultImages;
             }
         }
-
-
-
-
         public async Task<List<RegionBussiness>> GetAllRegionFromDivar(List<string> City)
         {
             var region = new List<RegionBussiness>();
@@ -834,11 +831,6 @@ namespace Ads.Classes
             return region;
 
         }
-
-
-
-
-
         public async Task<bool> UpdateAllAdvStatus(int dayCount = 0)
         {
             if (SemaphoreSlim.CurrentCount == 0)
@@ -873,7 +865,7 @@ namespace Ads.Classes
                         if (tryCount >= 3) continue;
                         try
                         {
-                            _driver.Navigate().GoToUrl((string)adv.URL);
+                            _driver.Navigate().GoToUrl((string) adv.URL);
                             await Utility.Wait();
                             var element = _driver.FindElement(By.ClassName("manage-header__status"));
                             if (element == null) continue;
@@ -904,6 +896,10 @@ namespace Ads.Classes
                     }
 
                     return true;
+                }
+                catch (WebDriverException er)
+                {
+                    return false;
                 }
                 catch (Exception ex)
                 {

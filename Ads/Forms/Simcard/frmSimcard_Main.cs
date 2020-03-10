@@ -293,6 +293,7 @@ namespace Ads.Forms.Simcard
                 cls.FirstChatPassage2 = txtFirstChatPassage2.Text;
                 cls.FirstChatPassage3 = txtFirstChatPassage3.Text;
                 cls.FirstChatPassage4 = txtFirstChatPassage4.Text;
+                cls.SMS_Description = txtSMS.Text;
 
                 await cls.SaveAsync(listCity, listAds, listCitySh);
                 DialogResult = DialogResult.OK;
@@ -413,6 +414,7 @@ namespace Ads.Forms.Simcard
                 txtSecondChatPassage2.Text = cls.SecondChatPassage2;
                 txtSecondChatPassage3.Text = cls.SecondChatPassage3;
                 txtSecondChatPassage4.Text = cls.SecondChatPassage4;
+                txtSMS.Text = cls.SMS_Description;
                 if (cls.Guid != Guid.Empty)
                 {
                     cmbPostCat1.SelectedValue = cls?.DivarPostCat1 ?? Guid.Empty;
@@ -874,6 +876,16 @@ namespace Ads.Forms.Simcard
         private void txtSecondChatPassage4_Leave(object sender, EventArgs e)
         {
             txtSetter.Follow(txt2: txtSecondChatPassage4);
+        }
+
+        private void txtSMS_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtSMS);
+        }
+
+        private void txtSMS_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtSMS);
         }
     }
 }

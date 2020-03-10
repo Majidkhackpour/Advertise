@@ -51,5 +51,6 @@ namespace DataLayer.Models
         public string SecondChatPassage4 { get; set; }
         public bool IsSendAdvSheypoor { get; set; }
         public bool IsSendChatSheypoor { get; set; }
+        public string SMS_Description { get; set; }
     }
 }

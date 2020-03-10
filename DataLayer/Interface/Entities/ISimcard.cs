@@ -41,5 +41,6 @@ namespace DataLayer.Interface.Entities
         string SecondChatPassage4 { get; set; }
         bool IsSendAdvSheypoor { get; set; }
         bool IsSendChatSheypoor { get; set; }
+        string SMS_Description { get; set; }
     }
 }

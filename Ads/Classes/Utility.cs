@@ -84,7 +84,7 @@ namespace Ads.Classes
         {
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create("http://ifconfig.me");
+                var request = (HttpWebRequest) WebRequest.Create("http://ifconfig.me");
 
                 request.UserAgent = "curl";
 
@@ -100,6 +100,10 @@ namespace Ads.Classes
                 }
 
                 return publicIPAddress.Replace("\n", "");
+            }
+            catch (WebException)
+            {
+                return null;
             }
             catch (Exception e)
             {

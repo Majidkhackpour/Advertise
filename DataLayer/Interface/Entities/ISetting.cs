@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace DataLayer.Interface.Entities
 {
   public  interface ISetting:IHasGuid
@@ -9,5 +11,7 @@ namespace DataLayer.Interface.Entities
         int DayCountForUpdateState { get; set; }
         int MaxImgCount { get; set; }
         string Address { get; set; }
+        Guid? PanelGuid { get; set; }
+        Guid? LineNumberGuid { get; set; }
     }
 }

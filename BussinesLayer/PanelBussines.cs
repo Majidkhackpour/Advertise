@@ -17,6 +17,7 @@ namespace BussinesLayer
         public string API { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public bool IsDefault { get; set; }
         public static async Task<List<PanelBussines>> GetAllAsync()
         {
             using (var _context = new UnitOfWorkLid())

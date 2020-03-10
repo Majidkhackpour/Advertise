@@ -82,6 +82,7 @@
     <Compile Include="DateConvertor.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Enums\PersianNameAttribute.cs" />
+    <Compile Include="Enums\SMSAction.cs" />
     <Compile Include="Interface\Entities\IAdvContent.cs" />
     <Compile Include="Interface\Entities\IBackUpSetting.cs" />
     <Compile Include="Interface\Entities\IChatNumbers.cs" />
