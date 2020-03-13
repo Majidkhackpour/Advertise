@@ -19,5 +19,6 @@ namespace DataLayer.Models
         public string Address { get; set; }
         public Guid? PanelGuid { get; set; }
         public Guid? LineNumberGuid { get; set; }
+        public int DayCountForDelete { get; set; }
     }
 }

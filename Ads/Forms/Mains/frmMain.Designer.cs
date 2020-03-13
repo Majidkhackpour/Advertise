@@ -71,7 +71,8 @@
             this.lblServerProxy = new System.Windows.Forms.Label();
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.grpAccount = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSendSMS = new DevComponents.DotNetBar.ButtonX();
+            this.btnLineNumber = new DevComponents.DotNetBar.ButtonX();
             this.btnSMS_Panel = new DevComponents.DotNetBar.ButtonX();
             this.btnShow_Numbers = new DevComponents.DotNetBar.ButtonX();
             this.btnAdvLog = new DevComponents.DotNetBar.ButtonX();
@@ -80,7 +81,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblNaqz = new System.Windows.Forms.Label();
-            this.btnLineNumber = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSimcard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAds)).BeginInit();
@@ -645,7 +645,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpAccount.BackColor = System.Drawing.Color.White;
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
-            this.grpAccount.Controls.Add(this.buttonX5);
+            this.grpAccount.Controls.Add(this.btnSendSMS);
             this.grpAccount.Controls.Add(this.btnLineNumber);
             this.grpAccount.Controls.Add(this.btnSMS_Panel);
             this.grpAccount.Controls.Add(this.btnShow_Numbers);
@@ -686,23 +686,43 @@
             this.grpAccount.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.grpAccount.TabIndex = 5;
             // 
-            // buttonX5
+            // btnSendSMS
             // 
-            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonX5.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX5.Location = new System.Drawing.Point(6, 330);
-            this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.buttonX5.Size = new System.Drawing.Size(130, 55);
-            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.buttonX5.TabIndex = 2;
-            this.buttonX5.Text = "ارسال پیامک";
-            this.buttonX5.TextColor = System.Drawing.Color.Silver;
-            this.buttonX5.ThemeAware = true;
+            this.btnSendSMS.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSendSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendSMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnSendSMS.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnSendSMS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSendSMS.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSendSMS.Location = new System.Drawing.Point(6, 330);
+            this.btnSendSMS.Name = "btnSendSMS";
+            this.btnSendSMS.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnSendSMS.Size = new System.Drawing.Size(130, 55);
+            this.btnSendSMS.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnSendSMS.TabIndex = 2;
+            this.btnSendSMS.Text = "ارسال پیامک";
+            this.btnSendSMS.TextColor = System.Drawing.Color.Silver;
+            this.btnSendSMS.ThemeAware = true;
+            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
+            // 
+            // btnLineNumber
+            // 
+            this.btnLineNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnLineNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLineNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
+            this.btnLineNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnLineNumber.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLineNumber.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnLineNumber.Location = new System.Drawing.Point(6, 265);
+            this.btnLineNumber.Name = "btnLineNumber";
+            this.btnLineNumber.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
+            this.btnLineNumber.Size = new System.Drawing.Size(130, 55);
+            this.btnLineNumber.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
+            this.btnLineNumber.TabIndex = 2;
+            this.btnLineNumber.Text = "شماره خط ارسالی";
+            this.btnLineNumber.TextColor = System.Drawing.Color.Silver;
+            this.btnLineNumber.ThemeAware = true;
+            this.btnLineNumber.Click += new System.EventHandler(this.btnLineNumber_Click);
             // 
             // btnSMS_Panel
             // 
@@ -822,25 +842,6 @@
             this.lblNaqz.TabIndex = 32;
             this.lblNaqz.Text = "00";
             this.lblNaqz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnLineNumber
-            // 
-            this.btnLineNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLineNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLineNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(22)))), ((int)(((byte)(33)))));
-            this.btnLineNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnLineNumber.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLineNumber.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnLineNumber.Location = new System.Drawing.Point(6, 265);
-            this.btnLineNumber.Name = "btnLineNumber";
-            this.btnLineNumber.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
-            this.btnLineNumber.Size = new System.Drawing.Size(130, 55);
-            this.btnLineNumber.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
-            this.btnLineNumber.TabIndex = 2;
-            this.btnLineNumber.Text = "شماره خط ارسالی";
-            this.btnLineNumber.TextColor = System.Drawing.Color.Silver;
-            this.btnLineNumber.ThemeAware = true;
-            this.btnLineNumber.Click += new System.EventHandler(this.btnLineNumber_Click);
             // 
             // frmMain
             // 
@@ -974,7 +975,7 @@
         public DevComponents.DotNetBar.ButtonX btnShow_Numbers;
         public DevComponents.DotNetBar.ButtonX btnAdvLog;
         public DevComponents.DotNetBar.ButtonX btnChart;
-        public DevComponents.DotNetBar.ButtonX buttonX5;
+        public DevComponents.DotNetBar.ButtonX btnSendSMS;
         public DevComponents.DotNetBar.ButtonX btnSMS_Panel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

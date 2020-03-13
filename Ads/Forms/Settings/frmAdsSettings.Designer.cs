@@ -51,6 +51,8 @@
             this.btnFinish = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
             this.folderBrowserDialog3 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDelete = new System.Windows.Forms.TextBox();
             this.grpAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,11 +74,13 @@
             this.grpAccount.CanvasColor = System.Drawing.SystemColors.Control;
             this.grpAccount.Controls.Add(this.btnSearchAdv);
             this.grpAccount.Controls.Add(this.txtAdvAddress);
+            this.grpAccount.Controls.Add(this.txtDelete);
             this.grpAccount.Controls.Add(this.txtUpdateDayCount);
             this.grpAccount.Controls.Add(this.txtCountPic);
             this.grpAccount.Controls.Add(this.txtAdvInIP);
             this.grpAccount.Controls.Add(this.txtAdvInMounth);
             this.grpAccount.Controls.Add(this.txtAdvInDay);
+            this.grpAccount.Controls.Add(this.label3);
             this.grpAccount.Controls.Add(this.label12);
             this.grpAccount.Controls.Add(this.label1);
             this.grpAccount.Controls.Add(this.label15);
@@ -86,7 +90,7 @@
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
             this.grpAccount.Location = new System.Drawing.Point(12, 55);
             this.grpAccount.Name = "grpAccount";
-            this.grpAccount.Size = new System.Drawing.Size(361, 353);
+            this.grpAccount.Size = new System.Drawing.Size(361, 414);
             // 
             // 
             // 
@@ -125,7 +129,7 @@
             this.btnSearchAdv.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSearchAdv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearchAdv.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnSearchAdv.Location = new System.Drawing.Point(5, 311);
+            this.btnSearchAdv.Location = new System.Drawing.Point(4, 371);
             this.btnSearchAdv.Name = "btnSearchAdv";
             this.btnSearchAdv.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnSearchAdv.Size = new System.Drawing.Size(23, 27);
@@ -143,7 +147,7 @@
             this.txtAdvAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAdvAddress.Enabled = false;
             this.txtAdvAddress.ForeColor = System.Drawing.Color.Silver;
-            this.txtAdvAddress.Location = new System.Drawing.Point(32, 311);
+            this.txtAdvAddress.Location = new System.Drawing.Point(31, 371);
             this.txtAdvAddress.MaxLength = 3000;
             this.txtAdvAddress.Name = "txtAdvAddress";
             this.txtAdvAddress.Size = new System.Drawing.Size(301, 27);
@@ -233,7 +237,7 @@
             this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label12.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label12.ForeColor = System.Drawing.Color.Silver;
-            this.label12.Location = new System.Drawing.Point(180, 286);
+            this.label12.Location = new System.Drawing.Point(179, 346);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(152, 20);
             this.label12.TabIndex = 30;
@@ -307,7 +311,7 @@
             // line1
             // 
             this.line1.ForeColor = System.Drawing.Color.Silver;
-            this.line1.Location = new System.Drawing.Point(4, 411);
+            this.line1.Location = new System.Drawing.Point(4, 472);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(399, 19);
             this.line1.TabIndex = 55695;
@@ -332,7 +336,7 @@
             this.btnFinish.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnFinish.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFinish.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnFinish.Location = new System.Drawing.Point(228, 429);
+            this.btnFinish.Location = new System.Drawing.Point(228, 490);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnFinish.Size = new System.Drawing.Size(145, 25);
@@ -351,7 +355,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 429);
+            this.btnCancel.Location = new System.Drawing.Point(12, 490);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(14);
             this.btnCancel.Size = new System.Drawing.Size(125, 25);
@@ -362,12 +366,40 @@
             this.btnCancel.ThemeAware = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(118, 290);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "رزو حذف آگهی و نادیده گرفتن چت";
+            // 
+            // txtDelete
+            // 
+            this.txtDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(33)))), ((int)(((byte)(43)))));
+            this.txtDelete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDelete.ForeColor = System.Drawing.Color.Silver;
+            this.txtDelete.Location = new System.Drawing.Point(32, 315);
+            this.txtDelete.MaxLength = 3000;
+            this.txtDelete.Name = "txtDelete";
+            this.txtDelete.Size = new System.Drawing.Size(301, 27);
+            this.txtDelete.TabIndex = 10;
+            this.txtDelete.Enter += new System.EventHandler(this.txtDelete_Enter);
+            this.txtDelete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDelete_KeyPress);
+            this.txtDelete.Leave += new System.EventHandler(this.txtDelete_Leave);
+            // 
             // frmAdsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(383, 460);
+            this.ClientSize = new System.Drawing.Size(383, 522);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.uC_Date1);
             this.Controls.Add(this.btnCancel);
@@ -379,9 +411,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(399, 499);
+            this.MaximumSize = new System.Drawing.Size(399, 561);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(399, 499);
+            this.MinimumSize = new System.Drawing.Size(399, 561);
             this.Name = "frmAdsSettings";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -417,5 +449,7 @@
         public DevComponents.DotNetBar.ButtonX btnFinish;
         public DevComponents.DotNetBar.ButtonX btnCancel;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog3;
+        public System.Windows.Forms.TextBox txtDelete;
+        public System.Windows.Forms.Label label3;
     }
 }

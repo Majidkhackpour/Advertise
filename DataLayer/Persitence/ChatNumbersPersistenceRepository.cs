@@ -36,5 +36,23 @@ namespace DataLayer.Persitence
                 return null;
             }
         }
+
+        public ChatNumbers Get(string number)
+        {
+            try
+            {
+                using (var context = new dbContext())
+                {
+                    var list = context.ChatNumbers.AsNoTracking()
+                        .FirstOrDefault(q => q.Number == number);
+                        return list;
+                }
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+                return null;
+            }
+        }
     }
 }

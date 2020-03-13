@@ -1,4 +1,5 @@
-﻿using DataLayer.Enums;
+﻿using System;
+using DataLayer.Enums;
 
 namespace DataLayer.Interface.Entities
 {
@@ -6,5 +7,7 @@ namespace DataLayer.Interface.Entities
     {
         string Number { get; set; }
         AdvertiseType Type { get; set; }
+        DateTime DateM { get; set; }
+        bool isSendSms { get; set; }
     }
 }

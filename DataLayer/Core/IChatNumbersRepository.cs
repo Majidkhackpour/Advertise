@@ -7,5 +7,6 @@ namespace DataLayer.Core
     public interface IChatNumbersRepository : IRepository<ChatNumbers>
     {
         List<ChatNumbers> GetAll(AdvertiseType type);
+        ChatNumbers Get(string number);
     }
 }

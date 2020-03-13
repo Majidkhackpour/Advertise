@@ -21,12 +21,15 @@ namespace Ads.Forms.Mains
 {
     public partial class frmMain : Form
     {
+        private SettingBussines cls;
         public frmMain()
         {
             InitializeComponent();
             expandablePanel1.Expanded = false;
             Utility.SubmitEvent -= UtilityOnSubmitEvent;
             Utility.SubmitEvent += UtilityOnSubmitEvent;
+            var a = SettingBussines.GetAll();
+            cls = a.Count > 0 ? a[0] : new SettingBussines();
         }
 
         private void LoadNewForm(Form frm)
@@ -165,7 +168,8 @@ namespace Ads.Forms.Mains
         {
             try
             {
-                if (DateConvertor.M2SH(DateTime.Now) == "1398/12/23") Application.Exit();
+                var expDate = DateConvertor.Sh2M("1399/01/01");
+                if (DateTime.Now >= expDate) Application.Exit();
                 PictureManager();
                 var th = new Thread(new ThreadStart(async () => await GetNaqz()));
                 th.Start();
@@ -178,10 +182,35 @@ namespace Ads.Forms.Mains
                 SetBackUpLables();
                 var ts = new Thread(new ThreadStart(async () => await GetProxy()));
                 ts.Start();
+                await GetDelete();
             }
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async Task GetDelete()
+        {
+            try
+            {
+                var list = await AdvertiseLogBussines.GetAllAsync();
+                var day = DateTime.Now.AddDays(-cls.DayCountForDelete);
+                list = list.Where(q =>
+                        q.DateM <= day && q.StatusCode != StatusCode.Deleted && q.StatusCode != StatusCode.Expired)
+                    .ToList();
+                if (list.Count <= 0) return;
+                if (FarsiMessegeBox.Show(
+                        $"تعداد {list.Count} آگهی وجود دارد که زمان حذف آنها فرارسیده است. آیا مایلید حذف کنید؟",
+                        "حذف آگهی ها از سایت", FMessegeBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    var divar = await DivarAdv.GetInstance();
+                    await divar.DeleteAllAdvFromDivar(list.OrderBy(q => q.DateM).ToList());
+                }
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
 
@@ -619,6 +648,19 @@ namespace Ads.Forms.Mains
             try
             {
                 LoadNewForm(new frmLineNumbers());
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private void btnSendSMS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmSendSMS();
+                frm.ShowDialog();
             }
             catch (Exception exception)
             {

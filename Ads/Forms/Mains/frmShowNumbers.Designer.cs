@@ -36,14 +36,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowNumbers));
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.LogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +93,6 @@
             this.DGrid.Location = new System.Drawing.Point(0, 0);
             this.DGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DGrid.Name = "DGrid";
-            this.DGrid.ReadOnly = true;
             this.DGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -117,6 +116,10 @@
             this.DGrid.TabIndex = 55697;
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             // 
+            // LogBindingSource
+            // 
+            this.LogBindingSource.DataSource = typeof(BussinesLayer.ChatNumberBussines);
+            // 
             // Radif
             // 
             this.Radif.HeaderText = "ردیف";
@@ -124,19 +127,11 @@
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
             // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "TypeName";
-            this.TypeName.HeaderText = "مرجع";
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            // 
             // guidDataGridViewTextBoxColumn
             // 
             this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
             this.guidDataGridViewTextBoxColumn.HeaderText = "Guid";
             this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
-            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
             this.guidDataGridViewTextBoxColumn.Visible = false;
             // 
             // dateSabtDataGridViewTextBoxColumn
@@ -151,7 +146,6 @@
             this.statusDataGridViewCheckBoxColumn.DataPropertyName = "Status";
             this.statusDataGridViewCheckBoxColumn.HeaderText = "Status";
             this.statusDataGridViewCheckBoxColumn.Name = "statusDataGridViewCheckBoxColumn";
-            this.statusDataGridViewCheckBoxColumn.ReadOnly = true;
             this.statusDataGridViewCheckBoxColumn.Visible = false;
             // 
             // numberDataGridViewTextBoxColumn
@@ -160,19 +154,20 @@
             this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
             this.numberDataGridViewTextBoxColumn.HeaderText = "شماره";
             this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // typeDataGridViewTextBoxColumn
             // 
             this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
             this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
             this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
             this.typeDataGridViewTextBoxColumn.Visible = false;
             // 
-            // LogBindingSource
+            // TypeName
             // 
-            this.LogBindingSource.DataSource = typeof(BussinesLayer.ChatNumberBussines);
+            this.TypeName.DataPropertyName = "TypeName";
+            this.TypeName.HeaderText = "مرجع";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
             // 
             // frmShowNumbers
             // 

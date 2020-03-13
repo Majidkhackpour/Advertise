@@ -1056,7 +1056,9 @@ namespace Ads.Classes
                     var txt = elo?.Text.FixString();
 
                     //اگر شماره قبلا چت شده بود چت نکن
-                    var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Sheypoor);
+                    var day = DateTime.Now.AddDays(-cls.DayCountForDelete);
+                    var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Sheypoor).Where(q => q.DateM <= day)
+                        .ToList();
                     var n = 0;
                     foreach (var item in allNumbers)
                     {
@@ -1129,7 +1131,8 @@ namespace Ads.Classes
                         Number = txt.FixString(),
                         DateSabt = DateConvertor.M2SH(DateTime.Now),
                         Status = true,
-                        Type = AdvertiseType.Sheypoor
+                        Type = AdvertiseType.Sheypoor,
+                        DateM = DateTime.Now
                     };
                     await chatNumbers.SaveAsync();
                     ins++;

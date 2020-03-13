@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace DataLayer.Interface.Entities
 {
@@ -13,5 +12,6 @@ namespace DataLayer.Interface.Entities
         string Address { get; set; }
         Guid? PanelGuid { get; set; }
         Guid? LineNumberGuid { get; set; }
+        int DayCountForDelete { get; set; }
     }
 }

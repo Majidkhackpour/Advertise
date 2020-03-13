@@ -12,8 +12,6 @@ using BussinesLayer;
 using DataLayer;
 using DataLayer.Enums;
 using ErrorHandler;
-using FMessegeBox;
-using MihaZupan;
 using OpenQA.Selenium;
 using Telegram.Bot;
 using Cookie = OpenQA.Selenium.Cookie;
@@ -632,8 +630,8 @@ namespace Ads.Classes
                 var AllContent = await AdvContentBussines.GetAllAsync(AdvertiseList[nextAdvIndex].Guid);
                 //کانتنت آگهی دریافت می شود
 
-                    var nextContentIndex = new Random(DateTime.Now.Millisecond).Next(AllContent.Count);
-                    newAdvertiseLogBusiness.Content = AllContent[nextContentIndex].Content;
+                var nextContentIndex = new Random(DateTime.Now.Millisecond).Next(AllContent.Count);
+                newAdvertiseLogBusiness.Content = AllContent[nextContentIndex].Content;
 
                 if (string.IsNullOrEmpty(newAdvertiseLogBusiness.Content) || newAdvertiseLogBusiness.Content == "---")
                 {
@@ -865,7 +863,7 @@ namespace Ads.Classes
                         if (tryCount >= 3) continue;
                         try
                         {
-                            _driver.Navigate().GoToUrl((string) adv.URL);
+                            _driver.Navigate().GoToUrl((string)adv.URL);
                             await Utility.Wait();
                             var element = _driver.FindElement(By.ClassName("manage-header__status"));
                             if (element == null) continue;
@@ -913,25 +911,19 @@ namespace Ads.Classes
             }
 
         }
-        public async Task<bool> UpdateAdvStatus(AdvertiseLogBussines adv)
+        private async Task<bool> UpdateAdvStatus(AdvertiseLogBussines adv, StatusCode status)
         {
-            return true;
-            //try
-            //{
-            //    _driver = Utility.RefreshDriver(_driver);
-            //    if (!adv.URL.Contains("manage")) return false;
-            //    if (_driver.Url != adv.URL)
-            //        _driver.Navigate().GoToUrl(adv.URL);
-            //    await Utility.Wait();
-            //    adv.AdvType = AdvertiseType.Divar;
-            //    adv.StatusCode = (short)GetAdvStatusCodeByStatus(adv.AdvStatus);
-            //    await adv.SaveAsync();
-            //    return true;
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            try
+            {
+                adv.AdvType = AdvertiseType.Divar;
+                adv.StatusCode = status;
+                await adv.SaveAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private StatusCode GetAdvStatusCodeByStatus(string advStatus)
@@ -954,54 +946,54 @@ namespace Ads.Classes
 
         public async Task UpdateAdvVisitCount()
         {
-            if (SemaphoreSlim.CurrentCount == 0)
-            {
-                DialogResult result;
-                result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                    TokenSource?.Cancel();
-                else return;
-            }
+            //if (SemaphoreSlim.CurrentCount == 0)
+            //{
+            //    DialogResult result;
+            //    result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Question);
+            //    if (result == DialogResult.Yes)
+            //        TokenSource?.Cancel();
+            //    else return;
+            //}
 
-            await SemaphoreSlim.WaitAsync();
-            TokenSource = new CancellationTokenSource();
+            //await SemaphoreSlim.WaitAsync();
+            //TokenSource = new CancellationTokenSource();
 
-            try
-            {
-                var allAdvertiseLog = await
-                    AdvertiseLogBussines.GetAllAsync();
-                allAdvertiseLog = allAdvertiseLog.Where(p => p.StatusCode == StatusCode.Published).ToList();
-                if (allAdvertiseLog.Count > 0)
-                {
-                    _driver = Utility.RefreshDriver(_driver);
-                    foreach (var adv in allAdvertiseLog)
-                    {
-                        if (TokenSource.IsCancellationRequested) break;
-                        if (adv.URL.Contains("manage"))
-                        {
-                            _driver.Navigate().GoToUrl(adv.URL);
-                            await Utility.Wait();
-                            //post-stats__summary = بازدید کلی: ۱۸
-                            //post-stats__bar
-                            var visitElement = _driver.FindElement(By.ClassName("post-stats__summary"));
-                            if (visitElement.Text.Length <= 11) continue;
-                            int.TryParse(visitElement.Text.Substring(11).Trim(), out var cnt);
-                            adv.VisitCount = cnt;
-                            await adv.SaveAsync();
-                            await UpdateAdvStatus(adv);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-            }
-            finally
-            {
-                SemaphoreSlim.Release();
-            }
+            //try
+            //{
+            //    var allAdvertiseLog = await
+            //        AdvertiseLogBussines.GetAllAsync();
+            //    allAdvertiseLog = allAdvertiseLog.Where(p => p.StatusCode == StatusCode.Published).ToList();
+            //    if (allAdvertiseLog.Count > 0)
+            //    {
+            //        _driver = Utility.RefreshDriver(_driver);
+            //        foreach (var adv in allAdvertiseLog)
+            //        {
+            //            if (TokenSource.IsCancellationRequested) break;
+            //            if (adv.URL.Contains("manage"))
+            //            {
+            //                _driver.Navigate().GoToUrl(adv.URL);
+            //                await Utility.Wait();
+            //                //post-stats__summary = بازدید کلی: ۱۸
+            //                //post-stats__bar
+            //                var visitElement = _driver.FindElement(By.ClassName("post-stats__summary"));
+            //                if (visitElement.Text.Length <= 11) continue;
+            //                int.TryParse(visitElement.Text.Substring(11).Trim(), out var cnt);
+            //                adv.VisitCount = cnt;
+            //                await adv.SaveAsync();
+            //                await UpdateAdvStatus(adv);
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            //}
+            //finally
+            //{
+            //    SemaphoreSlim.Release();
+            //}
         }
         public async Task<string> GetScreenShot()
         {
@@ -1057,14 +1049,12 @@ namespace Ads.Classes
         /// </summary>
         /// <param name="adv"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAdvFromDivar(AdvertiseLogBussines adv)
+        private async Task<bool> DeleteAdvFromDivar(AdvertiseLogBussines adv)
         {
             try
             {
                 if (!adv.URL.Contains("manage")) return false;
-                // if (!Login(adv.SimCardNumber)) return false;
-                if (!await DeleteAdvFromDivar(adv.URL)) return false;
-                return await UpdateAdvStatus(adv);
+                return await DeleteAdvFromDivar_(adv);
             }
             catch
             {
@@ -1075,33 +1065,56 @@ namespace Ads.Classes
         /// فقط از دیوار حذف می شود بروزرسانی دیتابیس انجام نمی شود
         /// </summary>
         /// <param name="url"></param>
-        public async Task<bool> DeleteAdvFromDivar(string url)
+        private async Task<bool> DeleteAdvFromDivar_(AdvertiseLogBussines adv)
         {
             try
             {
-                if (!url.Contains("manage")) return false;
+                if (!adv.URL.Contains("manage")) return false;
                 _driver = Utility.RefreshDriver(_driver);
-                if (_driver.Url != url) _driver.Navigate().GoToUrl(url);
+                if (_driver.Url != adv.URL) _driver.Navigate().GoToUrl(adv.URL);
+                await Utility.Wait(2);
+                var notFound = _driver.FindElements(By.ClassName("title")).Any(q => q.Text == "این راه به جایی نمیرسد!");
+                if (notFound)
+                {
+                    await UpdateAdvStatus(adv, StatusCode.Expired);
+                    return true;
+                }
+
                 await Utility.Wait();
+                var but = _driver.FindElements(By.ClassName("trash")).Any();
+                if (!but)
+                {
+                    await UpdateAdvStatus(adv, StatusCode.Expired);
+                    return true;
+                }
+                await Utility.Wait(2);
                 //کلیک روی دکمه حذف
                 _driver.FindElement(By.ClassName("trash")).Click();
                 await Utility.Wait();
                 _driver.SwitchTo().ActiveElement();
                 //انتخاب رادیو باتن دومی-از فروش منصرف شدم
+                await Utility.Wait(2);
                 var options = _driver.FindElements(By.ClassName("manage-delete__option"));
                 if (options.Count <= 2) return false;
-                options[1].Click();
+                options[5].Click();
                 await Utility.Wait();
                 //کلیک روی دکمه تائید 
-                _driver.FindElement(By.ClassName("manage-delete__actions")).FindElement(By.ClassName("button"))?.Click();
+                _driver.FindElement(By.ClassName("manage-delete__actions")).FindElement(By.ClassName("button"))
+                    ?.Click();
                 await Utility.Wait();
-                if (_driver.Url != url) _driver.Navigate().GoToUrl(url);
+                if (_driver.Url != adv.URL) _driver.Navigate().GoToUrl(adv.URL);
                 _driver.Navigate().Refresh();
                 await Utility.Wait();
+                await UpdateAdvStatus(adv, StatusCode.Deleted);
                 return true;
             }
-            catch
+            catch (WebDriverException re)
             {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return false;
             }
         }
@@ -1110,32 +1123,12 @@ namespace Ads.Classes
         /// </summary>
         /// <param name="fromNDayBefore">تعیین روزی که آگهی های ماقبل آن باید حذف شوند</param>
         /// <param name="statusCode">وضعیت آگهی مورد نظر جهت حذف </param>
-        public async Task DeleteAllAdvFromDivar(int fromNDayBefore, StatusCode statusCode)
+        public async Task DeleteAllAdvFromDivar(List<AdvertiseLogBussines> advList)
         {
-            if (SemaphoreSlim.CurrentCount == 0)
-            {
-                DialogResult result;
-                result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                    TokenSource?.Cancel();
-                else return;
-            }
-
-            await SemaphoreSlim.WaitAsync();
-            TokenSource = new CancellationTokenSource();
-
             try
             {
-                var date = DateTime.Now.AddDays(-1 * fromNDayBefore);
-                var advList = await
-                    AdvertiseLogBussines.GetAllAsync();
-                advList = advList.Where(p => p.DateM < date && p.StatusCode == statusCode).ToList();
                 foreach (var adv in advList)
-                {
-                    if (TokenSource.IsCancellationRequested) break;
                     await DeleteAdvFromDivar(adv);
-                }
             }
             catch (Exception ex)
             {
@@ -1255,16 +1248,6 @@ namespace Ads.Classes
         {
             try
             {
-                //if (SemaphoreSlim.CurrentCount == 0)
-                //{
-                //    var result = MessageBox.Show("برنامه در حال اجرای فرایندی دیگر می باشد و در صورت تائید فرایند قبلی متوقف خواهد شد." + "\r\nآیا فرایند قبلی متوقف شود؟", "هشدار", MessageBoxButtons.YesNo,
-                //        MessageBoxIcon.Question);
-                //    if (result == DialogResult.Yes)
-                //        TokenSource?.Cancel();
-                //    else return;
-                //}
-
-
                 //توکن چت نداشت برگرد
                 var log2 = AdvTokensBussines.GetToken(sim.Number, AdvertiseType.DivarChat);
                 if (log2 != null && string.IsNullOrEmpty(log2.Token)) return;
@@ -1359,7 +1342,6 @@ namespace Ads.Classes
                         await Utility.Wait(2);
                         try
                         {
-
                             //ارسال متن اول
                             var thread = new Thread(() => Clipboard.SetText(msg[rnd]));
                             thread.SetApartmentState(ApartmentState.STA);
@@ -1383,7 +1365,6 @@ namespace Ads.Classes
 
 
 
-                            //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg[rnd] + '\n');
                             await Utility.Wait(2);
 
                             if (sim.isSendSecondChat)
@@ -1430,7 +1411,8 @@ namespace Ads.Classes
                                 Number = txt.FixString(),
                                 DateSabt = DateConvertor.M2SH(DateTime.Now),
                                 Status = true,
-                                Type = AdvertiseType.Divar
+                                Type = AdvertiseType.Divar,
+                                DateM = DateTime.Now
                             };
                             await chatNumbers.SaveAsync();
                             j++;
@@ -1466,7 +1448,9 @@ namespace Ads.Classes
                             continue;
                         }
                         //اگر شماره قبلا چت شده بود چت نکن
-                        var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Divar);
+                        var day = DateTime.Now.AddDays(-clsSetting.DayCountForDelete);
+                        var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Divar).Where(q => q.DateM <= day)
+                            .ToList();
                         if (allNumbers == null)
                         {
                             _driver.Navigate().Back();
@@ -1573,7 +1557,8 @@ namespace Ads.Classes
                                 Number = txt.FixString(),
                                 DateSabt = DateConvertor.M2SH(DateTime.Now),
                                 Status = true,
-                                Type = AdvertiseType.Divar
+                                Type = AdvertiseType.Divar,
+                                DateM = DateTime.Now
                             };
                             await chatNumbers.SaveAsync();
                             j++;

@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
 using ErrorHandler;
-using FMessegeBox;
 
 namespace Ads.Forms.Settings
 {
@@ -27,6 +26,7 @@ namespace Ads.Forms.Settings
                 txtCountPic.Text = cls.MaxImgCount.ToString();
                 txtAdvAddress.Text = cls.Address;
                 txtUpdateDayCount.Text = cls.DayCountForUpdateState.ToString();
+                txtDelete.Text = (cls?.DayCountForDelete ?? 0).ToString();
             }
             catch (Exception e)
             {
@@ -172,6 +172,7 @@ namespace Ads.Forms.Settings
                 cls.MaxImgCount = int.Parse(txtCountPic.Text);
                 cls.Address = txtAdvAddress.Text;
                 cls.DayCountForUpdateState = int.Parse(txtUpdateDayCount.Text);
+                cls.DayCountForDelete = txtDelete.Text.ParseToInt();
                 await cls.SaveAsync();
                 WebErrorLog.ErrorInstence.StartErrorLog("اطلاعات ذخیره شد", true);
                 SetData();
@@ -209,6 +210,21 @@ namespace Ads.Forms.Settings
         private void txtUpdateDayCount_KeyPress(object sender, KeyPressEventArgs e)
         {
             txtSetter.KeyPress_Whitout_Dot(txtUpdateDayCount, e);
+        }
+
+        private void txtDelete_Enter(object sender, EventArgs e)
+        {
+            txtSetter.Focus(txt2: txtDelete);
+        }
+
+        private void txtDelete_Leave(object sender, EventArgs e)
+        {
+            txtSetter.Follow(txt2: txtDelete);
+        }
+
+        private void txtDelete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtSetter.KeyPress_Whitout_Dot(txtDelete, e);
         }
     }
 }
