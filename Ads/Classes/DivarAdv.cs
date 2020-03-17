@@ -1288,16 +1288,23 @@ namespace Ads.Classes
                 {
                     ele = _driver.FindElements(By.ClassName("col-xs-12")).Any();
                 }
-
+                await Utility.Wait(5);
                 var j = 0;
                 //اسکرول تا تعداد مشخص
                 var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                var total = counter.Count;
+                var scroll = 0;
                 while (counter.Count <= count)
                 {
+                    if (scroll >= 10) break;
                     ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
                     await Utility.Wait();
                     counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                    if (total == counter.Count) break;
+                    scroll++;
                 }
+
+                if (counter.Count <= count) count = counter.Count - 1;
 
                 for (var i = 0; j < count; i++)
                 {
@@ -1331,6 +1338,33 @@ namespace Ads.Classes
                         if (dc > 1)
                             _driver.SwitchTo().Window(_driver.WindowHandles[1]);
                         await Utility.Wait(2);
+
+                        var notAllowed = _driver.FindElements(By.TagName("p"))
+                            .Any(q => q.Text == "در حال حاضر امکان ارسال این نوع پیام وجود ندارد.");
+                        if (notAllowed)
+                        {
+                            _driver.Close();
+                            _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            _driver.Navigate().Back();
+                            return;
+                        }
+
+                        var chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                        while (!chatBox)
+                        {
+                            await Utility.Wait(2);
+                            chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                        }
+
+                        var notFound = _driver.FindElements(By.ClassName("content")).Any(q => q.Text == "یافت نشد!");
+                        if (notFound)
+                        {
+                            _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "بستن")?.Click();
+                            _driver.Close();
+                            _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            _driver.Navigate().Back();
+                            continue;
+                        }
                         var logEl = _driver.FindElements(By.ClassName("auth__input__view")).Any();
                         if (logEl)
                         {
@@ -1412,7 +1446,9 @@ namespace Ads.Classes
                                 DateSabt = DateConvertor.M2SH(DateTime.Now),
                                 Status = true,
                                 Type = AdvertiseType.Divar,
-                                DateM = DateTime.Now
+                                DateM = DateTime.Now,
+                                City = city,
+                                Cat = cat1 + "_" + cat2 + "_" + cat3
                             };
                             await chatNumbers.SaveAsync();
                             j++;
@@ -1479,6 +1515,33 @@ namespace Ads.Classes
                         if (dc > 1)
                             _driver.SwitchTo().Window(_driver.WindowHandles[1]);
                         await Utility.Wait(2);
+
+                        var notAllowed = _driver.FindElements(By.TagName("p"))
+                            .Any(q => q.Text == "در حال حاضر امکان ارسال این نوع پیام وجود ندارد.");
+                        if (notAllowed)
+                        {
+                            _driver.Close();
+                            _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            _driver.Navigate().Back();
+                            return;
+                        }
+
+                        var chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                        while (!chatBox)
+                        {
+                            await Utility.Wait(2);
+                            chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                        }
+
+                        var notFound = _driver.FindElements(By.ClassName("content")).Any(q => q.Text == "یافت نشد!");
+                        if (notFound)
+                        {
+                            _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "بستن")?.Click();
+                            _driver.Close();
+                            _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            _driver.Navigate().Back();
+                            continue;
+                        }
                         var logEl = _driver.FindElements(By.ClassName("auth__input__view")).Any();
                         if (logEl)
                         {
@@ -1558,7 +1621,9 @@ namespace Ads.Classes
                                 DateSabt = DateConvertor.M2SH(DateTime.Now),
                                 Status = true,
                                 Type = AdvertiseType.Divar,
-                                DateM = DateTime.Now
+                                DateM = DateTime.Now,
+                                City = city,
+                                Cat = cat1 + "_" + cat2 + "_" + cat3
                             };
                             await chatNumbers.SaveAsync();
                             j++;
@@ -1687,7 +1752,7 @@ namespace Ads.Classes
             }
         }
 
-        public async Task GetPost(long number, string cat1, string cat2, string cat3, string city, int count, string chatId, string desc)
+        public async Task GetPost(long number, string cat1, string cat2, string cat3, string city, int count, string chatId, string desc, string smsReplace)
         {
             try
             {
@@ -1814,7 +1879,9 @@ namespace Ads.Classes
 
 
                         //ارسال به تلگرام
-                        var the = new Thread(async () => await BotInitial(chatId, passage, finnalPath));
+                        smsReplace = smsReplace.Replace("_", title);
+                        var the = new Thread(async () =>
+                            await BotInitial(chatId, passage, finnalPath, smsReplace, num));
                         the.Start(); _driver.Navigate().Back();
                         await Utility.Wait(1);
                     }
@@ -1913,14 +1980,15 @@ namespace Ads.Classes
 
 
 
-        private async Task BotInitial(string chatid, string caption, string fileName)
+        private async Task BotInitial(string chatid, string caption, string fileName, string smsText, string number)
         {
             try
             {
+
                 var tel = await TelegramBot.GetInstance();
                 var ts = new Thread(new ThreadStart(async () =>
                     await tel.StartSending(TelegramSendType.SendPost, chatId: chatid, fileName: fileName,
-                        caption: caption)));
+                        caption: caption, smsReciver: number, smsText: smsText)));
                 ts.Start();
             }
             catch (Exception e)

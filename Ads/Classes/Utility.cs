@@ -487,6 +487,7 @@ namespace Ads.Classes
                 list = list.OrderBy(q => q.NextUse).Where(q => q.Status).ToList();
                 foreach (var simCard in list)
                 {
+                    //var simCard = await SimcardBussines.GetAsync(9355571826);
                     while (!await Utility.PingHost("www.google.com"))
                     {
                         //خطا در برقراری اتصال به اینترنت
@@ -506,7 +507,8 @@ namespace Ads.Classes
                         var chatID = simCard.ChannelForSendPost ?? "@Test2_2211201";
                         var divar = await DivarAdv.GetInstance();
                         await divar.GetPost(simCard.Number, cat1, cat2, cat3
-                            , city, simCard.PostCount ?? 5, chatID, simCard.DescriptionForPost ?? "");
+                            , city, simCard.PostCount ?? 5, chatID, simCard.DescriptionForPost ?? "",
+                            simCard.SMS_Description);
                     }
 
                     if (simCard.IsSendAdv)

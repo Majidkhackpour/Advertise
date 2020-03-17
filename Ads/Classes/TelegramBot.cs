@@ -29,7 +29,7 @@ namespace Ads.Classes
         {
             return _me ?? (_me = new TelegramBot());
         }
-        public async Task StartSending(TelegramSendType type, string token = "", string chatId = "", string fileName = "", string caption = "")
+        public async Task StartSending(TelegramSendType type, string token = "", string chatId = "", string fileName = "", string caption = "",string smsReciver="", string smsText="")
         {
             var proxy = new HttpToSocks5Proxy("so2.10g2.cf", 8085, "p7", "341") { ResolveHostnamesLocally = false };
             var a = TelegramBotSettingBussines.GetAll();
@@ -45,7 +45,8 @@ namespace Ads.Classes
             else
             {
                 var ts = new Thread(new ThreadStart(async () =>
-                    await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10)));
+                    await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10,
+                        smsReciver: smsReciver, smsText: smsText)));
                 ts.Start();
             }
         }
@@ -94,19 +95,20 @@ namespace Ads.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task Send_(TelegramBotClient bot, string chatId, string passage, string picPath, short tryCount)
+        private async Task Send_(TelegramBotClient bot, string chatId, string passage, string picPath, short tryCount,string smsReciver,string smsText)
         {
             try
             {
                 var picFile = new FileStream(picPath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 await bot.SendPhotoAsync(chatId, picFile, passage);
+                await SMS.SendSMS(smsReciver, smsText);
             }
             catch (BadRequestException ex)
             {
                 if (tryCount > 0)
                 {
                     await Task.Delay(1000);
-                    await Send_(bot, chatId, passage, picPath, --tryCount);
+                    await Send_(bot, chatId, passage, picPath, --tryCount, smsReciver, smsText);
                 }
 
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -116,7 +118,7 @@ namespace Ads.Classes
                 if (tryCount > 0)
                 {
                     await Task.Delay(1000);
-                    await Send_(bot, chatId, passage, picPath, --tryCount);
+                    await Send_(bot, chatId, passage, picPath, --tryCount, smsReciver, smsText);
                 }
 
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
@@ -126,7 +128,7 @@ namespace Ads.Classes
                 if (tryCount > 0)
                 {
                     await Task.Delay(1000);
-                    await Send_(bot, chatId, passage, picPath, --tryCount);
+                    await Send_(bot, chatId, passage, picPath, --tryCount, smsReciver, smsText);
                 }
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }

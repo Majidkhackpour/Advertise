@@ -473,6 +473,7 @@
             this.btnFinish.Text = "ارسال";
             this.btnFinish.TextColor = System.Drawing.Color.Silver;
             this.btnFinish.ThemeAware = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnAddGrid
             // 
@@ -544,6 +545,7 @@
             this.txtNumber.Size = new System.Drawing.Size(180, 27);
             this.txtNumber.TabIndex = 55708;
             this.txtNumber.Enter += new System.EventHandler(this.txtNumber_Enter);
+            this.txtNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumber_KeyDown);
             this.txtNumber.Leave += new System.EventHandler(this.txtNumber_Leave);
             // 
             // btnAddDasti

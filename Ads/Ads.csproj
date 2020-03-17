@@ -242,6 +242,7 @@
     <Compile Include="Classes\ImageManager.cs" />
     <Compile Include="Classes\lblSetter.cs" />
     <Compile Include="Classes\SheypoorAdv.cs" />
+    <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\TelegramBot.cs" />
     <Compile Include="Classes\txtSetter.cs" />
     <Compile Include="Classes\Utility.cs" />

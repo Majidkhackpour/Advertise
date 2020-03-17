@@ -194,6 +194,7 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                if (cls.DayCountForDelete == 0) return;
                 var list = await AdvertiseLogBussines.GetAllAsync();
                 var day = DateTime.Now.AddDays(-cls.DayCountForDelete);
                 list = list.Where(q =>

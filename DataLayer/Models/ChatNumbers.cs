@@ -17,5 +17,9 @@ namespace DataLayer.Models
         public AdvertiseType Type { get; set; }
         public DateTime DateM { get; set; }
         public bool isSendSms { get; set; }
+        [MaxLength(50)]
+        public string City { get; set; }
+        [MaxLength(200)]
+        public string Cat { get; set; }
     }
 }

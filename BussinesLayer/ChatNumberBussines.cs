@@ -19,6 +19,8 @@ namespace BussinesLayer
         public AdvertiseType Type { get; set; }
         public DateTime DateM { get; set; } = DateTime.Now;
         public bool isSendSms { get; set; } = false;
+        public string City { get; set; }
+        public string Cat { get; set; }
         public bool isChecked { get; set; }
         public string TypeName => Type.GetDisplay();
         public static List<ChatNumberBussines> GetAll(AdvertiseType type)
@@ -68,7 +70,7 @@ namespace BussinesLayer
             }
         }
 
-        private static ChatNumberBussines Get(string number)
+        public static ChatNumberBussines Get(string number)
         {
             using (var _context = new UnitOfWorkLid())
             {

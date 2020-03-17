@@ -1132,7 +1132,9 @@ namespace Ads.Classes
                         DateSabt = DateConvertor.M2SH(DateTime.Now),
                         Status = true,
                         Type = AdvertiseType.Sheypoor,
-                        DateM = DateTime.Now
+                        DateM = DateTime.Now,
+                        City = city,
+                        Cat = cat1 + "_" + cat2 + "_" + cat3
                     };
                     await chatNumbers.SaveAsync();
                     ins++;

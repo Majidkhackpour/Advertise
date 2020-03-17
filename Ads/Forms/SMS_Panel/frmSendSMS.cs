@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
+using DataLayer.Enums;
 using ErrorHandler;
 
 namespace Ads.Forms.SMS_Panel
@@ -153,7 +156,7 @@ namespace Ads.Forms.SMS_Panel
                 if (dgCity.RowCount <= 0) return;
                 for (var i = 0; i < dgCity.RowCount; i++)
                 {
-                    if (!(bool) dgCity[dg_CityChecked.Index, i].Value) continue;
+                    if (!(bool)dgCity[dg_CityChecked.Index, i].Value) continue;
                     var number = dgCity[dgNumbers.Index, i].Value.ToString().ParseToLong();
                     if (number != 0)
                         lbxNumbers.Items.Add(number);
@@ -210,7 +213,8 @@ namespace Ads.Forms.SMS_Panel
             {
                 var ofd = new OpenFileDialog
                 {
-                    Filter = @"Text Files (*.txt)|*.txt", Title = @"فایل شماره های خود را انتخاب نمایید"
+                    Filter = @"Text Files (*.txt)|*.txt",
+                    Title = @"فایل شماره های خود را انتخاب نمایید"
                 };
                 if (ofd.ShowDialog() != DialogResult.OK) return;
                 var list = File.ReadAllLines(ofd.FileName).ToList();
@@ -226,6 +230,64 @@ namespace Ads.Forms.SMS_Panel
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
+        }
+
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var th = new Thread(async () => await Send());
+                th.Start();
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async Task Send()
+        {
+            try
+            {
+                PanelBussines panel = null;
+                if (InvokeRequired)
+                    Invoke(new MethodInvoker(async () => panel = await PanelBussines.GetAsync((Guid)cmbPanel.SelectedValue)));
+                else panel = await PanelBussines.GetAsync((Guid)cmbPanel.SelectedValue);
+                if (panel == null) return;
+                var list = new List<string>();
+                if (InvokeRequired) Invoke(new MethodInvoker(() =>
+                {
+                    foreach (var item in lbxNumbers.Items)
+                        list.Add(item.ToString());
+                }));
+                else
+                {
+                    foreach (var item in lbxNumbers.Items)
+                        list.Add(item.ToString());
+                }
+
+                var api = panel.API;
+                var action = SMSAction.Send.Value;
+                var userName = panel.UserName;
+                var passWord = panel.Password;
+                var type = SMSType.SMS;
+                long from = 0;
+                if (InvokeRequired) Invoke(new MethodInvoker(() => from = cmbLineNumber.Text.ParseToLong()));
+                else from = cmbLineNumber.Text.ParseToLong();
+                string text = null;
+                if (InvokeRequired) Invoke(new MethodInvoker(() => text = txtMessage.Text));
+                else text = txtMessage.Text;
+                await SMS.SendSMSList(list, api, action, userName, passWord, (int)type, from, text);
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+            }
+        }
+
+        private void txtNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) btnAddDasti.PerformClick();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace DataLayer.Enums
     }
     public enum SMSType
     {
-        [PersianNameAttribute.PersianName("پیام کوتاه")] SMS = 0,
-        [PersianNameAttribute.PersianName("پیام صوتی")] MMS = 1
+        [PersianNameAttribute.PersianName("پیام کوتاه")] SMS = 1,
+        [PersianNameAttribute.PersianName("پیام صوتی")] MMS = 2
     }
 }
