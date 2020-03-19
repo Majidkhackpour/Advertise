@@ -37,7 +37,7 @@ namespace BussinesLayer
             {
                 using (var _context = new UnitOfWorkLid())
                 {
-                    var num = Number.ParseToInt();
+                    var num = Number.ParseToLong();
                     if (num == 0) return;
                     var chn = Get(Number);
                     if (chn != null)

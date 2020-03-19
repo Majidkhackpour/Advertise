@@ -189,7 +189,7 @@ namespace Ads
         private async void btnDivarChatLogin_Click(object sender, EventArgs e)
         {
             var divar = await DivarAdv.GetInstance();
-            await divar.LoginChat(long.Parse(textBox1.Text));
+            await divar.LoginChat(long.Parse(textBox1.Text), false);
         }
 
         private async void btnSendDivarChat_Click(object sender, EventArgs e)

@@ -171,7 +171,7 @@ namespace Ads.Forms.Simcard
                 if (DGrid.CurrentRow == null) return;
                 var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
                 var divar = await DivarAdv.GetInstance();
-                await divar.LoginChat(number);
+                await divar.LoginChat(number, true);
                 await LoadData();
             }
             catch (Exception exception)
