@@ -136,9 +136,10 @@ namespace Ads.Forms.Settings
         {
             try
             {
-                var ofd = new OpenFileDialog();
-                ofd.Filter = "BackUp Files (*.bak)|*.bak";
-                ofd.Title = "فایل پشتیبان خود را انتخاب نمایید";
+                var ofd = new OpenFileDialog
+                {
+                    Filter = "BackUp Files (*.bak)|*.bak", Title = "فایل پشتیبان خود را انتخاب نمایید"
+                };
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     if (await Utility.RestoreDatabase("Ads", ofd.FileName))

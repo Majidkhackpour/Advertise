@@ -237,6 +237,7 @@ namespace Ads.Classes
                     //var driverOSer = ChromeDriverService.CreateDefaultService();
                     //driverOSer.HideCommandPromptWindow = true;
                     driver = new ChromeDriver();
+                    driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
                     driver?.Manage().Window.Maximize();
                 }
             }
@@ -246,6 +247,7 @@ namespace Ads.Classes
                 //var driverOSer = ChromeDriverService.CreateDefaultService();
                 //driverOSer.HideCommandPromptWindow = true;
                 driver = new ChromeDriver();
+                driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
                 driver?.Manage().Window.Maximize();
             }
             return driver;

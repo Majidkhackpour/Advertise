@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DataLayer;
 using DataLayer.Enums;
@@ -78,5 +79,23 @@ namespace BussinesLayer
                 return Mappings.Default.Map<ChatNumberBussines>(a);
             }
         }
+
+        public static List<ChatNumberBussines> GetAll(string cityGuid, short type, string search = "")
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.ChatNumbers.GetAll();
+                if (type == 0)
+                    a = a.Where(q => q.Type == AdvertiseType.Divar).ToList();
+                else if (type == 1)
+                    a = a.Where(q => q.Type == AdvertiseType.Sheypoor).ToList();
+                if (!string.IsNullOrEmpty(search))
+                    a = a.Where(q => q.Number.Contains(search) || (q.Cat != null && q.Cat.Contains(search))).ToList();
+                if (!cityGuid.Contains("[همه]") && !string.IsNullOrEmpty(cityGuid))
+                    a = a.Where(q => q.City == cityGuid).ToList();
+                return Mappings.Default.Map<List<ChatNumberBussines>>(a);
+            }
+        }
+
     }
 }

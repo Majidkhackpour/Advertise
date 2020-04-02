@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -143,14 +144,47 @@ namespace Ads.Classes
             try
             {
                 _driver = Utility.RefreshDriver(_driver);
-                if (!_driver.Url.Contains("divar.ir"))
-                    _driver.Navigate().GoToUrl("https://divar.ir");
+                // while (!_driver.Url.Contains("divar.ir"))
+                // {
+                try
+                {
+                    if (!_driver.Url.Contains("divar.ir"))
+                        _driver.Navigate().GoToUrl("https://divar.ir");
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        _driver.Navigate().GoToUrl("https://divar.ir");
+                    }
+                    catch (Exception e)
+                    {
+                    }
+
+                }
+
+                //                }
+
 
                 var simBusiness = AdvTokensBussines.GetToken(simCardNumber, AdvertiseType.Divar);
                 var tokenInDatabase = simBusiness?.Token ?? null;
                 //     if (string.IsNullOrEmpty(tokenInDatabase)) return false;
 
-                var listLinkItems = _driver.FindElements(By.TagName("a"));
+                ReadOnlyCollection<IWebElement> listLinkItems = null;
+                try
+                {
+                    listLinkItems = _driver.FindElements(By.TagName("a"));
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        listLinkItems = _driver.FindElements(By.TagName("a"));
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
                 var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
 
                 //اگر کاربر لاگین شده فعلی همان کاربر مورد نظر است نیازی به لاگین نیست 
@@ -202,7 +236,20 @@ namespace Ads.Classes
                 {
 
                     //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
-                    listLinkItems = _driver.FindElements(By.TagName("a"));
+                    try
+                    {
+                        listLinkItems = _driver.FindElements(By.TagName("a"));
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            listLinkItems = _driver.FindElements(By.TagName("a"));
+                        }
+                        catch (Exception e)
+                        {
+                        }
+                    }
                     if (listLinkItems.Count < 5) return false;
 
                     var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
@@ -276,7 +323,7 @@ namespace Ads.Classes
 
             }
         }
-        public async Task<bool> LoginChat(long simCardNumber,bool isFromSim)
+        public async Task<bool> LoginChat(long simCardNumber, bool isFromSim)
         {
             try
             {
@@ -322,8 +369,8 @@ namespace Ads.Classes
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
                         //کلیک روی دکمه ورود و ثبت نام
                         await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
+                        var currentWindow1 = _driver.CurrentWindowHandle;
+                        _driver.SwitchTo().Window(currentWindow1);
                         if (_driver.FindElements(By.TagName("input")).Count > 0)
                             _driver.FindElements(By.TagName("input")).FirstOrDefault()
                                 ?.SendKeys("0" + simCardNumber + "\n");
@@ -331,18 +378,16 @@ namespace Ads.Classes
 
 
                     await Utility.Wait();
-                    var code = _driver.FindElements(By.TagName("button")).Any(q => q.Text == "دریافت کد تایید");
-                    if (code)
-                    {
-                        _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                        //کلیک روی دکمه ورود و ثبت نام
-                        await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
-                        if (_driver.FindElements(By.TagName("input")).Count > 0)
-                            _driver.FindElements(By.TagName("input")).FirstOrDefault()
-                                ?.SendKeys("0" + simCardNumber + "\n");
-                    }
+
+                    _driver.Navigate().GoToUrl("https://chat.divar.ir/");
+                    //کلیک روی دکمه ورود و ثبت نام
+                    await Utility.Wait();
+                    var currentWindow = _driver.CurrentWindowHandle;
+                    _driver.SwitchTo().Window(currentWindow);
+                    if (_driver.FindElements(By.TagName("input")).Count > 0)
+                        _driver.FindElements(By.TagName("input")).FirstOrDefault()
+                            ?.SendKeys("0" + simCardNumber + "\n");
+
 
                     //انتظار برای لاگین شدن
                     var repeat = 0;
@@ -515,13 +560,13 @@ namespace Ads.Classes
                             await Utility.Wait(3);
                             try
                             {
-                                _driver.SwitchTo().Alert().Accept();
+                                //_driver.SwitchTo().Alert().Accept();
                                 await Utility.Wait(3);
                                 repeat++;
                             }
                             catch
                             {
-                                await Utility.Wait(10);
+                                await Utility.Wait(1);
                             }
                         }
                     }
@@ -1388,7 +1433,7 @@ namespace Ads.Classes
                 //ورود به دیوار
                 var log = await Login(sim.Number);
                 if (!log) return;
-                _driver.Navigate().GoToUrl("https://divar.ir/");
+                //_driver.Navigate().GoToUrl("https://divar.ir/");
                 await Utility.Wait();
                 //انتخاب شهر
                 _driver.FindElement(By.ClassName("city-selector")).Click();
@@ -1625,13 +1670,9 @@ namespace Ads.Classes
                         }
                         //اگر شماره قبلا چت شده بود چت نکن
                         var day = DateTime.Now.AddDays(-clsSetting.DayCountForDelete);
-                        var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Divar).Where(q => q.DateM <= day)
+                        var allNumbers = ChatNumberBussines.GetAll(AdvertiseType.Divar).Where(q => q.DateM >= day)
                             .ToList();
-                        if (allNumbers == null)
-                        {
-                            _driver.Navigate().Back();
-                            continue;
-                        }
+
                         var n = 0;
                         foreach (var item in allNumbers)
                         {
@@ -1646,9 +1687,10 @@ namespace Ads.Classes
                             continue;
                         }
                         //شروع چت
+                        await Utility.Wait(3);
                         _driver.FindElement(By.ClassName("post-actions__chat")).Click();
                         var qanoon = _driver.FindElements(By.TagName("button"))
-                            .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
+                             .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
                         if (qanoon.Count > 0)
                             qanoon.FirstOrDefault()?.Click();
                         var dc = _driver.WindowHandles.Count;

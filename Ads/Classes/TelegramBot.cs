@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,25 +30,45 @@ namespace Ads.Classes
         {
             return _me ?? (_me = new TelegramBot());
         }
-        public async Task StartSending(TelegramSendType type, string token = "", string chatId = "", string fileName = "", string caption = "",string smsReciver="", string smsText="")
+        public async Task StartSending(TelegramSendType type, string token = "", string chatId = "", string fileName = "", string caption = "", string smsReciver = "", string smsText = "")
         {
-            var proxy = new HttpToSocks5Proxy("so2.10g2.cf", 8085, "p7", "341") { ResolveHostnamesLocally = false };
-            var a = TelegramBotSettingBussines.GetAll();
-            var cls = a.Count > 0 ? a[0] : new TelegramBotSettingBussines();
-            if (string.IsNullOrEmpty(cls.Token) || string.IsNullOrEmpty(cls.ChanelForAds)) return;
-            token = cls.Token;
-            bot = new TelegramBotClient(token, proxy);
-            if (type == TelegramSendType.SendBackUp)
+            var allPrx = await ProxyBussines.GetAllAsync();
+            foreach (var item in allPrx)
             {
-                var ts = new Thread(new ThreadStart(async () => await Send_(bot, fileName, cls.ChanelForAds, 10)));
-                ts.Start();
-            }
-            else
-            {
-                var ts = new Thread(new ThreadStart(async () =>
-                    await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10,
-                        smsReciver: smsReciver, smsText: smsText)));
-                ts.Start();
+                try
+                {
+                    var socks5 = new HttpToSocks5Proxy(item.Server, item.Port, item.UserName, item.Password)
+                        {ResolveHostnamesLocally = false};
+                    var mtpropto = new WebProxy(Address: item.Server)
+                    {
+                        Credentials = new NetworkCredential(item.UserName, item.Password)
+                    };
+                    var a = TelegramBotSettingBussines.GetAll();
+                    var cls = a.Count > 0 ? a[0] : new TelegramBotSettingBussines();
+                    if (string.IsNullOrEmpty(cls.Token) || string.IsNullOrEmpty(cls.ChanelForAds)) return;
+                    token = cls.Token;
+                    bot = item.Type == ProxyType.Socks5
+                        ? new TelegramBotClient(token, socks5)
+                        : new TelegramBotClient(token, mtpropto);
+                    if (type == TelegramSendType.SendBackUp)
+                    {
+                        var ts = new Thread(new ThreadStart(async () => await Send_(bot, fileName, cls.ChanelForAds, 10)));
+                        ts.Start();
+                    }
+                    else
+                    {
+                        var ts = new Thread(new ThreadStart(async () =>
+                            await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10,
+                                smsReciver: smsReciver, smsText: smsText)));
+                        ts.Start();
+                    }
+
+                    break;
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
         private async Task Send_(TelegramBotClient bot, string fileName, string chatId, short tryCount)
@@ -95,7 +116,7 @@ namespace Ads.Classes
                 WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
-        private async Task Send_(TelegramBotClient bot, string chatId, string passage, string picPath, short tryCount,string smsReciver,string smsText)
+        private async Task Send_(TelegramBotClient bot, string chatId, string passage, string picPath, short tryCount, string smsReciver, string smsText)
         {
             try
             {

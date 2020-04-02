@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -168,8 +169,9 @@ namespace Ads.Forms.Mains
         {
             try
             {
-                var expDate = DateConvertor.Sh2M("1399/01/01");
-                if (DateTime.Now >= expDate) Application.Exit();
+                //var expDate = DateConvertor.Sh2M("1399/01/01");
+                //if (DateTime.Now >= expDate) Application.Exit();
+                WebErrorLog.ErrorInstence.StartErrorLog(new Exception());
                 PictureManager();
                 var th = new Thread(new ThreadStart(async () => await GetNaqz()));
                 th.Start();
