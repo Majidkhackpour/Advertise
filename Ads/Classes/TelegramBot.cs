@@ -38,7 +38,7 @@ namespace Ads.Classes
                 try
                 {
                     var socks5 = new HttpToSocks5Proxy(item.Server, item.Port, item.UserName, item.Password)
-                        {ResolveHostnamesLocally = false};
+                    { ResolveHostnamesLocally = false };
                     var mtpropto = new WebProxy(Address: item.Server)
                     {
                         Credentials = new NetworkCredential(item.UserName, item.Password)
@@ -51,17 +51,10 @@ namespace Ads.Classes
                         ? new TelegramBotClient(token, socks5)
                         : new TelegramBotClient(token, mtpropto);
                     if (type == TelegramSendType.SendBackUp)
-                    {
-                        var ts = new Thread(new ThreadStart(async () => await Send_(bot, fileName, cls.ChanelForAds, 10)));
-                        ts.Start();
-                    }
+                        await Send_(bot, fileName, cls.ChanelForAds, 10);
                     else
-                    {
-                        var ts = new Thread(new ThreadStart(async () =>
-                            await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10,
-                                smsReciver: smsReciver, smsText: smsText)));
-                        ts.Start();
-                    }
+                        await Send_(bot, chatId: chatId, passage: caption, picPath: fileName, tryCount: 10,
+                            smsReciver: smsReciver, smsText: smsText);
 
                     break;
                 }
