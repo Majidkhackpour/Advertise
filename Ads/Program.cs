@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity.Migrations;
-using System.Data.Entity.Migrations.Model;
 using System.Windows.Forms;
 using Ads.Forms.Mains;
 using AutoMapper;

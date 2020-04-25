@@ -615,11 +615,13 @@
             this.expandablePanel1.Controls.Add(this.grpAccount);
             this.expandablePanel1.Controls.Add(this.pnlContent);
             this.expandablePanel1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.expandablePanel1.Expanded = false;
+            this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(1, 1, 1005, 588);
             this.expandablePanel1.ExpandOnTitleClick = true;
             this.expandablePanel1.HideControlsWhenCollapsed = true;
             this.expandablePanel1.Location = new System.Drawing.Point(1, 1);
             this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(1005, 588);
+            this.expandablePanel1.Size = new System.Drawing.Size(30, 588);
             this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
             this.expandablePanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
@@ -652,7 +654,7 @@
             this.grpAccount.Controls.Add(this.btnAdvLog);
             this.grpAccount.Controls.Add(this.btnChart);
             this.grpAccount.DisabledBackColor = System.Drawing.Color.Empty;
-            this.grpAccount.Location = new System.Drawing.Point(847, 28);
+            this.grpAccount.Location = new System.Drawing.Point(-128, 28);
             this.grpAccount.Name = "grpAccount";
             this.grpAccount.Size = new System.Drawing.Size(149, 553);
             // 
