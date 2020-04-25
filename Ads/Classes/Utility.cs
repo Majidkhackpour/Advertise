@@ -489,7 +489,6 @@ namespace Ads.Classes
                 list = list.OrderBy(q => q.NextUse).Where(q => q.Status).ToList();
                 foreach (var simCard in list)
                 {
-                    //var simCard = await SimcardBussines.GetAsync(9355571826);
                     while (!await Utility.PingHost("www.google.com"))
                     {
                         //خطا در برقراری اتصال به اینترنت
@@ -513,182 +512,182 @@ namespace Ads.Classes
                             simCard.SMS_Description);
                     }
 
-                    //if (simCard.IsSendAdv)
-                    //{
-                    //    //کنترل شماره خروجی
-                    //    if (simCard.Number == 0)
-                    //    {
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add("پر شدن تعداد آگهی در IP");
-                    //        Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
-                    //        continue;
-                    //    }
+                    if (simCard.IsSendAdv)
+                    {
+                        //کنترل شماره خروجی
+                        if (simCard.Number == 0)
+                        {
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی در IP");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
+                            continue;
+                        }
 
-                    //    //کنترل تعداد آگهی ارسال شده در هر IP
-                    //    while (clsSetting?.CountAdvInIP <=
-                    //           AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress()))
-                    //    {
-                    //        await Utility.Wait(20);
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add("پر شدن تعداد آگهی");
-                    //        Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //    }
+                        //کنترل تعداد آگهی ارسال شده در هر IP
+                        while (clsSetting?.CountAdvInIP <=
+                               AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress()))
+                        {
+                            await Utility.Wait(20);
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
+                            await SendChat(clsSetting, simCard);
+                        }
 
-                    //    firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
-                    //    if (firstSimCardBusiness is null) continue;
+                        firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
+                        if (firstSimCardBusiness is null) continue;
 
-                    //    var lastUse = firstSimCardBusiness.NextUse;
-                    //    var card1 = simCard.Number;
-                    //    var startDayOfCurrentMonthOfDateShToMiladi = DateConvertor.StartDayOfPersianMonth();
-                    //    var startDayOfNextMonthOfDateShToMiladi = DateConvertor.EndDayOfPersianMonth().AddDays(1);
-                    //    //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
-                    //    var a1 = await AdvertiseLogBussines.GetAllAsync();
-                    //    a1 = a1.Where(p => p.SimCardNumber == card1
-                    //                       && (p.StatusCode ==
-                    //                           StatusCode
-                    //                               .Published
-                    //                           || p.StatusCode ==
-                    //                           StatusCode
-                    //                               .InPublishQueue
-                    //                           || p.StatusCode ==
-                    //                           StatusCode
-                    //                               .WaitForPayment)
-                    //                       && p.DateM >=
-                    //                       startDayOfCurrentMonthOfDateShToMiladi).ToList();
+                        var lastUse = firstSimCardBusiness.NextUse;
+                        var card1 = simCard.Number;
+                        var startDayOfCurrentMonthOfDateShToMiladi = DateConvertor.StartDayOfPersianMonth();
+                        var startDayOfNextMonthOfDateShToMiladi = DateConvertor.EndDayOfPersianMonth().AddDays(1);
+                        //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
+                        var a1 = await AdvertiseLogBussines.GetAllAsync();
+                        a1 = a1.Where(p => p.SimCardNumber == card1
+                                           && (p.StatusCode ==
+                                               StatusCode
+                                                   .Published
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .InPublishQueue
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .WaitForPayment)
+                                           && p.DateM >=
+                                           startDayOfCurrentMonthOfDateShToMiladi).ToList();
 
-                    //    var registeredAdvCount = a1.Count;
-                    //    if (registeredAdvCount >= clsSetting?.CountAdvInMounth)
-                    //    {
-                    //        //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
-                    //        firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
-                    //        await firstSimCardBusiness.SaveAsync();
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add(
-                    //            $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
-                    //        Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //        continue;
-                    //    }
+                        var registeredAdvCount = a1.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInMounth)
+                        {
+                            //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
+                            continue;
+                        }
 
-                    //    //آمار آگهی های ثبت شده امروز
-                    //    var currentDate = DateTime.Now.Date;
-                    //    var a2 = await AdvertiseLogBussines.GetAllAsync();
-                    //    a2 = a2.Where(p =>
-                    //        p.SimCardNumber == card1
-                    //        && (p.StatusCode == StatusCode.Published
-                    //            || p.StatusCode == StatusCode.InPublishQueue
-                    //            || p.StatusCode == StatusCode.WaitForPayment)
-                    //        && p.DateM >= currentDate).ToList();
-                    //    registeredAdvCount = a2.Count;
-                    //    if (registeredAdvCount >= clsSetting?.CountAdvInDay)
-                    //    {
-                    //        //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
-                    //        firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
-                    //        await firstSimCardBusiness.SaveAsync();
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add(
-                    //            $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
-                    //        Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //        continue;
-                    //    }
+                        //آمار آگهی های ثبت شده امروز
+                        var currentDate = DateTime.Now.Date;
+                        var a2 = await AdvertiseLogBussines.GetAllAsync();
+                        a2 = a2.Where(p =>
+                            p.SimCardNumber == card1
+                            && (p.StatusCode == StatusCode.Published
+                                || p.StatusCode == StatusCode.InPublishQueue
+                                || p.StatusCode == StatusCode.WaitForPayment)
+                            && p.DateM >= currentDate).ToList();
+                        registeredAdvCount = a2.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInDay)
+                        {
+                            //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
+                            continue;
+                        }
 
-                    //    var divar = await DivarAdv.GetInstance();
-                    //    await divar.StartRegisterAdv(simCard);
+                        var divar = await DivarAdv.GetInstance();
+                        await divar.StartRegisterAdv(simCard);
 
-                    //    simCard.NextUse = DateTime.Now.AddMinutes(30);
-                    //    await simCard.SaveAsync();
-                    //    await Wait(2);
-                    //}
-                    //if (simCard.IsSendAdvSheypoor)
-                    //{
-                    //    //کنترل شماره خروجی
-                    //    if (simCard.Number == 0)
-                    //    {
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add("پر شدن تعداد آگهی در IP");
-                    //        Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
-                    //        continue;
-                    //    }
+                        simCard.NextUse = DateTime.Now.AddMinutes(30);
+                        await simCard.SaveAsync();
+                        await Wait(2);
+                    }
+                    if (simCard.IsSendAdvSheypoor)
+                    {
+                        //کنترل شماره خروجی
+                        if (simCard.Number == 0)
+                        {
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی در IP");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
+                            continue;
+                        }
 
-                    //    //کنترل تعداد آگهی ارسال شده در هر IP
-                    //    while (clsSetting?.CountAdvInIP <=
-                    //           AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress()))
-                    //    {
-                    //        await Utility.Wait(20);
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add("پر شدن تعداد آگهی");
-                    //        Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //    }
+                        //کنترل تعداد آگهی ارسال شده در هر IP
+                        while (clsSetting?.CountAdvInIP <=
+                               AdvertiseLogBussines.GetAllAdvInDayFromIP(await Utility.GetLocalIpAddress()))
+                        {
+                            await Utility.Wait(20);
+                            lstMessage.Clear();
+                            lstMessage.Add("پر شدن تعداد آگهی");
+                            Utility.ShowBalloon("پر شدن تعداد آگهی در " + await Utility.FindGateWay(), lstMessage);
+                            await SendChat(clsSetting, simCard);
+                        }
 
-                    //    firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
-                    //    if (firstSimCardBusiness is null) continue;
+                        firstSimCardBusiness = await SimcardBussines.GetAsync(simCard.Number);
+                        if (firstSimCardBusiness is null) continue;
 
-                    //    var lastUse = firstSimCardBusiness.NextUse;
-                    //    var card1 = simCard.Number;
-                    //    var startDayOfCurrentMonthOfDateShToMiladi = DateConvertor.StartDayOfPersianMonth();
-                    //    var startDayOfNextMonthOfDateShToMiladi = DateConvertor.EndDayOfPersianMonth().AddDays(1);
-                    //    //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
-                    //    var a1 = await AdvertiseLogBussines.GetAllAsync();
-                    //    a1 = a1.Where(p => p.SimCardNumber == card1
-                    //                       && (p.StatusCode ==
-                    //                           StatusCode
-                    //                               .Published
-                    //                           || p.StatusCode ==
-                    //                           StatusCode
-                    //                               .InPublishQueue
-                    //                           || p.StatusCode ==
-                    //                           StatusCode
-                    //                               .WaitForPayment)
-                    //                       && p.DateM >=
-                    //                       startDayOfCurrentMonthOfDateShToMiladi).ToList();
+                        var lastUse = firstSimCardBusiness.NextUse;
+                        var card1 = simCard.Number;
+                        var startDayOfCurrentMonthOfDateShToMiladi = DateConvertor.StartDayOfPersianMonth();
+                        var startDayOfNextMonthOfDateShToMiladi = DateConvertor.EndDayOfPersianMonth().AddDays(1);
+                        //آمار آگهی های ثبت شده برای سیم کارت در ماه جاری
+                        var a1 = await AdvertiseLogBussines.GetAllAsync();
+                        a1 = a1.Where(p => p.SimCardNumber == card1
+                                           && (p.StatusCode ==
+                                               StatusCode
+                                                   .Published
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .InPublishQueue
+                                               || p.StatusCode ==
+                                               StatusCode
+                                                   .WaitForPayment)
+                                           && p.DateM >=
+                                           startDayOfCurrentMonthOfDateShToMiladi).ToList();
 
-                    //    var registeredAdvCount = a1.Count;
-                    //    if (registeredAdvCount >= clsSetting?.CountAdvInMounth)
-                    //    {
-                    //        //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
-                    //        firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
-                    //        await firstSimCardBusiness.SaveAsync();
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add(
-                    //            $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
-                    //        Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //        continue;
-                    //    }
+                        var registeredAdvCount = a1.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInMounth)
+                        {
+                            //تاریخ روز اول ماه شمسی بعد را تنظیم می کند چون تا سر ماه بعد دیگر نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = startDayOfNextMonthOfDateShToMiladi;
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پر بودن آگهی ها در ماه موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
+                            continue;
+                        }
 
-                    //    //آمار آگهی های ثبت شده امروز
-                    //    var currentDate = DateTime.Now.Date;
-                    //    var a2 = await AdvertiseLogBussines.GetAllAsync();
-                    //    a2 = a2.Where(p =>
-                    //        p.SimCardNumber == card1
-                    //        && (p.StatusCode == StatusCode.Published
-                    //            || p.StatusCode == StatusCode.InPublishQueue
-                    //            || p.StatusCode == StatusCode.WaitForPayment)
-                    //        && p.DateM >= currentDate).ToList();
-                    //    registeredAdvCount = a2.Count;
-                    //    if (registeredAdvCount >= clsSetting?.CountAdvInDay)
-                    //    {
-                    //        //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
-                    //        firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
-                    //        await firstSimCardBusiness.SaveAsync();
-                    //        lstMessage.Clear();
-                    //        lstMessage.Add(
-                    //            $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
-                    //        Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
-                    //        await SendChat(clsSetting, simCard);
-                    //        continue;
-                    //    }
+                        //آمار آگهی های ثبت شده امروز
+                        var currentDate = DateTime.Now.Date;
+                        var a2 = await AdvertiseLogBussines.GetAllAsync();
+                        a2 = a2.Where(p =>
+                            p.SimCardNumber == card1
+                            && (p.StatusCode == StatusCode.Published
+                                || p.StatusCode == StatusCode.InPublishQueue
+                                || p.StatusCode == StatusCode.WaitForPayment)
+                            && p.DateM >= currentDate).ToList();
+                        registeredAdvCount = a2.Count;
+                        if (registeredAdvCount >= clsSetting?.CountAdvInDay)
+                        {
+                            //تاریخ فردا رو ست می کند چون تا فردا دیگه نیازی به این سیم کارت نیست
+                            firstSimCardBusiness.NextUse = DateTime.Today.AddDays(1);
+                            await firstSimCardBusiness.SaveAsync();
+                            lstMessage.Clear();
+                            lstMessage.Add(
+                                $"سیمکارت {simCard.Number} به دلیل پرپودن آگهی ها در روز موفق به ارسال آگهی نشد");
+                            Utility.ShowBalloon("عدم ارسال آگهی", lstMessage);
+                            await SendChat(clsSetting, simCard);
+                            continue;
+                        }
 
-                    //    var shey = await SheypoorAdv.GetInstance();
-                    //    await shey.StartRegisterAdv(simCard);
+                        var shey = await SheypoorAdv.GetInstance();
+                        await shey.StartRegisterAdv(simCard);
 
-                    //    simCard.NextUse = DateTime.Now.AddMinutes(30);
-                    //    await simCard.SaveAsync();
-                    //    await Wait(2);
-                    //}
+                        simCard.NextUse = DateTime.Now.AddMinutes(30);
+                        await simCard.SaveAsync();
+                        await Wait(2);
+                    }
 
                     if (simCard.IsSendChat)
                         await SendChat(clsSetting, simCard);

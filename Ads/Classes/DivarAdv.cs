@@ -640,6 +640,27 @@ namespace Ads.Classes
                     }
                 }
 
+                await Utility.Wait();
+
+                var type = _driver.FindElements(By.Id("root_merchandise_type")).Any();
+                await Utility.Wait(1);
+                if (type)
+                {
+                    _driver.FindElements(By.Id("root_merchandise_type")).FirstOrDefault()?.Click();
+                    await Utility.Wait(1);
+                    _driver.FindElements(By.TagName("option")).FirstOrDefault(q => q.Text.Contains("زیبایی"))?.Click();
+                }
+
+                await Utility.Wait();
+
+                var st = _driver.FindElements(By.Id("root_status")).Any();
+                await Utility.Wait(1);
+                if (st)
+                {
+                    _driver.FindElements(By.Id("root_status")).FirstOrDefault()?.Click();
+                    await Utility.Wait(1);
+                    _driver.FindElements(By.TagName("option")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
+                }
 
 
                 await Utility.Wait(2);
@@ -691,7 +712,7 @@ namespace Ads.Classes
                 }
                 await Utility.Wait(1);
 
-                var radio = _driver.FindElements(By.ClassName("radion")).ToList();
+                var radio = _driver.FindElements(By.ClassName("radio")).ToList();
                 await Utility.Wait(1);
                 if (radio.Count > 0)
                 {
