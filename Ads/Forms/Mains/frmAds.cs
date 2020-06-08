@@ -299,7 +299,7 @@ namespace Ads.Forms.Mains
                 for (var i = 0; i < lst.Count; i++)
                 {
                     var picbox = new PictureBox();
-                    this.Controls.Add(picbox);
+                    Controls.Add(picbox);
                     picbox.Size = new Size(62, 63);
                     picbox.Load(lst[i]);
                     picbox.Name = "pic" + i;

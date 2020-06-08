@@ -234,8 +234,6 @@ namespace Ads.Classes
                 if (driver?.Title == null)
                 {
                     CloseAllChromeWindows();
-                    //var driverOSer = ChromeDriverService.CreateDefaultService();
-                    //driverOSer.HideCommandPromptWindow = true;
                     driver = new ChromeDriver();
                     driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
                     driver?.Manage().Window.Maximize();
@@ -244,8 +242,6 @@ namespace Ads.Classes
             catch
             {
                 CloseAllChromeWindows();
-                //var driverOSer = ChromeDriverService.CreateDefaultService();
-                //driverOSer.HideCommandPromptWindow = true;
                 driver = new ChromeDriver();
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(2);
                 driver?.Manage().Window.Maximize();

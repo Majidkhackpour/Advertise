@@ -144,26 +144,8 @@ namespace Ads.Classes
             try
             {
                 _driver = Utility.RefreshDriver(_driver);
-                // while (!_driver.Url.Contains("divar.ir"))
-                // {
-                try
-                {
-                    if (!_driver.Url.Contains("divar.ir"))
-                        _driver.Navigate().GoToUrl("https://divar.ir");
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        _driver.Navigate().GoToUrl("https://divar.ir");
-                    }
-                    catch (Exception e)
-                    {
-                    }
-
-                }
-
-                //                }
+                if (!_driver.Url.Contains("divar.ir"))
+                    _driver.Navigate().GoToUrl("https://divar.ir");
 
 
                 var simBusiness = AdvTokensBussines.GetToken(simCardNumber, AdvertiseType.Divar);
@@ -171,20 +153,7 @@ namespace Ads.Classes
                 //     if (string.IsNullOrEmpty(tokenInDatabase)) return false;
 
                 ReadOnlyCollection<IWebElement> listLinkItems = null;
-                try
-                {
-                    listLinkItems = _driver.FindElements(By.TagName("a"));
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        listLinkItems = _driver.FindElements(By.TagName("a"));
-                    }
-                    catch (Exception e)
-                    {
-                    }
-                }
+                listLinkItems = _driver.FindElements(By.TagName("a"));
                 var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
 
                 //اگر کاربر لاگین شده فعلی همان کاربر مورد نظر است نیازی به لاگین نیست 
@@ -236,20 +205,7 @@ namespace Ads.Classes
                 {
 
                     //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
-                    try
-                    {
-                        listLinkItems = _driver.FindElements(By.TagName("a"));
-                    }
-                    catch (Exception)
-                    {
-                        try
-                        {
-                            listLinkItems = _driver.FindElements(By.TagName("a"));
-                        }
-                        catch (Exception e)
-                        {
-                        }
-                    }
+                    listLinkItems = _driver.FindElements(By.TagName("a"));
                     if (listLinkItems.Count < 5) return false;
 
                     var isLogin = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
@@ -552,15 +508,9 @@ namespace Ads.Classes
                         }
                         else
                         {
-                            //var a = await SimcardBussines.GetAsync(simCardNumber);
-                            //var name = a.OwnerName;
-                            //var message = $@"مالک: {name} \r\nشماره: {simCardNumber}  \r\nلطفا لاگین نمائید ";
-                            //((IJavaScriptExecutor)_driver).ExecuteScript($"alert('{message}');");
-
-                            await Utility.Wait(3);
+                           await Utility.Wait(3);
                             try
                             {
-                                //_driver.SwitchTo().Alert().Accept();
                                 await Utility.Wait(3);
                                 repeat++;
                             }
