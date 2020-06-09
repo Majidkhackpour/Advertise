@@ -292,7 +292,6 @@ namespace Ads.Classes
 
                     var simBusiness = AdvTokensBussines.GetToken(simCardNumber, AdvertiseType.DivarChat);
                     var tokenInDatabase = simBusiness?.Token ?? null;
-                    //if (string.IsNullOrEmpty(tokenInDatabase)) return false;
 
                     var listLinkItems = _driver.FindElements(By.TagName("a"));
                     var isLogined = listLinkItems.Any(linkItem => linkItem.Text == @"خروج");
@@ -325,11 +324,11 @@ namespace Ads.Classes
                         _driver.Navigate().GoToUrl("https://chat.divar.ir/");
                         //کلیک روی دکمه ورود و ثبت نام
                         await Utility.Wait();
-                        var currentWindow1 = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow1);
-                        if (_driver.FindElements(By.TagName("input")).Count > 0)
-                            _driver.FindElements(By.TagName("input")).FirstOrDefault()
-                                ?.SendKeys("0" + simCardNumber + "\n");
+                        //var currentWindow1 = _driver.CurrentWindowHandle;
+                        //_driver.SwitchTo().Window(currentWindow1);
+                        //if (_driver.FindElements(By.TagName("input")).Count > 0)
+                        //    _driver.FindElements(By.TagName("input")).FirstOrDefault()
+                        //        ?.SendKeys("0" + simCardNumber + "\n");
                     }
 
 
@@ -350,7 +349,6 @@ namespace Ads.Classes
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 20)
                     {
-
                         //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
                         listLinkItems = _driver.FindElements(By.TagName("a"));
                         if (listLinkItems.Count < 5) return false;
@@ -373,8 +371,6 @@ namespace Ads.Classes
                                     Status = true
                                 };
                             }
-
-
 
                             await simBusiness.SaveAsync(AdvertiseType.DivarChat, simBusiness.Number);
 
@@ -473,7 +469,6 @@ namespace Ads.Classes
                     //حدود 120 ثانیه فرصت لاگین دارد
                     while (repeat < 2)
                     {
-
                         //تا زمانی که لاگین اوکی نشده باشد این حلقه تکرار می شود
                         listLinkItems = _driver.FindElements(By.TagName("a"));
                         if (listLinkItems.Count < 5) return false;
@@ -520,6 +515,10 @@ namespace Ads.Classes
                             }
                         }
                     }
+
+
+
+
                 }
 
 

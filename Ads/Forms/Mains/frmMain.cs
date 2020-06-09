@@ -118,53 +118,7 @@ namespace Ads.Forms.Mains
                 WebErrorLog.ErrorInstence.StartErrorLog(e);
             }
         }
-        private async Task GetProxy()
-        {
-            var server = "در حال اتصال به پروکسی ...";
-            try
-            {
-                var list = await ProxyBussines.GetAllAsync();
-                foreach (var pr in list.ToList())
-                {
-                    var tt = false;
-                    if (!pr.Status) continue;
-                    var ts = new Thread(new ThreadStart(async () => tt = await PingHost(pr.Server, pr.Port)));
-                    ts.Start();
-                    if (tt)
-                    {
-                        server = pr.Server;
-                        return;
-                    }
-                    server = "عدم اتصال به پروکسی";
-                }
-            }
-            catch
-            {
-                server = "عدم اتصال به پروکسی";
-            }
 
-            Invoke(new MethodInvoker(() => lblServerProxy.Text = server));
-
-        }
-        private static async Task<bool> PingHost(string strIP, int intPort)
-        {
-            var blProxy = false;
-            try
-            {
-                var client = new TcpClient(strIP, intPort);
-                blProxy = true;
-            }
-            catch (SocketException)
-            {
-                return false;
-            }
-            catch (Exception ex)
-            {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
-                return false;
-            }
-            return blProxy;
-        }
         private async void frmMain_Load(object sender, EventArgs e)
         {
             try
@@ -182,8 +136,6 @@ namespace Ads.Forms.Mains
                 timer1_Tick(null, null);
                 lblVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 SetBackUpLables();
-                var ts = new Thread(new ThreadStart(async () => await GetProxy()));
-                ts.Start();
                 await GetDelete();
             }
             catch (Exception exception)
