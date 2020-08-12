@@ -75,5 +75,24 @@ namespace BussinesLayer
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
             }
         }
+
+        public static async Task<bool> RemoveAsync(AdvTokensBussines item)
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var tt = Mappings.Default.Map<AdvTokens>(item);
+                    var a = _context.AdvTokens.Remove(tt);
+                    _context.Set_Save();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(e);
+                return false;
+            }
+        }
     }
 }

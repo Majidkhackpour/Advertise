@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ads.Classes;
 using BussinesLayer;
+using DataLayer.Enums;
 using ErrorHandler;
 using FMessegeBox;
 
@@ -209,6 +210,57 @@ namespace Ads.Forms.Simcard
             catch (Exception exception)
             {
                 WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+
+        private async void mnuDeleteDivarToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var token = AdvTokensBussines.GetToken(number, AdvertiseType.Divar);
+                await AdvTokensBussines.RemoveAsync(token);
+                await LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuDeleteSheypoorToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var token = AdvTokensBussines.GetToken(number, AdvertiseType.Sheypoor);
+                await AdvTokensBussines.RemoveAsync(token);
+                await LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
+
+        private async void mnuDeleteDivarChet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGrid.RowCount <= 0) return;
+                if (DGrid.CurrentRow == null) return;
+                var number = (long)DGrid[dg_Number.Index, DGrid.CurrentRow.Index].Value;
+                var token = AdvTokensBussines.GetToken(number, AdvertiseType.DivarChat);
+                await AdvTokensBussines.RemoveAsync(token);
+                await LoadData(txtSearch.Text);
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
             }
         }
     }

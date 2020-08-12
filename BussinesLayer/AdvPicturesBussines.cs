@@ -42,5 +42,40 @@ namespace BussinesLayer
                 return false;
             }
         }
+        public static async Task<List<AdvPicturesBussines>> GetAllAsync()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = _context.AdvPictures.GetAll();
+                return Mappings.Default.Map<List<AdvPicturesBussines>>(a);
+            }
+        }
+        public async Task SaveAsync()
+        {
+            try
+            {
+                using (var _context = new UnitOfWorkLid())
+                {
+                    var a = Mappings.Default.Map<AdvPictures>(this);
+                    var res = _context.AdvPictures.Save(a);
+                    _context.Set_Save();
+                    _context.Dispose();
+                }
+            }
+            catch (Exception exception)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(exception);
+            }
+        }
+        public async Task RemoveAsync()
+        {
+            using (var _context = new UnitOfWorkLid())
+            {
+                var a = Mappings.Default.Map<AdvPictures>(this);
+                var res = _context.AdvPictures.Remove(a);
+                _context.Set_Save();
+                _context.Dispose();
+            }
+        }
     }
 }

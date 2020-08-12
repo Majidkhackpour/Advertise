@@ -660,7 +660,9 @@ namespace Ads.Classes
                 //حذف عکسهای زیر پیکسل 600*600
                 foreach (var imgItem in allImages)
                 {
-                    var img = Image.FromFile(imgItem.PathGuid);
+                    var address = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    var item = Path.Combine(address, imgItem.PathGuid);
+                    var img = Image.FromFile(item + ".jpg");
                     if (img.Width < 600 || img.Height < 600)
                         try
                         {
@@ -678,7 +680,7 @@ namespace Ads.Classes
                 {
                     foreach (var item in allImages)
                     {
-                        selectedImages.Add(item.PathGuid + "\r\n");
+                        selectedImages.Add(item.PathGuid + ".jpg" + "\r\n");
                     }
                 }
                 else
@@ -699,7 +701,9 @@ namespace Ads.Classes
                 //ویرایش عکسها
                 foreach (var img in selectedImages)
                 {
-                    resultImages.Add(ImageManager.ModifyImage(img));
+                    var address = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    var item = Path.Combine(address, img.Trim());
+                    resultImages.Add(ImageManager.ModifyImage(item));
                 }
 
                 return resultImages;

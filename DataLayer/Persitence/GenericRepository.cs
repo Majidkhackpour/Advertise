@@ -66,10 +66,7 @@ namespace DataLayer.Persitence
             try
             {
                 if (_dbContext.Entry(item).State == EntityState.Detached)
-                {
                     _dbSet.Attach(item);
-                }
-
                 _dbSet.Remove(item);
                 return true;
             }
