@@ -114,7 +114,7 @@ namespace Ads.Classes
                 }
 
                 lstMessage.Clear();
-                lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count + 1} تصویر دریافت شد");
+                lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count} تصویر دریافت شد");
                 Utility.ShowBalloon("دریافت آگهی",
                     lstMessage);
 
@@ -575,19 +575,22 @@ namespace Ads.Classes
                     return;
                 }
 
-                foreach (var item in adv.ImagesPathList)
-                {
-                    try
-                    {
-                        //درج عکسها
-                        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
-                        await Utility.Wait();
-                        //break;
-                    }
-                    catch
-                    {
-                    }
-                }
+                //foreach (var item in adv.ImagesPathList)
+                //{
+                //    try
+                //    {
+                //        //درج عکسها
+                //        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
+                //        await Utility.Wait();
+                //        //break;
+                //    }
+                //    catch
+                //    {
+                //    }
+                //}
+                await Utility.Wait();
+                _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(adv.ImageList);
+                await Utility.Wait();
 
                 await Utility.Wait();
 
@@ -674,7 +677,7 @@ namespace Ads.Classes
                 if (codemelli != null)
                 {
                     var list = _driver.FindElements(By.TagName("input[type=text]")).ToList();
-                    list[3].SendKeys(sim.UserName.ToString());
+                    list[2].SendKeys(sim.UserName.ToString());
                 }
 
 
