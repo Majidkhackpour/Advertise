@@ -451,18 +451,18 @@ namespace Ads.Classes
 
 
                     await Utility.Wait();
-                    var code = _driver.FindElements(By.TagName("button")).Any(q => q.Text == "دریافت کد تایید");
-                    if (code)
-                    {
-                        _driver.Navigate().GoToUrl("https://chat.divar.ir/");
-                        //کلیک روی دکمه ورود و ثبت نام
-                        await Utility.Wait();
-                        var currentWindow = _driver.CurrentWindowHandle;
-                        _driver.SwitchTo().Window(currentWindow);
-                        //if (_driver.FindElements(By.TagName("input")).Count > 0)
-                        //    _driver.FindElements(By.TagName("input")).FirstOrDefault()
-                        //        ?.SendKeys("0" + simCardNumber + "\n");
-                    }
+                    //var code = _driver.FindElements(By.TagName("button")).Any(q => q.Text == "دریافت کد تایید");
+                    //if (code)
+                    //{
+                    //    _driver.Navigate().GoToUrl("https://chat.divar.ir/");
+                    //    //کلیک روی دکمه ورود و ثبت نام
+                    //    await Utility.Wait();
+                    //    var currentWindow = _driver.CurrentWindowHandle;
+                    //    _driver.SwitchTo().Window(currentWindow);
+                    //    //if (_driver.FindElements(By.TagName("input")).Count > 0)
+                    //    //    _driver.FindElements(By.TagName("input")).FirstOrDefault()
+                    //    //        ?.SendKeys("0" + simCardNumber + "\n");
+                    //}
 
                     //انتظار برای لاگین شدن
                     var repeat = 0;
@@ -642,7 +642,7 @@ namespace Ads.Classes
                     }
                 }
 
-                
+
                 await Utility.Wait(1);
 
 
@@ -1457,15 +1457,15 @@ namespace Ads.Classes
                     await Utility.Wait();
                 }
 
-                var ele = _driver.FindElements(By.ClassName("kt-col-12")).Any();
+                var ele = _driver.FindElements(By.ClassName("kt-post-card__body")).Any();
                 while (!ele)
                 {
-                    ele = _driver.FindElements(By.ClassName("kt-col-12")).Any();
+                    ele = _driver.FindElements(By.ClassName("kt-post-card__body")).Any();
                 }
                 await Utility.Wait(5);
                 var j = 0;
                 //اسکرول تا تعداد مشخص
-                var counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
+                var counter = _driver.FindElements(By.ClassName("kt-post-card__body")).ToList();
                 var total = counter.Count;
                 var scroll = 0;
                 while (counter.Count <= count)
@@ -1484,11 +1484,12 @@ namespace Ads.Classes
                 {
                     //انتخاب آگهی
                     await Utility.Wait();
-                    _driver.FindElements(By.ClassName("kt-col-12"))[i + 1]?.Click();
+                    _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
                     await Utility.Wait(1);
                     //دریافت شماره آگهی
                     await Utility.Wait(5);
-                    _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
+                    _driver.FindElements(By.ClassName("kt-text-truncate")).FirstOrDefault(q => q.Text == "اطلاعات تماس")
+                        .Click();
                     await Utility.Wait();
 
                     var a = _driver.FindElements(By.TagName("button"))
@@ -1497,12 +1498,13 @@ namespace Ads.Classes
                         a.FirstOrDefault()?.Click();
                     await Utility.Wait(1);
                     //چت
-                    var el = _driver.FindElements(By.ClassName("post-actions__chat")).Any();
-                    var txt = _driver.FindElements(By.ClassName("post-fields-item__value")).FirstOrDefault()?.Text;
+                    var el = _driver.FindElements(By.ClassName("kt-text-truncate")).Any(q => q.Text == "چت کنید");
+                    await Utility.Wait();
+                    var txt = _driver.FindElements(By.ClassName("kt-unexpandable-row__action")).FirstOrDefault()?.Text;
                     if (txt == "(پنهان‌شده؛ چت کنید)")
                     {
                         //شروع چت
-                        _driver.FindElement(By.ClassName("post-actions__chat")).Click();
+                        _driver.FindElements(By.ClassName("kt-text-truncate")).FirstOrDefault(q => q.Text == "چت کنید").Click();
                         var qanoon = _driver.FindElements(By.TagName("button"))
                             .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
                         if (qanoon.Count > 0)
@@ -1518,6 +1520,7 @@ namespace Ads.Classes
                         {
                             _driver.Close();
                             _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             return;
                         }
@@ -1530,6 +1533,7 @@ namespace Ads.Classes
                             _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "بستن")?.Click();
                             _driver.Close();
                             _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             continue;
                         }
@@ -1541,6 +1545,7 @@ namespace Ads.Classes
                             {
                                 _driver.Close();
                                 _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                                await Utility.Wait(2);
                                 _driver.Navigate().Back();
                                 return;
                             }
@@ -1639,6 +1644,8 @@ namespace Ads.Classes
                         }
                         _driver.Close();
                         _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                        
+                        await Utility.Wait(2);
                         _driver.Navigate().Back();
                         break;
                     }
@@ -1673,6 +1680,8 @@ namespace Ads.Classes
 
                                 }
                             }
+
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             continue;
                         }
@@ -1691,12 +1700,13 @@ namespace Ads.Classes
 
                         if (n > 0)
                         {
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             continue;
                         }
                         //شروع چت
                         await Utility.Wait(3);
-                        _driver.FindElement(By.ClassName("post-actions__chat")).Click();
+                        _driver.FindElements(By.ClassName("kt-text-truncate")).FirstOrDefault(q => q.Text == "چت کنید").Click();
                         var qanoon = _driver.FindElements(By.TagName("button"))
                              .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
                         if (qanoon.Count > 0)
@@ -1712,6 +1722,7 @@ namespace Ads.Classes
                         {
                             _driver.Close();
                             _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             return;
                         }
@@ -1724,6 +1735,7 @@ namespace Ads.Classes
                             _driver.FindElements(By.TagName("button")).FirstOrDefault(q => q.Text == "بستن")?.Click();
                             _driver.Close();
                             _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                            await Utility.Wait(2);
                             _driver.Navigate().Back();
                             continue;
                         }
@@ -1735,16 +1747,27 @@ namespace Ads.Classes
                             {
                                 _driver.Close();
                                 _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                                await Utility.Wait(2);
                                 _driver.Navigate().Back();
                                 return;
                             }
                         }
                         await Utility.Wait(2);
                         var chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                        var counter_ = 0;
                         while (!chatBox)
                         {
+                            if (counter_ >= 10)
+                            {
+                                _driver.Close();
+                                _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                                await Utility.Wait(2);
+                                _driver.Navigate().Back();
+                                continue;
+                            }
                             await Utility.Wait(2);
                             chatBox = _driver.FindElements(By.ClassName("chat-box__input")).Any();
+                            counter_++;
                         }
                         var rnd = new Random().Next(0, msg.Count);
                         await Utility.Wait(2);
@@ -1785,28 +1808,35 @@ namespace Ads.Classes
                             {
                                 foreach (var element in allChat)
                                 {
-                                    element.Click();
-                                    var rnd2 = new Random().Next(0, msg2.Count);
-                                    await Utility.Wait(1);
+                                    try
+                                    {
+                                        element.Click();
+                                        var rnd2 = new Random().Next(0, msg2.Count);
+                                        await Utility.Wait(1);
 
 
-                                    var thread10 = new Thread(() => Clipboard.SetText(msg2[rnd2]));
-                                    thread10.SetApartmentState(ApartmentState.STA);
-                                    thread10.Start();
+                                        var thread10 = new Thread(() => Clipboard.SetText(msg2[rnd2]));
+                                        thread10.SetApartmentState(ApartmentState.STA);
+                                        thread10.Start();
 
-                                    var t2 = _driver.FindElement(By.ClassName("chat-box__input"));
-                                    t2.Click();
-                                    await Utility.Wait();
-                                    t2.SendKeys(OpenQA.Selenium.Keys.Control + "v");
-                                    t2.SendKeys("" + '\n');
-                                    var thread101 = new Thread(Clipboard.Clear);
-                                    thread101.SetApartmentState(ApartmentState.STA);
-                                    thread101.Start();
+                                        var t2 = _driver.FindElement(By.ClassName("chat-box__input"));
+                                        t2.Click();
+                                        await Utility.Wait();
+                                        t2.SendKeys(OpenQA.Selenium.Keys.Control + "v");
+                                        t2.SendKeys("" + '\n');
+                                        var thread101 = new Thread(Clipboard.Clear);
+                                        thread101.SetApartmentState(ApartmentState.STA);
+                                        thread101.Start();
 
 
 
-                                    //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg2[rnd2] + '\n');
-                                    await Utility.Wait(2);
+                                        //_driver.FindElement(By.ClassName("chat-box__input")).SendKeys(msg2[rnd2] + '\n');
+                                        await Utility.Wait(2);
+                                    }
+                                    catch
+                                    {
+                                    }
+                                    
                                 }
                             }
 
@@ -1831,7 +1861,9 @@ namespace Ads.Classes
                         }
                         _driver.Close();
                         _driver.SwitchTo().Window(_driver.WindowHandles[0]);
+                        await Utility.Wait(2);
                         _driver.Navigate().Back();
+                        
                     }
                 }
             }
