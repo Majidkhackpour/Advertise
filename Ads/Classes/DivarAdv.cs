@@ -680,7 +680,7 @@ namespace Ads.Classes
                 if (codemelli != null)
                 {
                     var list = _driver.FindElements(By.TagName("input[type=text]")).ToList();
-                    list[2].SendKeys(sim.UserName.ToString());
+                    list[3].SendKeys(sim.UserName.ToString());
                 }
 
 
