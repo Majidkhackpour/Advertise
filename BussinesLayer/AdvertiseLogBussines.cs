@@ -38,6 +38,10 @@ namespace BussinesLayer
         public List<string> ImagesPathList { get; set; }
         public string TypeName => AdvType.GetDisplay();
         public string StatusName => StatusCode.GetDisplay();
+
+        public string ImageList => ImagesPathList != null && ImagesPathList.Count > 0
+            ? string.Join("\r\n", ImagesPathList)
+            : "---";
         public static int GetAllAdvInDayFromIP(string ip)
         {
             using (var _context = new UnitOfWorkLid())

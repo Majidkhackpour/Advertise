@@ -114,7 +114,7 @@ namespace Ads.Classes
                 }
 
                 lstMessage.Clear();
-                lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count + 1} تصویر دریافت شد");
+                lstMessage.Add($"آگهی {adv.Adv} با {adv.ImagesPathList.Count} تصویر دریافت شد");
                 Utility.ShowBalloon("دریافت آگهی",
                     lstMessage);
 
@@ -563,7 +563,7 @@ namespace Ads.Classes
                 adv.SubCategory2 = a3?.Text;
                 a3?.Click();
 
-                while (_driver.FindElements(By.ClassName("location-selector__city")).Count <= 0)
+                while (_driver.FindElements(By.ClassName("limage-uploader__item")).Count <= 0)
                 {
                     await Utility.Wait(1);
                 }
@@ -575,19 +575,23 @@ namespace Ads.Classes
                     return;
                 }
 
-                foreach (var item in adv.ImagesPathList)
-                {
-                    try
-                    {
-                        //درج عکسها
-                        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
-                        await Utility.Wait();
-                        //break;
-                    }
-                    catch
-                    {
-                    }
-                }
+                //foreach (var item in adv.ImagesPathList)
+                //{
+                //    try
+                //    {
+                //        //درج عکسها
+                //        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
+                //        await Utility.Wait();
+                //        //break;
+                //    }
+                //    catch
+                //    {
+                //    }
+                //}
+                await Utility.Wait();
+                _driver.FindElement(By.ClassName("image-uploader__item")).FindElement(By.TagName("input"))
+                        .SendKeys(adv.ImageList);
+                await Utility.Wait();
 
                 await Utility.Wait();
 
@@ -613,11 +617,12 @@ namespace Ads.Classes
 
 
                 await Utility.Wait(2);
-                _driver.FindElement(By.ClassName("location-selector__city")).FindElement(By.TagName("input")).SendKeys(adv.City + "\n");
-
-                await Utility.Wait(2);
-                var el = _driver.FindElements(By.ClassName("location-selector__district")).Any();
+                _driver.FindElement(By.ClassName("kt-select__field--placeholder-shown"))?.Click();
                 await Utility.Wait(1);
+                _driver.FindElement(By.ClassName("kt-select__search-field"))?.SendKeys(adv.City + "\n");
+                await Utility.Wait(2);
+                var el = _driver.FindElements(By.ClassName("text-field")).Any(q => q.Text == "محدودهٔ آگهی");
+                await Utility.Wait();
                 if (el)
                 {
                     var cty = DivarCityBussines.GetAsync(adv?.City);
@@ -630,13 +635,14 @@ namespace Ads.Classes
                         var rnd = new Random().Next(0, regionList.Count);
                         var regName = regionList[rnd].Name;
                         await Utility.Wait(2);
-
-
-                        _driver.FindElement(By.ClassName("location-selector__district")).FindElement(By.TagName("input")).SendKeys(regName + "\n");
+                        _driver.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0].Click();
+                        await Utility.Wait(2);
+                        _driver.FindElements(By.ClassName("kt-select__search-field"))?[1]?.SendKeys(regName + "\n");
                         adv.Region = regName;
                     }
                 }
 
+                
                 await Utility.Wait(1);
 
 
@@ -1451,15 +1457,15 @@ namespace Ads.Classes
                     await Utility.Wait();
                 }
 
-                var ele = _driver.FindElements(By.ClassName("col-xs-12")).Any();
+                var ele = _driver.FindElements(By.ClassName("kt-col-12")).Any();
                 while (!ele)
                 {
-                    ele = _driver.FindElements(By.ClassName("col-xs-12")).Any();
+                    ele = _driver.FindElements(By.ClassName("kt-col-12")).Any();
                 }
                 await Utility.Wait(5);
                 var j = 0;
                 //اسکرول تا تعداد مشخص
-                var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                var counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
                 var total = counter.Count;
                 var scroll = 0;
                 while (counter.Count <= count)
@@ -1467,7 +1473,7 @@ namespace Ads.Classes
                     if (scroll >= 10) break;
                     ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
                     await Utility.Wait();
-                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                    counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
                     if (total == counter.Count) break;
                     scroll++;
                 }
@@ -1478,7 +1484,7 @@ namespace Ads.Classes
                 {
                     //انتخاب آگهی
                     await Utility.Wait();
-                    _driver.FindElements(By.ClassName("col-xs-12"))[i + 1]?.Click();
+                    _driver.FindElements(By.ClassName("kt-col-12"))[i + 1]?.Click();
                     await Utility.Wait(1);
                     //دریافت شماره آگهی
                     await Utility.Wait(5);
@@ -1644,15 +1650,28 @@ namespace Ads.Classes
 
                             if (File.Exists(fileName))
                             {
-                                var numbers = File.ReadAllLines(fileName).ToList();
-                                numbers.Add(txt.FixString());
-                                //غیر تکراری بودن شماره
-                                numbers = numbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
-                                File.WriteAllLines(fileName, numbers);
+                                try
+                                {
+                                    var numbers = File.ReadAllLines(fileName).ToList();
+                                    numbers.Add(txt.FixString());
+                                    //غیر تکراری بودن شماره
+                                    numbers = numbers.GroupBy(q => q).Where(q => q.Count() == 1).Select(q => q.Key).ToList();
+                                    File.WriteAllLines(fileName, numbers);
+                                }
+                                catch
+                                {
+                                }
                             }
                             else
                             {
-                                File.WriteAllText(fileName, txt.FixString());
+                                try
+                                {
+                                    File.WriteAllText(fileName, txt.FixString());
+                                }
+                                catch
+                                {
+
+                                }
                             }
                             _driver.Navigate().Back();
                             continue;
@@ -1972,23 +1991,23 @@ namespace Ads.Classes
                     await Utility.Wait();
                 }
 
-                var counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                var counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
                 while (counter.Count <= 0)
                 {
-                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                    counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
                 }
                 while (counter.Count <= count)
                 {
                     ((IJavaScriptExecutor)_driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
                     await Utility.Wait();
-                    counter = _driver.FindElements(By.ClassName("col-xs-12")).ToList();
+                    counter = _driver.FindElements(By.ClassName("kt-col-12")).ToList();
                 }
 
                 //دریافت آگهی ها
                 for (var i = 0; i < count; i++)
                 {
                     await Utility.Wait();
-                    _driver.FindElements(By.ClassName("col-xs-12"))[i + 1]?.Click();
+                    _driver.FindElements(By.ClassName("kt-col-12"))[i + 1]?.Click();
                     await Utility.Wait(2);
                     var noPic = _driver.FindElements(By.ClassName("no-picture-image")).Any();
                     if (noPic)
