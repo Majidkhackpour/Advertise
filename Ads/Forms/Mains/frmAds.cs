@@ -124,7 +124,12 @@ namespace Ads.Forms.Mains
             lstList.Clear();
             if (_adv.Images != null && _adv.Images.Count != 0)
                 foreach (var image in _adv.Images)
-                    lstList.Add(image.PathGuid);
+                {
+                    var a = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    var b = Path.Combine(a, image.PathGuid+".jpg");
+                    lstList.Add(b);
+                }
+
             txtName.Focus();
             Make_Picture_Boxes(lstList);
             if (_adv.Guid != Guid.Empty)
@@ -209,7 +214,7 @@ namespace Ads.Forms.Mains
                         return;
                     }
                 }
-                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد",false);
+                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد", false);
             }
             catch (Exception exception)
             {
@@ -280,7 +285,7 @@ namespace Ads.Forms.Mains
                     }
 
                 }
-                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد",false);
+                WebErrorLog.ErrorInstence.StartErrorLog("گروه یا آگهی انتخابی معتبر نمی باشد", false);
             }
             catch (Exception exception)
             {
@@ -298,15 +303,22 @@ namespace Ads.Forms.Mains
                     fPanel.Controls[i].Dispose();
                 for (var i = 0; i < lst.Count; i++)
                 {
-                    var picbox = new PictureBox();
-                    Controls.Add(picbox);
-                    picbox.Size = new Size(62, 63);
-                    picbox.Load(lst[i]);
-                    picbox.Name = "pic" + i;
-                    picbox.Cursor = Cursors.Hand;
-                    picbox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    picbox.Click += picbox_Click;
-                    fPanel.Controls.Add(picbox);
+                    try
+                    {
+                        var picbox = new PictureBox();
+                        Controls.Add(picbox);
+                        picbox.Size = new Size(62, 63);
+                        picbox.Load(lst[i]);
+                        picbox.Name = "pic" + i;
+                        picbox.Cursor = Cursors.Hand;
+                        picbox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        picbox.Click += picbox_Click;
+                        fPanel.Controls.Add(picbox);
+                    }
+                    catch (Exception)
+                    {
+                        lst.RemoveAt(i);
+                    }
                 }
             }
             catch (Exception exception)
@@ -436,7 +448,7 @@ namespace Ads.Forms.Mains
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
-            txtSetter.Three_Ziro(txtPrice);
+           // txtSetter.Three_Ziro(txtPrice);
         }
 
         private async void cmbDivarCat1_SelectedIndexChanged(object sender, EventArgs e)
@@ -664,12 +676,25 @@ namespace Ads.Forms.Mains
                 var lstI = new List<AdvPicturesBussines>();
                 foreach (var item in lstList)
                 {
+                    var imagePath = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    if (!Directory.Exists(imagePath)) Directory.CreateDirectory(imagePath);
+                    var name = Guid.NewGuid().ToString();
+                    var fileName = Path.Combine(imagePath, name + ".jpg");
+                    try
+                    {
+                        File.Copy(item, fileName);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    
+
                     var a = new AdvPicturesBussines()
                     {
                         Guid = Guid.NewGuid(),
                         DateSabt = DateConvertor.M2SH(DateTime.Now),
                         Status = true,
-                        PathGuid = item,
+                        PathGuid = name,
                         AdvGuid = _adv.Guid
                     };
                     lstI.Add(a);
@@ -695,7 +720,7 @@ namespace Ads.Forms.Mains
                 _adv.GroupGuid = (Guid)cmbGroup.SelectedValue;
                 _adv.DivarCatGuid1 = (Guid)cmbDivarCat1.SelectedValue;
                 _adv.DivarCatGuid2 = (Guid)cmbDivarCat2.SelectedValue;
-                _adv.DivarCatGuid3 = (Guid?) cmbDivarCat3?.SelectedValue ?? Guid.Empty;
+                _adv.DivarCatGuid3 = (Guid?)cmbDivarCat3?.SelectedValue ?? Guid.Empty;
                 _adv.SheypoorCatGuid1 = (Guid)cmbSheypoorCat1.SelectedValue;
                 _adv.SheypoorCatGuid2 = (Guid)cmbSheypoorCat2.SelectedValue;
 

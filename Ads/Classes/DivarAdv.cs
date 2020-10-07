@@ -503,7 +503,7 @@ namespace Ads.Classes
                         }
                         else
                         {
-                           await Utility.Wait(3);
+                            await Utility.Wait(3);
                             try
                             {
                                 await Utility.Wait(3);
@@ -517,7 +517,7 @@ namespace Ads.Classes
                     }
 
 
-
+                    await AdvTokensBussines.RemoveAsync(simBusiness);
 
                 }
 
@@ -546,7 +546,7 @@ namespace Ads.Classes
                 adv.AdvType = AdvertiseType.Divar;
                 _driver = Utility.RefreshDriver(_driver);
                 _driver.Navigate().GoToUrl("https://divar.ir/new");
-                await Utility.Wait(1);
+                await Utility.Wait(2);
                 //کلیک کردن روی کتگوری اصلی
                 var a1 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.Category);
                 adv.Category = a1?.Text;
@@ -669,11 +669,28 @@ namespace Ads.Classes
                     _driver.FindElements(By.TagName("span")).FirstOrDefault(q => q.Text.Contains("فروشی"))?.Click();
                 }
                 await Utility.Wait(1);
+
+                var codemelli = _driver.FindElements(By.ClassName("text-field")).FirstOrDefault(q => q.Text == "کد ملی");
+                if (codemelli != null)
+                {
+                    var list = _driver.FindElements(By.TagName("input[type=text]")).ToList();
+                    list[3].SendKeys(sim.UserName.ToString());
+                }
+
+
+
                 //درج قیمت
-                if (adv.Price > 0) _driver.FindElement(By.TagName("input")).SendKeys(adv.Price.ToString());
+                if (adv.Price > 0)
+                {
+                    try
+                    {
+                        _driver.FindElement(By.TagName("input[type=tel]")).SendKeys(adv.Price.ToString());
+                    }
+                    catch { }
+                }
                 await Utility.Wait(1);
                 //درج عنوان آگهی
-                _driver.FindElements(By.TagName("input")).Last().SendKeys(adv.Title);
+                _driver.FindElements(By.TagName("input[type=text]")).Last().SendKeys(adv.Title);
                 await Utility.Wait(1);
                 //درج محتوای آگهی
                 var thread = new Thread(() => Clipboard.SetText(adv.Content.Replace('(', '<').Replace(')', '>')));
@@ -717,7 +734,6 @@ namespace Ads.Classes
                 adv.IP = await Utility.GetLocalIpAddress();
                 adv.AdvStatus = "در صف انتشار";
                 await adv.SaveAsync();
-
             }
             catch (Exception ex)
             {
@@ -811,7 +827,7 @@ namespace Ads.Classes
                 #endregion
 
                 //قیمت آگهی دریافت می شود
-                newAdvertiseLogBusiness.Price = decimal.Parse(AdvertiseList[nextAdvIndex].Price);
+                newAdvertiseLogBusiness.Price = AdvertiseList[nextAdvIndex].Price.ToString().ParseToDecimal();
                 while (string.IsNullOrEmpty(newAdvertiseLogBusiness.City) || newAdvertiseLogBusiness.City == "---")
                 {
                     var Allcity = await DivarSimCityBussines.GetAllAsync(simGuid.Guid);
@@ -851,7 +867,9 @@ namespace Ads.Classes
                 //حذف عکسهای زیر پیکسل 600*600
                 foreach (var imgItem in allImages)
                 {
-                    var img = Image.FromFile(imgItem.PathGuid);
+                    var address = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    var item = Path.Combine(address, imgItem.PathGuid);
+                    var img = Image.FromFile(item + ".jpg");
                     if (img.Width < 600 || img.Height < 600)
                         try
                         {
@@ -869,7 +887,7 @@ namespace Ads.Classes
                 {
                     foreach (var item in allImages)
                     {
-                        selectedImages.Add(item.PathGuid + "\r\n");
+                        selectedImages.Add(item.PathGuid + ".jpg" + "\r\n");
                     }
                 }
                 else
@@ -890,7 +908,9 @@ namespace Ads.Classes
                 //ویرایش عکسها
                 foreach (var img in selectedImages)
                 {
-                    resultImages.Add(ImageManager.ModifyImage(img));
+                    var address = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                    var item = Path.Combine(address, img.Trim());
+                    resultImages.Add(ImageManager.ModifyImage(item));
                 }
 
                 return resultImages;
@@ -1403,7 +1423,7 @@ namespace Ads.Classes
                 //ورود به دیوار
                 var log = await Login(sim.Number);
                 if (!log) return;
-                //_driver.Navigate().GoToUrl("https://divar.ir/");
+                _driver.Navigate().GoToUrl("https://divar.ir/");
                 await Utility.Wait();
                 //انتخاب شهر
                 _driver.FindElement(By.ClassName("city-selector")).Click();
@@ -1465,11 +1485,10 @@ namespace Ads.Classes
                     _driver.FindElement(By.ClassName("post-actions__get-contact")).Click();
                     await Utility.Wait();
 
-                    var a = _driver.FindElements(By.ClassName("primary"))
-                        .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم");
-                    if (a != null)
-                        _driver.FindElements(By.ClassName("primary"))
-                            .FirstOrDefault(q => q.Text == "با قوانین دیوار موافقم")?.Click();
+                    var a = _driver.FindElements(By.TagName("button"))
+                        .Where(q => q.Text == "با قوانین دیوار موافقم").ToList();
+                    if (a.Count > 0)
+                        a.FirstOrDefault()?.Click();
                     await Utility.Wait(1);
                     //چت
                     var el = _driver.FindElements(By.ClassName("post-actions__chat")).Any();

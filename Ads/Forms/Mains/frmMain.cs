@@ -119,14 +119,44 @@ namespace Ads.Forms.Mains
             }
         }
 
+        private async Task CopyImage()
+        {
+            try
+            {
+                var imagePath = Path.Combine(Application.StartupPath, "AdvertiseImage");
+                if (!Directory.Exists(imagePath))
+                {
+                    Directory.CreateDirectory(imagePath);
+                    var allimage = await AdvPicturesBussines.GetAllAsync();
+                    foreach (var img in allimage)
+                    {
+                        var name = Guid.NewGuid().ToString() ;
+                        var fileName = Path.Combine(imagePath, name + ".jpg");
+                        try
+                        {
+                            File.Copy(img.PathGuid, fileName);
+                            img.PathGuid = name;
+                            await img.SaveAsync();
+                        }
+                        catch (Exception)
+                        {
+                            await img.RemoveAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+            }
+        }
         private async void frmMain_Load(object sender, EventArgs e)
         {
             try
             {
-                //var expDate = DateConvertor.Sh2M("1399/01/01");
-                //if (DateTime.Now >= expDate) Application.Exit();
-                WebErrorLog.ErrorInstence.StartErrorLog(new Exception());
+                Utility.CloseAllChromeWindows();
                 PictureManager();
+                await CopyImage();
                 var th = new Thread(new ThreadStart(async () => await GetNaqz()));
                 th.Start();
                 lblDay.Text = lblNewDate.Text = "";

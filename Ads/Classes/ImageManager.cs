@@ -41,8 +41,9 @@ namespace Ads.Classes
                 if (!Directory.Exists(destinationPath))
                     Directory.CreateDirectory(destinationPath);
                 destinationPath = Path.Combine(destinationPath, $"{Guid.NewGuid()}.jpg");
-
-                using (var bm = new Bitmap(SourceFullPath))
+                if (!SourceFullPath.EndsWith(".jpg"))
+                    SourceFullPath = SourceFullPath + ".jpg";
+                using (var bm = new Bitmap(SourceFullPath.Trim()))
                 {
                     var rnd = new Random();
                     var rnd_w = new Random();
@@ -58,7 +59,7 @@ namespace Ads.Classes
             }
             catch (Exception ex)
             {
-                WebErrorLog.ErrorInstence.StartErrorLog(ex);
+                //WebErrorLog.ErrorInstence.StartErrorLog(ex);
                 return "";
             }
         }

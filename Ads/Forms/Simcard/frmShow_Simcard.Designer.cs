@@ -44,26 +44,30 @@
             this.mnuDivarLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSheypoorLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDivarChatLogIn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label1 = new System.Windows.Forms.Label();
             this.line1 = new DevComponents.DotNetBar.Controls.Line();
             this.lblCounter = new System.Windows.Forms.Label();
             this.DGrid = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Radif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dg_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DivarToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DivarChetToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SheypoorToken = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.uC_Date1 = new UC_Date.UC_Date();
-            this.dgGuid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dg_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateSabtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.operatorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LogInBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.uC_Date1 = new UC_Date.UC_Date();
+            this.mnuDeleteDivarToken = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeleteSheypoorToken = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeleteDivarChet = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogInBindingSource)).BeginInit();
@@ -111,10 +115,14 @@
             this.mnuSheypoorLogin,
             this.mnuDivarChatLogIn,
             this.toolStripMenuItem2,
+            this.mnuDeleteDivarToken,
+            this.mnuDeleteSheypoorToken,
+            this.mnuDeleteDivarChet,
+            this.toolStripMenuItem3,
             this.mnuLog});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 206);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 284);
             // 
             // mnuDelete
             // 
@@ -152,6 +160,19 @@
             this.mnuDivarChatLogIn.Size = new System.Drawing.Size(192, 24);
             this.mnuDivarChatLogIn.Text = "لاگین چت دیوار";
             this.mnuDivarChatLogIn.Click += new System.EventHandler(this.mnuDivarChatLogIn_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(189, 6);
+            // 
+            // mnuLog
+            // 
+            this.mnuLog.ForeColor = System.Drawing.Color.Silver;
+            this.mnuLog.Name = "mnuLog";
+            this.mnuLog.Size = new System.Drawing.Size(192, 24);
+            this.mnuLog.Text = "نمایش لاگ آگهی ها";
+            this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
             // 
             // txtSearch
             // 
@@ -287,12 +308,36 @@
             this.DGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGrid_CellFormatting);
             this.DGrid.DoubleClick += new System.EventHandler(this.DGrid_DoubleClick);
             // 
+            // dgGuid
+            // 
+            this.dgGuid.DataPropertyName = "Guid";
+            this.dgGuid.HeaderText = "Guid";
+            this.dgGuid.Name = "dgGuid";
+            this.dgGuid.ReadOnly = true;
+            this.dgGuid.Visible = false;
+            // 
             // Radif
             // 
             this.Radif.HeaderText = "ردیف";
             this.Radif.Name = "Radif";
             this.Radif.ReadOnly = true;
             this.Radif.Width = 50;
+            // 
+            // ownerNameDataGridViewTextBoxColumn
+            // 
+            this.ownerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn.HeaderText = "مالک";
+            this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
+            this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dg_Number
+            // 
+            this.dg_Number.DataPropertyName = "Number";
+            this.dg_Number.HeaderText = "شماره";
+            this.dg_Number.Name = "dg_Number";
+            this.dg_Number.ReadOnly = true;
+            this.dg_Number.Width = 150;
             // 
             // DivarToken
             // 
@@ -317,41 +362,6 @@
             this.SheypoorToken.Name = "SheypoorToken";
             this.SheypoorToken.ReadOnly = true;
             this.SheypoorToken.Width = 75;
-            // 
-            // uC_Date1
-            // 
-            this.uC_Date1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
-            this.uC_Date1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uC_Date1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.uC_Date1.Location = new System.Drawing.Point(0, 0);
-            this.uC_Date1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uC_Date1.Name = "uC_Date1";
-            this.uC_Date1.Size = new System.Drawing.Size(784, 47);
-            this.uC_Date1.TabIndex = 55686;
-            // 
-            // dgGuid
-            // 
-            this.dgGuid.DataPropertyName = "Guid";
-            this.dgGuid.HeaderText = "Guid";
-            this.dgGuid.Name = "dgGuid";
-            this.dgGuid.ReadOnly = true;
-            this.dgGuid.Visible = false;
-            // 
-            // ownerNameDataGridViewTextBoxColumn
-            // 
-            this.ownerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
-            this.ownerNameDataGridViewTextBoxColumn.HeaderText = "مالک";
-            this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
-            this.ownerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dg_Number
-            // 
-            this.dg_Number.DataPropertyName = "Number";
-            this.dg_Number.HeaderText = "شماره";
-            this.dg_Number.Name = "dg_Number";
-            this.dg_Number.ReadOnly = true;
-            this.dg_Number.Width = 150;
             // 
             // dateSabtDataGridViewTextBoxColumn
             // 
@@ -389,18 +399,45 @@
             // 
             this.LogInBindingSource.DataSource = typeof(BussinesLayer.SimcardBussines);
             // 
-            // toolStripMenuItem2
+            // uC_Date1
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(189, 6);
+            this.uC_Date1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(47)))), ((int)(((byte)(61)))));
+            this.uC_Date1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uC_Date1.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.uC_Date1.Location = new System.Drawing.Point(0, 0);
+            this.uC_Date1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uC_Date1.Name = "uC_Date1";
+            this.uC_Date1.Size = new System.Drawing.Size(784, 47);
+            this.uC_Date1.TabIndex = 55686;
             // 
-            // mnuLog
+            // mnuDeleteDivarToken
             // 
-            this.mnuLog.ForeColor = System.Drawing.Color.Silver;
-            this.mnuLog.Name = "mnuLog";
-            this.mnuLog.Size = new System.Drawing.Size(192, 24);
-            this.mnuLog.Text = "نمایش لاگ آگهی ها";
-            this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
+            this.mnuDeleteDivarToken.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDeleteDivarToken.Name = "mnuDeleteDivarToken";
+            this.mnuDeleteDivarToken.Size = new System.Drawing.Size(192, 24);
+            this.mnuDeleteDivarToken.Text = "حذف توکن دیوار";
+            this.mnuDeleteDivarToken.Click += new System.EventHandler(this.mnuDeleteDivarToken_Click);
+            // 
+            // mnuDeleteSheypoorToken
+            // 
+            this.mnuDeleteSheypoorToken.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDeleteSheypoorToken.Name = "mnuDeleteSheypoorToken";
+            this.mnuDeleteSheypoorToken.Size = new System.Drawing.Size(192, 24);
+            this.mnuDeleteSheypoorToken.Text = "حذف توکن شیپور";
+            this.mnuDeleteSheypoorToken.Click += new System.EventHandler(this.mnuDeleteSheypoorToken_Click);
+            // 
+            // mnuDeleteDivarChet
+            // 
+            this.mnuDeleteDivarChet.ForeColor = System.Drawing.Color.Silver;
+            this.mnuDeleteDivarChet.Name = "mnuDeleteDivarChet";
+            this.mnuDeleteDivarChet.Size = new System.Drawing.Size(192, 24);
+            this.mnuDeleteDivarChet.Text = "حذف توکن چت دیوار";
+            this.mnuDeleteDivarChet.Click += new System.EventHandler(this.mnuDeleteDivarChet_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(189, 6);
             // 
             // frmShow_Simcard
             // 
@@ -467,5 +504,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuLog;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeleteDivarToken;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeleteSheypoorToken;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeleteDivarChet;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     }
 }
