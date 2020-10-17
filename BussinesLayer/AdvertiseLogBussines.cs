@@ -21,7 +21,7 @@ namespace BussinesLayer
         public long SimCardNumber { get; set; }
         public string State { get; set; } = "---";
         public string City { get; set; } = "---";
-        public string Region { get; set; }
+        public string Region { get; set; } = "---";
         public decimal Price { get; set; }
         public string Category { get; set; }
         public string SubCategory1 { get; set; } = "---";
@@ -38,10 +38,10 @@ namespace BussinesLayer
         public List<string> ImagesPathList { get; set; }
         public string TypeName => AdvType.GetDisplay();
         public string StatusName => StatusCode.GetDisplay();
-
         public string ImageList => ImagesPathList != null && ImagesPathList.Count > 0
             ? string.Join("\r\n", ImagesPathList)
             : "---";
+
         public static int GetAllAdvInDayFromIP(string ip)
         {
             using (var _context = new UnitOfWorkLid())

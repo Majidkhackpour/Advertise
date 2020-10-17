@@ -14,6 +14,8 @@ using DataLayer;
 using DataLayer.Enums;
 using ErrorHandler;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 using Telegram.Bot;
 using Cookie = OpenQA.Selenium.Cookie;
 
@@ -563,9 +565,12 @@ namespace Ads.Classes
                 adv.SubCategory2 = a3?.Text;
                 a3?.Click();
 
-                while (_driver.FindElements(By.ClassName("limage-uploader__item")).Count <= 0)
+                var counter_ = 0;
+                while (_driver.FindElements(By.ClassName("kt-image-drop-zone__border-image")).Count <= 0)
                 {
+                    if (counter_ >= 10) return;
                     await Utility.Wait(1);
+                    counter_++;
                 }
 
                 await Utility.Wait(2);
@@ -575,49 +580,17 @@ namespace Ads.Classes
                     return;
                 }
 
-                //foreach (var item in adv.ImagesPathList)
-                //{
-                //    try
-                //    {
-                //        //درج عکسها
-                //        _driver.FindElement(By.ClassName("image-uploader__dropzone")).FindElement(By.TagName("input[type=file]")).SendKeys(item);
-                //        await Utility.Wait();
-                //        //break;
-                //    }
-                //    catch
-                //    {
-                //    }
-                //}
-                await Utility.Wait();
-                _driver.FindElement(By.ClassName("image-uploader__item")).FindElement(By.TagName("input"))
+                await Utility.Wait(2);
+                try
+                {
+                    _driver.FindElement(By.ClassName("image-uploader__zone")).FindElement(By.TagName("input"))
                         .SendKeys(adv.ImageList);
-                await Utility.Wait();
-
-                await Utility.Wait();
-
-                var type = _driver.FindElements(By.Id("root_merchandise_type")).Any();
-                await Utility.Wait(1);
-                if (type)
-                {
-                    _driver.FindElements(By.Id("root_merchandise_type")).FirstOrDefault()?.Click();
-                    await Utility.Wait(1);
-                    _driver.FindElements(By.TagName("option")).FirstOrDefault(q => q.Text.Contains("زیبایی"))?.Click();
                 }
-
-                await Utility.Wait();
-
-                var st = _driver.FindElements(By.Id("root_status")).Any();
-                await Utility.Wait(1);
-                if (st)
-                {
-                    _driver.FindElements(By.Id("root_status")).FirstOrDefault()?.Click();
-                    await Utility.Wait(1);
-                    _driver.FindElements(By.TagName("option")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
-                }
+                catch {}
 
 
                 await Utility.Wait(2);
-                _driver.FindElement(By.ClassName("kt-select__field--placeholder-shown"))?.Click();
+                _driver.FindElement(By.ClassName("kt-select--searchable"))?.Click();
                 await Utility.Wait(1);
                 _driver.FindElement(By.ClassName("kt-select__search-field"))?.SendKeys(adv.City + "\n");
                 await Utility.Wait(2);
@@ -640,30 +613,69 @@ namespace Ads.Classes
                         _driver.FindElements(By.ClassName("kt-select__search-field"))?[1]?.SendKeys(regName + "\n");
                         adv.Region = regName;
                     }
+                    else
+                    {
+                        _driver.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0].Click();
+                        await Utility.Wait(2);
+                        var listEl = _driver.FindElements(By.ClassName("kt-select__option")).ToList();
+                        await Utility.Wait();
+                        listEl[1]?.Click();
+                    }
                 }
 
+                await Utility.Wait();
+
+                var element = _driver.FindElements(By.ClassName("text-field"))
+                    ?.FirstOrDefault(q => q.Text == "شمارهٔ موبایل");
+                var actions = new Actions(_driver);
+                actions.MoveToElement(element);
+                actions.Perform();
+
+                var type = _driver.FindElements(By.Id("root_merchandise_type")).Any();
+                await Utility.Wait(1);
+                if (type)
+                {
+                    _driver.FindElement(By.Id("root_merchandise_type"))?.SendKeys("لوازم آرایشی و زیبایی");
+                    await Utility.Wait();
+                    _driver.FindElements(By.ClassName("kt-select__option")).FirstOrDefault(q => q.Text.Contains("زیبایی"))?.Click();
+                }
+
+                await Utility.Wait();
+
+                var st = _driver.FindElements(By.Id("root_status")).Any();
+                await Utility.Wait(1);
+                if (st)
+                {
+                    _driver.FindElement(By.Id("root_status"))?.Click();
+                    await Utility.Wait();
+                    _driver.FindElements(By.ClassName("kt-select__option")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
+                }
 
                 await Utility.Wait(1);
 
 
-                var checkchat = _driver.FindElements(By.Id("root_contact_chat_enabled")).Any();
+                var checkchat = _driver.FindElements(By.ClassName("kt-switch__label")).Any(q => q.Text == "چت دیوار فعال شود");
                 if (checkchat)
                 {
-                    var tttttt = _driver.FindElement(By.Id("root_contact_chat_enabled")).Selected;
+                    var tttttt = _driver.FindElements(By.ClassName("kt-switch__label"))
+                        ?.FirstOrDefault(q => q.Text == "چت دیوار فعال شود")?.Selected;
                     await Utility.Wait(1);
-                    if (tttttt != sim.IsEnableChat)
-                        _driver.FindElement(By.Id("root_contact_chat_enabled")).Click();
+                    if (tttttt == sim.IsEnableChat)
+                        _driver.FindElements(By.ClassName("kt-switch__label"))
+                            ?.FirstOrDefault(q => q.Text == "چت دیوار فعال شود")?.Click();
                 }
 
 
                 await Utility.Wait(1);
-                var checkshoemobile = _driver.FindElements(By.Id("root_contact_hide_phone")).Any();
+                var checkshoemobile = _driver.FindElements(By.ClassName("kt-switch__label")).Any(q => q.Text == "شماره تلفن در آگهی نمایش داده نشود");
                 if (checkshoemobile)
                 {
-                    var eeeeee = _driver.FindElement(By.Id("root_contact_hide_phone")).Selected;
+                    var eeeeee = _driver.FindElements(By.ClassName("kt-switch__label"))
+                        ?.FirstOrDefault(q => q.Text == "شماره تلفن در آگهی نمایش داده نشود")?.Selected;
                     await Utility.Wait(1);
                     if (eeeeee == sim.IsEnableNumber)
-                        _driver.FindElement(By.Id("root_contact_hide_phone")).Click();
+                        _driver.FindElements(By.ClassName("kt-switch__label"))
+                            ?.FirstOrDefault(q => q.Text == "شماره تلفن در آگهی نمایش داده نشود")?.Click();
                 }
                 await Utility.Wait(1);
 
@@ -1484,6 +1496,9 @@ namespace Ads.Classes
                 {
                     //انتخاب آگهی
                     await Utility.Wait();
+
+                    if (_driver.Url.Contains("https://divar.ir/v/")) _driver.Navigate().Back();
+
                     _driver.FindElements(By.ClassName("kt-post-card__body"))[i + 1]?.Click();
                     await Utility.Wait(1);
                     //دریافت شماره آگهی
@@ -1644,7 +1659,7 @@ namespace Ads.Classes
                         }
                         _driver.Close();
                         _driver.SwitchTo().Window(_driver.WindowHandles[0]);
-                        
+
                         await Utility.Wait(2);
                         _driver.Navigate().Back();
                         break;
@@ -1836,7 +1851,7 @@ namespace Ads.Classes
                                     catch
                                     {
                                     }
-                                    
+
                                 }
                             }
 
@@ -1863,7 +1878,7 @@ namespace Ads.Classes
                         _driver.SwitchTo().Window(_driver.WindowHandles[0]);
                         await Utility.Wait(2);
                         _driver.Navigate().Back();
-                        
+
                     }
                 }
             }
