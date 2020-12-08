@@ -799,6 +799,16 @@ namespace Ads.Forms.Mains
         {
             try
             {
+                if (txtDesc.Text.Length < 20)
+                {
+                    MessageBox.Show("محتوای آگهی نمی تواند کمتر از 20 کاراکتر باشد");
+                    return;
+                }
+                if (txtDesc.Text.Length > 900)
+                {
+                    MessageBox.Show("محتوای آگهی نمی تواند بیشتر از 900 کاراکتذ باشد");
+                    return;
+                }
                 if (lstContent.Count == top)
                 {
                     lstContent.Add(txtDesc.Text);

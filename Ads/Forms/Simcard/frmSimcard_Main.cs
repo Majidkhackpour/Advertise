@@ -108,41 +108,44 @@ namespace Ads.Forms.Simcard
             lblHeader.Text = "ویرایش سیمکارت";
         }
 
-        private async Task FillComboBox()
+        private void FillComboBox()
         {
             try
             {
-                var list = await SimcardBussines.GetAllAsync();
-                var a = list.Select(q => q.Operator).Distinct().ToList();
-                cmbOperator.DataSource = a;
+                Invoke(new MethodInvoker(async () =>
+                {
+                    var list = await SimcardBussines.GetAllAsync();
+                    var a = list.Select(q => q.Operator).Distinct().ToList();
+                    cmbOperator.DataSource = a;
 
-                var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
-                divarCat1 = divarCat1.OrderBy(q => q.Name).ToList();
-                PostCat1BindingSource.DataSource = divarCat1;
+                    var divarCat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+                    divarCat1 = divarCat1.OrderBy(q => q.Name).ToList();
+                    PostCat1BindingSource.DataSource = divarCat1;
 
 
-                var dCity = await DivarCityBussines.GetAllAsync();
-                dCity = dCity.OrderBy(q => q.Name).ToList();
-                DivarCBindingSource.DataSource = dCity;
-                cmbDivarCity.SelectedIndex = 0;
+                    var dCity = await DivarCityBussines.GetAllAsync();
+                    dCity = dCity.OrderBy(q => q.Name).ToList();
+                    DivarCBindingSource.DataSource = dCity;
+                    cmbDivarCity.SelectedIndex = 0;
 
-                var shCity = await SheypoorCityBussines.GetAllAsync();
-                shCity = shCity.OrderBy(q => q.Name).ToList();
-                SheypoorCBindingSource.DataSource = shCity;
-                cmbSheypoorCity.SelectedIndex = 0;
+                    var shCity = await SheypoorCityBussines.GetAllAsync();
+                    shCity = shCity.OrderBy(q => q.Name).ToList();
+                    SheypoorCBindingSource.DataSource = shCity;
+                    cmbSheypoorCity.SelectedIndex = 0;
 
-                var divarChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
-                divarChat1 = divarChat1.OrderBy(q => q.Name).ToList();
-                DivarChatBindingSource1.DataSource = divarChat1;
+                    var divarChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Divar);
+                    divarChat1 = divarChat1.OrderBy(q => q.Name).ToList();
+                    DivarChatBindingSource1.DataSource = divarChat1;
 
-                var sheypoorChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
-                sheypoorChat1 = sheypoorChat1.OrderBy(q => q.Name).ToList();
-                SheypoorChatBindingSource1.DataSource = sheypoorChat1;
+                    var sheypoorChat1 = await AdvCategoryBussines.GetAllAsync(Guid.Empty, AdvertiseType.Sheypoor);
+                    sheypoorChat1 = sheypoorChat1.OrderBy(q => q.Name).ToList();
+                    SheypoorChatBindingSource1.DataSource = sheypoorChat1;
 
-                var postCity = await DivarCityBussines.GetAllAsync();
-                postCity = postCity.OrderBy(q => q.Name).ToList();
-                PostCityBindingSource.DataSource = postCity;
-                cmbPostCity.SelectedIndex = 0;
+                    var postCity = await DivarCityBussines.GetAllAsync();
+                    postCity = postCity.OrderBy(q => q.Name).ToList();
+                    PostCityBindingSource.DataSource = postCity;
+                    cmbPostCity.SelectedIndex = 0;
+                }));
             }
             catch (Exception e)
             {
@@ -365,76 +368,86 @@ namespace Ads.Forms.Simcard
             }
         }
 
-        private async void frmSimcard_Main_Load(object sender, EventArgs e)
+        private void frmSimcard_Main_Load(object sender, EventArgs e)
         {
-            await FillComboBox();
-            await Set_Data();
-            var sim = await SimcardBussines.GetAllAsync();
-            var _source = new AutoCompleteStringCollection();
-
-            foreach (var item in sim)
+            Task.Run(async () =>
             {
-                _source.Add(item.OwnerName);
-            }
+                FillComboBox();
+                Set_Data();
+                var sim = await SimcardBussines.GetAllAsync();
+                var _source = new AutoCompleteStringCollection();
 
-            txtOwner.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            txtOwner.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            txtOwner.AutoCompleteCustomSource = _source;
+                foreach (var item in sim)
+                {
+                    _source.Add(item.OwnerName);
+                }
+
+                Invoke(new MethodInvoker(() =>
+                {
+                    txtOwner.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtOwner.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    txtOwner.AutoCompleteCustomSource = _source;
+                }));
+            });
         }
-        private async Task Set_Data()
+        private void Set_Data()
         {
             try
             {
-                await FillAds();
-                await FillCity();
-                txtNumber.Text = cls.Number.ToString();
-                txtOwner.Text = cls.OwnerName;
-                cmbOperator.Text = cls.Operator;
-                txtUserName.Text = cls.UserName;
-                txtChatCount.Text = cls.ChatCount.ToString();
-                chbIsEnableNumber.Checked = cls.IsEnableNumber;
-                chbIsEnableChat.Checked = cls.IsEnableChat;
-                chbIsSendChatDivar.Checked = cls.IsSendChat;
-                chbIsSendChatSheypoor.Checked = cls.IsSendChatSheypoor;
-                chbIsSendAdvDivar.Checked = cls.IsSendAdv;
-                chbIsSendAdvSheypoor.Checked = cls.IsSendAdvSheypoor;
-                cmbDivarCity.SelectedValue = cls.DivarCityForChat;
-                cmbSheypoorCity.SelectedValue = cls.SheypoorCityForChat;
-                chbIsSendPostToTelegram.Checked = cls.isSendPostToTelegram;
-                txtChannel.Text = cls.ChannelForSendPost;
-                txtPostCount.Text = cls.PostCount?.ToString() ?? "";
-                txtPostDescription.Text = cls.DescriptionForPost;
-                chbIsSendSecondText.Checked = cls.isSendSecondChat;
-                chbIsSendChatDivar.Checked = cls.isSendSecondChat;
-                txtFirstChatPassage1.Text = cls.FirstChatPassage;
-                txtFirstChatPassage2.Text = cls.FirstChatPassage2;
-                txtFirstChatPassage3.Text = cls.FirstChatPassage3;
-                txtFirstChatPassage4.Text = cls.FirstChatPassage4;
-                txtSecondChatPassage1.Text = cls.SecondChatPassage;
-                txtSecondChatPassage2.Text = cls.SecondChatPassage2;
-                txtSecondChatPassage3.Text = cls.SecondChatPassage3;
-                txtSecondChatPassage4.Text = cls.SecondChatPassage4;
-                txtSMS.Text = cls.SMS_Description;
-                if (cls.Guid != Guid.Empty)
+                Invoke(new MethodInvoker(async () =>
                 {
-                    cmbPostCat1.SelectedValue = cls?.DivarPostCat1 ?? Guid.Empty;
-                    if (cmbPostCat1.SelectedValue != null && (Guid)cmbPostCat1.SelectedValue != Guid.Empty)
-                        cmbPostCat1_SelectedIndexChanged(null, null);
-                    cmbPostCat2.SelectedValue = cls?.DivarPostCat2 ?? Guid.Empty;
-                    if (cmbPostCat2.SelectedValue != null && (Guid)cmbPostCat2.SelectedValue != Guid.Empty)
-                        cmbPostCat2_SelectedIndexChanged(null, null);
-                    cmbPostCat3.SelectedValue = cls?.DivarPostCat3 ?? Guid.Empty;
-                    cmbPostCity.SelectedValue = cls?.CityForGetPost ?? Guid.Empty;
+                    await FillAds();
+                    await FillCity();
+                    txtNumber.Text = cls.Number.ToString();
+                    txtOwner.Text = cls.OwnerName;
+                    cmbOperator.Text = cls.Operator;
+                    txtUserName.Text = cls.UserName;
+                    txtChatCount.Text = cls.ChatCount.ToString();
+                    chbIsEnableNumber.Checked = cls.IsEnableNumber;
+                    chbIsEnableChat.Checked = cls.IsEnableChat;
+                    chbIsSendChatDivar.Checked = cls.IsSendChat;
+                    chbIsSendChatSheypoor.Checked = cls.IsSendChatSheypoor;
+                    chbIsSendAdvDivar.Checked = cls.IsSendAdv;
+                    chbIsSendAdvSheypoor.Checked = cls.IsSendAdvSheypoor;
+                    cmbDivarCity.SelectedValue = cls.DivarCityForChat;
+                    cmbSheypoorCity.SelectedValue = cls.SheypoorCityForChat;
+                    chbIsSendPostToTelegram.Checked = cls.isSendPostToTelegram;
+                    txtChannel.Text = cls.ChannelForSendPost;
+                    txtPostCount.Text = cls.PostCount?.ToString() ?? "";
+                    txtPostDescription.Text = cls.DescriptionForPost;
+                    chbIsSendSecondText.Checked = cls.isSendSecondChat;
+                    chbIsSendChatDivar.Checked = cls.isSendSecondChat;
+                    txtFirstChatPassage1.Text = cls.FirstChatPassage;
+                    txtFirstChatPassage2.Text = cls.FirstChatPassage2;
+                    txtFirstChatPassage3.Text = cls.FirstChatPassage3;
+                    txtFirstChatPassage4.Text = cls.FirstChatPassage4;
+                    txtSecondChatPassage1.Text = cls.SecondChatPassage;
+                    txtSecondChatPassage2.Text = cls.SecondChatPassage2;
+                    txtSecondChatPassage3.Text = cls.SecondChatPassage3;
+                    txtSecondChatPassage4.Text = cls.SecondChatPassage4;
+                    txtSMS.Text = cls.SMS_Description;
+                    if (cls.Guid != Guid.Empty)
+                    {
+                        cmbPostCat1.SelectedValue = cls?.DivarPostCat1 ?? Guid.Empty;
+                        if (cmbPostCat1.SelectedValue != null && (Guid) cmbPostCat1.SelectedValue != Guid.Empty)
+                            cmbPostCat1_SelectedIndexChanged(null, null);
+                        cmbPostCat2.SelectedValue = cls?.DivarPostCat2 ?? Guid.Empty;
+                        if (cmbPostCat2.SelectedValue != null && (Guid) cmbPostCat2.SelectedValue != Guid.Empty)
+                            cmbPostCat2_SelectedIndexChanged(null, null);
+                        cmbPostCat3.SelectedValue = cls?.DivarPostCat3 ?? Guid.Empty;
+                        cmbPostCity.SelectedValue = cls?.CityForGetPost ?? Guid.Empty;
 
-                    cmbDivarChat1.SelectedValue = cls?.DivarChatCat1 ?? Guid.Empty;
-                    cmbDivarChat2.SelectedValue = cls?.DivarChatCat2 ?? Guid.Empty;
-                    cmbDivarChat3.SelectedValue = cls?.DivarChatCat3 ?? Guid.Empty;
-                    cmbSheypoorChat1.SelectedValue = cls?.SheypoorChatCat1 ?? Guid.Empty;
-                    cmbSheypoorChat2.SelectedValue = cls?.SheypoorChatCat2 ?? Guid.Empty;
-                }
-                grpTelegram.Enabled = chbIsSendPostToTelegram.Checked;
-                await SetCity(cls.Guid);
-                await SetAds(cls.Guid);
+                        cmbDivarChat1.SelectedValue = cls?.DivarChatCat1 ?? Guid.Empty;
+                        cmbDivarChat2.SelectedValue = cls?.DivarChatCat2 ?? Guid.Empty;
+                        cmbDivarChat3.SelectedValue = cls?.DivarChatCat3 ?? Guid.Empty;
+                        cmbSheypoorChat1.SelectedValue = cls?.SheypoorChatCat1 ?? Guid.Empty;
+                        cmbSheypoorChat2.SelectedValue = cls?.SheypoorChatCat2 ?? Guid.Empty;
+                    }
+
+                    grpTelegram.Enabled = chbIsSendPostToTelegram.Checked;
+                    await SetCity(cls.Guid);
+                    await SetAds(cls.Guid);
+                }));
             }
             catch (Exception e)
             {

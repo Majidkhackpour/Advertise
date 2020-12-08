@@ -550,18 +550,18 @@ namespace Ads.Classes
                 _driver.Navigate().GoToUrl("https://divar.ir/new");
                 await Utility.Wait(2);
                 //کلیک کردن روی کتگوری اصلی
-                var a1 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.Category);
+                var a1 = _driver.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == adv.Category);
                 adv.Category = a1?.Text;
                 a1?.Click();
 
                 await Utility.Wait(2);
                 //کلیک روی ساب کتگوری 1
-                var a2 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.SubCategory1);
+                var a2 = _driver.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == adv.SubCategory1);
                 adv.SubCategory1 = a2?.Text;
                 a2?.Click();
                 await Utility.Wait();
                 //کلیک روی ساب کتگوری2
-                var a3 = _driver.FindElements(By.ClassName("expanded-category-selector__item")).FirstOrDefault(p => p.Text == adv.SubCategory2);
+                var a3 = _driver.FindElements(By.ClassName("kt-selector-row__title")).FirstOrDefault(p => p.Text == adv.SubCategory2);
                 adv.SubCategory2 = a3?.Text;
                 a3?.Click();
 
@@ -637,7 +637,7 @@ namespace Ads.Classes
                 {
                     _driver.FindElement(By.Id("root_merchandise_type"))?.SendKeys("لوازم آرایشی و زیبایی");
                     await Utility.Wait();
-                    _driver.FindElements(By.ClassName("kt-select__option")).FirstOrDefault(q => q.Text.Contains("زیبایی"))?.Click();
+                    _driver.FindElements(By.ClassName("kt-dropdown-item")).FirstOrDefault(q => q.Text.Contains("زیبایی"))?.Click();
                 }
 
                 await Utility.Wait();
@@ -648,7 +648,7 @@ namespace Ads.Classes
                 {
                     _driver.FindElement(By.Id("root_status"))?.Click();
                     await Utility.Wait();
-                    _driver.FindElements(By.ClassName("kt-select__option")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
+                    _driver.FindElements(By.ClassName("kt-dropdown-item")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
                 }
 
                 await Utility.Wait(1);
@@ -1470,9 +1470,13 @@ namespace Ads.Classes
                 }
 
                 var ele = _driver.FindElements(By.ClassName("kt-post-card__body")).Any();
+                var counter__ = 0;
                 while (!ele)
                 {
+                    if (counter__ > 10)
+                        return;
                     ele = _driver.FindElements(By.ClassName("kt-post-card__body")).Any();
+                    counter__++;
                 }
                 await Utility.Wait(5);
                 var j = 0;
