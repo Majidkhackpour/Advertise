@@ -586,7 +586,7 @@ namespace Ads.Classes
                     _driver.FindElement(By.ClassName("image-uploader__zone")).FindElement(By.TagName("input"))
                         .SendKeys(adv.ImageList);
                 }
-                catch {}
+                catch { }
 
 
                 await Utility.Wait(2);
@@ -617,7 +617,7 @@ namespace Ads.Classes
                     {
                         _driver.FindElements(By.ClassName("kt-select__field--placeholder-shown"))?[0].Click();
                         await Utility.Wait(2);
-                        var listEl = _driver.FindElements(By.ClassName("kt-select__option")).ToList();
+                        var listEl = _driver.FindElements(By.ClassName("kt-dropdown-item")).ToList();
                         await Utility.Wait();
                         listEl[1]?.Click();
                     }
@@ -646,9 +646,14 @@ namespace Ads.Classes
                 await Utility.Wait(1);
                 if (st)
                 {
-                    _driver.FindElement(By.Id("root_status"))?.Click();
-                    await Utility.Wait();
-                    _driver.FindElements(By.ClassName("kt-dropdown-item")).FirstOrDefault(q => q.Text.Contains("نو"))?.Click();
+                    var list = _driver.FindElements(By.ClassName("kt-icon-keyboard-arrow-down-o"))?.ToList();
+                    var index = list.Count-1;
+                    if (index > 0)
+                    {
+                        list[index].Click();
+                        await Utility.Wait();
+                        _driver.FindElements(By.ClassName("kt-dropdown-item")).FirstOrDefault(q => q.Text == "نو")?.Click();
+                    }
                 }
 
                 await Utility.Wait(1);
@@ -691,8 +696,8 @@ namespace Ads.Classes
                 var codemelli = _driver.FindElements(By.ClassName("text-field")).FirstOrDefault(q => q.Text == "کد ملی");
                 if (codemelli != null)
                 {
-                    var list = _driver.FindElements(By.TagName("input[type=text]")).ToList();
-                    list[3].SendKeys(sim.UserName.ToString());
+                    var list = _driver.FindElements(By.ClassName("kt-textfield__input")).ToList();
+                    list[1].SendKeys(sim.UserName);
                 }
 
 
